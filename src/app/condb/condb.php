@@ -1,5 +1,4 @@
 <?php
-include './component/login/login.component.html';
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $sql = "SELECT username , password 
     FROM admin
-    WHERE username == '$username' AND password == '$password';";
+    WHERE username = '$username' AND password = '$password';";
     
         $result = pg_query( $sql);
         $coursesArray = array();
@@ -35,9 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $coursesArray[] = $row;
         }
         echo json_encode($coursesArray);
-        if ($coursesArray.username == '$username' ){
-        header('Location: http://stackoverflow.com');
-        }
     }
 
 else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -58,8 +54,9 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 else{
-echo  '{ "55555"}';
+echo  '{ "insert":"false"}';
 //insert":"false
 }
 }
+
 ?>
