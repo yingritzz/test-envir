@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "envirservice-inventory"
+  "defaultProject": "envirservice-inventory",
+  "cli": {
+    "analytics": "3e7d452a-f843-42cc-b65a-d71149e3bfcf"
+  }
 }
