@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  countRepair:any = 5555
+  countRent:any = 5432
+  countTest:any = 5678
+  countBuy:any = 5210
   constructor() { }
 
   ngOnInit(): void {

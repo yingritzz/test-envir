@@ -17,11 +17,12 @@ export class LoginComponent implements OnInit {
   }
 
   async submit_login() {
-    if (this.mUsername == "kiki@lala.com" && this.mPassword == "1234") {
-      this.route.navigateByUrl('home')
-    } else {
-      window.alert("Login Failed");
-    }
+    // if (this.mUsername == "kiki@lala.com" && this.mPassword == "1234") {
+    //   this.route.navigateByUrl('home')
+    // } else {
+    //   window.alert("Login Failed");
+    // }
+    this.route.navigateByUrl('home')
   }
 
 }
