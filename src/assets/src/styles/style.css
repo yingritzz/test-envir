@@ -30,7 +30,7 @@ body {
 	margin: 0;
 	padding: 0;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Trirong', serif;
 	font-weight: 400;
 	width: 100%;
 	min-height: 100%;
@@ -1314,6 +1314,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, tabl
 .brand-logo a .dark-logo,
 .sidebar-light .brand-logo a .light-logo{
 	display: none;
+	
 }
 .brand-logo a .light-logo,
 .sidebar-light .brand-logo a .dark-logo

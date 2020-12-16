@@ -13,6 +13,8 @@ import { HomeComponent } from './components/home/home.component';
 
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
+import { GetjobComponent } from './components/getjob/getjob.component';
+
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     HeaderComponent,
     LoginComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    GetjobComponent
   ],
   imports: [
     BrowserModule,

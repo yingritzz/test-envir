@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public route: Router) { }
 
   ngOnInit(): void {
+  }
+  async onClickGetJob() {
+    this.route.navigateByUrl('getjob')
   }
 
 }

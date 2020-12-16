@@ -422,20 +422,80 @@
             </div>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-lg-7 col-md-12 col-sm-12 mb-30">
+            <div class="card-box pd-30 height-100-p">
+                <h4 class="mb-30 h4">อุปกรณ์คืนวันนี้</h4>
+                <div id="compliance-trend" class="compliance-trend"></div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ลำดับ</th>
+                                    <th scope="col">ลูกค้า</th>
+                                    <th scope="col">หัวข้อ</th>
+                                    <th scope="col">หมวดหมู่</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Envir</td>
+                                    <td>Analyzer SO2</td>                    
+                                    <td><span class="badge badge-primary2">ครบกำหนด</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Envir2</td>
+                                    <td>NOx</td>                    
+                                    <td><span class="badge badge-primary2">ครบกำหนด</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Envir3</td>
+                                    <td>Analyzer SO2</td>                    
+                                    <td><span class="badge badge-primary2">ครบกำหนด</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>      
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-12 col-sm-12 mb-30">
+            <div class="card-box pd-30 height-100-p">
+                <h4 class="mb-30 h4">อุปกรณ์เกินกำหนดคืน</h4>
+                <div class="browser-visits">
+                    <ul>
+                        <li class="d-flex flex-wrap align-items-center">
+                            <div class="browser-name">Google Chrome</div>
+                            <div class="visit"><span class="badge badge-pill badge-primary3">เกินกำหนด 3 วัน</span></div>
+                        </li>
+                        <li class="d-flex flex-wrap align-items-center">
+                            <div class="browser-name">Mozilla Firefox</div>
+                            <div class="visit"><span class="badge badge-pill badge-primary3">เกินกำหนด 2 วัน</span></div>
+                        </li>
+                        <li class="d-flex flex-wrap align-items-center">
+                            <div class="browser-name">Safari</div>
+                            <div class="visit"><span class="badge badge-pill badge-primary3">เกินกำหนด 4 วัน</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="chart" class="chart"></div>
+            </div>
+        </div>
+    </div>
     <div class="pd-20 card-box mb-30">
         <div class="clearfix mb-20">
             <div class="pull-left">
                 <h4 class="text-blue h4">รายการล่าสุด</h4>
-            </div>
-            
+            </div>    
         </div>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">ชื่อลูกค้า</th>
+                        <th scope="col">ลูกค้า</th>
                         <th scope="col">หัวข้อ</th>
                         <th scope="col">หมวดหมู่</th>
                         <th scope="col">วันที่รับงาน</th>
@@ -445,11 +505,27 @@
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>28/8/88</td>
-                        <td><span class="badge badge-primary">Primary</span></td>
+                        <td>Envir11</td>
+                        <td>Analyzer SO2</td>
+                        <td>เช่า-ยืม</td>
+                        <td>16/12/2020</td>
+                        <td>อยู่ระหว่างการเช่า</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Envir12</td>
+                        <td>Analyzer SO2</td>
+                        <td>ซื้อ</td>
+                        <td>16/12/2020</td>
+                        <td>ส่งของให้ลูกค้า</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Envir33</td>
+                        <td>Analyzer SO2</td>
+                        <td>ทดสอบ</td>
+                        <td>16/12/2020</td>
+                        <td>อยู่ระหว่่างทดสอบ</td>
                     </tr>
                 </tbody>
             </table>
@@ -457,7 +533,4 @@
     
     </div>
 </div>
-
-
-
 <app-footer></app-footer>
