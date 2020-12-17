@@ -1,3 +1,165 @@
 <app-header></app-header>
 <app-menu></app-menu>
-<app-footer></app-footer>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>รับงาน</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">หน้าหลัก</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">รับงาน</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix">
+                    <h4 class="text-blue h4">ข้อมูลการรับงาน</h4>
+                    <p class="mb-30">เพิ่มรายละเอียดการรับงาน</p>
+                </div>
+                <div class="wizard-content">
+                    <form class="tab-wizard wizard-circle wizard">
+                        <h5>ข้อมูลลูกค้า</h5>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>ชื่อลูกค้า :</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email Address :</label>
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>เบอร์โทรศัพท์ :</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>ที่อยู่ :</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- Step 2 -->
+                        <h5>รายละเอียดงาน</h5>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>หมวดหมู่ :</label>
+                                    <select class="custom-select form-control">
+                                        <option value="">เช่า-ยืม</option>
+                                        <option value="Amsterdam">ซื้อ</option>
+                                        <option value="Berlin">ทดสอบ</option>
+                                        <option value="Frankfurt">ส่งซ่อม</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>วันที่รับงาน :</label>
+                                        <input type="text" class="form-control date-picker" placeholder="เลือกวันที่">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>อุปกรณ์</label>
+                                    <select [(ngModel)]="selectedGroup" type="text" name="name" (change)="myFunction()"
+                                        class="custom-select2 form-control select2-hidden-accessible"
+                                        style="width: 100%;" data-select2-id="4" tabindex="-1" aria-hidden="true">
+                                        <optgroup>
+                                            <option value="add">เพิ่ม</option>
+                                        </optgroup>
+                                        <optgroup label="รายการอุปกรณ์">
+                                            <option *ngFor="let group of groups" [ngValue]="group">
+                                                {{group.name}}
+                                            </option>
+                                        </optgroup>  
+                                    </select>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>กำหนดวันที่ส่งคืน :</label>
+                                        <input type="text" class="form-control date-picker" placeholder="เลือกวันที่">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>จำนวน :</label>
+                                        <input type="text" class="form-control" data-role="tagsinput">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>หมายเหตุ :</label>
+                                        <textarea class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Step 3 -->
+                        <h5>รายการอุปกรณ์</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">หมวดหมู่</th>
+                                    <th scope="col">อุปกรณ์</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>เช่า-ยืม</th>
+                                    <th>CO2</th>
+                                </tr>
+                                <tr>
+                                    <th>เช่า-ยืม</th>
+                                    <th>CO20</th>
+                                </tr>
+                                <tr>
+                                    <th>เช่า-ยืม</th>
+                                    <th>CO34</th>
+                                </tr>
+                                <tr>
+                                    <th>เช่า-ยืม</th>
+                                    <th>CO45</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <div class="warpper">
+                    <div class="btn-list">
+                        <button type="button" class="btn btn-success">บันทึก</button>
+                        <button type="button" class="btn btn-danger">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+            <select [(ngModel)]="selectedGroup">
+                <option *ngFor="let group of groups" [ngValue]="group">{{group.name}}</option>
+            </select>
+            <input type="button" (click)="getVal()" value="submit"/>
+        </div>
+
+        <app-footer></app-footer>
+    </div>
+</div>
