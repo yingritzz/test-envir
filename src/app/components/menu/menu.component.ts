@@ -15,4 +15,12 @@ export class MenuComponent implements OnInit {
     this.route.navigateByUrl('getjob')
   }
 
+  onClickSetting() {
+    this.route.navigateByUrl('setting')
+  }
+
+  onClickEquip() {
+    this.route.navigateByUrl('equipment')
+  }
+
 }

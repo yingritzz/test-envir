@@ -1,0 +1,129 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>ตั้งค่า</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item" (click)="onClickHome()">หน้าหลัก</li>
+                                <li class="breadcrumb-item active" aria-current="page">ตั้งค่า</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit website information -->
+            <div class="pd-20 card-box mb-30">
+                
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">แก้ไขข้อมูลเว็บไซต์</h4>
+                    </div>
+                </div>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-md-2 col-form-label">ที่อยู่</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-md-2 col-form-label">ตำบล</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-md-2 col-form-label">อำเภอ</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-md-2 col-form-label">จังหวัด</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-form-label">รหัสไปรษณีย์</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="wrapper pd-20 btn-list">
+                    <button type="button" class="btn btn-success">บันทึก</button>
+                    <button type="button" class="btn btn-danger">ยกเลิก</button>
+                </div>
+            </div>
+
+            <!-- Edit email information -->
+            <div class="pd-20 card-box mb-30">
+                
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">การส่งเมล</h4>
+                    </div>
+                </div>
+                <form>
+                    <div class="form-group row">
+                        
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-md-2 col-form-label">Host</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-form-label">SMTPSecure</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-form-label">Username</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-form-label">Password</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="password">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-form-label">Port</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-sm-12 col-form-label">ชื่อผู้ส่ง</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="wrapper pd-20 btn-list">
+                    <button type="button" class="btn btn-success">บันทึก</button>
+                    <button type="button" class="btn btn-danger">ยกเลิก</button>
+                </div>
+            </div>
+
+        </div>
+        <app-footer></app-footer>
+    </div>

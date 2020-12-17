@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-equipment',
+  templateUrl: './equipment.component.html',
+  styleUrls: ['./equipment.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class EquipmentComponent implements OnInit {
 
+  eq_name: any = "lalala"
+  eq_catagory: any = "la"
   constructor(public route: Router) { }
 
   ngOnInit(): void {
@@ -16,5 +18,4 @@ export class ProfileComponent implements OnInit {
   async onClickHome() {
     this.route.navigateByUrl('home')
   }
-
 }

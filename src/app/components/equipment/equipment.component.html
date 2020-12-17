@@ -1,0 +1,130 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>อุปกรณ์</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item" (click)="onClickHome()">หน้าหลัก</li>
+                                <li class="breadcrumb-item active" aria-current="page">อุปกรณ์</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <button type="button" class="btn btn-warning" id="ajax-alert">เพิ่ม</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- equipmant list -->
+            <div class="product-wrap">
+                <div class="product-list">
+                    <ul class="row">
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box wrapper">
+                                <div class="product-caption ">
+                                    <h4>{{eq_name}}</h4>
+                                    <h6>จำนวนอุปกรณ์ทั้งหมด</h6>
+                                    <p style="color: #6c757d;">{{eq_catagory}}</p>
+                                    <div class="wrapper btn-list">
+                                        <button type="button" class="btn btn-outline-primary button1">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box wrapper">
+                                <div class="product-caption ">
+                                    <h4>ชื่ออุปกรณ์</h4>
+                                    <h6>จำนวนอุปกรณ์ทั้งหมด</h6>
+                                    <p style="color: #6c757d;">หมวดหมู่อุปกรณ์</p>
+                                    <div class="wrapper btn-list">
+                                        <button type="button" class="btn btn-outline-primary button1">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box wrapper">
+                                <div class="product-caption ">
+                                    <h4>ชื่ออุปกรณ์</h4>
+                                    <h6>จำนวนอุปกรณ์ทั้งหมด</h6>
+                                    <p style="color: #6c757d;">หมวดหมู่อุปกรณ์</p>
+                                    <div class="wrapper btn-list">
+                                        <button type="button" class="btn btn-outline-primary button1">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box wrapper">
+                                <div class="product-caption ">
+                                    <h4>ชื่ออุปกรณ์</h4>
+                                    <h6>จำนวนอุปกรณ์ทั้งหมด</h6>
+                                    <p style="color: #6c757d;">หมวดหมู่อุปกรณ์</p>
+                                    <div class="wrapper btn-list">
+                                        <button type="button" class="btn btn-outline-primary button1">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box wrapper">
+                                <div class="product-caption ">
+                                    <h4>ชื่ออุปกรณ์</h4>
+                                    <h6>จำนวนอุปกรณ์ทั้งหมด</h6>
+                                    <p style="color: #6c757d;">หมวดหมู่อุปกรณ์</p>
+                                    <div class="wrapper btn-list">
+                                        <button type="button" class="btn btn-outline-primary button1">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box wrapper">
+                                <div class="product-caption ">
+                                    <h4>ชื่ออุปกรณ์</h4>
+                                    <h6>จำนวนอุปกรณ์ทั้งหมด</h6>
+                                    <p style="color: #6c757d;">หมวดหมู่อุปกรณ์</p>
+                                    <div class="wrapper btn-list">
+                                        <button type="button" class="btn btn-outline-primary button1">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="blog-pagination mb-30">
+                    <div class="btn-toolbar justify-content-center mb-15">
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-outline-primary prev"><i class="fa fa-angle-double-left"></i></a>
+                            <span class="btn btn-primary current">1</span>
+                            <a href="#" class="btn btn-outline-primary">2</a>
+                            <a href="#" class="btn btn-outline-primary">3</a>
+                            <a href="#" class="btn btn-outline-primary next"><i
+                                    class="fa fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <app-footer>
+        </app-footer>
+
+    </div>

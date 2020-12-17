@@ -14,8 +14,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { GetjobComponent } from './components/getjob/getjob.component';
-
-
+import { SettingpageComponent } from './components/settingpage/settingpage.component';
+import { EquipmentComponent } from './components/equipment/equipment.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,9 @@ import { GetjobComponent } from './components/getjob/getjob.component';
     LoginComponent,
     HomeComponent,
     ProfileComponent,
-    GetjobComponent
+    GetjobComponent,
+    SettingpageComponent,
+    EquipmentComponent
   ],
   imports: [
     BrowserModule,

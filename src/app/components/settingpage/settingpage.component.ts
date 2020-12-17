@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-settingpage',
+  templateUrl: './settingpage.component.html',
+  styleUrls: ['./settingpage.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class SettingpageComponent implements OnInit {
 
   constructor(public route: Router) { }
 
