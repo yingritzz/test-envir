@@ -7,77 +7,186 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>รายการรับซ่อม</h4>
+                            <h4>ลูกค้า</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a>หน้าหลัก</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">รายการรับซ่อม</li>
+                            <ol class="breadcrumb">   
+                                <li class="breadcrumb-item" (click)= "onClickHome()"><a href="javascript:;">หน้าหลัก</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">ลูกค้า</li>
                             </ol>
                         </nav>
                     </div>
-                </div>
-            </div>
-            <div class="pd-20 card-box mb-30">
-                <div class="clearfix mb-20">
-                    <div class="pull-left">
-                        <h4 class="text-blue h4">รายการรับซ่อม</h4>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <button type="button" class="btn btn-warning" id="sa-params">เพิ่มลูกค้า</button>
                     </div>
                 </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">ลำดับ</th>
-                            <th scope="col">หัวข้อ</th>
-                            <th scope="col">ลูกค้า</th>
-                            <th scope="col">สถานะ</th>
-                            <th scope="col">จัดการ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Envir</td>
-                            <td>CO2</td>
-                            <td>อยู่ระหว่างการเช่ายืม</td>
-                            <td>
-                                <div class="btn-list">
-                                <span class="btn btn-success btn-sm" type="button" value="submit">แก้ไข</span>
-                                <span class="btn btn-danger btn-sm" type="button" value="submit">ลบ</span>
-                                <span class="btn btn-secondary btn-sm" type="button" value="submit">พิมพ์</span>
-                            </div>
-                            </td>    
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Envir2</td>
-                            <td>NOx</td>
-                            <td>อยู่ระหว่างการเช่ายืม</td>
-                            <td>
-                                <div class="btn-list">
-                                <span class="btn btn-success btn-sm" type="button" value="submit">แก้ไข</span>
-                                <span class="btn btn-danger btn-sm" type="button" value="submit">ลบ</span>
-                                <span class="btn btn-secondary btn-sm" type="button" value="submit">พิมพ์</span>
-                            </div>
-                            </td>    
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Envir3</td>
-                            <td>CO2/NOx</td>
-                            <td>อยู่ระหว่างการเช่ายืม</td>
-                            <td>
-                                <div class="btn-list">
-                                <span class="btn btn-success btn-sm" type="button" value="submit">แก้ไข</span>
-                                <span class="btn btn-danger btn-sm" type="button" value="submit">ลบ</span>
-                                <span class="btn btn-secondary btn-sm" type="button" value="submit">พิมพ์</span>
-                            </div>
-                            </td>    
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-            <app-footer></app-footer>
+            <div class="contact-directory-list">
+                <ul class="row">
+                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="contact-directory-box">
+                            <div class="contact-dire-info text-center">
+                                <div class="contact-avatar">
+                                    <span>
+                                        <img src="assets/vendors/images/photo2.jpg" alt="">
+                                    </span>
+                                </div>
+                                <div class="contact-name">
+                                    <h4>สำนักงานปรมาณูเพื่อสันติ</h4>
+                                    <p>012-3456789</p>
+                                </div>
+                                <div class="profile-sort-desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
+                                </div>
+                            </div>
+                            <div class="view-contact">
+                                <a href="#">View Profile</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="contact-directory-box">
+                            <div class="contact-dire-info text-center">
+                                <div class="contact-avatar">
+                                    <span>
+                                        <img src="assets/vendors/images/photo2.jpg" alt="">
+                                    </span>
+                                </div>
+                                <div class="contact-name">
+                                    <h4>Wade Wilson</h4>
+                                    <p>UI/UX designer</p>
+                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
+                                </div>
+                                <div class="contact-skill">
+                                    <span class="badge badge-pill">UI</span>
+                                    <span class="badge badge-pill">UX</span>
+                                    <span class="badge badge-pill">Photoshop</span>
+                                    <span class="badge badge-pill badge-primary">+ 8</span>
+                                </div>
+                                <div class="profile-sort-desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
+                                </div>
+                            </div>
+                            <div class="view-contact">
+                                <a href="#">View Profile</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="contact-directory-box">
+                            <div class="contact-dire-info text-center">
+                                <div class="contact-avatar">
+                                    <span>
+                                        <img src="assets/vendors/images/photo2.jpg" alt="">
+                                    </span>
+                                </div>
+                                <div class="contact-name">
+                                    <h4>Wade Wilson</h4>
+                                    <p>UI/UX designer</p>
+                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
+                                </div>
+                                <div class="contact-skill">
+                                    <span class="badge badge-pill">UI</span>
+                                    <span class="badge badge-pill">UX</span>
+                                    <span class="badge badge-pill">Photoshop</span>
+                                    <span class="badge badge-pill badge-primary">+ 8</span>
+                                </div>
+                                <div class="profile-sort-desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
+                                </div>
+                            </div>
+                            <div class="view-contact">
+                                <a href="#">View Profile</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="contact-directory-box">
+                            <div class="contact-dire-info text-center">
+                                <div class="contact-avatar">
+                                    <span>
+                                        <img src="assets/vendors/images/photo2.jpg" alt="">
+                                    </span>
+                                </div>
+                                <div class="contact-name">
+                                    <h4>Wade Wilson</h4>
+                                    <p>UI/UX designer</p>
+                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
+                                </div>
+                                <div class="contact-skill">
+                                    <span class="badge badge-pill">UI</span>
+                                    <span class="badge badge-pill">UX</span>
+                                    <span class="badge badge-pill">Photoshop</span>
+                                    <span class="badge badge-pill badge-primary">+ 8</span>
+                                </div>
+                                <div class="profile-sort-desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
+                                </div>
+                            </div>
+                            <div class="view-contact">
+                                <a href="#">View Profile</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="contact-directory-box">
+                            <div class="contact-dire-info text-center">
+                                <div class="contact-avatar">
+                                    <span>
+                                        <img src="assets/vendors/images/photo2.jpg" alt="">
+                                    </span>
+                                </div>
+                                <div class="contact-name">
+                                    <h4>Wade Wilson</h4>
+                                    <p>UI/UX designer</p>
+                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
+                                </div>
+                                <div class="contact-skill">
+                                    <span class="badge badge-pill">UI</span>
+                                    <span class="badge badge-pill">UX</span>
+                                    <span class="badge badge-pill">Photoshop</span>
+                                    <span class="badge badge-pill badge-primary">+ 8</span>
+                                </div>
+                                <div class="profile-sort-desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
+                                </div>
+                            </div>
+                            <div class="view-contact">
+                                <a href="#">View Profile</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="contact-directory-box">
+                            <div class="contact-dire-info text-center">
+                                <div class="contact-avatar">
+                                    <span>
+                                        <img src="assets/vendors/images/photo2.jpg" alt="">
+                                    </span>
+                                </div>
+                                <div class="contact-name">
+                                    <h4>Wade Wilson</h4>
+                                    <p>UI/UX designer</p>
+                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
+                                </div>
+                                <div class="contact-skill">
+                                    <span class="badge badge-pill">UI</span>
+                                    <span class="badge badge-pill">UX</span>
+                                    <span class="badge badge-pill">Photoshop</span>
+                                    <span class="badge badge-pill badge-primary">+ 8</span>
+                                </div>
+                                <div class="profile-sort-desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
+                                </div>
+                            </div>
+                            <div class="view-contact">
+                                <a href="#">View Profile</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <app-footer> </app-footer>
         </div>
     </div>
 </div>
