@@ -17,6 +17,9 @@ import { GetjobComponent } from './components/getjob/getjob.component';
 import { SettingpageComponent } from './components/settingpage/settingpage.component';
 import { EquipmentComponent } from './components/equipment/equipment.component';
 import { MaintenancComponent } from './components/maintenanc/maintenanc.component';
+import { RentalComponent } from './components/rental/rental.component';
+import { SellingComponent } from './components/selling/selling.component';
+import { TestingComponent } from './components/testing/testing.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { MaintenancComponent } from './components/maintenanc/maintenanc.componen
     GetjobComponent,
     SettingpageComponent,
     EquipmentComponent,
-    MaintenancComponent
+    MaintenancComponent,
+    RentalComponent,
+    SellingComponent,
+    TestingComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,15 @@ export class MenuComponent implements OnInit {
   async onClickMaintenanc() {
     this.route.navigateByUrl('maintenanc')
   }
+  async onClickRetal() {
+    this.route.navigateByUrl('rental')
+  }
+  async onClickSelling() {
+    this.route.navigateByUrl('selling')
+  }
+  async onClickTesting() {
+    this.route.navigateByUrl('testing')
+  }
 
   onClickSetting() {
     this.route.navigateByUrl('setting')
