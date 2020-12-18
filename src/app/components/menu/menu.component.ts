@@ -11,6 +11,9 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  async onClickHome() {
+    this.route.navigateByUrl('home')
+  }
   async onClickGetJob() {
     this.route.navigateByUrl('getjob')
   }
@@ -26,7 +29,9 @@ export class MenuComponent implements OnInit {
   async onClickTesting() {
     this.route.navigateByUrl('testing')
   }
-
+  async onClickCustomer() {
+    this.route.navigateByUrl('customer')
+  }
   onClickSetting() {
     this.route.navigateByUrl('setting')
   }

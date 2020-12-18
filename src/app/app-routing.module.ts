@@ -11,8 +11,7 @@ import { RentalComponent } from './components/rental/rental.component'
 import { SellingComponent } from './components/selling/selling.component'
 import { TestingComponent } from './components/testing/testing.component'
 import { EqDetailComponent } from './components/eq-detail/eq-detail.component'
-
-
+import { CustomerComponent } from './components/customer/customer.component'
 
 
 const routes: Routes = [
@@ -24,6 +23,7 @@ const routes: Routes = [
   {path: 'selling', component:SellingComponent},
   {path: 'testing', component:TestingComponent},
   {path: 'user/profile', component:ProfileComponent},
+  {path: 'customer', component:CustomerComponent},
   {path: 'setting', component:SettingpageComponent},
   {path: 'equipment', component:EquipmentComponent},
   {path: 'equipment/detail', component:EqDetailComponent},

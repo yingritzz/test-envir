@@ -21,6 +21,7 @@ import { RentalComponent } from './components/rental/rental.component';
 import { SellingComponent } from './components/selling/selling.component';
 import { TestingComponent } from './components/testing/testing.component';
 import { EqDetailComponent } from './components/eq-detail/eq-detail.component';
+import { CustomerComponent } from './components/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { EqDetailComponent } from './components/eq-detail/eq-detail.component';
     RentalComponent,
     SellingComponent,
     TestingComponent,
-    EqDetailComponent
+    EqDetailComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
