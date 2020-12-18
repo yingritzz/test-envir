@@ -16,6 +16,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { GetjobComponent } from './components/getjob/getjob.component';
 import { SettingpageComponent } from './components/settingpage/settingpage.component';
 import { EquipmentComponent } from './components/equipment/equipment.component';
+import { MaintenancComponent } from './components/maintenanc/maintenanc.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EquipmentComponent } from './components/equipment/equipment.component';
     ProfileComponent,
     GetjobComponent,
     SettingpageComponent,
-    EquipmentComponent
+    EquipmentComponent,
+    MaintenancComponent
   ],
   imports: [
     BrowserModule,
