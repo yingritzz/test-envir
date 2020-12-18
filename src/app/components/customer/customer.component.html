@@ -11,182 +11,64 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">   
-                                <li class="breadcrumb-item" (click)= "onClickHome()"><a href="javascript:;">หน้าหลัก</a></li>
+                                <li class="breadcrumb-item" (click)= "onClickHome()"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">ลูกค้า</li>
                             </ol>
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
-                        <button type="button" class="btn btn-warning" id="sa-params">เพิ่มลูกค้า</button>
+                        <button type="button" class="btn btn-warning" id="sa-params"><a [routerLink]="[ '/cusadd']">เพิ่มลูกค้า</a></button>
                     </div>
                 </div>
             </div>
-            <div class="contact-directory-list">
-                <ul class="row">
-                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                        <div class="contact-directory-box">
-                            <div class="contact-dire-info text-center">
-                                <div class="contact-avatar">
-                                    <span>
-                                        <img src="assets/vendors/images/photo2.jpg" alt="">
-                                    </span>
-                                </div>
-                                <div class="contact-name">
-                                    <h4>สำนักงานปรมาณูเพื่อสันติ</h4>
-                                    <p>012-3456789</p>
-                                </div>
-                                <div class="profile-sort-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
+            <div class="product-wrap">
+                <div class="product-list">
+                    <ul class="row">
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box wrapper">
+                                <div class="product-caption ">
+                                    <h4>Envir</h4>
+                                    <h6>Email : cus@email.com</h6>
+                                    <h6>เบอร์โทร : 012-3456789</h6>
+                                    <!-- <p style="color: #6c757d;">d</p> -->
+                                    <div class="wrapper btn-list">
+                                        <button type="button" class="btn btn-outline-primary button1" (click) = "onClickCusProfile()" >เพิ่มเติม</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="view-contact">
-                                <a href="#">View Profile</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                        <div class="contact-directory-box">
-                            <div class="contact-dire-info text-center">
-                                <div class="contact-avatar">
-                                    <span>
-                                        <img src="assets/vendors/images/photo2.jpg" alt="">
-                                    </span>
-                                </div>
-                                <div class="contact-name">
-                                    <h4>Wade Wilson</h4>
-                                    <p>UI/UX designer</p>
-                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
-                                </div>
-                                <div class="contact-skill">
-                                    <span class="badge badge-pill">UI</span>
-                                    <span class="badge badge-pill">UX</span>
-                                    <span class="badge badge-pill">Photoshop</span>
-                                    <span class="badge badge-pill badge-primary">+ 8</span>
-                                </div>
-                                <div class="profile-sort-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
+                        </li>
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box wrapper">
+                                <div class="product-caption ">
+                                    <h4>Envir</h4>
+                                    <h6>Email : cus@email.com</h6>
+                                    <h6>เบอร์โทร : 012-3456789</h6>
+                                    <!-- <p style="color: #6c757d;">d</p> -->
+                                    <div class="wrapper btn-list">
+                                        <button type="button" class="btn btn-outline-primary button1" >เพิ่มเติม</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="view-contact">
-                                <a href="#">View Profile</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                        <div class="contact-directory-box">
-                            <div class="contact-dire-info text-center">
-                                <div class="contact-avatar">
-                                    <span>
-                                        <img src="assets/vendors/images/photo2.jpg" alt="">
-                                    </span>
-                                </div>
-                                <div class="contact-name">
-                                    <h4>Wade Wilson</h4>
-                                    <p>UI/UX designer</p>
-                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
-                                </div>
-                                <div class="contact-skill">
-                                    <span class="badge badge-pill">UI</span>
-                                    <span class="badge badge-pill">UX</span>
-                                    <span class="badge badge-pill">Photoshop</span>
-                                    <span class="badge badge-pill badge-primary">+ 8</span>
-                                </div>
-                                <div class="profile-sort-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
+                        </li>
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box wrapper">
+                                <div class="product-caption ">
+                                    <h4>Envir</h4>
+                                    <h6>Email : cus@email.com</h6>
+                                    <h6>เบอร์โทร : 012-3456789</h6>
+                                    <!-- <p style="color: #6c757d;">d</p> -->
+                                    <div class="wrapper btn-list">
+                                        <button type="button" class="btn btn-outline-primary button1" >เพิ่มเติม</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="view-contact">
-                                <a href="#">View Profile</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                        <div class="contact-directory-box">
-                            <div class="contact-dire-info text-center">
-                                <div class="contact-avatar">
-                                    <span>
-                                        <img src="assets/vendors/images/photo2.jpg" alt="">
-                                    </span>
-                                </div>
-                                <div class="contact-name">
-                                    <h4>Wade Wilson</h4>
-                                    <p>UI/UX designer</p>
-                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
-                                </div>
-                                <div class="contact-skill">
-                                    <span class="badge badge-pill">UI</span>
-                                    <span class="badge badge-pill">UX</span>
-                                    <span class="badge badge-pill">Photoshop</span>
-                                    <span class="badge badge-pill badge-primary">+ 8</span>
-                                </div>
-                                <div class="profile-sort-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
-                                </div>
-                            </div>
-                            <div class="view-contact">
-                                <a href="#">View Profile</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                        <div class="contact-directory-box">
-                            <div class="contact-dire-info text-center">
-                                <div class="contact-avatar">
-                                    <span>
-                                        <img src="assets/vendors/images/photo2.jpg" alt="">
-                                    </span>
-                                </div>
-                                <div class="contact-name">
-                                    <h4>Wade Wilson</h4>
-                                    <p>UI/UX designer</p>
-                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
-                                </div>
-                                <div class="contact-skill">
-                                    <span class="badge badge-pill">UI</span>
-                                    <span class="badge badge-pill">UX</span>
-                                    <span class="badge badge-pill">Photoshop</span>
-                                    <span class="badge badge-pill badge-primary">+ 8</span>
-                                </div>
-                                <div class="profile-sort-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
-                                </div>
-                            </div>
-                            <div class="view-contact">
-                                <a href="#">View Profile</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                        <div class="contact-directory-box">
-                            <div class="contact-dire-info text-center">
-                                <div class="contact-avatar">
-                                    <span>
-                                        <img src="assets/vendors/images/photo2.jpg" alt="">
-                                    </span>
-                                </div>
-                                <div class="contact-name">
-                                    <h4>Wade Wilson</h4>
-                                    <p>UI/UX designer</p>
-                                    <div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
-                                </div>
-                                <div class="contact-skill">
-                                    <span class="badge badge-pill">UI</span>
-                                    <span class="badge badge-pill">UX</span>
-                                    <span class="badge badge-pill">Photoshop</span>
-                                    <span class="badge badge-pill badge-primary">+ 8</span>
-                                </div>
-                                <div class="profile-sort-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
-                                </div>
-                            </div>
-                            <div class="view-contact">
-                                <a href="#">View Profile</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
             <app-footer> </app-footer>
         </div>
+       
     </div>
+   
 </div>

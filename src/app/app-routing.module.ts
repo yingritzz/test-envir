@@ -12,6 +12,8 @@ import { SellingComponent } from './components/selling/selling.component'
 import { TestingComponent } from './components/testing/testing.component'
 import { EqDetailComponent } from './components/eq-detail/eq-detail.component'
 import { CustomerComponent } from './components/customer/customer.component'
+import { CusProfileComponent } from './components/cus-profile/cus-profile.component'
+import { CusAddComponent } from './components/cus-add/cus-add.component'
 
 
 const routes: Routes = [
@@ -24,6 +26,8 @@ const routes: Routes = [
   {path: 'testing', component:TestingComponent},
   {path: 'user/profile', component:ProfileComponent},
   {path: 'customer', component:CustomerComponent},
+  {path: 'cusadd', component:CusAddComponent},
+  {path: 'cusprofile', component:CusProfileComponent},
   {path: 'setting', component:SettingpageComponent},
   {path: 'equipment', component:EquipmentComponent},
   {path: 'equipment/detail', component:EqDetailComponent},

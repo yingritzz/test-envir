@@ -15,4 +15,7 @@ export class CustomerComponent implements OnInit {
   async onClickHome() {
     this.route.navigateByUrl('home')
   }
+  async onClickCusProfile() {
+    this.route.navigateByUrl('cusprofile')
+  }
 }
