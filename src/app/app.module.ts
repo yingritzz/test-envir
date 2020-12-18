@@ -20,6 +20,7 @@ import { MaintenancComponent } from './components/maintenanc/maintenanc.componen
 import { RentalComponent } from './components/rental/rental.component';
 import { SellingComponent } from './components/selling/selling.component';
 import { TestingComponent } from './components/testing/testing.component';
+import { EqDetailComponent } from './components/eq-detail/eq-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TestingComponent } from './components/testing/testing.component';
     MaintenancComponent,
     RentalComponent,
     SellingComponent,
-    TestingComponent
+    TestingComponent,
+    EqDetailComponent
   ],
   imports: [
     BrowserModule,

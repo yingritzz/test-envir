@@ -8,8 +8,9 @@ import { Route, Router } from '@angular/router';
 })
 export class EquipmentComponent implements OnInit {
 
-  eq_name: any = "lalala"
-  eq_catagory: any = "la"
+  eq_name: any = "Thermo PM 2.5"
+  eq_count: any = 99
+  eq_catagory: any = "วัดคุณภาพอากาศ"
   constructor(public route: Router) { }
 
   ngOnInit(): void {
@@ -17,5 +18,8 @@ export class EquipmentComponent implements OnInit {
 
   async onClickHome() {
     this.route.navigateByUrl('home')
+  }
+  onClickDetail() {
+    this.route.navigateByUrl('equipment/detail')
   }
 }

@@ -1,0 +1,85 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>{{eq_name}}</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item" (click)="onClickHome()">หน้าหลัก</li>
+                                <li class="breadcrumb-item" (click)="onClickEquipment()">อุปกรณ์</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{eq_name}}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">รายการอุปกรณ์</h4>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-warning">เพิ่มรายการอุปกรณ์</button>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">SN.</th>
+                            <th scope="col">ชื่อรายการอุปกรณ์</th>
+                            <th scope="col">สถานะ</th>
+                            <th scope="col">จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">200DA200310704</th>
+                            <td>Thermo PM 2.5</td>
+                            <td>ไม่ว่าง</td>
+                            <td><div class="btn-list wrapper">
+                                <button type="button" class="btn btn-success btn-sm button1" value="submit">แก้ไข</button>
+                                <button type="button" class="btn btn-danger btn-sm button1" value="submit">ลบ</button>
+                            </div></td>
+                    </tbody>
+                </table>
+                <!-- <div class="collapse-box collapse" id="striped-table" style="">
+                    <div class="code-box">
+                        <div class="clearfix">
+                            <a href="javascript:;" class="btn btn-primary btn-sm code-copy pull-left"
+                                data-clipboard-target="#striped-table-code"><i class="fa fa-clipboard"></i> Copy
+                                Code</a>
+                            <a href="#striped-table" class="btn btn-primary btn-sm pull-right collapsed" rel="content-y"
+                                data-toggle="collapse" role="button" aria-expanded="false"><i
+                                    class="fa fa-eye-slash"></i> Hide Code</a>
+                        </div>
+                        <pre><code class="xml copy-pre hljs" id="striped-table-code">
+<span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"table table-striped"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>#<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+                        </code></pre>
+                    </div>
+                </div> -->
+            </div>
+
+        </div>
+        <app-footer>
+        </app-footer>
+
+    </div>

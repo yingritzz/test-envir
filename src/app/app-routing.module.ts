@@ -10,6 +10,8 @@ import { MaintenancComponent } from './components/maintenanc/maintenanc.componen
 import { RentalComponent } from './components/rental/rental.component'
 import { SellingComponent } from './components/selling/selling.component'
 import { TestingComponent } from './components/testing/testing.component'
+import { EqDetailComponent } from './components/eq-detail/eq-detail.component'
+
 
 
 
@@ -24,6 +26,7 @@ const routes: Routes = [
   {path: 'user/profile', component:ProfileComponent},
   {path: 'setting', component:SettingpageComponent},
   {path: 'equipment', component:EquipmentComponent},
+  {path: 'equipment/detail', component:EqDetailComponent},
   {path: '**', component:LoginComponent}
   
 ];
