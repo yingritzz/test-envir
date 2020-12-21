@@ -12,6 +12,8 @@ export class EquipmentComponent implements OnInit {
   eq_name: any = "Thermo PM 2.5"
   eq_count: any = 99
   eq_catagory: any = "วัดคุณภาพอากาศ"
+  eq_new: any
+  eq_data: any = [["a", "lalala"], ["b", "hahaha"]]
   constructor(public route: Router) { }
 
   ngOnInit(): void {
@@ -25,61 +27,37 @@ export class EquipmentComponent implements OnInit {
   }
 
   async opensweet() {
-    //   Swal.fire({
-    //     title: "เพิ่มอุปกรณ์",
-    //     input: 'text',
-    //     inputPlaceholder: 'ใส่ชื่ออุปกรณืที่นี่',
-    //     confirmButtonColor: '#28a745',
-    //     showCancelButton: true        
-    // }).then((result) => {
-    //     if (result.value) {
-    //         console.log("Result: " + result.value);
-    //     }
-    // });
-
     const { value: formValues } = await Swal.fire({
       title: 'เพิ่มอุปกรณ์',
       html:
-        '<input id="inputName" class="swal2-input" placeholder="ชื่ออุปกรณ์">'+
-        '<select id="inputCat" class="custom-select form-control">'+
-        '<option value="">เลือกหมวดหมู่อุปกรณ์</option>'+
-        '<option value="air">ตรวจวัดคุณภาพอากาศ</option>'+
-        '<option value="sound">ตรวจวัดระดับเสียง</option>'+
-        '<option value="vibrate">ตรวจวัดความสั่นสะเทือน</option>'+
-        '<option value="water">ตรวจวัดคุณภาพน้ำ</option>',
-
-        // '<input id="inputCat" class="swal2-input" placeholder="หมวดหมู่อุปกรณ์">'
-      // input: 'select',
-      // inputOptions: {
-      //   'air': 'ตรวจวัดคุณภาพอากาศ',
-      //   'sound': 'ตรวจวัดระดับเสียง',
-      //   'vibrate': 'ตรวจวัดความสั่นสะเทือน',
-      //   'water': 'ตรวจวัดคุณภาพน้ำ'
-      // },
-      // inputPlaceholder: 'เลือกหมวดหมู่อุปกรณ์',
+        '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่ออุปกรณ์">' +
+        '<br>' +
+        '<select id="inputCat" class="custom-select form-control btn dropdown-toggle ">' +
+        '<option value="">เลือกหมวดหมู่อุปกรณ์</option>' +
+        '<option value="ตรวจวัดคุณภาพอากาศ">ตรวจวัดคุณภาพอากาศ</option>' +
+        '<option value="ตรวจวัดระดับเสียง">ตรวจวัดระดับเสียง</option>' +
+        '<option value="ตรวจวัดความสั่นสะเทือน">ตรวจวัดความสั่นสะเทือน</option>' +
+        '<option value="ตรวจวัดคุณภาพน้ำ">ตรวจวัดคุณภาพน้ำ</option>',
       focusConfirm: false,
-      // inputValidator: (value) => {
-      //   return new Promise((resolve) => {
-      //     if (value != null) {
-      //       console.log(value);
-      //     }
-      //   })
-      // },
+      showCancelButton: true,
       preConfirm: () => {
         return [
-          (document.getElementById('inputName') as HTMLTextAreaElement).value +
-           (document.getElementById('inputCat') as HTMLTextAreaElement).value,
+          (document.getElementById('inputName') as HTMLTextAreaElement).value,
+          (document.getElementById('inputCat') as HTMLTextAreaElement).value
         ]
       }
     })
-
     if (formValues) {
-      // Swal.fire(JSON.stringify(formValues))
-      console.log("Resule: " + formValues[0]);
-      Swal.fire('บันทึกสำเร็จ',
-      '',
-      'success')
-    }
+      console.log("Resule: " + formValues[0] + " : " + formValues[1]);
 
+      this.eq_new = formValues;
+      (this.eq_data).push(this.eq_new)
+      Swal.fire('บันทึกสำเร็จ',
+        '',
+        'success')
+      console.log(this.eq_data)
+    }
   }
+
+
 }

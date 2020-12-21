@@ -27,59 +27,21 @@
             <!-- equipmant list -->
             <div class="product-wrap">
                 <div class="product-list">
-                    <ul class="row">
-                        <li class="col-lg-4 col-md-6 col-sm-12">
+                    <ul class="row" >
+                        <li class="col-lg-4 col-md-6 col-sm-12" *ngFor="let item of eq_data">
                             <div class="product-box wrapper">
-                                <div class="product-caption ">
-                                    <h4>{{eq_name}}</h4>
+                                <div class="product-caption" >
+                                    <h4>{{item[0]}}</h4>
                                     <h6>จำนวน {{eq_count}} อุปกรณ์</h6>
-                                    <p style="color: #6c757d;">{{eq_catagory}}</p>
+                                    <p style="color: #6c757d;">{{item[1]}}</p>
                                     <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1" (click)="onClickDetail()">เพิ่มเติม</button>
-                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
+                                        <button type="button" class="btn btn-outline-primary" (click)="onClickDetail()">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-danger">ลบ</button>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="product-box wrapper">
-                                <div class="product-caption ">
-                                    <h4>{{eq_name}}</h4>
-                                    <h6>จำนวน {{eq_count}} อุปกรณ์</h6>
-                                    <p style="color: #6c757d;">{{eq_catagory}}</p>
-                                    <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1" (click)="onClickDetail()">เพิ่มเติม</button>
-                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="product-box wrapper">
-                                <div class="product-caption ">
-                                    <h4>{{eq_name}}</h4>
-                                    <h6>จำนวน {{eq_count}} อุปกรณ์</h6>
-                                    <p style="color: #6c757d;">{{eq_catagory}}</p>
-                                    <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1" (click)="onClickDetail()">เพิ่มเติม</button>
-                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="product-box wrapper">
-                                <div class="product-caption ">
-                                    <h4>{{eq_name}}</h4>
-                                    <h6>จำนวน {{eq_count}} อุปกรณ์</h6>
-                                    <p style="color: #6c757d;">{{eq_catagory}}</p>
-                                    <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1" (click)="onClickDetail()">เพิ่มเติม</button>
-                                        <button type="button" class="btn btn-outline-danger button1">ลบ</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
                 <div class="blog-pagination mb-30">
