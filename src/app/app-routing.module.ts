@@ -14,12 +14,15 @@ import { EqDetailComponent } from './components/eq-detail/eq-detail.component'
 import { CustomerComponent } from './components/customer/customer.component'
 import { CusProfileComponent } from './components/cus-profile/cus-profile.component'
 import { CusAddComponent } from './components/cus-add/cus-add.component'
+import { InvoiceComponent} from './components/invoice/invoice.component'
+
 
 
 const routes: Routes = [
   {path: '', component:LoginComponent},
   {path: 'home', component:HomeComponent},
   {path: 'getjob', component:GetjobComponent},
+  {path: 'invoice', component:InvoiceComponent},
   {path: 'maintenanc', component:MaintenancComponent},
   {path: 'rental', component:RentalComponent},
   {path: 'selling', component:SellingComponent},

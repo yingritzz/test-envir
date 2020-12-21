@@ -24,6 +24,7 @@ import { EqDetailComponent } from './components/eq-detail/eq-detail.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { CusProfileComponent } from './components/cus-profile/cus-profile.component';
 import { CusAddComponent } from './components/cus-add/cus-add.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CusAddComponent } from './components/cus-add/cus-add.component';
     EqDetailComponent,
     CustomerComponent,
     CusProfileComponent,
-    CusAddComponent
+    CusAddComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule,
