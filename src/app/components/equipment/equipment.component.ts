@@ -25,34 +25,35 @@ export class EquipmentComponent implements OnInit {
   }
 
   async opensweet() {
-  //   Swal.fire({
-  //     title: "เพิ่มอุปกรณ์",
-  //     input: 'text',
-  //     inputPlaceholder: 'ใส่ชื่ออุปกรณืที่นี่',
-  //     confirmButtonColor: '#28a745',
-  //     showCancelButton: true        
-  // }).then((result) => {
-  //     if (result.value) {
-  //         console.log("Result: " + result.value);
-  //     }
-  // });
+    //   Swal.fire({
+    //     title: "เพิ่มอุปกรณ์",
+    //     input: 'text',
+    //     inputPlaceholder: 'ใส่ชื่ออุปกรณืที่นี่',
+    //     confirmButtonColor: '#28a745',
+    //     showCancelButton: true        
+    // }).then((result) => {
+    //     if (result.value) {
+    //         console.log("Result: " + result.value);
+    //     }
+    // });
 
-  const { value: formValues } = await Swal.fire({
-    title: 'Multiple inputs',
-    html:
-      '<input id="swal-input1" class="swal2-input" placeholder="ชื่ออุปกรณ์">' +
-      '<input id="swal-input2" class="swal2-input">',
-    focusConfirm: false,
-    preConfirm: () => {
-      return [
-        
-      ]
+    const { value: formValues } = await Swal.fire({
+      title: 'เพิ่มอุปกรณ์',
+      html:
+        '<input id="swal-input1" class="swal2-input" placeholder="ชื่ออุปกรณ์">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="หมวดหมู่อุปกรณ์">',
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          (document.getElementById('swal-input1')as HTMLTextAreaElement).value,
+          (document.getElementById('swal-input2')as HTMLTextAreaElement).value
+        ]
+      }
+    })
+
+    if (formValues) {
+      Swal.fire(JSON.stringify(formValues))
     }
-  })
-  
-  if (formValues) {
-    Swal.fire(JSON.stringify(formValues))
-  }
-  
+
   }
 }
