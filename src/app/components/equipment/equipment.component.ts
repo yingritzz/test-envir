@@ -40,19 +40,45 @@ export class EquipmentComponent implements OnInit {
     const { value: formValues } = await Swal.fire({
       title: 'เพิ่มอุปกรณ์',
       html:
-        '<input id="swal-input1" class="swal2-input" placeholder="ชื่ออุปกรณ์">' +
-        '<input id="swal-input2" class="swal2-input" placeholder="หมวดหมู่อุปกรณ์">',
+        '<input id="inputName" class="swal2-input" placeholder="ชื่ออุปกรณ์">'+
+        '<select id="inputCat" class="custom-select form-control">'+
+        '<option value="">เลือกหมวดหมู่อุปกรณ์</option>'+
+        '<option value="air">ตรวจวัดคุณภาพอากาศ</option>'+
+        '<option value="sound">ตรวจวัดระดับเสียง</option>'+
+        '<option value="vibrate">ตรวจวัดความสั่นสะเทือน</option>'+
+        '<option value="water">ตรวจวัดคุณภาพน้ำ</option>',
+
+        // '<input id="inputCat" class="swal2-input" placeholder="หมวดหมู่อุปกรณ์">'
+      // input: 'select',
+      // inputOptions: {
+      //   'air': 'ตรวจวัดคุณภาพอากาศ',
+      //   'sound': 'ตรวจวัดระดับเสียง',
+      //   'vibrate': 'ตรวจวัดความสั่นสะเทือน',
+      //   'water': 'ตรวจวัดคุณภาพน้ำ'
+      // },
+      // inputPlaceholder: 'เลือกหมวดหมู่อุปกรณ์',
       focusConfirm: false,
+      // inputValidator: (value) => {
+      //   return new Promise((resolve) => {
+      //     if (value != null) {
+      //       console.log(value);
+      //     }
+      //   })
+      // },
       preConfirm: () => {
         return [
-          (document.getElementById('swal-input1')as HTMLTextAreaElement).value,
-          (document.getElementById('swal-input2')as HTMLTextAreaElement).value
+          (document.getElementById('inputName') as HTMLTextAreaElement).value +
+           (document.getElementById('inputCat') as HTMLTextAreaElement).value,
         ]
       }
     })
 
     if (formValues) {
-      Swal.fire(JSON.stringify(formValues))
+      // Swal.fire(JSON.stringify(formValues))
+      console.log("Resule: " + formValues[0]);
+      Swal.fire('บันทึกสำเร็จ',
+      '',
+      'success')
     }
 
   }
