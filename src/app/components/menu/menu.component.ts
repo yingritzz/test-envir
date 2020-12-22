@@ -11,33 +11,5 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  async onClickHome() {
-    this.route.navigateByUrl('home')
-  }
-  async onClickGetJob() {
-    this.route.navigateByUrl('getjob')
-  }
-  async onClickMaintenanc() {
-    this.route.navigateByUrl('maintenanc')
-  }
-  async onClickRetal() {
-    this.route.navigateByUrl('rental')
-  }
-  async onClickSelling() {
-    this.route.navigateByUrl('selling')
-  }
-  async onClickTesting() {
-    this.route.navigateByUrl('testing')
-  }
-  async onClickCustomer() {
-    this.route.navigateByUrl('customer')
-  }
-  onClickSetting() {
-    this.route.navigateByUrl('setting')
-  }
-
-  onClickEquip() {
-    this.route.navigateByUrl('equipment')
-  }
 
 }

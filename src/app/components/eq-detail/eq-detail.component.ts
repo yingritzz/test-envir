@@ -8,6 +8,8 @@ import { Route, Router } from '@angular/router';
 })
 export class EqDetailComponent implements OnInit {
 
+  fieldArray: Array<any> = [];
+  newAttribute: any = {};
   eq_name: any = "Thermo PM 2.5"
   constructor(public route: Router) { }
 
@@ -22,4 +24,7 @@ export class EqDetailComponent implements OnInit {
     this.route.navigateByUrl('equipment')
   }
 
+  deleteFieldValue(index: number) {
+    this.fieldArray.splice(index, 1);
+}
 }
