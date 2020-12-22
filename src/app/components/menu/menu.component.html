@@ -1,7 +1,7 @@
 <div class="sidebar-light">
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a [routerLink]="[ '/home']">
+            <a [routerLink]="['/home']">
                 <img src="assets/vendors/images/deskapp-.png" alt="" class="dark-logo">
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
@@ -9,47 +9,49 @@
             </div>
         </div>
         <div class="menu-block customscroll">
-            <div class="sidebar-menu icon-list-style-2">
+            <div class="sidebar-menu">
                 <ul id="accordion-menu">
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle no-arrow" (click)="onClickHome()">
+                    <li>
+                        <a href="javascript:;" class="dropdown-toggle no-arrow" [routerLink]="['/home']">
                             <span class="micon dw dw-house-1"></span><span class="mtext"></span><span>หน้าหลัก</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:;" class="dropdown-toggle no-arrow" (click)="onClickGetJob()">
-                            <span class="micon icon-copy ion-ios-plus-empty"></span><span class="mtext">รับงาน</span>
+                        <a href="javascript:;" class="dropdown-toggle no-arrow" [routerLink]="['/getjob']">
+                            <span class="micon icon-copy ion-ios-plus-empty"></span><span
+                                class="mtext"></span><span>รับงาน</span>
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-edit-2"></span><span class="mtext">จัดการงาน</span>
+                        <a href="javascript:;"  class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="micon dw dw-edit-2" aria-labelledby></span><span class="mtext"></span><span>จัดการงาน</span>
                         </a>
-                        <ul class="submenu">
-                            <li><a (click)="onClickMaintenanc()">รับซ่อม</a></li>
-                            <li><a (click)="onClickRetal()">เช่า - ยืม</a></li>
-                            <li><a (click)="onClickTesting()">ทดสอบ</a></li>
-                            <li><a (click)="onClickSelling()">จำหน่าย</a></li>
+                        <ul class="submenu" style="display: none;">
+                            <li><a [routerLink]="['/maintenanc']">รับซ่อม</a></li>
+                            <li><a [routerLink]="['/rental']">เช่า - ยืม</a></li>
+                            <li><a [routerLink]="['/testing']">ทดสอบ</a></li>
+                            <li><a [routerLink]="['/selling']">จำหน่าย</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" class="dropdown-toggle no-arrow" (click)="onClickCustomer()">
+                        <a href="javascript:;" class="dropdown-toggle no-arrow" [routerLink]="['/customer']">
                             <span class="micon dw dw-user-2"></span><span class="mtext">ลูกค้า</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:;" class="dropdown-toggle no-arrow" (click)="onClickEquip()">
+                        <a href="javascript:;" class="dropdown-toggle no-arrow" [routerLink]="['/equipment']">
                             <span class="micon ion-navicon"></span><span class="mtext">อุปกรณ์</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:;" class="dropdown-toggle no-arrow" (click)="onClickSetting()">
+                        <a href="javascript:;" class="dropdown-toggle no-arrow" [routerLink]="['/setting']">
                             <span class="micon dw dw-settings"></span><span class="mtext">ตั้งค่า</span>
                         </a>
                     </li>
-                 
+                
                 </ul>
             </div>
         </div>
     </div>
 </div>
+<div class="mobile-menu-overlay"></div>
