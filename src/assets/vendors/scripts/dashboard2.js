@@ -49,7 +49,7 @@ $({animatedVal: 0}).animate({animatedVal: 65}, {
 // 	normalizeFunction: 'linear',
 // 	showTooltip: true
 // });
-// chart
+// // chart
 // Highcharts.chart('chart', {
 // 	chart: {
 // 		type: 'line'
