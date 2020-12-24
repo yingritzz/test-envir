@@ -61,25 +61,26 @@
                         <!-- Step 2 -->
                         <h5>รายละเอียดงาน</h5>
                         <section>
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label>หมวดหมู่ :</label>
-                                    <select class="custom-select form-control" >
-                                        <option value="">เช่า-ยืม</option>
-                                        <option value="Amsterdam">ซื้อ</option>
-                                        <option value="Berlin">ทดสอบ</option>
-                                        <option value="Frankfurt">ส่งซ่อม</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>วันที่รับงาน :</label>
-                                        <input type="text" class="form-control date-picker" placeholder="เลือกวันที่">
+                            <form>
+                                <div class="row">
+
+                                    <div class="col-md-6 form-group">
+                                        <label>หมวดหมู่ :</label>
+                                        <select class="custom-select form-control" name="catagory_select" [(ngModel)]="catagory_select">
+                                            <option *ngFor="let c of cg" value="{{c}}">{{c}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>วันที่รับงาน :</label>
+                                            <input type="text" class="form-control date-picker"
+                                                placeholder="เลือกวันที่">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <!-- <div class="col-md-6 form-group">
+                                <div class="row">
+                                    <!-- <div class="col-md-6 form-group">
                                     <label>อุปกรณ์ :</label>
                                     <select class="custom-select2 form-control select2-hidden-accessible" multiple="" style="width: 100%;" data-select2-id="4" >
                                         <optgroup  data-select2-id="11">
@@ -93,43 +94,44 @@
                                         </optgroup> 
                                     </select>
                                 </div> -->
-                                <div class="col-md-6 form-group">
-                                    
-                                    <label>อุปกรณ์ :</label>
-                                    <select class="custom-select form-control" >
-                                        <option value="new_eq"><a nglDropdownItem (click)="add_eq()">เพิ่มอุปกรณ์</a></option>
-                                        <option value="CO2">CO2</option>
-                                        <option value="NOx">NOx</option>
-                                        <option value="NOxCO2">NOxCO2</option>
-                                    </select>
-                                    <br> <br>
-                                    <button type="button" class="btn btn-success">เพิ่มอุปกรณ์ใหม่</button>
-                                </div>
-                                <div class="col-md-6">
-                                   
-                                    <div class="form-group">
-                                        <label>กำหนดวันที่ส่งคืน :</label>
-                                        <input type="text" class="form-control date-picker" placeholder="เลือกวันที่">
+                                    <div class="col-md-6 form-group">
+                                        <label>อุปกรณ์ :</label>
+                                        <select class="custom-select form-control" name="equipment_select" [(ngModel)]="equipment_select">
+                                            <option *ngFor="let e of eq" value="{{e}}">{{e}}</option>
+                                        </select>
+
+                                        <br> <br>
+                                        <button type="button" class="btn btn-success"
+                                            (click)="add_eq()">เพิ่มอุปกรณ์ใหม่</button>
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label>กำหนดวันที่ส่งคืน :</label>
+                                            <input type="text" class="form-control date-picker"
+                                                placeholder="เลือกวันที่">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>จำนวน :</label>
-                                        <input type="text" class="form-control" data-role="tagsinput">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>จำนวน :</label>
+                                            <input name="count_select" [(ngModel)]="count_select" type="number" class="form-control"  autocomplete="off">
+                                        </div>
+                                        <div class="warpper">
+                                            <button type="button" class="btn btn-success" (click)="add_getJob()">เพิ่ม</button>
+                                        </div>
                                     </div>
-                                    <div class="warpper">
-                                        <button type="button" class="btn btn-success" >เพิ่ม</button>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>หมายเหตุ :</label>
+                                            <textarea class="form-control"></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>หมายเหตุ :</label>
-                                        <textarea class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                            </form>
                         </section>
 
                         <br><br>
@@ -140,25 +142,22 @@
                                 <tr>
                                     <th scope="col">หมวดหมู่</th>
                                     <th scope="col">อุปกรณ์</th>
+                                    <th scope="col">จำนวน</th>
+                                    <th scope="col">จัดการ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th>เช่า-ยืม</th>
-                                    <th>CO2</th>
+                                <tr *ngFor="let data of getJob_data">
+                                    <td>{{data[0]}}</td>
+                                    <td>{{data[1]}}</td>
+                                    <td>{{data[2]}}</td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" type="button" value="submit"
+                                            (click)="deleteRow(data)"><i class="icon-copy fa fa-trash btn-size"
+                                                aria-hidden="true"></i></button>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th>เช่า-ยืม</th>
-                                    <th>CO20</th>
-                                </tr>
-                                <tr>
-                                    <th>เช่า-ยืม</th>
-                                    <th>CO34</th>
-                                </tr>
-                                <tr>
-                                    <th>เช่า-ยืม</th>
-                                    <th>CO45</th>
-                                </tr>
+
                             </tbody>
                         </table>
                     </form>
