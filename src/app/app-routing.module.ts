@@ -15,6 +15,7 @@ import { CustomerComponent } from './components/customer/customer.component'
 import { CusProfileComponent } from './components/cus-profile/cus-profile.component'
 import { CusAddComponent } from './components/cus-add/cus-add.component'
 import { InvoiceComponent} from './components/invoice/invoice.component'
+import { LineHomeComponent } from './LINE/line-home/line-home.component'
 
 
 
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'setting', component:SettingpageComponent},
   {path: 'equipment', component:EquipmentComponent},
   {path: 'equipment/detail', component:EqDetailComponent},
+  {path: 'linehome', component:LineHomeComponent},
   {path: '**', component:LoginComponent}
   
 ];
