@@ -94,6 +94,7 @@
                                     </select>
                                 </div> -->
                                 <div class="col-md-6 form-group">
+                                    
                                     <label>อุปกรณ์ :</label>
                                     <select class="custom-select form-control" >
                                         <option value="new_eq"><a nglDropdownItem (click)="add_eq()">เพิ่มอุปกรณ์</a></option>
@@ -101,8 +102,11 @@
                                         <option value="NOx">NOx</option>
                                         <option value="NOxCO2">NOxCO2</option>
                                     </select>
+                                    <br> <br>
+                                    <button type="button" class="btn btn-success" [routerLink]="[ '/invoice']">เพิ่มอุปกรณ์ใหม่</button>
                                 </div>
                                 <div class="col-md-6">
+                                   
                                     <div class="form-group">
                                         <label>กำหนดวันที่ส่งคืน :</label>
                                         <input type="text" class="form-control date-picker" placeholder="เลือกวันที่">
@@ -115,6 +119,9 @@
                                         <label>จำนวน :</label>
                                         <input type="text" class="form-control" data-role="tagsinput">
                                     </div>
+                                    <div class="warpper">
+                                        <button type="button" class="btn btn-success" [routerLink]="[ '/invoice']">เพิ่ม</button>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -125,6 +132,7 @@
                             </div>
                         </section>
 
+                        <br><br>
                         <!-- Step 3 -->
                         <h5>รายการอุปกรณ์</h5>
                         <table class="table table-striped">
