@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 })
 export class GetjobComponent implements OnInit {
 
+  add_eqdata: any
+  add_eqdetail: any
   constructor() { }
 
   ngOnInit(): void {
@@ -37,12 +39,37 @@ export class GetjobComponent implements OnInit {
     if (formValues) {
       console.log("Resule: " + formValues[0] + " : " + formValues[1]);
 
-      // this.eq_new = formValues;
-      // (this.eq_data).push(this.eq_new)
-      // Swal.fire('บันทึกสำเร็จ',
-      //   '',
-      //   'success')
-      // console.log(this.eq_data)
+      this.add_eqdata = formValues;
+
+      const { value: formValuesD } = await Swal.fire({
+        title: 'เพิ่มรายการอุปกรณ์',
+      html:
+        '<input id="inputSn" class="form-control" autocomplete="off" placeholder="SN no." type="text">' +
+        '<br>' +
+        '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่อรายการอุปกรณ์">' +
+        '<br>' +
+        '<input id="inputCount" class="form-control" autocomplete="off" placeholder="จำนวนอุปกรณ์">' +
+        '<br>' +
+        '<label id="textStatus" class="mb-15 text-blue h4">สถานะ : ว่าง</label>',
+      focusConfirm: false,
+      showCancelButton: true,
+      preConfirm: () => {
+        return [
+          (document.getElementById('inputSn') as HTMLTextAreaElement).value,
+          (document.getElementById('inputName') as HTMLTextAreaElement).value,
+          (document.getElementById('inputCount') as HTMLTextAreaElement).value,
+          "ว่าง " + (document.getElementById('inputCount') as HTMLTextAreaElement).value
+        ]
+      }
+      })
+      if (formValuesD) {
+        console.log("Resule: " + formValuesD[0] + " : " + formValuesD[1] + " : " + formValuesD[2] + " : " + formValuesD[3]);
+  
+        this.add_eqdetail = formValues;
+        Swal.fire('บันทึกสำเร็จ',
+        '',
+        'success')
+      }
     }
   }
 
