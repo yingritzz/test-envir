@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormBuilder } from '@angular/forms'
 
-
 @Component({
-  selector: 'app-getjob',
-  templateUrl: './getjob.component.html',
-  styleUrls: ['./getjob.component.css']
+  selector: 'app-line-getjob',
+  templateUrl: './line-getjob.component.html',
+  styleUrls: ['./line-getjob.component.css']
 })
-export class GetjobComponent implements OnInit {
+export class LineGetjobComponent implements OnInit {
 
   eq = [" ", "CO2", "NOx", "NOxCO2"];
   cg = [" ", "เช่า-ยืม", "จำหน่าย", "ทดลอง", "ซ่อมบำรุง"]
@@ -19,13 +18,11 @@ export class GetjobComponent implements OnInit {
   count_select: any
   add_data = []
   getJob_data = [["เช่า-ยืม", "CO2", "1"], ["เช่า-ยืม", "O2", "1"], ["เช่า-ยืม", "NOx", "1"]]
-  constructor() { 
-    
-   }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  
+
   async add_eq() {
     const { value: formValues } = await Swal.fire({
       title: 'เพิ่มอุปกรณ์',
@@ -94,4 +91,5 @@ export class GetjobComponent implements OnInit {
     const index = this.getJob_data.indexOf(data);
     this.getJob_data.splice(index, 1);
   }
+
 }

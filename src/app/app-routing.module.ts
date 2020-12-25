@@ -16,6 +16,7 @@ import { CusProfileComponent } from './components/cus-profile/cus-profile.compon
 import { CusAddComponent } from './components/cus-add/cus-add.component'
 import { InvoiceComponent} from './components/invoice/invoice.component'
 import { LineHomeComponent } from './LINE/line-home/line-home.component'
+import { LineGetjobComponent } from './LINE/line-getjob/line-getjob.component'
 
 
 
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'equipment', component:EquipmentComponent},
   {path: 'equipment/detail', component:EqDetailComponent},
   {path: 'linehome', component:LineHomeComponent},
+  {path: 'linegetjob', component:LineGetjobComponent},
   {path: '**', component:LoginComponent}
   
 ];

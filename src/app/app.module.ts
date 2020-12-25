@@ -26,6 +26,7 @@ import { CusProfileComponent } from './components/cus-profile/cus-profile.compon
 import { CusAddComponent } from './components/cus-add/cus-add.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { LineHomeComponent } from './LINE/line-home/line-home.component';
+import { LineGetjobComponent } from './LINE/line-getjob/line-getjob.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { LineHomeComponent } from './LINE/line-home/line-home.component';
     CusProfileComponent,
     CusAddComponent,
     InvoiceComponent,
-    LineHomeComponent
+    LineHomeComponent,
+    LineGetjobComponent
   ],
   imports: [
     BrowserModule,
