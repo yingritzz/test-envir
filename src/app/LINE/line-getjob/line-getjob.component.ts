@@ -92,4 +92,5 @@ export class LineGetjobComponent implements OnInit {
     this.getJob_data.splice(index, 1);
   }
 
+
 }
