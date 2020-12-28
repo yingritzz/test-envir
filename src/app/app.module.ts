@@ -28,6 +28,7 @@ import { InvoiceComponent } from './components/invoice/invoice.component';
 import { LineHomeComponent } from './LINE/line-home/line-home.component';
 import { LineGetjobComponent } from './LINE/line-getjob/line-getjob.component';
 import { LineHeaderComponent } from './LINE/line-header/line-header.component';
+import { LineCustomerComponent } from './LINE/line-customer/line-customer.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { LineHeaderComponent } from './LINE/line-header/line-header.component';
     InvoiceComponent,
     LineHomeComponent,
     LineGetjobComponent,
-    LineHeaderComponent
+    LineHeaderComponent,
+    LineCustomerComponent
   ],
   imports: [
     BrowserModule,
