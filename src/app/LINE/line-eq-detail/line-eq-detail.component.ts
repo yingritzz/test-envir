@@ -12,7 +12,7 @@ export class LineEqDetailComponent implements OnInit {
   eq_dname: any = "Thermo PM 2.5"
   eq_dstatus: any
   eq_dnew: any
-  eq_ddata: any = [["200DA200310704", "Thermo PM 2.5", "1", "ว่าง 1"], ["xxxxxxxxxxxxxx", "สาย Thermo PM 2.5", "5", "ว่าง 3"],]
+  eq_ddata: any = [["200DA200310704", "Thermo PM 2.5", "1", "ว่าง 1"], ["xxxxxxxxxxxxxx", "สาย Thermo PM 2.5", "5", "ว่าง 3"]]
   constructor(public route: Router) { }
 
   ngOnInit(): void {
