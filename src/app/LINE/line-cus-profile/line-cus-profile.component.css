@@ -1,0 +1,23 @@
+header-right .brand-logo{
+    display:table
+  }
+  .header-right .menu-icon{
+    display:block;
+    padding-left:15px;
+    padding-top:7px
+  }
+  .footer-wrap{
+    width:100%
+  }
+  .mobile-menu-overlay{
+    display:block;opacity:0;visibility:hidden
+  }
+  .mobile-menu-overlay.show{
+    opacity:.6;visibility:visible
+  }
+  .header-right{
+    width:100%
+  }
+    .warpper{
+        text-align: center;
+    }

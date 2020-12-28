@@ -21,6 +21,10 @@ import { LineEquipmentComponent } from './LINE/line-equipment/line-equipment.com
 import { LineEqDetailComponent } from './LINE/line-eq-detail/line-eq-detail.component'
 import { LineCustomerComponent } from './LINE/line-customer/line-customer.component'
 import { LineCusProfileComponent } from './LINE/line-cus-profile/line-cus-profile.component'
+import { LineMaintenancComponent } from './LINE/line-maintenanc/line-maintenanc.component'
+import { LineRentalComponent } from './LINE/line-rental/line-rental.component'
+import { LineSellingComponent } from './LINE/line-selling/line-selling.component'
+import { LineTestingComponent } from './LINE/line-testing/line-testing.component'
 
 
 
@@ -47,6 +51,10 @@ const routes: Routes = [
   {path: 'line/equipment/detail', component:LineEqDetailComponent},
   {path: 'line/customer', component:LineCustomerComponent},
   {path: 'line/customer/profile', component:LineCusProfileComponent},
+  {path: 'line/maintenanc', component:LineMaintenancComponent},
+  {path: 'line/rental', component:LineRentalComponent},
+  {path: 'line/selling', component:LineSellingComponent},
+  {path: 'line/testing', component:LineTestingComponent},
   {path: '**', component:LoginComponent}
   
 ];
