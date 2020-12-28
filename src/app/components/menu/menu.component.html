@@ -25,7 +25,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" no-arrow
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
                             id="navbarDropdown">
                             <span class="micon dw dw-edit-2" aria-labelledby="navbarDropdown"></span>
                             <span class="mtext"></span><span>จัดการงาน</span>
@@ -39,15 +39,15 @@
                         </ul>
                     </li>
 
-
-                    <div id="accordion">
+                    
                         <div class="dropdown">
-                            <div class="dropdown-toggle">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#test">
-                                    <h5 class="card-title weight-500">จัดการงาน</h5>
-                                </button>
-                            </div>
-                            <div id="test" class="collapse" data-parent="#accordion">
+                            <a class="dropdown-toggle">
+                                <span href="javascript:;" class="collapsed btn btn-block " data-toggle="collapse" data-target="#test">
+                                    <span class="micon dw dw-edit-2" aria-labelledby="navbarDropdown"></span>
+                                    <span class="mtext"></span><span>จัดการงาน</span>
+                                </span>
+                            </a>
+                            <div id="test" class="collapse" >
                                 <div class="card-body">
                                     <li><a class="dropdown-item" [routerLink]="['/maintenanc']">รับซ่อม</a></li>
                                     <li><a class="dropdown-item" [routerLink]="['/rental']">เช่า - ยืม</a></li>
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
 
 
                     <!-- <li class="dropdown panel-body">
