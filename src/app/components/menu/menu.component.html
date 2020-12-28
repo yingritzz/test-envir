@@ -39,6 +39,26 @@
                         </ul>
                     </li>
 
+
+                    <div id="accordion">
+                        <div class="dropdown">
+                            <div class="dropdown-toggle">
+                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#test">
+                                    <h5 class="card-title weight-500">จัดการงาน</h5>
+                                </button>
+                            </div>
+                            <div id="test" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <li><a class="dropdown-item" [routerLink]="['/maintenanc']">รับซ่อม</a></li>
+                                    <li><a class="dropdown-item" [routerLink]="['/rental']">เช่า - ยืม</a></li>
+                                    <li><a class="dropdown-item" [routerLink]="['/testing']">ทดสอบ</a></li>
+                                    <li><a class="dropdown-item" [routerLink]="['/selling']">จำหน่าย</a></li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <!-- <li class="dropdown panel-body">
                         <a href="#" class="dropdown-toggle" ng-controller="DropdownCtrl" data-toggle="dropdown" no-arrow
                             id="navbarDropdown">

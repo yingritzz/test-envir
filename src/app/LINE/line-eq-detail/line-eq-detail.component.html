@@ -43,15 +43,15 @@
                 
             </div>
             <div class="faq-wrap" >
-                <div id="accordion" *ngFor="let item of eq_ddata; let i = index" [attr.data-index]="i">
+                <div id="accordion" *ngFor="let item of eq_ddata; let i = index">
                     <div class="card">
                         <div class="card-header">
-                            <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq1">
+                            <button class="btn btn-block collapsed" data-toggle="collapse" [attr.data-target]="'#faq' + i">
                                 <h5 class="card-title weight-500">{{item[1]}}</h5>
                                 <p class="card-text"> SN. {{item[0]}}</p>
                             </button>
                         </div>
-                        <div id="faq1" class="collapse" data-parent="#accordion">
+                        <div id="faq{{i}}" class="collapse" data-parent="#accordion">
                             <div class="card-body">
                                 <p>จำนวน : {{item[2]}}</p>
                                 <p>สถานะ : {{item[3]}}</p>
