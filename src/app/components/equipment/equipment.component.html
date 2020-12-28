@@ -12,9 +12,9 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"> <a (click)="onClickHome()" href="javascript:;">หน้าหลัก</a></li>
+                                <li class="breadcrumb-item"> <a [routerLink]="['/home']">หน้าหลัก</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">อุปกรณ์</li>
-                                
+
                             </ol>
                         </nav>
                     </div>
@@ -27,21 +27,22 @@
             <!-- equipmant list -->
             <div class="product-wrap">
                 <div class="product-list">
-                    <ul class="row" >
+                    <ul class="row">
                         <li class="col-lg-4 col-md-6 col-sm-12" *ngFor="let item of eq_data">
                             <div class="product-box wrapper">
-                                <div class="product-caption" >
+                                <div class="product-caption">
                                     <h4>{{item[0]}}</h4>
                                     <h6>จำนวน {{eq_count}} อุปกรณ์</h6>
                                     <p style="color: #6c757d;">{{item[1]}}</p>
                                     <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary" (click)="onClickDetail()">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-primary"
+                                            (click)="onClickDetail()">เพิ่มเติม</button>
                                         <button type="button" class="btn btn-outline-danger">ลบ</button>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <div class="blog-pagination mb-30">
@@ -60,14 +61,6 @@
 
         </div>
         <app-footer>
-            <!-- <head>
-                <link rel="stylesheet" type="text/css" href="assets/src/plugins/sweetalert2/sweetalert2.css">
-            </head>
-            <body>
-                <script src="assets/src/plugins/sweetalert2/sweetalert2.all.js"></script>
-	        <script src="assets/src/plugins/sweetalert2/sweet-alert.init.js"></script>
-            </body> -->
-            
         </app-footer>
 
     </div>

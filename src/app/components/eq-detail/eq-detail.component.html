@@ -12,9 +12,9 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item" (click)="onClickHome()"><a href="javascript:;">หน้าหลัก</a>
+                                <li><a [routerLink]="[ '/home']" href="javascript:;">หน้าหลัก</a>
                                 </li>
-                                <li class="breadcrumb-item" (click)="onClickEquipment()"><a
+                                <li class="breadcrumb-item" ><a [routerLink]="[ '/equipment']"
                                         href="javascript:;">อุปกรณ์</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{eq_dname}}</li>
                             </ol>

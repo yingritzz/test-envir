@@ -19,9 +19,6 @@ export class EquipmentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onClickHome() {
-    this.route.navigateByUrl('home')
-  }
   onClickDetail() {
     this.route.navigateByUrl('equipment/detail')
   }

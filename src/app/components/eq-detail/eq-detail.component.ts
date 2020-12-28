@@ -18,14 +18,6 @@ export class EqDetailComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onClickHome() {
-    this.route.navigateByUrl('home')
-  }
-
-  onClickEquipment() {
-    this.route.navigateByUrl('equipment')
-  }
-
   async insert_eq_detail() {
     const { value: formValues } = await Swal.fire({
       title: 'เพิ่มรายการอุปกรณ์',
