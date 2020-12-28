@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LineMaintenancComponent implements OnInit {
 
-maintenanc: any = [["200DA200310704", "Thermo PM 2.5", "1", "ว่าง 1"], ["xxxxxxxxxxxxxx", "สาย Thermo PM 2.5", "5", "ว่าง 3"]]
+maintenanc: any = [["Envir Service", "Thermo PM 2.5", "อยู่ระหว่างบำรุงรักษา"], ["Envir Ser2", "สาย Thermo PM 2.5", "ส่งคืนลูกค้า"]]
   constructor() { }
 
   ngOnInit(): void {

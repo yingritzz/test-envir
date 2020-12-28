@@ -14,6 +14,13 @@ export class LineEquipmentComponent implements OnInit {
   eq_catagory: any = "วัดคุณภาพอากาศ"
   eq_new: any
   eq_data: any = [["Analyzer O3", "วัดคุณภาพอากาศ"], ["Analyzer SO2", "วัดคุณภาพอากาศ"], ["Thermo PM 2.5", "วัดคุณภาพอากาศ"]]
+  isDisplay = false;
+  isDisplay2 = true;
+
+  toggleDisplay(){
+    this.isDisplay = !this.isDisplay;
+    this.isDisplay2 = !this.isDisplay2;
+  }
   constructor(public route: Router) { }
 
   ngOnInit(): void {

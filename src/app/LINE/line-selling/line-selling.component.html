@@ -1,1 +1,67 @@
-<p>line-selling works!</p>
+
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+
+            <div class="page-header">
+                <div class="row">
+                <div class="col-6 col-sm-3">
+                    <div class="header-left">
+                        <h4 class="p">Envirservice</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="header-right">
+                        <div class="user-info-dropdown">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                    <span class="user-icon">
+                                        <img src="assets/vendors/images/deskapp.png" alt="">
+    
+                                    </span>
+                                    <span class="user-name">user01</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                    <a class="dropdown-item"><i class="dw dw-user1"></i> โปรไฟล์</a>
+                                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> ลงชื่อออก</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">รายการจำหน่าย</h4>
+                    </div>
+                </div>
+                <div class="faq-wrap" *ngFor="let item of maintenanc; index as i; first as isFirs">
+                    <div id="accordion">
+                        <div class="card" >
+                            <div class="card-header">
+                                <button class="btn btn-block collapsed" data-toggle="collapse" [attr.data-target]="'#test' + i">
+                                    <h5 class="card-title weight-500">{{item[0]}}</h5>
+                                    <p class="card-text">{{item[1]}}</p>
+                                </button>
+                            </div>
+                            <div id="test{{i}}" class="collapse" data-parent="#accordion">
+                                <div class="card-body" >
+                                    <p>สถานะ : {{item[2]}}</p>
+                                    <div class="btn-list wrapper">
+                                        <button class="btn btn-success btn-sm" type="button" value="submit"  >
+                                            <i class="icon-copy fa fa-pencil-square-o btn-size" aria-hidden="true"></i></button>
+                                        <button class="btn btn-danger btn-sm" type="button" value="submit" >
+                                            <i class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></button>
+                                            <button class="btn btn-secondary btn-sm" type="button" value="submit">
+                                                <i class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

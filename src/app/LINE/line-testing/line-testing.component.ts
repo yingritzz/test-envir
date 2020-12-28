@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LineTestingComponent implements OnInit {
 
+  maintenanc: any = [["Envir Service", "Thermo PM 2.5", "อยู่ระหว่างทดสอบ"], ["Envir Ser2", "สาย Thermo PM 2.5", "ส่งให้ลูกค้า"]]
+
   constructor() { }
 
   ngOnInit(): void {

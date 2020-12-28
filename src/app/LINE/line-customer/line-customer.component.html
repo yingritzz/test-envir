@@ -1,5 +1,6 @@
-<div class="pd-ltr-20 xs-pd-20-10">
-    <div class="min-height-200px">
+<div *ngIf = "isDisplay">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
             <div class="page-header">
                 <div class="row">
                 <div class="col-6 col-sm-3">
@@ -28,56 +29,260 @@
                 </div>
             </div>
             </div>
-            <div class="product-wrap">
-                <div class="product-list">
-                    <ul class="row">
-                        <li class="col-6 col-sm-3">
-                            <div class="product-box ">
-                                <div class="product-caption wrapper">
-                                    <h6>บริษัท ยูไนเต็ด</h6>
-                                    <p style="color: #6c757d;">012-3456789</p>
-                                    <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1" [routerLink]="[ '/line/customer/profile']">เพิ่มเติม</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-6 col-sm-3">
-                            <div class="product-box wrapper">
-                                <div class="product-caption ">
-                                    <h6>Envir</h6>
-                                    <p style="color: #6c757d;">012-3456789</p>
-                                    <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1" [routerLink]="[ '/line/customer/profile']">เพิ่มเติม</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-6 col-sm-3">
-                            <div class="product-box wrapper">
-                                <div class="product-caption ">
-                                    <h6>Envir</h6>
-                                    <p style="color: #6c757d;">012-3456789</p>
-                                    <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1" [routerLink]="[ '/line/customer/profile']">เพิ่มเติม</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-6 col-sm-3">
-                            <div class="product-box wrapper">
-                                <div class="product-caption ">
-                                    <h6>Envir</h6>
-                                    <p style="color: #6c757d;">012-3456789</p>
-                                    <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1" [routerLink]="[ '/line/customer/profile']">เพิ่มเติม</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="row">
+                <!-- user information -->
+                <div class="col-xl-4 col-lg-8 col-md-8 col-sm-12 mb-30">
+                    <div class="pd-20 card-box ">
+                        <h5 class="text-center h5 mb-0">Envir</h5>
+                        <p class="text-center text-muted font-14">Envir_Service</p>
+                        <div class="profile-info">
+                            <h5 class="mb-20 h5 text-blue">ข้อมูลการติดต่อ</h5>
+                            <ul>
+                                <li>
+                                    <span>อีเมล:</span>
+                                    customer@gmail.com
+                                </li>
+                                <li>
+                                    <span>เบอร์โทร:</span>
+                                    012 3456789
+                                </li>
+                                <li>
+                                    <span>เข้าสู่ระบบล่าสุด:</span>
+                                    18 ธันวาคม 2563
+                                </li>
+                                <li>
+                                    <span>จำนวนการใช้งาน:</span>
+                                    2 ครั้ง
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+                    <div class="card-box height-100-p overflow-hidden">
+                        <div class="profile-tab height-100-p">
+                            <div class="tab height-100-p">
+                                <ul class="nav nav-tabs customtab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#timeline"
+                                            role="tab"> ประวัติการใช้งาน</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#setting" role="tab">แก้ไข</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <!-- Timeline Tab start -->
+                                    <div class="tab-pane fade show active" id="timeline" role="tabpanel">
+                                        <div class="pd-20">
+                                            <div class="profile-timeline">
+                                                <div class="timeline-month">
+                                                    <h5>ธันวาคม 2563</h5>
+                                                </div>
+                                                <div class="profile-timeline-list">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="date">16 ธันวาคม</div>
+                                                            <div class="task-name">
+                                                                <i> </i> เช่า-ยืม
+                                                            </div>
+                                                            <p>CO2/NO2</p>
+                                                            <p>CO23</p>
+                                                            <p>NO</p>
+                                                            <div class="task-name">
+                                                                <i> </i> ส่งซ่อม
+                                                            </div>
+                                                            <p>CO2/NO2</p>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                                <div class="timeline-month">
+                                                    <h5>พฤศจิกายน 2563</h5>
+                                                </div>
+                                                <div class="profile-timeline-list">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="date">10 พฤศจิกายน</div>
+                                                            <div class="task-name">
+                                                                <i> </i> ส่งซ่อม
+                                                            </div>
+                                                            <p>CO2/NO2</p>
+                                                            <p>CO23</p>
+                                                            <p>NO</p>
+                                                            <div class="task-name">
+                                                                <i> </i> ซื้อ
+                                                            </div>
+                                                            <p>CO2/NO2</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Timeline Tab End -->
+
+                                    <!-- Setting Tab start -->
+                                    <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+                                        <div class="profile-setting">
+                                            <form>
+                                                <ul class="profile-edit-list row">
+                                                    <li class="weight-500 col-md-6">
+                                                        <h4 class="text-blue h5 mb-20">แก้ไขข้อมูลลูกค้า</h4>
+                                                        <div class="form-group">
+                                                            <label>ชื่อลูกค้า :</label>
+                                                            <input class="form-control form-control-lg" type="text">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Email :</label>
+                                                            <input class="form-control form-control-lg" type="email">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>เบอร์โทรศัพท์ :</label>
+                                                            <input class="form-control form-control-lg "
+                                                                type="text">
+                                                        </div>
+                                           
+                                                    </li>
+                                                    <li class="weight-500 col-md-6">
+                                                        <h4 class="text-blue h5 mb-20">แก้ไขที่อยู่ลูกค้า</h4>
+                                                        <div class="form-group">
+                                                            <label>ที่อยู่ :</label>
+                                                            <input class="form-control form-control-lg" type="text"
+                                                               >
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>ตำบล :</label>
+                                                            <input class="form-control form-control-lg" type="text"
+                                                                >
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>อำเภอ :</label>
+                                                            <input class="form-control form-control-lg" type="text"
+                                                                >
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>จังหวัด :</label>
+                                                            <input class="form-control form-control-lg" type="text"
+                                                                >
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>รหัสไปรษณีย์ :</label>
+                                                            <input class="form-control form-control-lg" type="text"
+                                                                >
+                                                        </div>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </form>  
+                                            <div class="warpper">
+                                                <div class="btn-list">
+                                                    <button type="button" class="btn btn-success">บันทึก</button>
+                                                    <button type="button" class="btn btn-danger">ยกเลิก</button>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- Setting Tab End -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-   
 </div>
+<div *ngIf = "isDisplay2">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                    <div class="col-6 col-sm-3">
+                        <div class="header-left">
+                            <h4 ><i class="icon-copy fa fa-angle-left" aria-hidden="true"></i></h4>
+                            <h4 class="p">Envirservice</h4>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-3">
+                        <div class="header-right">
+                            <div class="user-info-dropdown">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                        <span class="user-icon">
+                                            <img src="assets/vendors/images/deskapp.png" alt="">
+        
+                                        </span>
+                                        <span class="user-name">user01</span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                        <a class="dropdown-item"><i class="dw dw-user1"></i> โปรไฟล์</a>
+                                        <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> ลงชื่อออก</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-list">
+                        <ul class="row">
+                            <li class="col-6 col-sm-3">
+                                <div class="product-box ">
+                                    <div class="product-caption wrapper">
+                                        <h6>บริษัท ยูไนเต็ด</h6>
+                                        <p style="color: #6c757d;">012-3456789</p>
+                                        <div class="wrapper btn-list">
+                                            <button type="button" class="btn btn-outline-primary button1" (click)="toggleDisplay()">เพิ่มเติม</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-6 col-sm-3">
+                                <div class="product-box wrapper">
+                                    <div class="product-caption ">
+                                        <h6>Envir</h6>
+                                        <p style="color: #6c757d;">012-3456789</p>
+                                        <div class="wrapper btn-list">
+                                            <button type="button" class="btn btn-outline-primary button1" (click)="toggleDisplay()">เพิ่มเติม</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-6 col-sm-3">
+                                <div class="product-box wrapper">
+                                    <div class="product-caption ">
+                                        <h6>Envir</h6>
+                                        <p style="color: #6c757d;">012-3456789</p>
+                                        <div class="wrapper btn-list">
+                                            <button type="button" class="btn btn-outline-primary button1" (click)="toggleDisplay()">เพิ่มเติม</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-6 col-sm-3">
+                                <div class="product-box wrapper">
+                                    <div class="product-caption ">
+                                        <h6>Envir</h6>
+                                        <p style="color: #6c757d;">012-3456789</p>
+                                        <div class="wrapper btn-list">
+                                            <button type="button" class="btn btn-outline-primary button1" (click)="toggleDisplay()" >เพิ่มเติม</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+        </div>
+       
+    </div>
+</div>
+
+
+
+

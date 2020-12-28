@@ -39,14 +39,15 @@
                 <div class="pull-right">
                     <button type="button" class="btn btn-warning" (click)="insert_eq_detail()">เพิ่ม</button>
                 </div>
-                
-                
+
+
             </div>
-            <div class="faq-wrap" >
+            <div class="faq-wrap">
                 <div id="accordion" *ngFor="let item of eq_ddata; let i = index">
                     <div class="card">
                         <div class="card-header">
-                            <button class="btn btn-block collapsed" data-toggle="collapse" [attr.data-target]="'#faq' + i">
+                            <button class="btn btn-block collapsed" data-toggle="collapse"
+                                [attr.data-target]="'#faq' + i">
                                 <h5 class="card-title weight-500">{{item[1]}}</h5>
                                 <p class="card-text"> SN. {{item[0]}}</p>
                             </button>
@@ -56,9 +57,11 @@
                                 <p>จำนวน : {{item[2]}}</p>
                                 <p>สถานะ : {{item[3]}}</p>
                                 <div class="btn-list wrapper">
-                                    <button class="btn btn-success btn-sm" type="button" value="submit"  >
-                                        <i class="icon-copy fa fa-pencil-square-o btn-size" aria-hidden="true"></i></button>
-                                    <button class="btn btn-danger btn-sm" type="button" value="submit" (click)="deleteRow(item)">
+                                    <button class="btn btn-success btn-sm" type="button" value="submit">
+                                        <i class="icon-copy fa fa-pencil-square-o btn-size"
+                                            aria-hidden="true"></i></button>
+                                    <button class="btn btn-danger btn-sm" type="button" value="submit"
+                                        (click)="deleteRow(item)">
                                         <i class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></button>
                                 </div>
                             </div>
@@ -67,6 +70,6 @@
                 </div>
             </div>
         </div>
-        
+
 
     </div>

@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LineCustomerComponent implements OnInit {
 
+  isDisplay = false;
+  isDisplay2 = true;
+
+  toggleDisplay(){
+    this.isDisplay = !this.isDisplay;
+    this.isDisplay2 = !this.isDisplay2;
+  }
+
   constructor() { }
 
   ngOnInit(): void {
