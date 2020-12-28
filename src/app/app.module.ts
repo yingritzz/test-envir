@@ -29,6 +29,9 @@ import { LineHomeComponent } from './LINE/line-home/line-home.component';
 import { LineGetjobComponent } from './LINE/line-getjob/line-getjob.component';
 import { LineHeaderComponent } from './LINE/line-header/line-header.component';
 import { LineCustomerComponent } from './LINE/line-customer/line-customer.component';
+import { LineEquipmentComponent } from './LINE/line-equipment/line-equipment.component';
+import { LineEqDetailComponent } from './LINE/line-eq-detail/line-eq-detail.component';
+import { LineCusProfileComponent } from './LINE/line-cus-profile/line-cus-profile.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { LineCustomerComponent } from './LINE/line-customer/line-customer.compon
     LineHomeComponent,
     LineGetjobComponent,
     LineHeaderComponent,
-    LineCustomerComponent
+    LineCustomerComponent,
+    LineEquipmentComponent,
+    LineEqDetailComponent,
+    LineCusProfileComponent
   ],
   imports: [
     BrowserModule,

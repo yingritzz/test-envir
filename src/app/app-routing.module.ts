@@ -17,6 +17,11 @@ import { CusAddComponent } from './components/cus-add/cus-add.component'
 import { InvoiceComponent} from './components/invoice/invoice.component'
 import { LineHomeComponent } from './LINE/line-home/line-home.component'
 import { LineGetjobComponent } from './LINE/line-getjob/line-getjob.component'
+import { LineEquipmentComponent } from './LINE/line-equipment/line-equipment.component'
+import { LineEqDetailComponent } from './LINE/line-eq-detail/line-eq-detail.component'
+import { LineCustomerComponent } from './LINE/line-customer/line-customer.component'
+import { LineCusProfileComponent } from './LINE/line-cus-profile/line-cus-profile.component'
+
 
 
 
@@ -36,8 +41,12 @@ const routes: Routes = [
   {path: 'setting', component:SettingpageComponent},
   {path: 'equipment', component:EquipmentComponent},
   {path: 'equipment/detail', component:EqDetailComponent},
-  {path: 'linehome', component:LineHomeComponent},
-  {path: 'linegetjob', component:LineGetjobComponent},
+  {path: 'line/home', component:LineHomeComponent},
+  {path: 'line/getjob', component:LineGetjobComponent},
+  {path: 'line/equipment', component:LineEquipmentComponent},
+  {path: 'line/equipment/detail', component:LineEqDetailComponent},
+  {path: 'line/customer', component:LineCustomerComponent},
+  {path: 'line/customer/profile', component:LineCusProfileComponent},
   {path: '**', component:LoginComponent}
   
 ];
