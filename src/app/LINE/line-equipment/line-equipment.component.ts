@@ -14,20 +14,31 @@ export class LineEquipmentComponent implements OnInit {
   eq_catagory: any = "วัดคุณภาพอากาศ"
   eq_new: any
   eq_data: any = [["Analyzer O3", "วัดคุณภาพอากาศ"], ["Analyzer SO2", "วัดคุณภาพอากาศ"], ["Thermo PM 2.5", "วัดคุณภาพอากาศ"]]
-  isDisplay = false;
-  isDisplay2 = true;
+  
+  eq_dname: any = "Thermo PM 2.5"
+  eq_dstatus: any
+  eq_dnew: any
+  eq_ddata: any = [["200DA200310704", "Thermo PM 2.5", "1", "ว่าง 1"], ["xxxxxxxxxxxxxx", "สาย Thermo PM 2.5", "5", "ว่าง 3"]]
 
-  toggleDisplay(){
-    this.isDisplay = !this.isDisplay;
-    this.isDisplay2 = !this.isDisplay2;
-  }
-  constructor(public route: Router) { }
+  isDisplay1 = true;
+  isDisplay2 = false;
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  onClickDetail() {
-    this.route.navigateByUrl('line/equipment/detail')
+  toggleDisplay(){
+    this.isDisplay1 = !this.isDisplay1;
+    this.isDisplay2 = !this.isDisplay2;
+  }
+
+  onClickBack() {
+    this.isDisplay1 = true;
+    this.isDisplay2 = false;
+
+    this.isDisplay1 = this.isDisplay1;
+    this.isDisplay2 = this.isDisplay2;
   }
 
   async opensweet() {
@@ -61,5 +72,44 @@ export class LineEquipmentComponent implements OnInit {
         'success')
       console.log(this.eq_data)
     }
+  }
+
+  async insert_eq_detail() {
+    const { value: formValues } = await Swal.fire({
+      title: 'เพิ่มรายการอุปกรณ์',
+      html:
+        '<input id="inputSn" class="form-control" autocomplete="off" placeholder="SN no." type="text">' +
+        '<br>' +
+        '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่อรายการอุปกรณ์">' +
+        '<br>' +
+        '<input id="inputCount" class="form-control" autocomplete="off" placeholder="จำนวนอุปกรณ์">' +
+        '<br>' +
+        '<label id="textStatus" class="mb-15 text-blue h4">สถานะ : ว่าง</label>',
+      focusConfirm: false,
+      showCancelButton: true,
+      preConfirm: () => {
+        return [
+          (document.getElementById('inputSn') as HTMLTextAreaElement).value,
+          (document.getElementById('inputName') as HTMLTextAreaElement).value,
+          (document.getElementById('inputCount') as HTMLTextAreaElement).value,
+          "ว่าง " + (document.getElementById('inputCount') as HTMLTextAreaElement).value
+        ]
+      }
+    })
+    if (formValues) {
+      // console.log("Resule: " + formValues[0] + " : " + formValues[1] + " : " + formValues[2] + " : " + formValues[3]);
+
+      this.eq_dnew = formValues;
+      (this.eq_ddata).push(this.eq_dnew)
+      Swal.fire('บันทึกสำเร็จ',
+        '',
+        'success')
+      console.log(this.eq_ddata)
+    }
+  }
+
+  deleteRow(item: any) {
+    const index = this.eq_ddata.indexOf(item);
+    this.eq_ddata.splice(index, 1);
   }
 }

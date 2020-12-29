@@ -20,4 +20,11 @@ export class LineCustomerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClickBack() {
+    this.isDisplay = false;
+    this.isDisplay2 = true;
+
+    this.isDisplay = this.isDisplay;
+    this.isDisplay2 = this.isDisplay2;
+  }
 }

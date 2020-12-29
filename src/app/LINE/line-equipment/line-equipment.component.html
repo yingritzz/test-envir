@@ -1,74 +1,159 @@
-<div class="pd-ltr-20 xs-pd-20-10">
-    <div class="min-height-200px">
+<div *ngIf="isDisplay1">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
 
-        <div class="page-header">
-            <div class="row">
-                <div class="col-6 col-sm-3">
-                    <div>
-                        <h4 class="p">Envirservice</h4>
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-6 col-sm-3">
+                        <div>
+                            <h4 class="p">Envirservice</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6 col-sm-3">
-                    <div class="header-right">
-                        <div class="user-info-dropdown">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                    <span class="user-icon">
-                                        <img src="assets/vendors/images/deskapp.png" alt="">
+                    <div class="col-6 col-sm-3">
+                        <div class="header-right">
+                            <div class="user-info-dropdown">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                        <span class="user-icon">
+                                            <img src="assets/vendors/images/deskapp.png" alt="">
 
-                                    </span>
-                                    <span class="user-name">user01</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <a class="dropdown-item"><i class="dw dw-user1"></i> โปรไฟล์</a>
-                                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i>
-                                        ลงชื่อออก</a>
+                                        </span>
+                                        <span class="user-name">user01</span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                        <a class="dropdown-item"><i class="dw dw-user1"></i> โปรไฟล์</a>
+                                        <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i>
+                                            ลงชื่อออก</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="pd-20 card-box mb-30">
-        <div class="text-right btn-bt">
-            <button type="button" class="btn btn-warning" (click)="opensweet()">เพิ่ม</button>
-        </div>
-    
-        <!-- equipmant list -->
-        <div class="product-wrap">
-            <div class="product-list">
-                <ul class="row">
-                    <li class="col-lg-4 col-md-6 col-sm-12" *ngFor="let item of eq_data">
-                        <div class="product-box wrapper">
-                            <div class="product-caption">
-                                <h4>{{item[0]}}</h4>
-                                <h6>จำนวน {{eq_count}} อุปกรณ์</h6>
-                                <p style="color: #6c757d;">{{item[1]}}</p>
-                                <div class="wrapper btn-list">
-                                    <button type="button" class="btn btn-outline-primary"
-                                        (click)="onClickDetail()">เพิ่มเติม</button>
-                                    <button type="button" class="btn btn-outline-danger">ลบ</button>
+            <div class="pd-20 card-box mb-30">
+                <div class="text-right btn-bt">
+                    <button type="button" class="btn btn-warning" (click)="opensweet()">เพิ่ม</button>
+                </div>
+
+                <!-- equipmant list -->
+                <div class="product-wrap">
+                    <div class="product-list">
+                        <ul class="row">
+                            <li class="col-lg-4 col-md-6 col-sm-12" *ngFor="let item of eq_data">
+                                <div class="product-box wrapper">
+                                    <div class="product-caption">
+                                        <h4>{{item[0]}}</h4>
+                                        <h6>จำนวน {{eq_count}} อุปกรณ์</h6>
+                                        <p style="color: #6c757d;">{{item[1]}}</p>
+                                        <div class="wrapper btn-list">
+                                            <button type="button" class="btn btn-outline-primary"
+                                                (click)="toggleDisplay()">เพิ่มเติม</button>
+                                            <button type="button" class="btn btn-outline-danger">ลบ</button>
+                                        </div>
+                                    </div>
                                 </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="blog-pagination mb-30">
+                        <div class="btn-toolbar justify-content-center mb-15">
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-outline-primary prev"><i
+                                        class="fa fa-angle-double-left"></i></a>
+                                <span class="btn btn-primary current">1</span>
+                                <a href="#" class="btn btn-outline-primary">2</a>
+                                <a href="#" class="btn btn-outline-primary">3</a>
+                                <a href="#" class="btn btn-outline-primary next"><i
+                                        class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
-                    </li>
-
-                </ul>
-            </div>
-            <div class="blog-pagination mb-30">
-                <div class="btn-toolbar justify-content-center mb-15">
-                    <div class="btn-group">
-                        <a href="#" class="btn btn-outline-primary prev"><i class="fa fa-angle-double-left"></i></a>
-                        <span class="btn btn-primary current">1</span>
-                        <a href="#" class="btn btn-outline-primary">2</a>
-                        <a href="#" class="btn btn-outline-primary">3</a>
-                        <a href="#" class="btn btn-outline-primary next"><i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-
     </div>
+
+<div *ngIf="isDisplay2">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+
+                <div class="page-header">
+                    <div class="row">
+                    <div class="col-6 col-sm-3">
+                        <div class="header-left">
+                            <h4 ><i class="icon-copy fa fa-angle-left" aria-hidden="true" (click)="onClickBack()"></i></h4>&nbsp;&nbsp;
+                            <h4 class="p">Envirservice</h4>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-3">
+                        <div class="header-right">
+                            <div class="user-info-dropdown">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                        <span class="user-icon">
+                                            <img src="assets/vendors/images/deskapp.png" alt="">
+        
+                                        </span>
+                                        <span class="user-name">user01</span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                        <a class="dropdown-item"><i class="dw dw-user1"></i> โปรไฟล์</a>
+                                        <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> ลงชื่อออก</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="pd-20 card-box mb-30">
+                    <div class="clearfix mb-20">
+                        <div class="pull-left">
+                            <h4 class="text-blue h4">รายการอุปกรณ์</h4>
+                        </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-warning" (click)="insert_eq_detail()">เพิ่ม</button>
+                        </div>
+
+
+                    </div>
+                    <div class="faq-wrap">
+                        <div id="accordion" *ngFor="let item of eq_ddata; let i = index">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse"
+                                        [attr.data-target]="'#faq' + i">
+                                        <h5 class="card-title weight-500">{{item[1]}}</h5>
+                                        <p class="card-text"> SN. {{item[0]}}</p>
+                                    </button>
+                                </div>
+                                <div id="faq{{i}}" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p>จำนวน : {{item[2]}}</p>
+                                        <p>สถานะ : {{item[3]}}</p>
+                                        <div class="btn-list wrapper">
+                                            <button class="btn btn-success btn-sm" type="button" value="submit">
+                                                <i class="icon-copy fa fa-pencil-square-o btn-size"
+                                                    aria-hidden="true"></i></button>
+                                            <button class="btn btn-danger btn-sm" type="button" value="submit"
+                                                (click)="deleteRow(item)">
+                                                <i class="icon-copy fa fa-trash btn-size"
+                                                    aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        </div>

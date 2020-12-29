@@ -31,7 +31,6 @@ import { LineHeaderComponent } from './LINE/line-header/line-header.component';
 import { LineCustomerComponent } from './LINE/line-customer/line-customer.component';
 import { LineEquipmentComponent } from './LINE/line-equipment/line-equipment.component';
 import { LineEqDetailComponent } from './LINE/line-eq-detail/line-eq-detail.component';
-import { LineCusProfileComponent } from './LINE/line-cus-profile/line-cus-profile.component';
 import { LineMaintenancComponent } from './LINE/line-maintenanc/line-maintenanc.component';
 import { LineRentalComponent } from './LINE/line-rental/line-rental.component';
 import { LineSellingComponent } from './LINE/line-selling/line-selling.component';
@@ -64,7 +63,6 @@ import { LineTestingComponent } from './LINE/line-testing/line-testing.component
     LineCustomerComponent,
     LineEquipmentComponent,
     LineEqDetailComponent,
-    LineCusProfileComponent,
     LineMaintenancComponent,
     LineRentalComponent,
     LineSellingComponent,

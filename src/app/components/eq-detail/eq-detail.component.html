@@ -14,7 +14,7 @@
                             <ol class="breadcrumb">
                                 <li><a [routerLink]="[ '/home']" href="javascript:;">หน้าหลัก</a>
                                 </li>
-                                <li class="breadcrumb-item" ><a [routerLink]="[ '/equipment']"
+                                <li class="breadcrumb-item"><a [routerLink]="[ '/equipment']"
                                         href="javascript:;">อุปกรณ์</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{eq_dname}}</li>
                             </ol>
@@ -29,7 +29,8 @@
                         <h4 class="text-blue h4">รายการอุปกรณ์</h4>
                     </div>
                     <div class="pull-right">
-                        <button type="button" class="btn btn-warning" (click)="insert_eq_detail()">เพิ่มรายการอุปกรณ์</button>
+                        <button type="button" class="btn btn-warning"
+                            (click)="insert_eq_detail()">เพิ่มรายการอุปกรณ์</button>
                     </div>
                 </div>
                 <table class="table table-striped">
@@ -43,23 +44,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of eq_ddata">
-                            <th scope="row">{{item[0]}}</th>
-                            <td>{{item[1]}}</td>
-                            <td>{{item[2]}}</td>
-                            <td>{{item[3]}}</td>
+                        <tr *ngFor="let item of backendData; index as i ">
+                            <th scope="row">{{item.sn}}</th>
+                            <td>{{item.name}}</td>
+                            <td>{{item.count}}</td>
+                            <td >{{item.status}}</td>
                             <td>
                                 <div class="btn-list">
-                                    <button class="btn btn-success btn-sm" type="button" value="submit"  ><i
+                                    <button class="btn btn-success btn-sm" type="button" value="submit"
+                                        (click)="edit_eq_detail(item)"><i
                                             class="icon-copy fa fa-pencil-square-o btn-size"
                                             aria-hidden="true"></i></button>
 
-                                    <button class="btn btn-danger btn-sm" type="button" value="submit" (click)="deleteRow(item)" ><i
-                                            class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></button>
+                                    <button class="btn btn-danger btn-sm" type="button" value="submit"
+                                        (click)="deleteRow(item)"><i class="icon-copy fa fa-trash btn-size"
+                                            aria-hidden="true"></i></button>
+
+                                    
+
                                 </div>
                             </td>
                         </tr>
-                        
+
                     </tbody>
                 </table>
             </div>
