@@ -1,17 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
-
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-
-import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { GetjobComponent } from './components/getjob/getjob.component';
 import { SettingpageComponent } from './components/settingpage/settingpage.component';
@@ -25,6 +23,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { CusProfileComponent } from './components/cus-profile/cus-profile.component';
 import { CusAddComponent } from './components/cus-add/cus-add.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
+
 import { LineHomeComponent } from './LINE/line-home/line-home.component';
 import { LineGetjobComponent } from './LINE/line-getjob/line-getjob.component';
 import { LineHeaderComponent } from './LINE/line-header/line-header.component';
@@ -35,6 +34,8 @@ import { LineMaintenancComponent } from './LINE/line-maintenanc/line-maintenanc.
 import { LineRentalComponent } from './LINE/line-rental/line-rental.component';
 import { LineSellingComponent } from './LINE/line-selling/line-selling.component';
 import { LineTestingComponent } from './LINE/line-testing/line-testing.component';
+import { EqEditComponent } from './components/eq-edit/eq-edit.component';
+import { JobDetailComponent } from './components/job-detail/job-detail.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,9 @@ import { LineTestingComponent } from './LINE/line-testing/line-testing.component
     LineMaintenancComponent,
     LineRentalComponent,
     LineSellingComponent,
-    LineTestingComponent
+    LineTestingComponent,
+    EqEditComponent,
+    JobDetailComponent
   ],
   imports: [
     BrowserModule,

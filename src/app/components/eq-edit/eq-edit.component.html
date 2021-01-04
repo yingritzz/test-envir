@@ -1,0 +1,58 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>แก้ไขรายการอุปกรณ์</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a [routerLink]="[ '/home']"
+                                        href="javascript:;">หน้าหลัก</a></li>
+                                <li class="breadcrumb-item"><a [routerLink]="[ '/equipment']"
+                                        href="javascript:;">อุปกรณ์</a></li>
+                                <li class="breadcrumb-item"><a [routerLink]="[ '/equipment/detail']"
+                                        href="javascript:;">รายการอุปกรณ์</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">แก้ไขรายการอุปกรณ์</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-20 card-box mb-30">
+                <div>
+                    <div class="form-group">
+                        <label for="sn">SN.</label>
+                        <input type="text" class="form-control" id="sn" placeholder="Enter SN." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">ชื่อรายการอุปกรณ์</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="count">จำนวน</label>
+                        <input type="text" class="form-control" id="count" placeholder="Enter Count" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">สถานะ</label>
+                        <input type="text" class="form-control" id="status" placeholder="Enter Statys" required>
+                    </div>
+
+                    <div class="btn-list wrapper">
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-danger"
+                            [routerLink]="[ '/equipment/detail']">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer>
+        </app-footer>
+
+    </div>
