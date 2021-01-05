@@ -12,40 +12,41 @@
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
-                                <li class="breadcrumb-item " aria-current="page"><a [routerLink]="[ '/customer']">ลูกค้า</a></li>
+                                <li class="breadcrumb-item " aria-current="page"><a
+                                        [routerLink]="[ '/customer']">ลูกค้า</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">ข้อมูลลูกค้า</li>
                             </ol>
                         </nav>
                     </div>
                     <div class="col-md-6 text-right">
                         <button type="button" class="btn btn-danger" id="sa-params">ลบ</button>
-                </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <!-- user information -->
                 <div class="col-xl-4 col-lg-8 col-md-8 col-sm-12 mb-30">
-                    <div class="pd-20 card-box ">
-                        <h5 class="text-center h5 mb-0">Envir</h5>
-                        <p class="text-center text-muted font-14">Envir_Service</p>
+                    <div class="pd-20 card-box " *ngFor="let cus of customerData">
+                        <h5 class="text-center h4 mb-0">{{cus.cus_fullname}}</h5>
+                        <p class="text-center text-muted font-14">{{cus.cus_id}}</p>
                         <div class="profile-info">
                             <h5 class="mb-20 h5 text-blue">ข้อมูลการติดต่อ</h5>
                             <ul>
                                 <li>
                                     <span>อีเมล:</span>
-                                    customer@gmail.com
+                                    {{cus.cus_email}}
                                 </li>
                                 <li>
                                     <span>เบอร์โทร:</span>
-                                    012 3456789
+                                    {{cus.cus_phone}}
                                 </li>
                                 <li>
                                     <span>ที่อยู่:</span>
                                     xxx xxxx xxxxx xxxxxx
                                 </li>
                                 <li>
-                                    <span>เข้าสู่ระบบล่าสุด:</span>
-                                    18 ธันวาคม 2563
+                                    <span>การแก้ไขข้อมูลครั้งล่าสุด:</span>
+                                    {{cus.cus_date_edit}}
                                 </li>
                                 <li>
                                     <span>จำนวนการใช้งาน:</span>
@@ -55,14 +56,15 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
                     <div class="card-box height-100-p overflow-hidden">
                         <div class="profile-tab height-100-p">
                             <div class="tab height-100-p">
                                 <ul class="nav nav-tabs customtab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#timeline"
-                                            role="tab"> ประวัติการใช้งาน</a>
+                                        <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">
+                                            ประวัติการใช้งาน</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#setting" role="tab">แก้ไข</a>
@@ -91,7 +93,7 @@
                                                             </div>
                                                             <p>CO2/NO2</p>
                                                         </li>
-                                                        
+
                                                     </ul>
                                                 </div>
                                                 <div class="timeline-month">
@@ -122,67 +124,60 @@
                                     <!-- Setting Tab start -->
                                     <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
                                         <div class="profile-setting">
-                                            <form>
-                                                <ul class="profile-edit-list row">
+                                            <form >
+                                                <ul class="profile-edit-list row" *ngFor="let cus of customerData">
                                                     <li class="weight-500 col-md-6">
                                                         <h4 class="text-blue h5 mb-20">แก้ไขข้อมูลลูกค้า</h4>
                                                         <div class="form-group">
                                                             <label>ชื่อลูกค้า :</label>
-                                                            <input class="form-control form-control-lg" type="text">
+                                                            <input class="form-control form-control-lg" type="text"
+                                                                value="{{cus.cus_fullname}}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Email :</label>
-                                                            <input class="form-control form-control-lg" type="email">
+                                                            <input class="form-control form-control-lg" type="email"
+                                                                value="{{cus.cus_email}}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>เบอร์โทรศัพท์ :</label>
-                                                            <input class="form-control form-control-lg "
-                                                                type="text">
+                                                            <input class="form-control form-control-lg " type="text"
+                                                                value="{{cus.cus_phone}}">
                                                         </div>
-                                           
+
                                                     </li>
                                                     <li class="weight-500 col-md-6">
                                                         <h4 class="text-blue h5 mb-20">แก้ไขที่อยู่ลูกค้า</h4>
                                                         <div class="form-group">
                                                             <label>ที่อยู่ :</label>
-                                                            <input class="form-control form-control-lg" type="text"
-                                                               >
+                                                            <input class="form-control form-control-lg" type="text">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>ตำบล :</label>
-                                                            <input class="form-control form-control-lg" type="text"
-                                                                >
+                                                            <input class="form-control form-control-lg" type="text">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>อำเภอ :</label>
-                                                            <input class="form-control form-control-lg" type="text"
-                                                                >
+                                                            <input class="form-control form-control-lg" type="text">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>จังหวัด :</label>
-                                                            <input class="form-control form-control-lg" type="text"
-                                                                >
+                                                            <input class="form-control form-control-lg" type="text">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>รหัสไปรษณีย์ :</label>
-                                                            <input class="form-control form-control-lg" type="text"
-                                                                >
+                                                            <input class="form-control form-control-lg" type="text">
                                                         </div>
                                                     </li>
-                                                    
                                                 </ul>
-                                            </form>  
-                                            <div class="warpper">
-                                                <div class="btn-list">
-                                                    <button type="button" class="btn btn-success">บันทึก</button>
-                                                    <button type="button" class="btn btn-danger">ยกเลิก</button>
-                                                </div>
-                                            </div>  
+                                            </form>
+                                            <div class="btn-list warpper pd-bottom">
+                                                <button type="button" class="btn btn-success">บันทึก</button>
+                                                <button type="button" class="btn btn-danger">ยกเลิก</button>
+                                            </div>
                                         </div>
-                                        
                                     </div>
                                     <!-- Setting Tab End -->
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -190,7 +185,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <app-footer></app-footer>
 </div>

@@ -43,7 +43,7 @@ const routes: Routes = [
   {path: 'user/profile', component:ProfileComponent},
   {path: 'customer', component:CustomerComponent},
   {path: 'cusadd', component:CusAddComponent},
-  {path: 'cusprofile', component:CusProfileComponent},
+  {path: 'customer/profile/:id', component:CusProfileComponent},
   {path: 'setting', component:SettingpageComponent},
   {path: 'equipment', component:EquipmentComponent},
   {path: 'equipment/detail', component:EqDetailComponent},

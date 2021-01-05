@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { ApiService } from '../../services/api.service'
 
 @Component({
   selector: 'app-customer',
@@ -8,14 +9,25 @@ import { Route, Router } from '@angular/router';
 })
 export class CustomerComponent implements OnInit {
 
-  constructor(public route: Router) { }
+  customerDataList: any;
+
+  constructor(
+    public route: Router,
+    public apiService: ApiService
+    ) { 
+      this.customerDataList = [];
+     }
 
   ngOnInit(): void {
+    this.getAllCustomers();
   }
-  async onClickHome() {
-    this.route.navigateByUrl('home')
+
+  getAllCustomers() {
+    this.apiService.getListCustomers().subscribe(response => {
+      // console.log(response);
+      this.customerDataList = response;
+    })
   }
-  async onClickCusProfile() {
-    this.route.navigateByUrl('cusprofile')
-  }
+
+  
 }
