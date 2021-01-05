@@ -45,11 +45,10 @@
                                 <td><a [routerLink]="[ '/job/detail']">อยู่ระหว่างการทดสอบ</a></td>
                                 <td>
                                     <div class="btn-list">
-                                        <a [routerLink]="[ '/job/detail']">
-                                            <span class="btn btn-success btn-sm" type="button" value="submit"><i
-                                                    class="icon-copy fa fa-pencil-square-o btn-size"
-                                                    aria-hidden="true"></i></span>
-                                        </a>
+                                        <span class="btn btn-success btn-sm" type="button" value="submit"
+                                            [routerLink]="[ '/job/edit']"><i
+                                                class="icon-copy fa fa-pencil-square-o btn-size"
+                                                aria-hidden="true"></i></span>
                                         <span class="btn btn-secondary btn-sm" type="button" value="submit"><i
                                                 class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
                                         <span class="btn btn-danger btn-sm" type="button" value="submit"><i

@@ -99,8 +99,8 @@
                             </tbody>
                         </table>
                         <div class="wrapper btn-list">
-                            <a [routerLink]="[ '/job/detail']"><button type="button" class="btn btn-success">บันทึก</button></a>
-                            <button type="button" class="btn btn-danger">ยกเลิก</button>
+                            <button type="button" class="btn btn-success" [routerLink]="[ '/job/detail']">บันทึก</button>
+                            <button type="button" class="btn btn-danger" (click)="onClickBack()">ยกเลิก</button>
                         </div>
                     </div>
                 </div>

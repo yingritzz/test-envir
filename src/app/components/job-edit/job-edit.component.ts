@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-job-edit',
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class JobEditComponent implements OnInit {
 
   status = "อยู่ระหว่างการเช่า - ยืม"
-  constructor() { }
+
+  constructor(private location: Location) { }
 
   ngOnInit(): void {
+  }
+
+  onClickBack() {
+    this.location.back();
   }
 
 }

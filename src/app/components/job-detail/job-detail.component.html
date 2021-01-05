@@ -17,9 +17,9 @@
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-md-6 col-sm-12 text-right">
+                    <!-- <div class="col-md-6 col-sm-12 text-right">
                         <button type="button" class="btn btn-outline-secondary" (click)="onClickBack()">ย้อนกลับ</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -83,11 +83,11 @@
                             </tbody>
                         </table>
                         <div class="btn-list wrapper">
-                            <a [routerLink]="[ '/job/edit']">
-                                <span class="btn btn-success btn-sm" type="button" value="submit">
-                                    <i class="icon-copy fa fa-pencil-square-o btn-size" aria-hidden="true"></i>
-                                </span>
-                            </a>
+
+                            <span class="btn btn-success btn-sm" type="button" value="submit"
+                                [routerLink]="[ '/job/edit']">
+                                <i class="icon-copy fa fa-pencil-square-o btn-size" aria-hidden="true"></i>
+                            </span>
                             <span class="btn btn-secondary btn-sm" type="button" value="submit"><i
                                     class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
                             <span class="btn btn-danger btn-sm" type="button" value="submit"><i
