@@ -17,6 +17,7 @@ import { CusAddComponent } from './components/cus-add/cus-add.component'
 import { InvoiceComponent} from './components/invoice/invoice.component'
 import { EqEditComponent } from './components/eq-edit/eq-edit.component';
 import { JobDetailComponent } from './components/job-detail/job-detail.component';
+import { JobEditComponent } from './components/job-edit/job-edit.component';
 
 import { LineHomeComponent } from './LINE/line-home/line-home.component'
 import { LineGetjobComponent } from './LINE/line-getjob/line-getjob.component'
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'selling', component:SellingComponent},
   {path: 'testing', component:TestingComponent},
   {path: 'job/detail', component:JobDetailComponent},
+  {path: 'job/edit', component:JobEditComponent},
   {path: 'user/profile', component:ProfileComponent},
   {path: 'customer', component:CustomerComponent},
   {path: 'cusadd', component:CusAddComponent},

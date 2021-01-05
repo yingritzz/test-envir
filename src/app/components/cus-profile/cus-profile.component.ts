@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
+
 @Component({
   selector: 'app-cus-profile',
   templateUrl: './cus-profile.component.html',
@@ -12,5 +13,5 @@ export class CusProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
- 
+
 }

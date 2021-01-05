@@ -13,12 +13,10 @@
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">รายละเอียดงาน</li>
+                                <li class="breadcrumb-item"><a [routerLink]="[ '/job/detail']">รายละเอียดงาน</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">แก้ไขรายละเอียดงาน</li>
                             </ol>
                         </nav>
-                    </div>
-                    <div class="col-md-6 col-sm-12 text-right">
-                        <button type="button" class="btn btn-outline-secondary" (click)="onClickBack()">ย้อนกลับ</button>
                     </div>
                 </div>
             </div>
@@ -72,26 +70,37 @@
                                     <td>1</td>
                                     <td>Thermo Paetiso</td>
                                     <td>เช่า - ยืม</td>
-                                    <td>อยู่ระหว่างการเช่า-ยืม</td>
+                                    <td>
+                                        <select _ngcontent-ysi-c51="" name="status"
+                                            class="custom-select form-control ng-untouched ng-pristine ng-valid"
+                                            ng-reflect-name="status">
+                                            <option _ngcontent-ysi-c51="" value=" " ng-reflect-value=" ">{{status}}</option>
+                                            <option _ngcontent-ysi-c51="" value="เช่า-ยืม" ng-reflect-value="เช่า-ยืม">เช่า-ยืม</option>
+                                            <option _ngcontent-ysi-c51="" value="จำหน่าย" ng-reflect-value="จำหน่าย">จำหน่าย</option>
+                                            <option _ngcontent-ysi-c51="" value="ทดลอง" ng-reflect-value="ทดลอง">ทดลอง</option>
+                                            <option _ngcontent-ysi-c51="" value="ซ่อมบำรุง" ng-reflect-value="ซ่อมบำรุง">ซ่อมบำรุง</option>
+                                        </select>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>Thermo Paetiso</td>
                                     <td>เช่า - ยืม</td>
-                                    <td>อยู่ระหว่างการเช่า-ยืม</td>
+                                    <td>
+                                        <select _ngcontent-ysi-c51="" name="status"
+                                            class="custom-select form-control ng-untouched ng-pristine ng-valid"
+                                            ng-reflect-name="status">
+                                            <option _ngcontent-ysi-c51="" value=" " ng-reflect-value=" ">{{status}}</option>
+                                            <option _ngcontent-ysi-c51="" value="เช่า-ยืม" ng-reflect-value="เช่า-ยืม">เช่า-ยืม</option>
+                                            <option _ngcontent-ysi-c51="" value="จำหน่าย" ng-reflect-value="จำหน่าย">จำหน่าย</option>
+                                            <option _ngcontent-ysi-c51="" value="ทดลอง" ng-reflect-value="ทดลอง">ทดลอง</option>
+                                            <option _ngcontent-ysi-c51="" value="ซ่อมบำรุง" ng-reflect-value="ซ่อมบำรุง">ซ่อมบำรุง</option>
+                                        </select>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="btn-list wrapper">
-                            <a [routerLink]="[ '/job/edit']">
-                                <span class="btn btn-success btn-sm" type="button" value="submit">
-                                    <i class="icon-copy fa fa-pencil-square-o btn-size" aria-hidden="true"></i>
-                                </span>
-                            </a>
-                            <span class="btn btn-secondary btn-sm" type="button" value="submit"><i
-                                    class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
-                            <span class="btn btn-danger btn-sm" type="button" value="submit"><i
-                                    class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></span>
+                        <div class="wrapper btn-list">
+                            <a [routerLink]="[ '/job/detail']"><button type="button" class="btn btn-success">บันทึก</button></a>
+                            <button type="button" class="btn btn-danger">ยกเลิก</button>
                         </div>
                     </div>
                 </div>

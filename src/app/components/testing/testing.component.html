@@ -39,15 +39,21 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">3</th>
-                                <td>Envir3</td>
-                                <td>CO2/NOx</td>
-                                <td>อยู่ระหว่างการทดสอบ</td>
+                                <th scope="row"><a [routerLink]="[ '/job/detail']">3</a></th>
+                                <td><a [routerLink]="[ '/job/detail']">Envir3</a></td>
+                                <td><a [routerLink]="[ '/job/detail']">CO2/NOx</a></td>
+                                <td><a [routerLink]="[ '/job/detail']">อยู่ระหว่างการทดสอบ</a></td>
                                 <td>
                                     <div class="btn-list">
-                                        <span class="btn btn-success btn-sm" type="button" value="submit"><i class="icon-copy fa fa-pencil-square-o btn-size" aria-hidden="true"></i></span>
-                                        <span class="btn btn-secondary btn-sm" type="button" value="submit"><i class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
-                                        <span class="btn btn-danger btn-sm" type="button" value="submit"><i class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></span>
+                                        <a [routerLink]="[ '/job/detail']">
+                                            <span class="btn btn-success btn-sm" type="button" value="submit"><i
+                                                    class="icon-copy fa fa-pencil-square-o btn-size"
+                                                    aria-hidden="true"></i></span>
+                                        </a>
+                                        <span class="btn btn-secondary btn-sm" type="button" value="submit"><i
+                                                class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
+                                        <span class="btn btn-danger btn-sm" type="button" value="submit"><i
+                                                class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></span>
                                     </div>
                                 </td>
                             </tr>

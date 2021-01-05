@@ -39,23 +39,57 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">3</th>
-                                <td>Envir3</td>
-                                <td>CO2/NOx</td>
-                                <td>อยู่ระหว่างการเช่ายืม</td>
+                                <th scope="row"><a [routerLink]="[ '/job/detail']">3</a></th>
+                                <td><a [routerLink]="[ '/job/detail']">Envir3</a></td>
+                                <td><a [routerLink]="[ '/job/detail']">CO2/NOx</a></td>
+                                <td><a [routerLink]="[ '/job/detail']">อยู่ระหว่างการเช่ายืม</a></td>
                                 <td>
                                     <div class="btn-list">
-                                        <span class="btn btn-success btn-sm" type="button" value="submit">
-                                            <i class="icon-copy fa fa-pencil-square-o btn-size" aria-hidden="true"></i>
-                                        </span>
-                                        <span class="btn btn-secondary btn-sm" type="button" value="submit"><i class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
-                                        <span class="btn btn-danger btn-sm" type="button" value="submit"><i class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></span>
+                                        <a [routerLink]="[ '/job/detail']">
+                                            <span class="btn btn-success btn-sm" type="button" value="submit">
+                                                <i class="icon-copy fa fa-pencil-square-o btn-size"
+                                                    aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+                                        <span class="btn btn-secondary btn-sm" type="button" value="submit"><i
+                                                class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
+                                        <span class="btn btn-danger btn-sm" type="button" value="submit"><i
+                                                class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></span>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <!-- หน้าข้อมูล -->
+                <!-- <div class="row">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info" id="DataTables_Table_1_info" role="status"
+                            aria-live="polite">1-10 of 12 entries</div>
+                    </div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="dataTables_paginate paging_simple_numbers"
+                            id="DataTables_Table_1_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button page-item previous disabled"
+                                    id="DataTables_Table_1_previous"><a href="#"
+                                        aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0"
+                                        class="page-link"><i class="ion-chevron-left"></i></a></li>
+                                <li class="paginate_button page-item active"><a href="#"
+                                        aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0"
+                                        class="page-link">1</a></li>
+                                <li class="paginate_button page-item "><a href="#"
+                                        aria-controls="DataTables_Table_1" data-dt-idx="2" tabindex="0"
+                                        class="page-link">2</a></li>
+                                <li class="paginate_button page-item next" id="DataTables_Table_1_next"><a
+                                        href="#" aria-controls="DataTables_Table_1" data-dt-idx="3"
+                                        tabindex="0" class="page-link"><i class="ion-chevron-right"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
             </div>
             <app-footer></app-footer>
         </div>
