@@ -11,9 +11,10 @@ export class ApiService {
 
   // http://localhost:8888/API/read/customerlist
   // http://localhost:8888/API/read.php?table=customer&id=2
+  // http://localhost:8888/API/write.php
 
   // API path
-  base_path = 'http://localhost/API/read';
+  base_path = 'http://localhost/API/';
 
   constructor(private http: HttpClient) { }
 
@@ -28,7 +29,8 @@ export class ApiService {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
-    } else {
+    } 
+    else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       console.error(
@@ -43,7 +45,7 @@ export class ApiService {
   // Get customers list data
   getListCustomers(): Observable<Customer> {
     return this.http
-      .get<Customer>(this.base_path + "/customerlist")
+      .get<Customer>(this.base_path + "read/customerlist")
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -53,9 +55,18 @@ export class ApiService {
   // Get single customer data by ID
   getCustomer(id:number): Observable<Customer> {
     return this.http
-      .get<Customer>(this.base_path + ".php?table=customer&id=" + id)
+      .get<Customer>(this.base_path + "read.php?table=customer&id=" + id)
       .pipe(
         retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  createCustomer(item: any): Observable<Customer> {
+    return this.http
+      .post<Customer>(this.base_path+"write.php", JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(0),
         catchError(this.handleError)
       )
   }

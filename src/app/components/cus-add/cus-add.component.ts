@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
+import { Customer } from '../../models/customer';
+import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-cus-add',
@@ -8,7 +12,15 @@ import {Location} from '@angular/common';
 })
 export class CusAddComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  data: Customer
+
+  constructor(
+    private location: Location,
+    public apiService: ApiService,
+    public router: Router
+    ) { 
+      this.data = new Customer();
+     }
 
   ngOnInit(): void {
   }
@@ -16,4 +28,14 @@ export class CusAddComponent implements OnInit {
   onClickBack() {
     this.location.back();
   }
+
+  submitNewCus() {
+    this.apiService.createCustomer(this.data).subscribe((response) => {
+      
+      console.log(this.data);
+    });
+    this.router.navigate(['customer']);
+  }
+
+
 }
