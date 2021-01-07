@@ -12,7 +12,7 @@ export class CustomerComponent implements OnInit {
   customerDataList: any;
 
   constructor(
-    public route: Router,
+    public router: Router,
     public apiService: ApiService
     ) { 
       this.customerDataList = [];
@@ -27,6 +27,10 @@ export class CustomerComponent implements OnInit {
       // console.log(response);
       this.customerDataList = response;
     })
+  }
+
+  onClick(id: number){
+    this.router.navigate(['customer/profile/'+id]);
   }
 
   

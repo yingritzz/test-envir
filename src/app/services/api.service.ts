@@ -12,6 +12,8 @@ export class ApiService {
   // http://localhost:8888/API/read/customerlist
   // http://localhost:8888/API/read.php?table=customer&id=2
   // http://localhost:8888/API/write.php
+  // http://localhost:8888/API/update/(idที่จะแก้)
+  // http://localhost:8888/API/del/(idที่จะลบ)
 
   // API path
   base_path = 'http://localhost/API/';
@@ -46,10 +48,10 @@ export class ApiService {
   getListCustomers(): Observable<Customer> {
     return this.http
       .get<Customer>(this.base_path + "read/customerlist")
-      // .pipe(
-      //   retry(2),
-      //   catchError(this.handleError)
-      // )
+      .pipe(
+        retry(2)
+        // catchError(this.handleError)
+      )
   }
 
   // Get single customer data by ID
@@ -62,12 +64,25 @@ export class ApiService {
       )
   }
 
+  // create new customer
   createCustomer(item: any): Observable<Customer> {
     return this.http
       .post<Customer>(this.base_path+"write.php", JSON.stringify(item), this.httpOptions)
-      // .pipe(
-      //   catchError(this.handleError)
-      // )
+  }
+
+  // Delete customer by id
+  deleteCustomer(id: number) {
+    return this.http
+      .delete<Customer>(this.base_path + 'del/' + id, this.httpOptions)
+  }
+
+  // Update item by id
+  updateCustomer(id: number, item: any): Observable<Customer> {
+    return this.http
+      .put<Customer>(this.base_path + 'update/' + id, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      )
   }
 
 }

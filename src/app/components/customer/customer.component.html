@@ -33,17 +33,14 @@
                                     <h6><span>เบอร์โทร :</span> {{cus.cus_phone}}</h6>
                                     <!-- <p style="color: #6c757d;">d</p> -->
                                     <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1"
-                                            routerLink="/customer/profile/{{cus.cus_id}}">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-primary button1" (click)="onClick(cus.cus_id)">เพิ่มเติม</button>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </div>
-
-                
-                
+             
                 <!-- <div class="dataTables_paginate paging_simple_numbers mb-30 justify-content-center" id="DataTables_Table_2_paginate">
                     <div class="btn-toolbar justify-content-center mb-15">
                     <ul class="pagination">

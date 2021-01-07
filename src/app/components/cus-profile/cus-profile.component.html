@@ -18,15 +18,16 @@
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-md-6 text-right">
-                        <button type="button" class="btn btn-danger" id="sa-params">ลบ</button>
+                    <div class="col-md-6 text-right" *ngFor="let cus of cusData">
+                        <button type="button" class="btn btn-danger" id="sa-params"
+                            (click)="delete(cus.cus_id)">ลบ</button>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <!-- user information -->
-                <div class="col-xl-4 col-lg-8 col-md-8 col-sm-12 mb-30">
-                    <div class="pd-20 card-box " *ngFor="let cus of customerData">
+                <div class="col-xl-4 col-lg-8 col-md-8 col-sm-12 mb-30" *ngFor="let cus of cusData">
+                    <div class="pd-20 card-box ">
                         <h5 class="text-center h4 mb-0">{{cus.cus_fullname}}</h5>
                         <p class="text-center text-muted font-16">ID: {{cus.cus_id}}</p>
                         <div class="profile-info">
@@ -124,24 +125,24 @@
                                     <!-- Setting Tab start -->
                                     <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
                                         <div class="profile-setting">
-                                            <form >
-                                                <ul class="profile-edit-list row" *ngFor="let cus of customerData">
+                                            <form>
+                                                <ul class="profile-edit-list row">
                                                     <li class="weight-500 col-md-6">
                                                         <h4 class="text-blue h5 mb-20">แก้ไขข้อมูลลูกค้า</h4>
                                                         <div class="form-group">
                                                             <label>ชื่อลูกค้า :</label>
                                                             <input class="form-control form-control-lg" type="text"
-                                                                value="{{cus.cus_fullname}}">
+                                                                [(ngModel)]="cusEdit.cus_fullname" name="name">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Email :</label>
                                                             <input class="form-control form-control-lg" type="email"
-                                                                value="{{cus.cus_email}}">
+                                                                [(ngModel)]="cusEdit.cus_email" name="email">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>เบอร์โทรศัพท์ :</label>
                                                             <input class="form-control form-control-lg " type="text"
-                                                                value="{{cus.cus_phone}}">
+                                                                [(ngModel)]="cusEdit.cus_phone" name="phone">
                                                         </div>
 
                                                     </li>
@@ -171,7 +172,8 @@
                                                 </ul>
                                             </form>
                                             <div class="btn-list warpper pd-bottom">
-                                                <button type="button" class="btn btn-success">บันทึก</button>
+                                                <button type="submit" class="btn btn-success"
+                                                    (click)="update()">บันทึก</button>
                                                 <button type="button" class="btn btn-danger">ยกเลิก</button>
                                             </div>
                                         </div>

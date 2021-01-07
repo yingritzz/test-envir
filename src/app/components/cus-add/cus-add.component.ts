@@ -3,6 +3,7 @@ import { Customer } from '../../models/customer';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cus-add',
@@ -16,7 +17,8 @@ export class CusAddComponent implements OnInit {
   constructor(
     private location: Location,
     public apiService: ApiService,
-    public router: Router
+    public router: Router,
+    public http:HttpClient
   ) {
     this.data = new Customer();
   }
@@ -28,10 +30,11 @@ export class CusAddComponent implements OnInit {
     this.location.back();
   }
 
-  submitNewCus() {
+  onClickNewCus() {
     this.apiService.createCustomer(this.data).subscribe((response) => {
     })
     this.router.navigate(['customer']);
+    console.log(this.data);
   }
 
 
