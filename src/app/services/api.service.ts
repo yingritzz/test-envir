@@ -46,10 +46,10 @@ export class ApiService {
   getListCustomers(): Observable<Customer> {
     return this.http
       .get<Customer>(this.base_path + "read/customerlist")
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+      // .pipe(
+      //   retry(2),
+      //   catchError(this.handleError)
+      // )
   }
 
   // Get single customer data by ID
@@ -65,10 +65,9 @@ export class ApiService {
   createCustomer(item: any): Observable<Customer> {
     return this.http
       .post<Customer>(this.base_path+"write.php", JSON.stringify(item), this.httpOptions)
-      .pipe(
-        retry(0),
-        catchError(this.handleError)
-      )
+      // .pipe(
+      //   catchError(this.handleError)
+      // )
   }
 
 }

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { Customer } from '../../models/customer';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-cus-add',
@@ -18,9 +17,9 @@ export class CusAddComponent implements OnInit {
     private location: Location,
     public apiService: ApiService,
     public router: Router
-    ) { 
-      this.data = new Customer();
-     }
+  ) {
+    this.data = new Customer();
+  }
 
   ngOnInit(): void {
   }
@@ -31,9 +30,7 @@ export class CusAddComponent implements OnInit {
 
   submitNewCus() {
     this.apiService.createCustomer(this.data).subscribe((response) => {
-      
-      console.log(this.data);
-    });
+    })
     this.router.navigate(['customer']);
   }
 
