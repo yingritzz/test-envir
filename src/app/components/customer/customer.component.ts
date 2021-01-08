@@ -24,8 +24,8 @@ export class CustomerComponent implements OnInit {
 
   getAllCustomers() {
     this.apiService.getListCustomers().subscribe(response => {
-      // console.log(response);
       this.customerDataList = response;
+      console.log(this.customerDataList);
     })
   }
 

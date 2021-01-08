@@ -16,7 +16,7 @@ export class ApiService {
   // http://localhost:8888/API/del/(idที่จะลบ)
 
   // API path
-  base_path = 'http://localhost/API/';
+  base_path = 'http://localhost';
 
   constructor(private http: HttpClient) { }
 
@@ -47,19 +47,19 @@ export class ApiService {
   // Get customers list data
   getListCustomers(): Observable<Customer> {
     return this.http
-      .get<Customer>(this.base_path + "read/customerlist")
+      .get<Customer>(this.base_path + "/API/read/customerlist")
       .pipe(
-        retry(2)
-        // catchError(this.handleError)
+        retry(3),
+        catchError(this.handleError)
       )
   }
 
   // Get single customer data by ID
   getCustomer(id:number): Observable<Customer> {
     return this.http
-      .get<Customer>(this.base_path + "read.php?table=customer&id=" + id)
+      .get<Customer>(this.base_path + "/API/read.php?table=customer&id=" + id)
       .pipe(
-        retry(2),
+        retry(3),
         catchError(this.handleError)
       )
   }
@@ -67,19 +67,20 @@ export class ApiService {
   // create new customer
   createCustomer(item: any): Observable<Customer> {
     return this.http
-      .post<Customer>(this.base_path+"write.php", JSON.stringify(item), this.httpOptions)
+      .post<Customer>(this.base_path+"/API/write.php", JSON.stringify(item), this.httpOptions)
   }
 
   // Delete customer by id
   deleteCustomer(id: number) {
     return this.http
-      .delete<Customer>(this.base_path + 'del/' + id, this.httpOptions)
+      .delete<Customer>(this.base_path + '/API/del/' + id, this.httpOptions)
+      .pipe(retry(3))
   }
 
   // Update item by id
   updateCustomer(id: number, item: any): Observable<Customer> {
     return this.http
-      .put<Customer>(this.base_path + 'update/' + id, JSON.stringify(item), this.httpOptions)
+      .put<Customer>(this.base_path + '/API/update/' + id, JSON.stringify(item), this.httpOptions)
       .pipe(
         catchError(this.handleError)
       )
