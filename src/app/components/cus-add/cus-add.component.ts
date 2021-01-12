@@ -36,20 +36,18 @@ export class CusAddComponent implements OnInit {
   // }
 
   onClickNewCus() {
-    this.apiService.createCustomer(this.data)
-      .subscribe(data => {
-        console.log(data)
-      })
-    this.refreshCustomers();
-    this.router.navigate(['customer']);
+    this.apiService.createCustomer(this.data).then((res: any) => {
+      console.log(this.data);
+      this.router.navigate(['customer']);
+    }); 
   }
 
-  refreshCustomers() {
-    this.apiService.getListCustomers().subscribe
-      (response => {
-        this.cus = response;
-        console.log("refreshCustomers-add");
-      })
-  }
+  // refreshCustomers() {
+  //   this.apiService.getListCustomers().subscribe
+  //     (response => {
+  //       this.cus = response;
+  //       console.log("refreshCustomers-add");
+  //     })
+  // }
 
 }

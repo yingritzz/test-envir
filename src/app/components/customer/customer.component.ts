@@ -23,10 +23,15 @@ export class CustomerComponent implements OnInit {
   }
 
   getAllCustomers() {
-    this.apiService.getListCustomers().subscribe(response => {
-      this.customerDataList = response;
-      console.log(this.customerDataList);
-    })
+    // this.apiService.getListCustomers().subscribe(response => {
+    //   this.customerDataList = response;
+    //   console.log(this.customerDataList);
+    // })
+
+    this.apiService.getListCustomers().then((res: any) => {
+      console.log('customerList : ' + res);
+      this.customerDataList = res;
+    });
   }
 
   onClick(id: number){

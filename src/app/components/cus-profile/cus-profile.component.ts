@@ -12,8 +12,8 @@ import { Location } from '@angular/common';
 export class CusProfileComponent implements OnInit {
 
   id!: number;
-  cusData: any;
   cusEdit!: Customer;
+  cusData: any;
   cus: any;
 
   constructor(
@@ -21,50 +21,38 @@ export class CusProfileComponent implements OnInit {
     public apiService: ApiService,
     public router: Router
   ) {
-    this.cusData = [];
     this.cusEdit = new Customer();
   }
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
-    this.getCustomer();
-
-  }
-
-  getCustomer() {
-    //get item details using id
-    this.apiService.getCustomer(this.id).subscribe(response => {
-      this.cusData = response;
-      // console.log(this.cusData);
-      // console.log(this.cusEdit);
-    })
-
-  }
-
-  delete(item: any) {
-    //Delete item in Student data
-    this.apiService.deleteCustomer(item.cus_id).subscribe(Response => {
-      //Update list after delete is successful
+    this.apiService.getCustomer(this.id).then((res: any) => {
+      this.cusEdit = res;
+      this.cusData = res;
     });
-    this.refreshCustomers();
-    this.router.navigate(['customer']);
-    console.log('delete : ' + item.cus_id);
   }
 
   update() {
-    this.apiService.updateCustomer(this.id, this.cusEdit).subscribe(response => {
-    })
-    console.log(this.cusEdit);
-    this.getCustomer();
+    this.apiService.updateCustomer(this.id, this.cusEdit).then((res: any) => {
+    // console.log(this.cusEdit);
     window.location.reload();
+    });
+  }
+
+  delete() {
+    //Delete item in Student data
+    this.apiService.deleteCustomer(this.id).then((res: any) => {
+      console.log('deleted '+ this.id);
+      this.router.navigate(['customer']);
+      this.refreshCustomers();
+    });
   }
 
   refreshCustomers() {
-    this.apiService.getListCustomers().subscribe
-      (response => {
-        this.cus = response;
-        console.log("refreshCustomers");
-      })
+    this.apiService.getListCustomers().then((res: any) => {
+      // console.log('customerList : ' + res);
+      this.cus = res;
+    });
   }
 
 }
