@@ -29,7 +29,7 @@
                 <div class="col-xl-4 col-lg-8 col-md-8 col-sm-12 mb-30" *ngFor="let cus of cusData">
                     <div class="pd-20 card-box ">
                         <h5 class="text-center h4 mb-0">{{cus.cus_fullname}}</h5>
-                        <p class="text-center text-muted font-16">ID: {{cus.cus_id}}</p>
+                        <p class="text-center text-muted font-16">ID: {{cus.id}}</p>
                         <div class="profile-info">
                             <h5 class="mb-20 h5 text-blue">ข้อมูลการติดต่อ</h5>
                             <ul>
@@ -43,7 +43,12 @@
                                 </li>
                                 <li>
                                     <span>ที่อยู่:</span>
-                                    xxx xxxx xxxxx xxxxxx
+                                    เลขที่ {{cus.number}}
+                                    หมู่ {{cus.moo}}
+                                    ตำบล{{cus.sub_district}}
+                                    อำเภอ{{cus.district}}
+                                    จังหวัด{{cus.province}}
+                                    {{cus.postal_code}}
                                 </li>
                                 <li>
                                     <span>การแก้ไขข้อมูลครั้งล่าสุด:</span>
@@ -149,24 +154,34 @@
                                                     <li class="weight-500 col-md-6">
                                                         <h4 class="text-blue h5 mb-20">แก้ไขที่อยู่ลูกค้า</h4>
                                                         <div class="form-group">
-                                                            <label>ที่อยู่ :</label>
-                                                            <input class="form-control form-control-lg" type="text">
+                                                            <label>เลขที่ :</label>
+                                                            <input class="form-control form-control-lg" type="text"
+                                                            [(ngModel)]="cusEdit.number" name="number">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>หมู่ :</label>
+                                                            <input class="form-control form-control-lg" type="text"
+                                                            [(ngModel)]="cusEdit.moo" name="moo">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>ตำบล :</label>
-                                                            <input class="form-control form-control-lg" type="text">
+                                                            <input class="form-control form-control-lg" type="text"
+                                                            [(ngModel)]="cusEdit.sub_district" name="sub_district">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>อำเภอ :</label>
-                                                            <input class="form-control form-control-lg" type="text">
+                                                            <input class="form-control form-control-lg" type="text"
+                                                            [(ngModel)]="cusEdit.district" name="district">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>จังหวัด :</label>
-                                                            <input class="form-control form-control-lg" type="text">
+                                                            <input class="form-control form-control-lg" type="text"
+                                                            [(ngModel)]="cusEdit.province" name="province">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>รหัสไปรษณีย์ :</label>
-                                                            <input class="form-control form-control-lg" type="text">
+                                                            <input class="form-control form-control-lg" type="text"
+                                                            [(ngModel)]="cusEdit.postal_code" name="postal_code">
                                                         </div>
                                                     </li>
                                                 </ul>

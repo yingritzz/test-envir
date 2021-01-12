@@ -28,26 +28,11 @@ export class CusAddComponent implements OnInit {
   onClickBack() {
     this.location.back();
   }
-
-  // onClickNewCus() {
-  //   this.apiService.createCustomer(this.data).subscribe((response) => {
-  //   })
-  //   this.router.navigate(['customer']);
-  // }
-
+  
   onClickNewCus() {
     this.apiService.createCustomer(this.data).then((res: any) => {
       console.log(this.data);
       this.router.navigate(['customer']);
     }); 
   }
-
-  // refreshCustomers() {
-  //   this.apiService.getListCustomers().subscribe
-  //     (response => {
-  //       this.cus = response;
-  //       console.log("refreshCustomers-add");
-  //     })
-  // }
-
 }

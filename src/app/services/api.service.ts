@@ -3,20 +3,21 @@ import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
 import { Customer } from '../models/customer';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  // http://localhost:8888/API/read/customerlist
-  // http://localhost:8888/API/read.php?table=customer&id=2
-  // http://localhost:8888/API/write.php
+  // http://localhost:8888/API/get/(ชื่อตาราง)
+  // http://localhost:8888/API/get/(ชื่อตาราง)/(id)
+  // http://localhost:8888/API/post/(ชื่อตาราง)
   // http://localhost:8888/API/update/(idที่จะแก้)
-  // http://localhost:8888/API/del/(idที่จะลบ)
+  // http://localhost:8888/API/del/(ชื่อตาราง)/(idที่จะลบ)
 
   // API path
-  base_path = 'http://localhost';
+  base_path = 'http://localhost/';
 
   constructor(private http: HttpClient) { }
 
@@ -57,7 +58,7 @@ export class ApiService {
 
   async getListCustomers() {
     return new Promise((res, rej) => {
-      this.http.get<Customer>(this.base_path + "/API/read/customerlist")
+      this.http.get<Customer>(this.base_path + "API/get/customer")
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -66,20 +67,20 @@ export class ApiService {
     });
   }
 
-  async createCustomer(item: any) {
+  async createCustomer(data: any) {
     return new Promise((res, rej) => {
-      this.http.post<Customer>(this.base_path + "/API/write.php", JSON.stringify(item), this.httpOptions)
-        .subscribe((data: any) => {
-          res(data)
-        }, (err: any) => {
-          rej(err)
-        });
+      this.http.post<Customer>(this.base_path+'API/post/customer', JSON.stringify(data), this.httpOptions)
+      .subscribe((data: any) => {
+        res(data)
+      }, (err: any) => {
+        rej(err)
+      });
     });
   }
 
   async getCustomer(id: number) {
     return new Promise((res, rej) => {
-      this.http.get<Customer>(this.base_path + "/API/read.php?table=customer&id=" + id)
+      this.http.get<Customer>(this.base_path+'API/get/customer/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -90,7 +91,7 @@ export class ApiService {
 
   async deleteCustomer(id: number) {
     return new Promise((res, rej) => {
-      this.http.delete<Customer>(this.base_path + '/API/del/' + id)
+      this.http.delete<Customer>(this.base_path+'API/del/customer/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -101,7 +102,7 @@ export class ApiService {
 
   async updateCustomer(id: number, item: any) {
     return new Promise((res, rej) => {
-      this.http.put<Customer>(this.base_path + '/API/update/' + id, JSON.stringify(item), this.httpOptions)
+      this.http.put<Customer>(this.base_path+'API/update/customer/'+ id, JSON.stringify(item), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -109,43 +110,4 @@ export class ApiService {
         });
     });
   }
-
-  // Get customers list data
-  // getListCustomers(): Observable<Customer> {
-  //   return this.http
-  //     .get<Customer>(this.base_path + "/API/read/customerlist")
-  // }
-
-  // Get single customer data by ID
-  // getCustomer(id: number): Observable<Customer> {
-  //   return this.http
-  //     .get<Customer>(this.base_path + "/API/read.php?table=customer&id=" + id)
-  //     .pipe(
-  //       retry(3),
-  //       catchError(this.handleError)
-  //     )
-  // }
-
-  // create new customer
-  // createCustomer(item: any): Observable<Customer> {
-  //   return this.http
-  //     .post<Customer>(this.base_path + "/API/write.php", JSON.stringify(item), this.httpOptions)
-  // }
-
-  // Delete customer by id
-  // deleteCustomer(id: number) {
-  //   return this.http
-  //     .delete<Customer>(this.base_path + '/API/del/' + id, this.httpOptions)
-  //     .pipe(retry(3))
-  // }
-
-  // Update item by id
-  // updateCustomer(id: number, item: any): Observable<Customer> {
-  //   return this.http
-  //     .put<Customer>(this.base_path + '/API/update/' + id, JSON.stringify(item), this.httpOptions)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     )
-  // }
-
 }

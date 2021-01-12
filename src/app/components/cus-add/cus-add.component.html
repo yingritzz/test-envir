@@ -56,25 +56,30 @@
                         <h5>รายละเอียดที่อยู่</h5>
                         <section>
                             <div class="row">
-                                <div class="col-md-12 form-group">
+                                <div class="col-md-6 form-group">
                                     <div class="form-group">
                                         <label>เลขที่ :</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="number" [(ngModel)]="data.number">
                                     </div>
                                 </div>
-                               
+                                <div class="col-md-6 form-group">
+                                    <div class="form-group">
+                                        <label>หมู่ :</label>
+                                        <input type="text" class="form-control" name="moo" [(ngModel)]="data.moo">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <div class="form-group">
                                         <label>ตำบล :</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="sub_district" [(ngModel)]="data.sub_district">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>อำเภอ :</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="district" [(ngModel)]="data.district">
                                     </div>
                                 </div>
                             </div>
@@ -82,13 +87,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>จังหวัด :</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="province" [(ngModel)]="data.province">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>รหัสไปรษณีย์ :</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="postal_code" [(ngModel)]="data.postal_code">
                                     </div>
                                 </div>
                             </div>

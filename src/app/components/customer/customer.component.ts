@@ -29,7 +29,7 @@ export class CustomerComponent implements OnInit {
     // })
 
     this.apiService.getListCustomers().then((res: any) => {
-      console.log('customerList : ' + res);
+      console.log(res);
       this.customerDataList = res;
     });
   }

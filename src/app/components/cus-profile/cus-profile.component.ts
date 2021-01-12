@@ -27,7 +27,7 @@ export class CusProfileComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
     this.apiService.getCustomer(this.id).then((res: any) => {
-      this.cusEdit = res;
+      // this.cusEdit = res;
       this.cusData = res;
     });
   }
