@@ -38,6 +38,13 @@ export class EquipmentComponent implements OnInit {
     this.router.navigateByUrl('equipment/detail/'+id+'/'+name)
   }
 
+  delete(id: number) {
+    //Delete item in Student data
+    this.apiService.deleteEq(id).then((res: any) => {
+      this.getAllEquipments();
+    });
+  }
+
   async opensweet() {
     const { value: formValues } = await Swal.fire({
       title: 'เพิ่มอุปกรณ์',
