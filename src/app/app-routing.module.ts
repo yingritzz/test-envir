@@ -46,7 +46,7 @@ const routes: Routes = [
   {path: 'customer/profile/:id', component:CusProfileComponent},
   {path: 'setting', component:SettingpageComponent},
   {path: 'equipment', component:EquipmentComponent},
-  {path: 'equipment/detail', component:EqDetailComponent},
+  {path: 'equipment/detail/:id/:name', component:EqDetailComponent},
   {path: 'equipment/edit/sn', component:EqEditComponent},
   {path: 'line/home', component:LineHomeComponent},
   {path: 'line/getjob', component:LineGetjobComponent},

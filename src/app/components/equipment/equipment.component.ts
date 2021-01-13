@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ApiService } from '../../services/api.service';
+import { Equipment } from '../../models/equipment';
 
 @Component({
   selector: 'app-equipment',
@@ -9,18 +11,31 @@ import Swal from 'sweetalert2';
 })
 export class EquipmentComponent implements OnInit {
 
-  eq_name: any = "Thermo PM 2.5"
-  eq_count: any = 99
-  eq_catagory: any = "วัดคุณภาพอากาศ"
-  eq_new: any
-  eq_data: any = [["a", "lalala"], ["b", "hahaha"]]
-  constructor(public route: Router) { }
+  eq_count: any = 99;
+  eq_new: Equipment;
+  eq_data: any;
+
+  constructor(
+    public router: Router,
+    public apiService: ApiService
+    ) { 
+      this.eq_data = [];
+      this.eq_new = new Equipment();
+     }
 
   ngOnInit(): void {
+    this.getAllEquipments();
   }
 
-  onClickDetail() {
-    this.route.navigateByUrl('equipment/detail')
+  getAllEquipments() {
+    this.apiService.getListEq().then((res: any) => {
+      console.log(res);
+      this.eq_data = res;
+    });
+  }
+
+  onClickDetail(id:number, name:string) {
+    this.router.navigateByUrl('equipment/detail/'+id+'/'+name)
   }
 
   async opensweet() {
@@ -45,16 +60,18 @@ export class EquipmentComponent implements OnInit {
       }
     })
     if (formValues) {
-      console.log("Resule: " + formValues[0] + " : " + formValues[1]);
+      // console.log("Resule: " + formValues[0] + " : " + formValues[1]);
+      this.eq_new.eq_name = formValues[0];
+      this.eq_new.category = formValues[1];
+      this.apiService.createEq(this.eq_new).then((res: any) => {
+        console.log('created Eq');
+        this.getAllEquipments()
+      }); 
 
-      this.eq_new = formValues;
-      (this.eq_data).push(this.eq_new)
       Swal.fire('บันทึกสำเร็จ',
         '',
         'success')
-      console.log(this.eq_data)
     }
   }
-
 
 }
