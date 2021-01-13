@@ -67,6 +67,17 @@ export class ApiService {
     });
   }
 
+  async getCustomer(id: number) {
+    return new Promise((res, rej) => {
+      this.http.get<Customer>(this.base_path+'API/get/customer/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+
   async createCustomer(data: any) {
     return new Promise((res, rej) => {
       this.http.post<Customer>(this.base_path+'API/post/customer', JSON.stringify(data), this.httpOptions)
@@ -77,10 +88,10 @@ export class ApiService {
       });
     });
   }
-
-  async getCustomer(id: number) {
+  
+  async updateCustomer(id: number, item: any) {
     return new Promise((res, rej) => {
-      this.http.get<Customer>(this.base_path+'API/get/customer/'+id)
+      this.http.put<Customer>(this.base_path+'API/update/customer/'+ id, JSON.stringify(item), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -100,14 +111,5 @@ export class ApiService {
     });
   }
 
-  async updateCustomer(id: number, item: any) {
-    return new Promise((res, rej) => {
-      this.http.put<Customer>(this.base_path+'API/update/customer/'+ id, JSON.stringify(item), this.httpOptions)
-        .subscribe((data: any) => {
-          res(data)
-        }, (err: any) => {
-          rej(err)
-        });
-    });
-  }
+  
 }

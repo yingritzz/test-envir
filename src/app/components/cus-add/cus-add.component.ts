@@ -32,6 +32,7 @@ export class CusAddComponent implements OnInit {
   onClickNewCus() {
     this.apiService.createCustomer(this.data).then((res: any) => {
       console.log(this.data);
+      console.log('created!!');
       this.router.navigate(['customer']);
     }); 
   }

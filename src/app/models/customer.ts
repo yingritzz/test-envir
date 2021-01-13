@@ -5,7 +5,7 @@ export class Customer {
     cus_phone!: number;
     cus_date_add!: string;
     cus_date_edit!: string;
-    number!: number;
+    number!: string;
     moo!: number;
     sub_district!: string;
     district!: string;
