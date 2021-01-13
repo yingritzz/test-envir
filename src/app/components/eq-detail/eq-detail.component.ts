@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ApiService } from '../../services/api.service';
+import { EquipmentDetail } from '../../models/equipment-detail';
 
 @Component({
   selector: 'app-eq-detail',
@@ -26,10 +28,18 @@ export class EqDetailComponent implements OnInit {
     "status": 'ว่าง 1'
   }]
 
+  eq_id!: number;
+  eq_name!: string;
+
   editField!: string;
-  constructor(public route: Router) { }
+  constructor(
+    public route: Router,
+    public activatedRoute: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
+    this.eq_id = this.activatedRoute.snapshot.params["id"];
+    this.eq_name = this.activatedRoute.snapshot.params["name"];
   }
 
   async insert_eq_detail() {

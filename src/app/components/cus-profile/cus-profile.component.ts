@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { Customer } from '../../models/customer';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-cus-profile',

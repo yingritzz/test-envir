@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Customer } from '../models/customer';
 import { Equipment } from '../models/equipment';
+import { EquipmentDetail } from '../models/equipment-detail';
+import { Employment } from '../models/employment';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -16,7 +18,7 @@ export class ApiService {
   // http://localhost:8888/API/update/(idที่จะแก้)
   // http://localhost:8888/API/del/(ชื่อตาราง)/(idที่จะลบ)
   // http://localhost:8888/API/eq_detail/(eq_id)
-
+  // http://localhost:8888/API/job/(maintenanc,selling,testing,rental)
   // API path
   base_path = 'http://localhost/';
 
@@ -108,6 +110,7 @@ export class ApiService {
     });
   }
 
+  //Equipment
   async getListEq() {
     return new Promise((res, rej) => {
       this.http.get<Equipment>(this.base_path + "API/get/equipment")
@@ -128,4 +131,47 @@ export class ApiService {
       });
     });
   }
+  async getEqDetail(id: number) {
+    return new Promise((res, rej) => {
+      this.http.get<EquipmentDetail>(this.base_path+'API/eq_detail/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+
+  //Employment
+  async getEmployment(type: string) {
+    return new Promise((res, rej) => {
+      this.http.get<Employment>(this.base_path+'API/job/'+type)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async updateEmployment(id: number, item: any) {
+    return new Promise((res, rej) => {
+      this.http.put<Employment>(this.base_path+'API/update/employment/'+ id, JSON.stringify(item), this.httpOptions)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async deleteEmployment(id: number) {
+    return new Promise((res, rej) => {
+      this.http.delete<Employment>(this.base_path+'API/del/employment/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+
 }
