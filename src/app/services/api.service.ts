@@ -15,7 +15,7 @@ export class ApiService {
   // http://localhost:8888/API/get/(ชื่อตาราง)
   // http://localhost:8888/API/get/(ชื่อตาราง)/(id)
   // http://localhost:8888/API/post/(ชื่อตาราง)
-  // http://localhost:8888/API/update/(idที่จะแก้)
+  // http://localhost:8888/API/update/ชื่อตาราง/(idที่จะแก้)
   // http://localhost:8888/API/del/(ชื่อตาราง)/(idที่จะลบ)
   // http://localhost:8888/API/eq_detail/(eq_id)
   // http://localhost:8888/API/job/(maintenanc,selling,testing,rental)
@@ -141,6 +141,8 @@ export class ApiService {
         });
     });
   }
+
+  //EquipmentDetail
   async getEqDetail(idEq: number) {
     return new Promise((res, rej) => {
       this.http.get<EquipmentDetail>(this.base_path+'API/eq_detail/'+idEq)
@@ -159,6 +161,16 @@ export class ApiService {
       }, (err: any) => {
         rej(err)
       });
+    });
+  }
+  async updateEqDetail(id: number, item: any) {
+    return new Promise((res, rej) => {
+      this.http.put<EquipmentDetail>(this.base_path+'API/update/equipment_detail/'+ id, JSON.stringify(item), this.httpOptions)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
     });
   }
   async deleteEqDetail(id: number) {

@@ -12,7 +12,8 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a [routerLink]="[ '/home']" href="javascript:;">หน้าหลัก</a>
+                                <li class="breadcrumb-item"><a [routerLink]="[ '/home']"
+                                        href="javascript:;">หน้าหลัก</a>
                                 </li>
                                 <li class="breadcrumb-item"><a [routerLink]="[ '/equipment']"
                                         href="javascript:;">อุปกรณ์</a></li>
@@ -51,19 +52,65 @@
                             <td>{{eqd.eq_detail_status}}</td>
                             <td>
                                 <div class="btn-list">
-                                    <button class="btn btn-success btn-sm" type="button" value="submit">
-                                        <i class="icon-copy fa fa-pencil-square-o btn-size" aria-hidden="true"
-                                            [routerLink]="['/equipment/edit/sn']"></i></button>
+                                    <button class="btn btn-success btn-sm" type="button" value="submit"
+                                        data-toggle="modal" data-target="#Medium-modal" (click)="getIdEqd(eqd.id)">
+                                        <i class="icon-copy fa fa-pencil-square-o btn-size"
+                                            aria-hidden="true"></i></button>
 
                                     <button class="btn btn-danger btn-sm" type="button" value="submit"
                                         (click)="delete(eqd.id)"><i class="icon-copy fa fa-trash btn-size"
                                             aria-hidden="true"></i></button>
+                                </div>
+
+                                <div class="modal fade" id="Medium-modal" tabindex="-1" role="dialog"
+                                    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myLargeModalLabel">แก้ไขรายละเอียดอุปกรณ์
+                                                </h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div>
+                                                        <div class="form-group">
+                                                            <label for="sn">SN.</label>
+                                                            <input type="text" class="form-control" id="sn" name="id"
+                                                                [(ngModel)]="eqd_edit.id">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="name">ชื่อรายการอุปกรณ์</label>
+                                                            <input type="text" class="form-control" id="name"
+                                                                name="eq_detail_name"
+                                                                [(ngModel)]="eqd_edit.eq_detail_name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="count">จำนวน</label>
+                                                            <input type="text" class="form-control" id="count"
+                                                                name="eq_detail_amount"
+                                                                [(ngModel)]="eqd_edit.eq_detail_amount">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal" >Close</button>
+                                                <button type="reset" class="btn btn-primary" data-dismiss="modal"
+                                                    (click)="edit_eqd()" value="submit">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
 
                     </tbody>
                 </table>
+
+
             </div>
         </div>
         <app-footer>

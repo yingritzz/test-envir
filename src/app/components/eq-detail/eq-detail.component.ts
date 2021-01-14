@@ -15,21 +15,28 @@ export class EqDetailComponent implements OnInit {
   eq_name!: string;
   eqd_data: any;
   eqd_new: EquipmentDetail;
+  eqd_edit: EquipmentDetail;
+  eqd_id: any;
 
-  editField!: string;
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public apiService: ApiService
-    ) { 
-      this.eqd_data = [];
-      this.eqd_new = new EquipmentDetail();
-     }
+  ) {
+    this.eqd_data = [];
+    this.eqd_new = new EquipmentDetail();
+    this.eqd_edit = new EquipmentDetail();
+  }
 
   ngOnInit(): void {
     this.eq_id = this.activatedRoute.snapshot.params["id"];
     this.eq_name = this.activatedRoute.snapshot.params["name"];
     this.getEqDetail();
+    
+  }
+
+  async getIdEqd(id:any) {
+    this.eqd_id = id;
   }
 
   getEqDetail() {
@@ -37,6 +44,22 @@ export class EqDetailComponent implements OnInit {
       console.log(res);
       this.eqd_data = res;
     });
+  }
+
+  delete(id: any) {
+    //Delete item in Student data
+    this.apiService.deleteEqDetail(id).then((res: any) => {
+      this.getEqDetail();
+    });
+  }
+
+  async edit_eqd() {
+    this.apiService.updateEqDetail(this.eqd_id, this.eqd_edit).then((res: any) => {
+      this.getEqDetail()
+      console.log(this.eqd_id);
+      console.log(this.eqd_edit);
+    });
+    this.eqd_edit= new EquipmentDetail();
   }
 
   async insert_eq_detail() {
@@ -70,18 +93,11 @@ export class EqDetailComponent implements OnInit {
       this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
         console.log('created Eq');
         this.getEqDetail()
-      }); 
+      });
       Swal.fire('บันทึกสำเร็จ',
         '',
         'success')
-      
-    }
-  }
 
-  delete(id:any) {
-    //Delete item in Student data
-    this.apiService.deleteEqDetail(id).then((res: any) => {
-      this.getEqDetail();
-    });
+    }
   }
 }
