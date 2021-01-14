@@ -35,14 +35,7 @@ export class SellingComponent implements OnInit {
     //Delete item in Student data
     this.apiService.deleteEmployment(id).then((res: any) => {
       console.log('deleted '+ this.id);
-      this.refreshCustomers();
-    });
-  }
-
-  refreshCustomers() {
-    this.apiService.getEmployment("selling").then((res: any) => {
-      // console.log('customerList : ' + res);
-      this.sell = res;
+      this.getJobSelling();
     });
   }
 

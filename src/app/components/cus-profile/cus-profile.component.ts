@@ -14,7 +14,7 @@ export class CusProfileComponent implements OnInit {
   cusEdit: Customer;
   cusData: any;
   cus: any;
-  
+  edit: any;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -27,13 +27,10 @@ export class CusProfileComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
     this.apiService.getCustomer(this.id).then((res: any) => {
-
+      this.edit = res;
       this.cusData = res;
-     
     });
   }
-
- 
 
   update() {
     this.apiService.updateCustomer(this.id, this.cusEdit).then((res: any) => {
