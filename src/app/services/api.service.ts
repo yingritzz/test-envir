@@ -131,9 +131,39 @@ export class ApiService {
       });
     });
   }
-  async getEqDetail(id: number) {
+  async deleteEq(id: number) {
     return new Promise((res, rej) => {
-      this.http.get<EquipmentDetail>(this.base_path+'API/eq_detail/'+id)
+      this.http.delete<Equipment>(this.base_path+'API/del/equipment/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async getEqDetail(idEq: number) {
+    return new Promise((res, rej) => {
+      this.http.get<EquipmentDetail>(this.base_path+'API/eq_detail/'+idEq)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async createEqDetail(data: any) {
+    return new Promise((res, rej) => {
+      this.http.post<EquipmentDetail>(this.base_path+'API/post/equipment_detail', JSON.stringify(data), this.httpOptions)
+      .subscribe((data: any) => {
+        res(data)
+      }, (err: any) => {
+        rej(err)
+      });
+    });
+  }
+  async deleteEqDetail(id: number) {
+    return new Promise((res, rej) => {
+      this.http.delete<EquipmentDetail>(this.base_path+'API/del/equipment_detail/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
