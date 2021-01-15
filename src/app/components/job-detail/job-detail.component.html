@@ -13,6 +13,7 @@
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
+                                <li class="breadcrumb-item"><a (click)="goBack()" href="javascript:;">รายการ{{jobDetail[0].category}}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">รายละเอียดงาน</li>
                             </ol>
                         </nav>
@@ -26,21 +27,22 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-8 col-md-8 col-sm-12 mb-30">
                     <div class="pd-20 card-box ">
-                        <h5 class="text-center h5 mb-0">Envir</h5>
-                        <p class="text-center text-muted font-14"><span>รหัสลูกค้า:</span> Envir_Service</p>
+                        <h5 class="text-center h5 mb-0">{{jobDetail[0]?.cus_fullname}}</h5>
+                        <p class="text-center text-muted font-14"><span>รหัสลูกค้า:</span> {{jobDetail[0]?.cus_id}}</p>
                         <div class="profile-info">
                             <ul>
                                 <li>
                                     <span>อีเมล:</span>
-                                    customer@gmail.com
+                                    {{jobDetail[0]?.cus_email}}
                                 </li>
                                 <li>
                                     <span>เบอร์โทร:</span>
-                                    012 3456789
+                                    {{jobDetail[0]?.cus_phone}}
                                 </li>
                                 <li>
                                     <span>ที่อยู่:</span>
-                                    xxx xxxx xxxxx xxxxxx
+                                    {{jobDetail[0]?.number}} ม. {{jobDetail[0]?.moo}} ตำบล{{jobDetail[0]?.sub_district}} อำเภอ{{jobDetail[0]?.district}}
+                                    จังหวัด{{jobDetail[0]?.province}} {{jobDetail[0]?.postal_code}}
                                 </li>
                             </ul>
                         </div>
@@ -49,13 +51,13 @@
                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
                     <div class="pd-20 card-box">
 
-                        <div class="row">
-                            <h5 class="col-sm-6 h5 mb-0">หัวข้องาน</h5>
-                            <p class="col-sm-6 text-right font-14"><span>วันที่รับงาน: </span>01/01/2021</p>
+                        <div class="row" >
+                            <h5 class="col-sm-6 h5 mb-0">{{jobDetail[0].cus_fullname}}({{jobDetail[0].category}})</h5>
+                            <p class="col-sm-6 text-right font-14" ><span>วันที่รับงาน: </span>{{jobDetail[0]?.date_get_job}}</p>
                         </div>
                         <div class="row">
-                            <p class="col-sm-6 h5 text-left text-muted font-14"><span>No:</span> xxxxxx</p>
-                            <p class="col-sm-6 text-right font-14"><span>วันที่ครบกำหนด: </span>01/01/2021</p>
+                            <p class="col-sm-6 h5 text-left text-muted font-14"><span>No:</span>{{jobDetail[0]?.id}}</p>
+                            <p class="col-sm-6 text-right font-14"><span>วันที่ครบกำหนด: </span>{{jobDetail[0]?.date_end_job}}</p>
                         </div>
 
                         <table class="table">
@@ -68,17 +70,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Thermo Paetiso</td>
-                                    <td>เช่า - ยืม</td>
-                                    <td>อยู่ระหว่างการเช่า-ยืม</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Thermo Paetiso</td>
-                                    <td>เช่า - ยืม</td>
-                                    <td>อยู่ระหว่างการเช่า-ยืม</td>
+                                <tr *ngFor="let detail of jobDetail; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{detail.eq_detail_name}}</td>
+                                    <td>{{detail.category}}</td>
+                                    <td>{{detail.em_status}}</td>
                                 </tr>
                             </tbody>
                         </table>

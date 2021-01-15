@@ -20,7 +20,7 @@ export class ApiService {
   // http://localhost:8888/API/eq_detail/(eq_id)
   // http://localhost:8888/API/job/(maintenanc,selling,testing,rental)
   // API path
-  base_path = 'http://localhost/';
+  base_path = 'http://localhost:8888/';
 
   constructor(private http: HttpClient) { }
 
@@ -188,6 +188,17 @@ export class ApiService {
   async getEmployment(type: string) {
     return new Promise((res, rej) => {
       this.http.get<Employment>(this.base_path+'API/job/'+type)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+
+  async getEmploymentDetail(type: string, id: any) {
+    return new Promise((res, rej) => {
+      this.http.get<Employment>(this.base_path+'API/jobdetail/'+type+'/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

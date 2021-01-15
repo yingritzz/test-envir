@@ -12,6 +12,7 @@ export class SellingComponent implements OnInit {
   jobSelling: any;
   sell: any;
   id!: number;
+  type: string = "selling";
 
   constructor(
     public router: Router,

@@ -38,7 +38,7 @@ const routes: Routes = [
   {path: 'rental', component:RentalComponent},
   {path: 'selling', component:SellingComponent},
   {path: 'testing', component:TestingComponent},
-  {path: 'job/detail', component:JobDetailComponent},
+  {path: 'job/detail/:type/:id', component:JobDetailComponent},
   {path: 'job/edit', component:JobEditComponent},
   {path: 'user/profile', component:ProfileComponent},
   {path: 'customer', component:CustomerComponent},

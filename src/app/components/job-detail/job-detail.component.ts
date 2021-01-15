@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
+import { ActivatedRoute,Router } from '@angular/router';
+import { ApiService } from '../../services/api.service'
 
 @Component({
   selector: 'app-job-detail',
@@ -8,12 +10,35 @@ import {Location} from '@angular/common';
 })
 export class JobDetailComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  jobDetail: any;
+  type: any;
+  id: any;
+
+  constructor(
+    private location: Location,
+    public router: Router,
+    public activatedRoute: ActivatedRoute,
+    public apiService: ApiService) {
+      this.jobDetail = [];
+     }
 
   ngOnInit(): void {
+    this.type = this.activatedRoute.snapshot.params["type"];
+    this.id = this.activatedRoute.snapshot.params["id"];
+    this.getJobDetail();
   }
 
   onClickBack() {
     this.location.back();
+  }
+
+  getJobDetail() {
+    this.apiService.getEmploymentDetail(this.type,this.id).then((res: any) => {
+      console.log(res);
+      this.jobDetail = res;
+    });
+  }
+  goBack() {
+    window.history.back();
   }
 }

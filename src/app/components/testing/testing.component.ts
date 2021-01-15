@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../../services/api.service'
 
 @Component({
   selector: 'app-testing',
@@ -7,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestingComponent implements OnInit {
 
-  constructor() { }
+  jobTesting: any;
+  sell: any;
+  id!: number;
+  type: string = "testing";
+
+  constructor(
+    public router: Router,
+    public apiService: ApiService
+  ) {
+    this.jobTesting = [];
+  }
 
   ngOnInit(): void {
+    this.getJobTesting();
+  }
+
+  getJobTesting() {
+    this.apiService.getEmployment("testing").then((res: any) => {
+      console.log(res);
+      this.jobTesting = res;
+    });
+  }
+
+  delete(id: number) {
+    //Delete item in Student data
+    this.apiService.deleteEmployment(id).then((res: any) => {
+      console.log('deleted '+ this.id);
+      this.getJobTesting();
+    });
   }
 
 }
