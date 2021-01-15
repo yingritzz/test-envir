@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { ApiService } from './services/api.service';
 
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -78,7 +81,9 @@ import { JobEditComponent } from './components/job-edit/job-edit.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    AutocompleteLibModule
   ],
   providers: [],
   bootstrap: [AppComponent]

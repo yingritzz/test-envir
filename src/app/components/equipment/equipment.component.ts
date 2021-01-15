@@ -49,7 +49,7 @@ export class EquipmentComponent implements OnInit {
     const { value: formValues } = await Swal.fire({
       title: 'เพิ่มอุปกรณ์',
       html:
-        '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่ออุปกรณ์">' +
+        '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่ออุปกรณ์" required="required">' +
         '<br>' +
         '<select id="inputCat" class="custom-select form-control btn dropdown-toggle ">' +
         '<option value="">เลือกหมวดหมู่อุปกรณ์</option>' +

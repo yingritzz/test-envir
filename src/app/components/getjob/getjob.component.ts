@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import Swal from 'sweetalert2';
-import { FormBuilder } from '@angular/forms'
+import { ApiService } from '../../services/api.service'
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Customer } from '../../models/customer';
 
 
 @Component({
@@ -19,13 +22,38 @@ export class GetjobComponent implements OnInit {
   count_select: any
   add_data = []
   getJob_data = [["เช่า-ยืม", "CO2", "1"], ["เช่า-ยืม", "O2", "1"], ["เช่า-ยืม", "NOx", "1"]]
-  constructor() { 
-    
-   }
+
+  cus_select: any;
+  cus_list: any = [];
+  email: any;
+  phone: any;
+  address: any;
+
+  constructor(
+    public router: Router,
+    public apiService: ApiService
+  ) {
+  }
 
   ngOnInit(): void {
-  }
   
+  }
+
+  async getAllCustomers() {
+    this.apiService.getListCustomers().then((res: any) => {
+      this.cus_list = res;
+    });
+  }
+
+  show_item(data: any){
+    this.cus_list=[];
+    console.log(data);
+    this.email = data.cus_email;
+    this.phone = data.cus_phone;
+    this.address = data.number +" ม." + data.moo +" " + data.sub_district +" " + data.district + " " + data.province + " " + data.postal_code;
+    this.cus_select = data.cus_name;
+  }
+
   async add_eq() {
     const { value: formValues } = await Swal.fire({
       title: 'เพิ่มอุปกรณ์',
@@ -54,33 +82,33 @@ export class GetjobComponent implements OnInit {
 
       const { value: formValuesD } = await Swal.fire({
         title: 'เพิ่มรายการอุปกรณ์',
-      html:
-        '<input id="inputSn" class="form-control" autocomplete="off" placeholder="SN no." type="text">' +
-        '<br>' +
-        '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่อรายการอุปกรณ์">' +
-        '<br>' +
-        '<input id="inputCount" class="form-control" autocomplete="off" placeholder="จำนวนอุปกรณ์">' +
-        '<br>' +
-        '<label id="textStatus" class="mb-15 text-blue h4">สถานะ : ว่าง</label>',
-      focusConfirm: false,
-      showCancelButton: true,
-      preConfirm: () => {
-        return [
-          (document.getElementById('inputSn') as HTMLTextAreaElement).value,
-          (document.getElementById('inputName') as HTMLTextAreaElement).value,
-          (document.getElementById('inputCount') as HTMLTextAreaElement).value,
-          "ว่าง " + (document.getElementById('inputCount') as HTMLTextAreaElement).value
-        ]
-      }
+        html:
+          '<input id="inputSn" class="form-control" autocomplete="off" placeholder="SN no." type="text">' +
+          '<br>' +
+          '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่อรายการอุปกรณ์">' +
+          '<br>' +
+          '<input id="inputCount" class="form-control" autocomplete="off" placeholder="จำนวนอุปกรณ์">' +
+          '<br>' +
+          '<label id="textStatus" class="mb-15 text-blue h4">สถานะ : ว่าง</label>',
+        focusConfirm: false,
+        showCancelButton: true,
+        preConfirm: () => {
+          return [
+            (document.getElementById('inputSn') as HTMLTextAreaElement).value,
+            (document.getElementById('inputName') as HTMLTextAreaElement).value,
+            (document.getElementById('inputCount') as HTMLTextAreaElement).value,
+            "ว่าง " + (document.getElementById('inputCount') as HTMLTextAreaElement).value
+          ]
+        }
       })
       if (formValuesD) {
         console.log("Resule: " + formValuesD[0] + " : " + formValuesD[1] + " : " + formValuesD[2] + " : " + formValuesD[3]);
-  
+
         (this.eq).push(formValuesD[1]);
         this.add_eqdetail = formValues;
         Swal.fire('บันทึกสำเร็จ',
-        '',
-        'success')
+          '',
+          'success')
       }
     }
   }
