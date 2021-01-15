@@ -20,7 +20,7 @@ export class ApiService {
   // http://localhost:8888/API/eq_detail/(eq_id)
   // http://localhost:8888/API/job/(maintenanc,selling,testing,rental)
   // API path
-  base_path = 'http://localhost:8888/';
+  base_path = 'http://localhost/';
 
   constructor(private http: HttpClient) { }
 

@@ -32,29 +32,18 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>ชื่อลูกค้า :</label>
-                                        <!-- <select class="form-control" name="cus_select" [(ngModel)]='cus_select'>
-                                            <option *ngFor="let cus of cus_list" value="{{cus.id}}" (event) = "getID(cus.id)">
-                                                {{cus.cus_fullname}}
-                                            </option>
-                                        </select>
-                                        <input class="form-control" name="cus_select" [(ngModel)]="cus_select" autocomplete="off">
-                                        <table class="margin-table">
-                                            <tbody>
-                                              <tr *ngFor="let cus of cus_list | filter:cus_select">
-                                                <td class="margin-table">{{cus.cus_fullname}}</td>
-                                                <td><button class="btn btn-primary" (click)="getID(cus.id)">click</button></td>
-                                              </tr>
-                                            </tbody>
-                                          </table> -->
-                                        <!-- <div *ngFor="let cus of cus_list | filter:cus_select" class="row">
-                                            <label>{{cus.cus_fullname}}</label>
-                                            <button class="btn btn-danger btn-sm">click</button>
-                                        </div> -->
-
                                         <input type="text" class="form-control" name="input_cus" [(ngModel)]='cus_select' (change)="getAllCustomers()">
-                                        <ul *ngFor="let cus of cus_list | filter:cus_select">
-                                            <li>{{cus.cus_fullname}} <button class="btn btn-link" (click)="show_item(cus)">select</button></li>
-                                        </ul>
+                                        <!-- <ul *ngFor="let cus of cus_list | filter:cus_select">
+                                            <li class="table">{{cus.cus_fullname}} <button class="btn btn-link" (click)="show_item(cus)">select</button></li>
+                                        </ul> -->
+                                        <table class="table">
+                                            <tbody *ngFor="let cus of cus_list | filter:cus_select">
+                                                <tr>
+                                                    <td >{{cus.cus_fullname}}</td>
+                                                    <td class="ten"><button class="btn btn-link" (click)="show_item(cus)">select</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
 
                                 </div>
