@@ -143,6 +143,16 @@ export class ApiService {
   }
 
   //EquipmentDetail
+  async getListEqd() {
+    return new Promise((res, rej) => {
+      this.http.get<EquipmentDetail>(this.base_path + "API/get/equipment_detail")
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
   async getEqDetail(idEq: number) {
     return new Promise((res, rej) => {
       this.http.get<EquipmentDetail>(this.base_path+'API/eq_detail/'+idEq)

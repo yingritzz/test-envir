@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service'
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Customer } from '../../models/customer';
+import { DatePipe, formatDate } from '@angular/common';
 
 
 @Component({
@@ -28,15 +29,23 @@ export class GetjobComponent implements OnInit {
   email: any;
   phone: any;
   address: any;
+  eqd_list: any = [];
+
+  cus_id: any;
+  d_getjob: any;
+  d_endjob: any;
+
 
   constructor(
     public router: Router,
     public apiService: ApiService
   ) {
+    this.d_getjob = new Date();
+    this.d_endjob = new Date();
   }
 
   ngOnInit(): void {
-  
+    this.getAllEquipment()
   }
 
   async getAllCustomers() {
@@ -45,13 +54,26 @@ export class GetjobComponent implements OnInit {
     });
   }
 
-  show_item(data: any){
+  show_cus(data: any){
     this.cus_list=[];
     console.log(data);
+    this.cus_id = data.id;
     this.email = data.cus_email;
     this.phone = data.cus_phone;
     this.address = data.number +" ม." + data.moo +" " + data.sub_district +" " + data.district + " " + data.province + " " + data.postal_code;
-    this.cus_select = data.cus_name;
+    this.cus_select = data.cus_fullname;
+  }
+
+  async getAllEquipment() {
+    this.apiService.getListEqd().then((res: any) => {
+      this.eqd_list = res;
+    });
+  }
+
+  save(){
+    console.log(this.cus_id);
+    console.log(this.d_getjob);
+    console.log(this.d_endjob);
   }
 
   async add_eq() {

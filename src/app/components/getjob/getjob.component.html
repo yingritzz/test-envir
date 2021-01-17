@@ -40,7 +40,7 @@
                                             <tbody *ngFor="let cus of cus_list | filter:cus_select">
                                                 <tr>
                                                     <td >{{cus.cus_fullname}}</td>
-                                                    <td class="ten"><button class="btn btn-link" (click)="show_item(cus)">select</button></td>
+                                                    <td class="ten"><button class="btn btn-link" (click)="show_cus(cus)">select</button></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -87,8 +87,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>วันที่รับงาน :</label>
-                                            <input type="text" class="form-control date-picker"
-                                                placeholder="เลือกวันที่">
+                                            <input type="date" class="form-control"
+                                                placeholder="เลือกวันที่" name="d_getjob" [(ngModel)]="d_getjob">
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                         <label>อุปกรณ์ :</label>
                                         <select class="custom-select form-control" name="equipment_select"
                                             [(ngModel)]="equipment_select">
-                                            <option *ngFor="let e of eq" value="{{e}}">{{e}}</option>
+                                            <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.id}} : {{eqd.eq_detail_name}}</option>
                                         </select>
 
                                         <br> <br>
@@ -107,8 +107,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>กำหนดวันที่ส่งคืน :</label>
-                                            <input type="text" class="form-control date-picker"
-                                                placeholder="เลือกวันที่">
+                                            <input type="date" class="form-control"
+                                                placeholder="เลือกวันที่" name="d_endjob" [(ngModel)]="d_endjob">
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +165,7 @@
                 <div class="warpper">
                     <div class="btn-list">
                         <button type="button" class="btn btn-success" [routerLink]="[ '/invoice']">บันทึก</button>
-                        <button type="button" class="btn btn-danger">ยกเลิก</button>
+                        <button type="button" class="btn btn-danger" (click)="save()">ยกเลิก</button>
                     </div>
                 </div>
             </div>

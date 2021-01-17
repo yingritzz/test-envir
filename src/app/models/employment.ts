@@ -1,8 +1,8 @@
 export class Employment {
     id!: number;
-    category!: string;
+    category!: any;
     date_get_job!: string;
-    em_status!: string;
+    em_status!: any;
     cus_id!: number;
     equipment!: string;
     admin_id!: number;
