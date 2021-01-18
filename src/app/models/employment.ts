@@ -1,12 +1,12 @@
 export class Employment {
     id!: number;
     category!: any;
-    date_get_job!: string;
+    date_get_job!: any;
     em_status!: any;
     cus_id!: number;
-    equipment!: string;
+    equipment!: any;
     admin_id!: number;
-    date_end_job!: string;
+    date_end_job!: any;
     amount : any;
-    employment!: string;
+    annotation!: string;
 }

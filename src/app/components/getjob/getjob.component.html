@@ -32,15 +32,17 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>ชื่อลูกค้า :</label>
-                                        <input type="text" class="form-control" name="input_cus" [(ngModel)]='cus_select' (change)="getAllCustomers()">
+                                        <input type="text" class="form-control" name="input_cus"
+                                            [(ngModel)]='cus_select' (change)="getAllCustomers()">
                                         <!-- <ul *ngFor="let cus of cus_list | filter:cus_select">
                                             <li class="table">{{cus.cus_fullname}} <button class="btn btn-link" (click)="show_item(cus)">select</button></li>
                                         </ul> -->
                                         <table class="table">
                                             <tbody *ngFor="let cus of cus_list | filter:cus_select">
                                                 <tr>
-                                                    <td >{{cus.cus_fullname}}</td>
-                                                    <td class="ten"><button class="btn btn-link" (click)="show_cus(cus)">select</button></td>
+                                                    <td>{{cus.cus_fullname}}</td>
+                                                    <td class="ten"><button class="btn btn-link"
+                                                            (click)="show_cus(cus)">select</button></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -50,7 +52,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Email Address :</label>
-                                        <input type="email" class="form-control" name="email" [(ngModel)]="email" >
+                                        <input type="email" class="form-control" name="email" [(ngModel)]="email">
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +66,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>ที่อยู่ :</label>
-                                        <input type="text" class="form-control" name="address" [(ngModel)]="address" >
+                                        <input type="text" class="form-control" name="address" [(ngModel)]="address">
                                     </div>
                                 </div>
                             </div>
@@ -80,6 +82,7 @@
                                         <label>หมวดหมู่ :</label>
                                         <select class="custom-select form-control" name="catagory_select"
                                             [(ngModel)]="catagory_select">
+                                            <option value=" "> </option>
                                             <option *ngFor="let c of cg" value="{{c}}">{{c}}</option>
                                         </select>
                                     </div>
@@ -87,8 +90,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>วันที่รับงาน :</label>
-                                            <input type="date" class="form-control"
-                                                placeholder="เลือกวันที่" name="d_getjob" [(ngModel)]="d_getjob">
+                                            <input type="date" class="form-control" placeholder="เลือกวันที่"
+                                                name="d_getjob" [(ngModel)]="d_getjob">
                                         </div>
                                     </div>
                                 </div>
@@ -97,18 +100,75 @@
                                         <label>อุปกรณ์ :</label>
                                         <select class="custom-select form-control" name="equipment_select"
                                             [(ngModel)]="equipment_select">
-                                            <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.id}} : {{eqd.eq_detail_name}}</option>
+                                            <option value=" "> </option>
+                                            <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.id}} :
+                                                {{eqd.eq_detail_name}}</option>
                                         </select>
-
                                         <br> <br>
-                                        <button type="button" class="btn btn-success"
-                                            (click)="add_eq()">เพิ่มอุปกรณ์ใหม่</button>
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#Insert-eq-modal">เพิ่มอุปกรณ์ใหม่</button>
+
+                                        <div class="modal fade" id="Insert-eq-modal" tabindex="-1" role="dialog"
+                                            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title warpper" id="myLargeModalLabel">
+                                                            เพิ่มอุปกรณ์
+                                                        </h4>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">×</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div>
+                                                                <div class="form-group">
+                                                                    <div class="row pad-l">
+                                                                        <label class="text" for="name">เลือกอุปกรณ์</label>
+                                                                        <button class="btn btn-link text r" data-dismiss="modal" [routerLink]="[ '/equipment']">เพิ่มอุปกรณ์</button>
+                                                                    </div>
+                                                                    <select class="custom-select form-control"
+                                                                        name="eq_id"
+                                                                        [(ngModel)]="eqd_new.eq_id">
+                                                                        <option *ngFor="let eq of eq_list" value="{{eq.id}}">{{eq.eq_name}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control" id="name"
+                                                                        name="sn" [(ngModel)]="eqd_new.id"
+                                                                        required="required" placeholder="SN.">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control" id="name"
+                                                                        name="name" [(ngModel)]="eqd_new.eq_detail_name"
+                                                                        required="required" placeholder="ชื่อรายการอุปกรณ์">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="number" class="form-control" id="count"
+                                                                        name="count" [(ngModel)]="eqd_new.eq_detail_amount"
+                                                                        required="required" placeholder="จำนวนอุปกรณ์">
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="reset" class="btn btn-primary"
+                                                            data-dismiss="modal" (click)="create_eqd()"
+                                                            value="submit">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>กำหนดวันที่ส่งคืน :</label>
-                                            <input type="date" class="form-control"
-                                                placeholder="เลือกวันที่" name="d_endjob" [(ngModel)]="d_endjob">
+                                            <input type="date" class="form-control" placeholder="เลือกวันที่"
+                                                name="d_endjob" [(ngModel)]="d_endjob">
                                         </div>
                                     </div>
                                 </div>
@@ -120,14 +180,14 @@
                                                 class="form-control" autocomplete="off">
                                         </div>
                                         <div class="warpper">
-                                            <button type="reset" class="btn btn-success"
+                                            <button class="btn btn-success"
                                                 (click)="add_getJob()">เพิ่ม</button>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>หมายเหตุ :</label>
-                                            <textarea class="form-control"></textarea>
+                                            <textarea class="form-control" name="annotation" [(ngModel)]="annotation"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -147,13 +207,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let data of getJob_data">
-                                    <td>{{data[0]}}</td>
-                                    <td>{{data[1]}}</td>
-                                    <td>{{data[2]}}</td>
+                                <tr *ngFor="let item of catagory ; let i = index">
+                                    <td>{{catagory[i]}}</td>
+                                    <td>{{name[i]}}</td>
+                                    <td>{{amount[i]}}</td>
                                     <td>
                                         <button class="btn btn-danger btn-sm" type="button" value="submit"
-                                            (click)="deleteRow(data)"><i class="icon-copy fa fa-trash btn-size"
+                                            (click)="deleteRow(i)"><i class="icon-copy fa fa-trash btn-size"
                                                 aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
@@ -164,8 +224,8 @@
                 </div>
                 <div class="warpper">
                     <div class="btn-list">
-                        <button type="button" class="btn btn-success" [routerLink]="[ '/invoice']">บันทึก</button>
-                        <button type="button" class="btn btn-danger" (click)="save()">ยกเลิก</button>
+                        <button type="button" class="btn btn-success" (click)="save()">บันทึก</button>
+                        <button type="reset" class="btn btn-danger"  [routerLink]="[ '/home']" >ยกเลิก</button>
                     </div>
                 </div>
             </div>

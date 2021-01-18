@@ -163,6 +163,16 @@ export class ApiService {
         });
     });
   }
+  async getEqd(id: number) {
+    return new Promise((res, rej) => {
+      this.http.get<EquipmentDetail>(this.base_path+'API/get/equipment_detail/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
   async createEqDetail(data: any) {
     return new Promise((res, rej) => {
       this.http.post<EquipmentDetail>(this.base_path+'API/post/equipment_detail', JSON.stringify(data), this.httpOptions)
@@ -205,7 +215,6 @@ export class ApiService {
         });
     });
   }
-
   async getEmploymentDetail(type: string, id: any) {
     return new Promise((res, rej) => {
       this.http.get<Employment>(this.base_path+'API/jobdetail/'+type+'/'+id)
@@ -216,6 +225,17 @@ export class ApiService {
         });
     });
   }
+  async createEmployment(data: any) {
+    return new Promise((res, rej) => {
+      this.http.post<Employment>(this.base_path+'API/post/employment', JSON.stringify(data), this.httpOptions)
+      .subscribe((data: any) => {
+        res(data)
+      }, (err: any) => {
+        rej(err)
+      });
+    });
+  }
+  
   async updateEmployment(id: number, item: any) {
     return new Promise((res, rej) => {
       this.http.put<Employment>(this.base_path+'API/update/employment/'+ id, JSON.stringify(item), this.httpOptions)

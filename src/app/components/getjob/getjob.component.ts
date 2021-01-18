@@ -1,10 +1,11 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import Swal from 'sweetalert2';
 import { ApiService } from '../../services/api.service'
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Customer } from '../../models/customer';
-import { DatePipe, formatDate } from '@angular/common';
+import { Equipment } from '../../models/equipment';
+import { EquipmentDetail } from '../../models/equipment-detail';
+import { Employment } from '../../models/employment';
 
 
 @Component({
@@ -14,38 +15,54 @@ import { DatePipe, formatDate } from '@angular/common';
 })
 export class GetjobComponent implements OnInit {
 
-  eq = [" ", "CO2", "NOx", "NOxCO2"];
-  cg = [" ", "เช่า-ยืม", "จำหน่าย", "ทดลอง", "ซ่อมบำรุง"]
-  add_eqdata: any
-  add_eqdetail: any
+  eq = ["ตรวจวัดคุณภาพอากาศ", "ตรวจวัดระดับเสียง", "ตรวจวัดความสั่นสะเทือน", "ตรวจวัดคุณภาพน้ำ"];
+  cg = ["เช่า-ยืม", "จำหน่าย", "ทดลอง", "ซ่อมบำรุง"]
+
+  cus_select: any;
   catagory_select: any
   equipment_select: any
   count_select: any
-  add_data = []
-  getJob_data = [["เช่า-ยืม", "CO2", "1"], ["เช่า-ยืม", "O2", "1"], ["เช่า-ยืม", "NOx", "1"]]
-
-  cus_select: any;
   cus_list: any = [];
   email: any;
   phone: any;
   address: any;
+  eq_list: any = [];
   eqd_list: any = [];
+  eqd_new!: EquipmentDetail;
+  eqd!: EquipmentDetail;
+  eqd_names: any;
+  eqd_name!: EquipmentDetail;
+  name: any = [];
 
   cus_id: any;
   d_getjob: any;
   d_endjob: any;
+  catagory: any = [];
+  equipment: any = [];
+  status: any = [];
+  amount: any = [];
+  annotation: string = " ";
+  date_get: any;
+  date_end: any;
+  annot: string = " ";
+  job: Employment;
 
 
   constructor(
     public router: Router,
     public apiService: ApiService
   ) {
+    this.eqd_new = new EquipmentDetail();
+    this.eqd = new EquipmentDetail();
     this.d_getjob = new Date();
     this.d_endjob = new Date();
+    this.job = new Employment;
+    this.eqd_names = [];
   }
 
   ngOnInit(): void {
-    this.getAllEquipment()
+    this.getAllEq();
+    this.getAllEqd();
   }
 
   async getAllCustomers() {
@@ -53,95 +70,86 @@ export class GetjobComponent implements OnInit {
       this.cus_list = res;
     });
   }
-
-  show_cus(data: any){
-    this.cus_list=[];
+  show_cus(data: any) {
+    this.cus_list = [];
     console.log(data);
     this.cus_id = data.id;
     this.email = data.cus_email;
     this.phone = data.cus_phone;
-    this.address = data.number +" ม." + data.moo +" " + data.sub_district +" " + data.district + " " + data.province + " " + data.postal_code;
+    this.address = data.number + " ม." + data.moo + " " + data.sub_district + " " + data.district + " " + data.province + " " + data.postal_code;
     this.cus_select = data.cus_fullname;
   }
-
-  async getAllEquipment() {
+  async getAllEq() {
+    this.apiService.getListEq().then((res: any) => {
+      this.eq_list = res;
+    });
+  }
+  async getAllEqd() {
     this.apiService.getListEqd().then((res: any) => {
       this.eqd_list = res;
     });
   }
-
-  save(){
-    console.log(this.cus_id);
-    console.log(this.d_getjob);
-    console.log(this.d_endjob);
+  async getEqd(id:any) {
+    this.apiService.getEqd(id).then((res: any) => {
+      this.eqd_names = res;
+      this.name.push(this.eqd_names[0].eq_detail_name);
+      console.log(this.name);
+    });
+  }
+  async create_eqd() {
+    this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
+      console.log(this.eqd_new);
+    });
+    this.eqd_new = new EquipmentDetail();
+    this.getAllEqd();
   }
 
-  async add_eq() {
-    const { value: formValues } = await Swal.fire({
-      title: 'เพิ่มอุปกรณ์',
-      html:
-        '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่ออุปกรณ์">' +
-        '<br>' +
-        '<select id="inputCat" class="custom-select form-control btn dropdown-toggle ">' +
-        '<option value="">เลือกหมวดหมู่อุปกรณ์</option>' +
-        '<option value="ตรวจวัดคุณภาพอากาศ">ตรวจวัดคุณภาพอากาศ</option>' +
-        '<option value="ตรวจวัดระดับเสียง">ตรวจวัดระดับเสียง</option>' +
-        '<option value="ตรวจวัดความสั่นสะเทือน">ตรวจวัดความสั่นสะเทือน</option>' +
-        '<option value="ตรวจวัดคุณภาพน้ำ">ตรวจวัดคุณภาพน้ำ</option>',
-      focusConfirm: false,
-      showCancelButton: true,
-      preConfirm: () => {
-        return [
-          (document.getElementById('inputName') as HTMLTextAreaElement).value,
-          (document.getElementById('inputCat') as HTMLTextAreaElement).value
-        ]
-      }
-    })
-    if (formValues) {
-      console.log("Resule: " + formValues[0] + " : " + formValues[1]);
+  async add_getJob() {
+    this.getEqd(this.equipment_select);
 
-      this.add_eqdata = formValues;
+    this.catagory.push(this.catagory_select);
+    this.equipment.push(this.equipment_select);
+    this.status.push('รับงาน');
+    this.amount.push(this.count_select);
+    this.date_get = this.d_getjob;
+    this.date_end = this.d_endjob;
+    this.annot = this.annotation;
 
-      const { value: formValuesD } = await Swal.fire({
-        title: 'เพิ่มรายการอุปกรณ์',
-        html:
-          '<input id="inputSn" class="form-control" autocomplete="off" placeholder="SN no." type="text">' +
-          '<br>' +
-          '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่อรายการอุปกรณ์">' +
-          '<br>' +
-          '<input id="inputCount" class="form-control" autocomplete="off" placeholder="จำนวนอุปกรณ์">' +
-          '<br>' +
-          '<label id="textStatus" class="mb-15 text-blue h4">สถานะ : ว่าง</label>',
-        focusConfirm: false,
-        showCancelButton: true,
-        preConfirm: () => {
-          return [
-            (document.getElementById('inputSn') as HTMLTextAreaElement).value,
-            (document.getElementById('inputName') as HTMLTextAreaElement).value,
-            (document.getElementById('inputCount') as HTMLTextAreaElement).value,
-            "ว่าง " + (document.getElementById('inputCount') as HTMLTextAreaElement).value
-          ]
-        }
-      })
-      if (formValuesD) {
-        console.log("Resule: " + formValuesD[0] + " : " + formValuesD[1] + " : " + formValuesD[2] + " : " + formValuesD[3]);
+    this.catagory_select = '';
+    this.equipment_select = '';
+    this.count_select = '';
 
-        (this.eq).push(formValuesD[1]);
-        this.add_eqdetail = formValues;
-        Swal.fire('บันทึกสำเร็จ',
-          '',
-          'success')
-      }
-    }
+    // console.log(this.catagory);
+    // console.log(this.equipment);
+    // console.log(this.status);
+    // console.log(this.amount);
+    // console.log(this.annotation);
   }
 
-  add_getJob() {
-    (this.getJob_data).push([this.catagory_select, this.equipment_select, this.count_select]);
-
+  deleteRow(i: any) {
+    this.catagory.splice(i);
+    this.equipment.splice(i);
+    this.amount.splice(i);
+    this.status.splice(i);
+    this.name.splice(i);
   }
 
-  deleteRow(data: any) {
-    const index = this.getJob_data.indexOf(data);
-    this.getJob_data.splice(index, 1);
+  save() {
+    (this.job).category = "{"+(this.catagory).toString()+"}";
+    (this.job).date_get_job = this.date_get;
+    (this.job).date_end_job = this.date_end;
+    (this.job).em_status = "{"+(this.status).toString()+"}";
+    (this.job).cus_id = parseInt(this.cus_id);
+    (this.job).equipment = "{"+(this.equipment).toString()+"}";
+    (this.job).admin_id = 1;
+    (this.job).amount = "{"+(this.amount).toString()+"}";
+    (this.job).annotation = this.annot;
+    
+    this.apiService.createEmployment(this.job).then((res: any) => {
+      console.log('////////////////////');
+      console.log(this.job);
+      console.log('create job');
+      this.router.navigate(['invoice']);
+    }); 
   }
 }

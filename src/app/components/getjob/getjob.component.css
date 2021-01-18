@@ -5,3 +5,16 @@
 .ten {
     width: 10%
 }
+
+.pad-l{
+    padding-left: 4%;
+}
+
+.text{
+    width: 50%
+}
+
+.r {
+    text-align: right;
+    padding-right: 4%;
+}
