@@ -1,7 +1,7 @@
 export class EquipmentDetail {
-    id!: string;
-    eq_detail_name!: string;
-    eq_detail_status!: string;
-    eq_id!: number;
-    eq_detail_amount!: number;
+    id!: any;
+    eq_detail_name!: any;
+    eq_detail_status!: any;
+    eq_id!: any;
+    eq_detail_amount!: any;
 }

@@ -1,5 +1,5 @@
 export class Equipment {
-    id!: number;
-    eq_name!: string;
-    category!: string;
+    id!: any;
+    eq_name!: any;
+    category!: any;
 }

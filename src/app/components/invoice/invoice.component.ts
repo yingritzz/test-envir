@@ -13,13 +13,10 @@ export class InvoiceComponent implements OnInit {
   em_id!: number;
   em_data: any;
   em_date: any;
-  cus_fullname!: string;
-  cus_number!: string;
-  cus_moo!: string;
-  cus_sub_district!: string;
-  cus_district!: string;
-  cus_province!: string;
-  cus_postal_code!: string;
+  em_equipment: any;
+  em_category: any;
+  em_amount: any;
+  em_eq: any = [];
 
 
   datepipe = new DatePipe('en-US');
@@ -41,14 +38,27 @@ export class InvoiceComponent implements OnInit {
     this.apiService.getEmploymentId(this.em_id).then((res: any) => {
       this.em_data = res;
       this.em_date = this.datepipe.transform(res[0].date_get_job, 'dd MMM yyyy');
-      this.cus_fullname = res[0].cus_fullname;
-      this.cus_number = res[0].number;
-      this.cus_moo = res[0].moo;
-      this.cus_sub_district = res[0].sub_district;
-      this.cus_district = res[0].district;
-      this.cus_province = res[0].province;
-      this.cus_postal_code = res[0].postal_code;
+
+      this.em_equipment = (res[0].equipment).split(",");
+      this.em_category = (res[0].category).split(",");
+      this.em_amount = (res[0].amount).split(",");
+      this.getDataEq(this.em_equipment);
     });
   }
+
+  getDataEq(data: any) {
+    this.em_equipment=data;
+ 
+    for ( let i=0 ; i<this.em_equipment.length; i++) {
+      console.log(this.em_equipment[i]);
+      this.apiService.getEqd(this.em_equipment[i]).then((res: any) => {
+        console.log(res);
+        this.em_eq.push(res[0].eq_detail_name);
+      });
+    }
+  }
+
+
+
 
 }
