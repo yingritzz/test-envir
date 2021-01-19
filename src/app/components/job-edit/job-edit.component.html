@@ -24,21 +24,22 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-8 col-md-8 col-sm-12 mb-30">
                     <div class="pd-20 card-box ">
-                        <h5 class="text-center h5 mb-0">Envir</h5>
-                        <p class="text-center text-muted font-14"><span>รหัสลูกค้า:</span> Envir_Service</p>
+                        <h5 class="text-center h5 mb-0">{{jobEdit[0]?.cus_fullname}}</h5>
+                        <p class="text-center text-muted font-14"><span>รหัสลูกค้า:</span> {{jobEdit[0]?.cus_id}}</p>
                         <div class="profile-info">
                             <ul>
                                 <li>
                                     <span>อีเมล:</span>
-                                    customer@gmail.com
+                                    {{jobEdit[0]?.cus_email}}
                                 </li>
                                 <li>
                                     <span>เบอร์โทร:</span>
-                                    012 3456789
+                                    {{jobEdit[0]?.cus_phone}}
                                 </li>
                                 <li>
                                     <span>ที่อยู่:</span>
-                                    xxx xxxx xxxxx xxxxxx
+                                    {{jobEdit[0]?.number}} ม. {{jobEdit[0]?.moo}} ตำบล{{jobEdit[0]?.sub_district}} อำเภอ{{jobEdit[0]?.district}}
+                                    จังหวัด{{jobEdit[0]?.province}} {{jobEdit[0]?.postal_code}}
                                 </li>
                             </ul>
                         </div>
@@ -48,12 +49,12 @@
                     <div class="pd-20 card-box">
 
                         <div class="row">
-                            <h5 class="col-sm-6 h5 mb-0">หัวข้องาน</h5>
-                            <p class="col-sm-6 text-right font-14"><span>วันที่รับงาน: </span>01/01/2021</p>
+                            <h5 class="col-sm-6 h5 mb-0">{{jobEdit[0]?.cus_fullname}}({{jobEdit[0]?.category}})</h5>
+                            <p class="col-sm-6 text-right font-14"><span>วันที่รับงาน: </span>{{jobEdit[0]?.date_get_job}}</p>
                         </div>
                         <div class="row">
-                            <p class="col-sm-6 h5 text-left text-muted font-14"><span>No:</span> xxxxxx</p>
-                            <p class="col-sm-6 text-right font-14"><span>วันที่ครบกำหนด: </span>01/01/2021</p>
+                            <p class="col-sm-6 h5 text-left text-muted font-14"><span>No:</span> {{jobEdit[0]?.id}}</p>
+                            <p class="col-sm-6 text-right font-14"><span>วันที่ครบกำหนด: </span>{{jobEdit[0]?.date_end_job}}</p>
                         </div>
 
                         <table class="table">
@@ -66,35 +67,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Thermo Paetiso</td>
-                                    <td>เช่า - ยืม</td>
+                                <ng-container *ngIf="statusChange(jobEdit[0]?.category)"></ng-container>
+                                <tr *ngFor="let edit of jobEdit; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{edit.eq_detail_name}}</td>
+                                    <td>{{edit.amount[1]}} {{edit.amount[3]}}</td>
                                     <td>
+                                        
                                         <select _ngcontent-ysi-c51="" name="status"
                                             class="custom-select form-control ng-untouched ng-pristine ng-valid"
-                                            ng-reflect-name="status">
-                                            <option _ngcontent-ysi-c51="" value=" " ng-reflect-value=" ">{{status}}</option>
-                                            <option _ngcontent-ysi-c51="" value="เช่า-ยืม" ng-reflect-value="เช่า-ยืม">เช่า-ยืม</option>
-                                            <option _ngcontent-ysi-c51="" value="จำหน่าย" ng-reflect-value="จำหน่าย">จำหน่าย</option>
-                                            <option _ngcontent-ysi-c51="" value="ทดลอง" ng-reflect-value="ทดลอง">ทดลอง</option>
-                                            <option _ngcontent-ysi-c51="" value="ซ่อมบำรุง" ng-reflect-value="ซ่อมบำรุง">ซ่อมบำรุง</option>
+                                            ng-reflect-name="status" >
+                                            <option _ngcontent-ysi-c51="" *ngFor='let rental of statusArray' value="{{rental}}" ng-reflect-value="" >{{rental}}</option>                                        
                                         </select>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Thermo Paetiso</td>
-                                    <td>เช่า - ยืม</td>
-                                    <td>
-                                        <select _ngcontent-ysi-c51="" name="status"
-                                            class="custom-select form-control ng-untouched ng-pristine ng-valid"
-                                            ng-reflect-name="status">
-                                            <option _ngcontent-ysi-c51="" value=" " ng-reflect-value=" ">{{status}}</option>
-                                            <option _ngcontent-ysi-c51="" value="เช่า-ยืม" ng-reflect-value="เช่า-ยืม">เช่า-ยืม</option>
-                                            <option _ngcontent-ysi-c51="" value="จำหน่าย" ng-reflect-value="จำหน่าย">จำหน่าย</option>
-                                            <option _ngcontent-ysi-c51="" value="ทดลอง" ng-reflect-value="ทดลอง">ทดลอง</option>
-                                            <option _ngcontent-ysi-c51="" value="ซ่อมบำรุง" ng-reflect-value="ซ่อมบำรุง">ซ่อมบำรุง</option>
-                                        </select>
+                                    
                                 </tr>
                             </tbody>
                         </table>
