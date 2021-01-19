@@ -12,13 +12,6 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class ApiService {
 
-  // http://localhost:8888/API/get/(ชื่อตาราง)
-  // http://localhost:8888/API/get/(ชื่อตาราง)/(id)
-  // http://localhost:8888/API/post/(ชื่อตาราง)
-  // http://localhost:8888/API/update/ชื่อตาราง/(idที่จะแก้)
-  // http://localhost:8888/API/del/(ชื่อตาราง)/(idที่จะลบ)
-  // http://localhost:8888/API/eq_detail/(eq_id)
-  // http://localhost:8888/API/job/(maintenanc,selling,testing,rental)
   // API path
   base_path = 'http://localhost/';
 
@@ -225,6 +218,16 @@ export class ApiService {
         });
     });
   }
+  async getEmploymentId(id: number) {
+    return new Promise((res, rej) => {
+      this.http.get(this.base_path+'API/jobid/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
   async createEmployment(data: any) {
     return new Promise((res, rej) => {
       this.http.post<Employment>(this.base_path+'API/post/employment', JSON.stringify(data), this.httpOptions)
@@ -235,7 +238,6 @@ export class ApiService {
       });
     });
   }
-  
   async updateEmployment(id: number, item: any) {
     return new Promise((res, rej) => {
       this.http.put<Employment>(this.base_path+'API/update/employment/'+ id, JSON.stringify(item), this.httpOptions)

@@ -22,25 +22,22 @@
             <div class="invoice-wrap">
                 <div class="invoice-box">
                     <div class="invoice-header">
-                        <div class="logo text-center">
-                            <img src="vendors/images/deskapp-logo.png" alt="">
-                        </div>
                     </div>
                     <img src="assets/vendors/images/deskapp-.png" alt="" class="center">
                     <br>
                    
                     <div class="row pb-30">
                         <div class="col-md-6">
-                            <h5 class="mb-15">Client Evvir Service</h5>
-                            <p class="font-14 mb-5">วันที่ : <strong class="weight-600">21 ธันวาคม 2563</strong></p>
-                            <p class="font-14 mb-5">เลขที่ใบเสร็จ : <strong class="weight-600">1234</strong></p>
+                            <h5 class="font-16 mb-15">บริษัท เอ็นไวร์ เซอร์วิส จำกัด</h5>
+                            <p class="font-14 mb-5">วันที่ : <strong class="weight-600">{{em_date}}</strong></p>
+                            <p class="font-14 mb-5">เลขที่ใบเสร็จ : <strong class="weight-600">{{em_id}}</strong></p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" >
                             <div class="text-right">
-                                <p class="font-14 mb-5">Envirservice.co.th</p>
-                                <p class="font-14 mb-5">42 ซอยรามอินทรา 14 แยก 9 แขวง ท่าแร้ง เขต บางเขน</p>
-                                <p class="font-14 mb-5">กรุงเทพมหานคร </p>
-                                <p class="font-14 mb-5">10220</p>
+                                <p class="font-14 mb-5">{{cus_fullname}}</p>
+                                <p class="font-14 mb-5">{{cus_number}} ม.{{cus_moo}} {{cus_sub_district}}</p>
+                                <p class="font-14 mb-5">{{cus_district}} {{cus_province}}</p>
+                                <p class="font-14 mb-5">{{cus_postal_code}}</p>
                             </div>
                         </div>
                     </div>
@@ -52,24 +49,14 @@
                             <div class="invoice-subtotal">จำนวน</div>
                         </div>
                         <div class="invoice-desc-body">
-                            <ul>
+                            <ul *ngFor="let em of em_data; let i = index">
                                 <li class="clearfix">
-                                    <div class="invoice-rate">1</div>
-                                    <div class="invoice-sub">CO2</div>
-                                    <div class="invoice-hours">เช่า-ยืม</div>
-                                    <div class="invoice-subtotal"><span class="weight-600">2</span></div>
+                                    <div class="invoice-rate">{{i+1}}</div>
+                                    <div class="invoice-sub">{{em.eq_detail_name}}</div>
+                                    <div class="invoice-hours">{{em.category}}</div>
+                                    <div class="invoice-subtotal"><span class="weight-600">{{em.amount}}</span></div>
                                 </li>
-                                <li class="clearfix">
-                                    <div class="invoice-rate">2</div>
-                                    <div class="invoice-sub">CO2/NOx</div>
-                                    <div class="invoice-hours">ทดสอบ</div>
-                                    <div class="invoice-subtotal"><span class="weight-600">1</span></div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="invoice-rate">3</div>
-                                    <div class="invoice-sub">CO2NOF2</div>
-                                    <div class="invoice-hours">ซื้อ</div>
-                                    <div class="invoice-subtotal"><span class="weight-600">3</span></div>
+                                
                             </ul>
                         </div>
                     </div>

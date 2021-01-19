@@ -135,21 +135,22 @@ export class GetjobComponent implements OnInit {
   }
 
   save() {
-    (this.job).category = "{"+(this.catagory).toString()+"}";
+    (this.job).category = (this.catagory).toString();
     (this.job).date_get_job = this.date_get;
     (this.job).date_end_job = this.date_end;
-    (this.job).em_status = "{"+(this.status).toString()+"}";
+    (this.job).em_status = (this.status).toString();
     (this.job).cus_id = parseInt(this.cus_id);
-    (this.job).equipment = "{"+(this.equipment).toString()+"}";
+    (this.job).equipment = (this.equipment).toString();
     (this.job).admin_id = 1;
-    (this.job).amount = "{"+(this.amount).toString()+"}";
+    (this.job).amount = (this.amount).toString();
     (this.job).annotation = this.annot;
     
     this.apiService.createEmployment(this.job).then((res: any) => {
       console.log('////////////////////');
+      console.log(res[0].lastval);
       console.log(this.job);
       console.log('create job');
-      this.router.navigate(['invoice']);
+      this.router.navigate(['invoice/'+res[0].lastval]);
     }); 
   }
 }
