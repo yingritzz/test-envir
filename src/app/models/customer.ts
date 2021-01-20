@@ -1,14 +1,16 @@
 export class Customer {
-    id!: number;
-    cus_fullname!: string;
-    cus_email!: string;
-    cus_phone!: number;
-    cus_date_add!: string;
-    cus_date_edit!: string;
-    number!: string;
-    moo!: number;
-    sub_district!: string;
-    district!: string;
-    province!: string;
-    postal_code!: number;
+    id!: any;
+    cus_fullname!: any;
+    cus_email!: any;
+    cus_phone!: any;
+    cus_date_add!: any;
+    cus_date_edit!: any;
+    number!: any;
+    moo!: any;
+    soi!: string;
+    road!: any;
+    sub_district!: any;
+    district!: any;
+    province!: any;
+    postal_code!: any;
 }
