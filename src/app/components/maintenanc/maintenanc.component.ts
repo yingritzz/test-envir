@@ -30,14 +30,8 @@ export class MaintenancComponent implements OnInit {
 
   getJobMaintenanc() {
     this.apiService.getEmployment("maintenanc").then((res: any) => {
-      console.log(res[4]);
+      console.log(res);
       this.jobMaintenanc = res;
-     res.forEach((value: any, index: any) => {
-      console.log(index); 
-      console.log((res[index].category).split(",")); 
-      this.test.push((res[index].category).split(","))
-      console.log(this.test); 
-     });
     });
   }
 

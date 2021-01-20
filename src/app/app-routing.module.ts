@@ -39,7 +39,7 @@ const routes: Routes = [
   {path: 'selling', component:SellingComponent},
   {path: 'testing', component:TestingComponent},
   {path: 'job/detail/:type/:id', component:JobDetailComponent},
-  {path: 'job/edit', component:JobEditComponent},
+  {path: 'job/edit/:id', component:JobEditComponent},
   {path: 'user/profile', component:ProfileComponent},
   {path: 'customer', component:CustomerComponent},
   {path: 'cusadd', component:CusAddComponent},

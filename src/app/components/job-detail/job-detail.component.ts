@@ -33,7 +33,7 @@ export class JobDetailComponent implements OnInit {
   }
 
   getJobDetail() {
-    this.apiService.getEmploymentDetail(this.type,this.id).then((res: any) => {
+    this.apiService.getEmploymentDetail(this.id).then((res: any) => {
       console.log(res);
       this.jobDetail = res;
     });
