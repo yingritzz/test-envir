@@ -105,7 +105,7 @@
                                                 {{eqd.eq_detail_name}}</option>
                                         </select>
                                         <br> <br>
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                        <button type="reset" class="btn btn-success" data-toggle="modal"
                                             data-target="#Insert-eq-modal">เพิ่มอุปกรณ์ใหม่</button>
 
                                         <div class="modal fade" id="Insert-eq-modal" tabindex="-1" role="dialog"
@@ -203,14 +203,16 @@
                                     <th scope="col">หมวดหมู่</th>
                                     <th scope="col">อุปกรณ์</th>
                                     <th scope="col">จำนวน</th>
+                                    <th scope="col">วันที่ส่งคืน</th>
                                     <th scope="col">จัดการ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of catagory ; let i = index">
+                                <tr *ngFor="let item of date ; let i = index">
                                     <td>{{catagory[i]}}</td>
                                     <td>{{name[i]}}</td>
                                     <td>{{amount[i]}}</td>
+                                    <td>{{date[i]}}</td>
                                     <td>
                                         <button class="btn btn-danger btn-sm" type="button" value="submit"
                                             (click)="deleteRow(i)"><i class="icon-copy fa fa-trash btn-size"

@@ -218,16 +218,6 @@ export class ApiService {
         });
     });
   }
-  async getEmploymentId(id: number) {
-    return new Promise((res, rej) => {
-      this.http.get(this.base_path+'API/jobid/'+id)
-        .subscribe((data: any) => {
-          res(data)
-        }, (err: any) => {
-          rej(err)
-        });
-    });
-  }
   async createEmployment(data: any) {
     return new Promise((res, rej) => {
       this.http.post<Employment>(this.base_path+'API/post/employment', JSON.stringify(data), this.httpOptions)
@@ -251,6 +241,28 @@ export class ApiService {
   async deleteEmployment(id: number) {
     return new Promise((res, rej) => {
       this.http.delete<Employment>(this.base_path+'API/del/employment/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+
+  //Employment Detail
+  async createEmDetail(data: any) {
+    return new Promise((res, rej) => {
+      this.http.post<EquipmentDetail>(this.base_path+'API/post/employment_detail', JSON.stringify(data), this.httpOptions)
+      .subscribe((data: any) => {
+        res(data)
+      }, (err: any) => {
+        rej(err)
+      });
+    });
+  }
+  async getEmDetail(id: number) {
+    return new Promise((res, rej) => {
+      this.http.get(this.base_path+'API/jobid/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

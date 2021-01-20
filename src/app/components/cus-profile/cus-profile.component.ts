@@ -35,6 +35,7 @@ export class CusProfileComponent implements OnInit {
   update() {
     this.apiService.updateCustomer(this.id, this.cusEdit).then((res: any) => {
     window.location.reload();
+    console.log(this.cusEdit);
     });
   }
 

@@ -7,6 +7,8 @@ export class Customer {
     cus_date_edit!: any;
     number!: any;
     moo!: any;
+    soi!: string;
+    road!: any;
     sub_district!: any;
     district!: any;
     province!: any;

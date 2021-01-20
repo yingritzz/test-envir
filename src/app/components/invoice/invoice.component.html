@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="invoice-wrap">
-                <div class="invoice-box" *ngFor="let em of em_data">
+                <div class="invoice-box">
                     <div class="invoice-header">
                     </div>
                     <img src="assets/vendors/images/deskapp-.png" alt="" class="center">
@@ -34,10 +34,10 @@
                         </div>
                         <div class="col-md-6" >
                             <div class="text-right">
-                                <p class="font-14 mb-5">{{em.cus_fullname}}</p>
-                                <p class="font-14 mb-5">{{em.number}} ม.{{em.moo}} {{em.sub_district}}</p>
-                                <p class="font-14 mb-5">{{em.district}} {{em.province}}</p>
-                                <p class="font-14 mb-5">{{em.postal_code}}</p>
+                                <p class="font-14 mb-5">{{em_data[0]?.cus_fullname}}</p>
+                                <p class="font-14 mb-5">{{em_data[0]?.number}} ม.{{em_data[0]?.moo}} {{em_data[0]?.soi}} {{em_data[0]?.road}}</p>
+                                <p class="font-14 mb-5">{{em_data[0]?.sub_district}} {{em_data[0]?.district}} {{em_data[0]?.province}}</p>
+                                <p class="font-14 mb-5">{{em_data[0]?.postal_code}}</p>
                             </div>
                         </div>
                     </div>
@@ -49,12 +49,12 @@
                             <div class="invoice-subtotal">จำนวน</div>
                         </div>
                         <div class="invoice-desc-body">
-                            <ul *ngFor="let emd of em_equipment ; let i = index">
+                            <ul *ngFor="let emd of em_data ; let i = index">
                                 <li class="clearfix">
                                     <div class="invoice-rate">{{i+1}}</div>
-                                    <div class="invoice-sub">{{em_eq[i]}}</div>
-                                    <div class="invoice-hours">{{em_category[i]}}</div>
-                                    <div class="invoice-subtotal"><span class="weight-600">{{em_amount[i]}}</span></div>
+                                    <div class="invoice-sub">{{emd.eq_detail_name}}</div>
+                                    <div class="invoice-hours">{{emd.category}}</div>
+                                    <div class="invoice-subtotal"><span class="weight-600">{{emd.amount}}</span></div>
                                 </li>
                                 
                             </ul>
