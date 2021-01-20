@@ -52,11 +52,11 @@
                     <div class="pd-20 card-box">
 
                         <div class="row" >
-                            <h5 class="col-sm-6 h5 mb-0">{{jobDetail[0]?.cus_fullname}}({{jobDetail[0]?.category}})</h5>
+                            <h5 class="col-sm-6 h5 mb-0">เลขที่ใบเสร็จ: {{jobDetail[0]?.id}}</h5>
                             <p class="col-sm-6 text-right font-14" ><span>วันที่รับงาน: </span>{{jobDetail[0]?.date_get_job}}</p>
                         </div>
                         <div class="row">
-                            <p class="col-sm-6 h5 text-left text-muted font-14"><span>No:</span>{{jobDetail[0]?.id}}</p>
+                            <p class="col-sm-6 h5 text-left text-muted font-14"></p>
                             <p class="col-sm-6 text-right font-14"><span>วันที่ครบกำหนด: </span>{{jobDetail[0]?.date_end_job}}</p>
                         </div>
 
@@ -74,14 +74,13 @@
                                     <td>{{i+1}}</td>
                                     <td>{{detail.eq_detail_name}}</td>
                                     <td>{{detail.category}}</td>
-                                    <td>{{detail.em_status}}</td>
+                                    <td>{{detail.status}}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="btn-list wrapper">
-
                             <span class="btn btn-success btn-sm" type="button" value="submit"
-                            [routerLink]="[ '/job/edit/'+type+'/'+jobDetail[0]?.id]">
+                            [routerLink]="[ '/job/edit/'+jobDetail[0]?.id]">
                                 <i class="icon-copy fa fa-pencil-square-o btn-size" aria-hidden="true"></i>
                             </span>
                             <span class="btn btn-secondary btn-sm" type="button" value="submit"><i
