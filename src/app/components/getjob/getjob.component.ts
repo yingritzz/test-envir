@@ -8,6 +8,7 @@ import { EquipmentDetail } from '../../models/equipment-detail';
 import { Employment } from '../../models/employment';
 import { EmploymentDetail } from '../../models/employment-detail';
 import { DatePipe } from '@angular/common'
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -100,6 +101,7 @@ export class GetjobComponent implements OnInit {
     });
   }
   async create_eqd() {
+    this.eqd_new.eq_detail_status = "ว่าง "+this.eqd_new.eq_detail_amount;
     this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
       console.log(this.eqd_new);
     });
@@ -124,6 +126,7 @@ export class GetjobComponent implements OnInit {
     this.count_select = '';
     this.d_getjob = '';
     this.d_endjob = '';
+    Swal.fire("เพิ่มงานสำเร็จ!", "สามารถตรวจสอบรายละเอียดความถูกต้องของงานได้ที่ตารางด้านล่าง", "success");
   }
   deleteRow(i: number) {
     console.log(i);
