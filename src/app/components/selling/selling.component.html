@@ -33,16 +33,16 @@
                                 <th scope="col">ลำดับ</th>
                                 <th scope="col">หัวข้อ</th>
                                 <th scope="col">ลูกค้า</th>
-                                <th scope="col">สถานะ</th>
+                            
                                 <th scope="col">จัดการ</th>
                             </tr>
                         </thead>
                         <tbody >
                             <tr *ngFor="let sell of jobSelling; let i = index">
                                 <th scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{i+1}}</a></th>
-                                <td><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.array_to_string}}</a></td>
+                                <td><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.string_agg}}</a></td>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.cus_fullname}}</a></td>
-                                <td><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.em_status}}</a></td>
+                                
                                 <td>
                                     <div class="btn-list">
                                         <span class="btn btn-success btn-sm" type="button" value="submit"

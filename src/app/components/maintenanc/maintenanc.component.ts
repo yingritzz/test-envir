@@ -13,6 +13,9 @@ export class MaintenancComponent implements OnInit {
   sell: any;
   id!: number;
   type: string = "maintenanc";
+  test: string[] = [];
+  
+
 
   constructor(
     public router: Router,
@@ -27,8 +30,14 @@ export class MaintenancComponent implements OnInit {
 
   getJobMaintenanc() {
     this.apiService.getEmployment("maintenanc").then((res: any) => {
-      console.log(res);
+      console.log(res[4]);
       this.jobMaintenanc = res;
+     res.forEach((value: any, index: any) => {
+      console.log(index); 
+      console.log((res[index].category).split(",")); 
+      this.test.push((res[index].category).split(","))
+      console.log(this.test); 
+     });
     });
   }
 
@@ -38,6 +47,12 @@ export class MaintenancComponent implements OnInit {
       console.log('deleted '+ this.id);
       this.getJobMaintenanc();
     });
+  }
+
+  statusChange(wow:any){
+    if (wow == 'ซ่อมบำรุง'){
+      console.log("ddsdas");
+    }
   }
 
 }

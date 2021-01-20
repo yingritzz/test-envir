@@ -33,16 +33,14 @@
                                 <th scope="col">ลำดับ</th>
                                 <th scope="col">หัวข้อ</th>
                                 <th scope="col">ลูกค้า</th>
-                                <th scope="col">สถานะ</th>
                                 <th scope="col">จัดการ</th>
                             </tr>
                         </thead>
                         <tbody >
                             <tr *ngFor="let test of jobTesting; let i = index">
                                 <th scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+test.id]">{{i+1}}</a></th>
-                                <td><a [routerLink]="[ '/job/detail/'+type+'/'+test.id]">{{test.array_to_string}}</a></td>
+                                <td><a [routerLink]="[ '/job/detail/'+type+'/'+test.id]">{{test.string_agg}}</a></td>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+test.id]">{{test.cus_fullname}}</a></td>
-                                <td><a [routerLink]="[ '/job/detail/'+type+'/'+test.id]">{{test.em_status}}</a></td>
                                 <td>
                                     <div class="btn-list">
                                         <span class="btn btn-success btn-sm" type="button" value="submit"
