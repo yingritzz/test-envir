@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ApiService } from './services/api.service';
 
 import { MenuComponent } from './components/menu/menu.component';
@@ -83,7 +84,20 @@ import { JobEditComponent } from './components/job-edit/job-edit.component';
     FormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    NgCircleProgressModule.forRoot({
+      "radius": 26,
+      "space": -9,
+      "outerStrokeGradient": true,
+      "outerStrokeWidth": 9,
+      "outerStrokeColor": "#4882c2",
+      "outerStrokeGradientStopColor": "#53a9ff",
+      "innerStrokeColor": "#e7e8ea",
+      "innerStrokeWidth": 9,
+      "animateTitle": false,
+      "animationDuration": 1000,
+    })
+
   ],
   providers: [],
   bootstrap: [AppComponent]
