@@ -12,9 +12,9 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
-                                <li class="breadcrumb-item"><a [routerLink]="[ '/job/detail']">รายละเอียดงาน</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">แก้ไขรายละเอียดงาน</li>
+                                <li class="breadcrumb-item"><a [routerLink]="[ '/home']" href="javascript:;">หน้าหลัก</a></li>
+                                <li class="breadcrumb-item" (click)="onClickBack()"><a href="javascript:;">รายละเอียดงาน</a></li>
+                                <li class="breadcrumb-item active" aria-current="page" >แก้ไขรายละเอียดงาน</li>
                             </ol>
                         </nav>
                     </div>
@@ -74,8 +74,8 @@
                                     <td>{{edit.eq_detail_name}}</td>
                                     <td>{{edit.category}}</td>
                                     <td>
-                                        <select _ngcontent-ysi-c51="" name="status" (change)="updateStatus(edit.em_detail_id,hello[i])"
-                                        [(ngModel)]="hello[i]"
+                                        <select _ngcontent-ysi-c51="" name="status" (change)="updateStatus(edit.em_detail_id,status_select[i])"
+                                        [(ngModel)]="status_select[i]"
                                             class="custom-select form-control ng-untouched ng-pristine ng-valid">
                                             <option *ngFor='let rental of statusArray' value="{{rental}}">{{rental}}</option>                                        
                                         </select>
@@ -84,7 +84,7 @@
                             </tbody>
                         </table>
                         <div class="wrapper btn-list">
-                            <button type="button" class="btn btn-success" [routerLink]="[ '/job/detail']">บันทึก</button>
+                            <button type="button" class="btn btn-success" (click)="onClickSave()">บันทึก</button>
                             <button type="button" class="btn btn-danger" (click)="onClickBack()">ยกเลิก</button>
                         </div>
                     </div>

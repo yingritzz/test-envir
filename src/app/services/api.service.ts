@@ -4,6 +4,7 @@ import { Customer } from '../models/customer';
 import { Equipment } from '../models/equipment';
 import { EquipmentDetail } from '../models/equipment-detail';
 import { Employment } from '../models/employment';
+import { EmploymentDetailEdit } from '../models/employment-detail-edit'
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -13,7 +14,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiService {
 
   // API path
-  base_path = 'http://localhost:8888/';
+  base_path = 'http://localhost/';
 
   constructor(private http: HttpClient) { }
 
@@ -270,9 +271,9 @@ export class ApiService {
         });
     });
   }
-  async updateEmployment(id: number, item: any) {
+  async updateEmd(id: number, item: any) {
     return new Promise((res, rej) => {
-      this.http.put<Employment>(this.base_path+'API/update/employment_detail/'+ id, JSON.stringify(item), this.httpOptions)
+      this.http.put<EmploymentDetailEdit>(this.base_path+'API/update/employment_detail/'+ id, JSON.stringify(item), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
