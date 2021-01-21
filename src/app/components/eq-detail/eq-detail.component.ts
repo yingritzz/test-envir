@@ -32,11 +32,14 @@ export class EqDetailComponent implements OnInit {
     this.eq_id = this.activatedRoute.snapshot.params["id"];
     this.eq_name = this.activatedRoute.snapshot.params["name"];
     this.getEqDetail();
-    
   }
 
   async getIdEqd(id:any) {
     this.eqd_id = id;
+    this.apiService.getEqd(id).then((res: any) => {
+     console.log(res);
+      this.eqd_edit = res[0];
+    });
   }
 
   getEqDetail() {

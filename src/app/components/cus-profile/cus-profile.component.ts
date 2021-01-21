@@ -29,6 +29,7 @@ export class CusProfileComponent implements OnInit {
     this.apiService.getCustomer(this.id).then((res: any) => {
       this.edit = res;
       this.cusData = res;
+      this.cusEdit = res[0]
     });
   }
 
