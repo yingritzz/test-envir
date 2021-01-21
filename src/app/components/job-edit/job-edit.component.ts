@@ -14,14 +14,17 @@ import { EmploymentDetail } from '../../models/employment-detail';
 export class JobEditComponent implements OnInit {
 
   statusArray: string[] = [];
-  jobEdit: any;
+  jobEdit: any = []
   id: any;
   rentals: string[] = ["รับงาน","กำลังเช่า-ยืม","ส่งของให้ลูกค้า","ลูกค้ารับสินค้า"];
   testing: string[] = ["รับงาน","กำลังทดสอบ","ส่งของให้ลูกค้า","ลูกค้ารับสินค้า"];
   maintenanc: string[] = ["รับงาน","กำลังซ่อมบำรุง","ส่งของให้ลูกค้า","ลูกค้ารับสินค้า"];
   selling: string[] = ["รับงาน","กำลังจำหน่าย","ส่งของให้ลูกค้า","ลูกค้ารับสินค้า"];
   jobUpdate: EmploymentDetail;
-  test: any;
+  test: any = []
+  idtest!: number
+  status!: string
+  hello: any = []
 
   xxx: any = [];
   xxy: any;
@@ -44,6 +47,15 @@ export class JobEditComponent implements OnInit {
       this.apiService.getEmploymentDetail(this.id).then((res: any) => {
         console.log(res);
         this.jobEdit = res;
+        for (var item of this.jobEdit) {
+          this.hello.push('รับงาน')
+          console.log(this.hello)
+        }
+        for (var item of this.jobEdit) {
+          this.hello.push(item.em_detail_id)
+          console.log(this.hello)
+        }
+        
       });
     }
     statusChange(status: any){
@@ -61,13 +73,15 @@ export class JobEditComponent implements OnInit {
       }
     }
 
-    trackByIndex(index: number, obj: any): any {
-      return index;
-    }
+updateStatus(id: any, status: string){
+  this.idtest = id
+  this.status = status
+  this.test.push(status)
+  console.log(this.test)
+} 
 
   onClickBack() {
     // this.location.back();
-    console.log(this.xxy)
   }
 
 

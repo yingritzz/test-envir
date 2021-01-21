@@ -228,18 +228,7 @@ export class ApiService {
       });
     });
   }
-  async updateEmployment(id: number, item: any) {
-    return new Promise((res, rej) => {
-      this.http.put<Employment>(this.base_path+'API/update/employment/'+ id, JSON.stringify(item), this.httpOptions)
-        .subscribe((data: any) => {
-          res(data)
-        }, (err: any) => {
-          rej(err)
-        });
-    });
-  }
-  
-
+ 
   //Employment Detail
   async createEmDetail(data: any) {
     return new Promise((res, rej) => {
@@ -274,6 +263,16 @@ export class ApiService {
   async deleteEmployment(category: string, id: number) {
     return new Promise((res, rej) => {
       this.http.delete<Employment>(this.base_path+'API/deljob/'+category+'/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async updateEmployment(id: number, item: any) {
+    return new Promise((res, rej) => {
+      this.http.put<Employment>(this.base_path+'API/update/employment_detail/'+ id, JSON.stringify(item), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

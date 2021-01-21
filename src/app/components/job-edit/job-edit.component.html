@@ -68,15 +68,16 @@
                             </thead>
                             <tbody>
                                 
-                                <tr *ngFor="let edit of jobEdit; let i = index; trackBy:trackByIndex;">
+                                <tr *ngFor="let edit of jobEdit; let i = index">
                                     <ng-container *ngIf="statusChange(jobEdit[i]?.category)"></ng-container>
                                     <td>{{i+1}}</td>
                                     <td>{{edit.eq_detail_name}}</td>
                                     <td>{{edit.category}}</td>
                                     <td>
-                                        <select _ngcontent-ysi-c51="" name="status" 
+                                        <select _ngcontent-ysi-c51="" name="status" (change)="updateStatus(edit.em_detail_id,hello[i])"
+                                        [(ngModel)]="hello[i]"
                                             class="custom-select form-control ng-untouched ng-pristine ng-valid">
-                                            <option *ngFor='let rental of statusArray' [value]="rental">{{rental}}</option>                                        
+                                            <option *ngFor='let rental of statusArray' value="{{rental}}">{{rental}}</option>                                        
                                         </select>
                                     
                                 </tr>
