@@ -30,6 +30,16 @@ export class CusAddComponent implements OnInit {
   }
   
   onClickNewCus() {
+
+    if (this.data.moo == undefined) {
+      this.data.moo = "null" ;
+    }
+    if (this.data.soi == undefined) {
+      this.data.soi = ""
+    }
+    if (this.data.road == undefined) {
+      this.data.road = "" ;
+    }
     this.apiService.createCustomer(this.data).then((res: any) => {
       console.log(this.data);
       console.log('created!!');

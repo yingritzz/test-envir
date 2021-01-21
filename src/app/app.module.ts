@@ -91,7 +91,6 @@ import { JobEditComponent } from './components/job-edit/job-edit.component';
       "outerStrokeGradient": true,
       "outerStrokeWidth": 9,
       "outerStrokeColor": "#4882c2",
-      "outerStrokeGradientStopColor": "#53a9ff",
       "innerStrokeColor": "#e7e8ea",
       "innerStrokeWidth": 9,
       "animateTitle": false,

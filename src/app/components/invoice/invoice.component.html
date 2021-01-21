@@ -46,7 +46,7 @@
                             <div class="invoice-rate">ลำดับที่</div>
                             <div class="invoice-sub">อุปกรณ์</div>
                             <div class="invoice-hours">หมวดหมู่</div>
-                            <div class="invoice-subtotal">จำนวน</div>
+                            <div class="invoice-subtotal right">จำนวน</div>
                         </div>
                         <div class="invoice-desc-body">
                             <ul *ngFor="let emd of em_data ; let i = index">
@@ -54,7 +54,7 @@
                                     <div class="invoice-rate">{{i+1}}</div>
                                     <div class="invoice-sub">{{emd.eq_detail_name}}</div>
                                     <div class="invoice-hours">{{emd.category}}</div>
-                                    <div class="invoice-subtotal"><span class="weight-600">{{emd.amount}}</span></div>
+                                    <div class="invoice-subtotal right"><span class="weight-600">{{emd.amount}}</span></div>
                                 </li>
                                 
                             </ul>

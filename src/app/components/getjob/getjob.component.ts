@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 export class GetjobComponent implements OnInit {
 
   eq = ["ตรวจวัดคุณภาพอากาศ", "ตรวจวัดระดับเสียง", "ตรวจวัดความสั่นสะเทือน", "ตรวจวัดคุณภาพน้ำ"];
-  cg = ["เช่า-ยืม", "จำหน่าย", "ทดลอง", "ซ่อมบำรุง"]
+  cg = ["เช่า-ยืม", "จำหน่าย", "ทดสอบ", "ซ่อมบำรุง"]
   datepipe = new DatePipe('en-US');
 
   cus_select: any;  //ng-model
@@ -38,6 +38,9 @@ export class GetjobComponent implements OnInit {
   eqd_names: any;  //get eqd เพื่อดูชื่ออุปกรณ์
   name: any = [];  //เก็บชื่อุปกรณ์ใส่ []
   date: any = [];  //เก็บวันที่จบงานใส่ []
+  moo: any;
+  soi: any;
+  road: any;
 
   cus_id: any;
   catagory: any = [];
@@ -80,7 +83,24 @@ export class GetjobComponent implements OnInit {
     this.cus_id = data.id;
     this.email = data.cus_email;
     this.phone = data.cus_phone;
-    this.address = data.number + " ม." + data.moo + " " + data.sub_district + " " + data.district + " " + data.province + " " + data.postal_code;
+
+    if (data.moo == null) {
+      this.moo=""
+    } else {
+      this.moo = " ม."+data.moo;
+    }
+    if (data.soi == null || data.soi == "") {
+      this.soi=""
+    }else {
+      this.soi = "ซอย"+data.soi;
+    }
+    if (data.road == null || data.road == "") {
+      this.road=""
+    }else {
+      this.road = "ถนน"+data.road;
+    }
+    
+    this.address = data.number + this.moo + " " +this.soi + " " +this.road + " " + data.sub_district + " " + data.district + " " + data.province + " " + data.postal_code;
     this.cus_select = data.cus_fullname;
   }
   async getAllEq() {
@@ -129,16 +149,16 @@ export class GetjobComponent implements OnInit {
     Swal.fire("เพิ่มงานสำเร็จ!", "สามารถตรวจสอบรายละเอียดความถูกต้องของงานได้ที่ตารางด้านล่าง", "success");
   }
   deleteRow(i: number) {
-    console.log(i);
-    this.catagory.splice(i);
-    this.equipment.splice(i);
-    this.amount.splice(i);
-    this.status.splice(i);
-    this.date_get.splice(i);
-    this.date_end.splice(i);
+    console.log(i,1);
+    this.catagory.splice(i,1);
+    this.equipment.splice(i,1);
+    this.amount.splice(i,1);
+    this.status.splice(i,1);
+    this.date_get.splice(i,1);
+    this.date_end.splice(i,1);
 
-    this.name.splice(i);
-    this.date.splice(i);
+    this.name.splice(i,1);
+    this.date.splice(i,1);
   }
   save() {
     (this.job).admin_id = 1;
@@ -164,4 +184,5 @@ export class GetjobComponent implements OnInit {
       this.router.navigate(['invoice/'+res[0].lastval]);
     }); 
   }
+
 }

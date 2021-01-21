@@ -30,7 +30,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">ลำดับ</th>
+                                <th scope="col">เลขที่ใบเสร็จ</th>
                                 <th scope="col">หัวข้อ</th>
                                 <th scope="col">ลูกค้า</th>
                                 <th scope="col">จัดการ</th>
@@ -38,7 +38,7 @@
                         </thead>
                         <tbody >
                             <tr *ngFor="let fix of jobMaintenanc; let i = index">
-                                <th scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{i+1}}</a></th>
+                                <th scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{fix.id}}</a></th>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{fix.string_agg}}</a></td>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{fix.cus_fullname}}</a></td>
                                 <td>
