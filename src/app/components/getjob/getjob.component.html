@@ -38,9 +38,9 @@
                                             <li class="table">{{cus.cus_fullname}} <button class="btn btn-link" (click)="show_item(cus)">select</button></li>
                                         </ul> -->
                                         <table class="table">
-                                            <tbody *ngFor="let cus of cus_list | filter:cus_select">
+                                            <tbody *ngFor="let cus of cus | filter:cus_select">
                                                 <tr>
-                                                    <td>{{cus.cus_fullname}}</td>
+                                                    <td>{{cus}}</td>
                                                     <td class="ten"><button class="btn btn-link"
                                                             (click)="show_cus(cus)">select</button></td>
                                                 </tr>

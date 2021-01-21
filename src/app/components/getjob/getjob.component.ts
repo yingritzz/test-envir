@@ -36,6 +36,8 @@ export class GetjobComponent implements OnInit {
   eqd_names: any;  //get eqd เพื่อดูชื่ออุปกรณ์
   name: any = [];  //เก็บชื่อุปกรณ์ใส่ []
   date: any = [];  //เก็บวันที่จบงานใส่ []
+  cus: any =[];
+  cus_data: any;
   moo: any;
   soi: any;
   road: any;
@@ -71,35 +73,48 @@ export class GetjobComponent implements OnInit {
   }
 
   async getAllCustomers() {
+    this.cus=[]
     this.apiService.getListCustomers().then((res: any) => {
-      this.cus_list = res;
+      this.getData(res);
+      for ( let i=0 ; i<res.length ; i++) {
+        this.cus.push(res[i].cus_fullname);
+      }
+      console.log(this.cus)
     });
   }
-  show_cus(data: any) {
-    this.cus_list = [];
-    // console.log(data);
-    this.cus_id = data.id;
-    this.email = data.cus_email;
-    this.phone = data.cus_phone;
 
-    if (data.moo == null) {
+  getData(data:any) {
+    this.cus_list=data;
+  }
+  show_cus(data: any) {
+    for ( let i=0 ; i<this.cus_list.length ; i++) {
+      if ( this.cus_list[i].cus_fullname == data) {
+        this.cus_data=this.cus_list[i]
+        // console.log(this.cus_data);
+      }
+    }
+    this.cus_id = this.cus_data.id;
+    this.email = this.cus_data.cus_email;
+    this.phone = this.cus_data.cus_phone;
+
+    if (this.cus_data.moo == null) {
       this.moo=""
     } else {
-      this.moo = " ม."+data.moo;
+      this.moo = " ม."+this.cus_data.moo;
     }
-    if (data.soi == null || data.soi == "") {
+    if (this.cus_data.soi == null || this.cus_data.soi == "") {
       this.soi=""
     }else {
-      this.soi = "ซอย"+data.soi;
+      this.soi = "ซอย"+this.cus_data.soi;
     }
-    if (data.road == null || data.road == "") {
+    if (this.cus_data.road == null || this.cus_data.road == "") {
       this.road=""
     }else {
-      this.road = "ถนน"+data.road;
+      this.road = "ถนน"+this.cus_data.road;
     }
     
-    this.address = data.number + this.moo + " " +this.soi + " " +this.road + " " + data.sub_district + " " + data.district + " " + data.province + " " + data.postal_code;
-    this.cus_select = data.cus_fullname;
+    this.address = this.cus_data.number + this.moo + " " +this.soi + " " +this.road + " " + this.cus_data.sub_district + " " + this.cus_data.district + " " + this.cus_data.province + " " + this.cus_data.postal_code;
+    this.cus_select = this.cus_data.cus_fullname;
   }
   async getAllEq() {
     this.apiService.getListEq().then((res: any) => {
