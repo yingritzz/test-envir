@@ -35,9 +35,9 @@ export class MaintenancComponent implements OnInit {
     });
   }
 
-  delete(id: number) {
+  delete(category:string,id: number) {
     //Delete item in Student data
-    this.apiService.deleteEmployment(id).then((res: any) => {
+    this.apiService.deleteEmployment(category,id).then((res: any) => {
       console.log('deleted '+ this.id);
       this.getJobMaintenanc();
     });

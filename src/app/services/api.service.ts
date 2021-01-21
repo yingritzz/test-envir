@@ -13,7 +13,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiService {
 
   // API path
-  base_path = 'http://localhost/';
+  base_path = 'http://localhost:8888/';
 
   constructor(private http: HttpClient) { }
 
@@ -271,9 +271,9 @@ export class ApiService {
         });
     });
   }
-  async deleteEmployment(id: number) {
+  async deleteEmployment(category: string, id: number) {
     return new Promise((res, rej) => {
-      this.http.delete<Employment>(this.base_path+'API/del/employment_detail/'+id)
+      this.http.delete<Employment>(this.base_path+'API/deljob/'+category+'/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
