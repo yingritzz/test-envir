@@ -25,7 +25,7 @@ export class CustomerComponent implements OnInit {
 
   getAllCustomers() {
     this.apiService.getListCustomers().then((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.customerDataList = res;
     });
   }

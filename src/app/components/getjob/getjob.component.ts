@@ -79,7 +79,7 @@ export class GetjobComponent implements OnInit {
   }
   show_cus(data: any) {
     this.cus_list = [];
-    console.log(data);
+    // console.log(data);
     this.cus_id = data.id;
     this.email = data.cus_email;
     this.phone = data.cus_phone;
@@ -117,13 +117,13 @@ export class GetjobComponent implements OnInit {
     this.apiService.getEqd(id).then((res: any) => {
       this.eqd_names = res;
       this.name.push(this.eqd_names[0].eq_detail_name);
-      console.log(this.name);
+      // console.log(this.name);
     });
   }
   async create_eqd() {
     this.eqd_new.eq_detail_status = "ว่าง "+this.eqd_new.eq_detail_amount;
     this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
-      console.log(this.eqd_new);
+      // console.log(this.eqd_new);
     });
     this.eqd_new = new EquipmentDetail();
     this.getAllEqd();
@@ -149,7 +149,7 @@ export class GetjobComponent implements OnInit {
     Swal.fire("เพิ่มงานสำเร็จ!", "สามารถตรวจสอบรายละเอียดความถูกต้องของงานได้ที่ตารางด้านล่าง", "success");
   }
   deleteRow(i: number) {
-    console.log(i,1);
+    // console.log(i,1);
     this.catagory.splice(i,1);
     this.equipment.splice(i,1);
     this.amount.splice(i,1);
@@ -166,7 +166,7 @@ export class GetjobComponent implements OnInit {
     (this.job).annotation = this.annot;
 
     this.apiService.createEmployment(this.job).then((res: any) => {
-      console.log(res[0].lastval);
+      // console.log(res[0].lastval);
       for (let i = 0; i < this.catagory.length; i++) {
         (this.job_detail).category = this.catagory[i];
         (this.job_detail).date_get_job = this.date_get[i];
@@ -175,7 +175,7 @@ export class GetjobComponent implements OnInit {
         (this.job_detail).amount = this.amount[i];
         (this.job_detail).em_id = res[0].lastval;
         (this.job_detail).eq_detail_id = this.equipment[i]
-        console.log(this.job_detail);
+        // console.log(this.job_detail);
 
         this.apiService.createEmDetail(this.job_detail).then((response: any) => {
           // console.log('create job');

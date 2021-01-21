@@ -44,17 +44,13 @@ export class JobEditComponent implements OnInit {
 
   getJobEdit() {
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
-      console.log(res);
       this.jobEdit = res;
       for (let i = 0 ; i<this.jobEdit.length ; i++) {
         this.status_select.push(res[i].status)
-        console.log(this.status_select)
       }
       for (var item of this.jobEdit) {
         this.status_select.push(item.em_detail_id)
-        console.log(this.status_select)
       }
-
     });
   }
   statusChange(status: any) {
@@ -75,7 +71,6 @@ export class JobEditComponent implements OnInit {
   updateStatus(id: any, status: string) {
     this.status_list.push(status);
     this.id_list.push(id)
-
   }
 
   onClickBack() {
@@ -86,8 +81,8 @@ export class JobEditComponent implements OnInit {
     for (let i = 0 ; i<this.id_list.length ; i++) {
       this.status.status = this.status_list[i]
       this.apiService.updateEmd( parseInt(this.id_list[i]), this.status).then((res: any) => {
-        console.log(parseInt(this.id_list[i]));
-        console.log(this.status);
+        // console.log(parseInt(this.id_list[i]));
+        // console.log(this.status);
         });
     }
     this.location.back();

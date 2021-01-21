@@ -41,8 +41,8 @@ export class CusAddComponent implements OnInit {
       this.data.road = "" ;
     }
     this.apiService.createCustomer(this.data).then((res: any) => {
-      console.log(this.data);
-      console.log('created!!');
+      // console.log(this.data);
+      // console.log('created!!');
       this.router.navigate(['customer']);
     }); 
   }

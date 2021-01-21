@@ -15,7 +15,6 @@ import { CustomerComponent } from './components/customer/customer.component'
 import { CusProfileComponent } from './components/cus-profile/cus-profile.component'
 import { CusAddComponent } from './components/cus-add/cus-add.component'
 import { InvoiceComponent} from './components/invoice/invoice.component'
-import { EqEditComponent } from './components/eq-edit/eq-edit.component';
 import { JobDetailComponent } from './components/job-detail/job-detail.component';
 import { JobEditComponent } from './components/job-edit/job-edit.component';
 
@@ -47,7 +46,6 @@ const routes: Routes = [
   {path: 'setting', component:SettingpageComponent},
   {path: 'equipment', component:EquipmentComponent},
   {path: 'equipment/detail/:id/:name', component:EqDetailComponent},
-  {path: 'equipment/edit/sn', component:EqEditComponent},
   {path: 'line/home', component:LineHomeComponent},
   {path: 'line/getjob', component:LineGetjobComponent},
   {path: 'line/equipment', component:LineEquipmentComponent},

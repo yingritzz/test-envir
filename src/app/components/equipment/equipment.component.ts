@@ -29,7 +29,7 @@ export class EquipmentComponent implements OnInit {
 
   getAllEquipments() {
     this.apiService.getListEq().then((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.eq_data = res;
     });
   }
@@ -71,7 +71,7 @@ export class EquipmentComponent implements OnInit {
       this.eq_new.eq_name = formValues[0];
       this.eq_new.category = formValues[1];
       this.apiService.createEq(this.eq_new).then((res: any) => {
-        console.log('created Eq');
+        // console.log('created Eq');
         this.getAllEquipments()
       }); 
 

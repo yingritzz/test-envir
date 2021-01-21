@@ -54,65 +54,65 @@ export class HomeComponent implements OnInit {
   
   getTodayList() {
     this.apiService.getHome('todaylist').then((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.todaylist = res;
     });
   }
   getOverdue() {
     this.apiService.getHome('overdue').then((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.overdue = res;
     });
   }
   getLastInsert() {
     this.apiService.getHome('lastinsert').then((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.lastinsert = res;
     });
   }
   getCountFix() {
     this.apiService.getHome('count_maintenanc').then((res: any) => {
-      console.log(res[0].count);
+      // console.log(res[0].count);
       this.countFix = res[0].count; 
 
       this.apiService.getHome('count_all').then((res: any) => {
         this.percenFix = (this.countFix/res[0].count)*100
-        console.log('fix'+this.percenFix.toFixed(0));
+        // console.log('fix'+this.percenFix.toFixed(0));
       });
     });
    
   }
   getCountRental() {
     this.apiService.getHome('count_rental').then((res: any) => {
-      console.log(res[0].count);
+      // console.log(res[0].count);
       this.countRental = res[0].count; 
 
       this.apiService.getHome('count_all').then((res: any) => {
         this.percenRental = (this.countRental/res[0].count)*100
-        console.log('rental'+this.percenRental.toFixed(0));
+        // console.log('rental'+this.percenRental.toFixed(0));
       });
     });
   }
   getCountTest() {
     this.apiService.getHome('count_testing').then((res: any) => {
-      console.log(res[0].count);
+      // console.log(res[0].count);
       this.countTest = res[0].count; 
 
       this.apiService.getHome('count_all').then((res: any) => {
         this.percenTest = (this.countTest/res[0].count)*100
-        console.log('test'+this.percenTest.toFixed(0));
+        // console.log('test'+this.percenTest.toFixed(0));
       });
     });
     
   }
   getCountSell() {
     this.apiService.getHome('count_selling').then((res: any) => {
-      console.log(res[0].count);
+      // console.log(res[0].count);
       this.countSell = res[0].count; 
 
       this.apiService.getHome('count_all').then((res: any) => {
         this.percenSell = (this.countSell/res[0].count)*100
-        console.log('sell'+this.percenSell.toFixed(0));
+        // console.log('sell'+this.percenSell.toFixed(0));
       });
     });
     

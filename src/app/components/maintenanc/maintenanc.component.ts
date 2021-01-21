@@ -30,7 +30,7 @@ export class MaintenancComponent implements OnInit {
 
   getJobMaintenanc() {
     this.apiService.getEmployment("maintenanc").then((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.jobMaintenanc = res;
     });
   }
@@ -38,16 +38,12 @@ export class MaintenancComponent implements OnInit {
   delete(category:string,id: number) {
     //Delete item in Student data
     this.apiService.deleteEmployment(category,id).then((res: any) => {
-      console.log('deleted '+ this.id);
+      // console.log('deleted '+ this.id);
       this.getJobMaintenanc();
     });
   }
 
-  statusChange(wow:any){
-    if (wow == 'ซ่อมบำรุง'){
-      console.log("ddsdas");
-    }
-  }
+ 
 
 }
 

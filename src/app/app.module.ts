@@ -39,7 +39,6 @@ import { LineMaintenancComponent } from './LINE/line-maintenanc/line-maintenanc.
 import { LineRentalComponent } from './LINE/line-rental/line-rental.component';
 import { LineSellingComponent } from './LINE/line-selling/line-selling.component';
 import { LineTestingComponent } from './LINE/line-testing/line-testing.component';
-import { EqEditComponent } from './components/eq-edit/eq-edit.component';
 import { JobDetailComponent } from './components/job-detail/job-detail.component';
 import { JobEditComponent } from './components/job-edit/job-edit.component';
 
@@ -74,7 +73,6 @@ import { JobEditComponent } from './components/job-edit/job-edit.component';
     LineRentalComponent,
     LineSellingComponent,
     LineTestingComponent,
-    EqEditComponent,
     JobDetailComponent,
     JobEditComponent
   ],

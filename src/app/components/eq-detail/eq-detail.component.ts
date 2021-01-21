@@ -41,7 +41,7 @@ export class EqDetailComponent implements OnInit {
 
   getEqDetail() {
     this.apiService.getEqDetail(this.eq_id).then((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.eqd_data = res;
     });
   }
@@ -56,8 +56,8 @@ export class EqDetailComponent implements OnInit {
   async edit_eqd() {
     this.apiService.updateEqDetail(this.eqd_id, this.eqd_edit).then((res: any) => {
       this.getEqDetail()
-      console.log(this.eqd_id);
-      console.log(this.eqd_edit);
+      // console.log(this.eqd_id);
+      // console.log(this.eqd_edit);
     });
     this.eqd_edit= new EquipmentDetail();
   }
@@ -91,7 +91,7 @@ export class EqDetailComponent implements OnInit {
       this.eqd_new.eq_detail_status = formValues[3];
       this.eqd_new.eq_id = this.eq_id;
       this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
-        console.log('created Eq');
+        // console.log('created Eq');
         this.getEqDetail()
       });
       Swal.fire('บันทึกสำเร็จ',

@@ -35,14 +35,14 @@ export class CusProfileComponent implements OnInit {
   update() {
     this.apiService.updateCustomer(this.id, this.cusEdit).then((res: any) => {
     window.location.reload();
-    console.log(this.cusEdit);
+    // console.log(this.cusEdit);
     });
   }
 
   delete() {
     //Delete item in Student data
     this.apiService.deleteCustomer(this.id).then((res: any) => {
-      console.log('deleted '+ this.id);
+      // console.log('deleted '+ this.id);
       this.router.navigate(['customer']);
       this.refreshCustomers();
     });
