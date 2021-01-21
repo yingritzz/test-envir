@@ -34,10 +34,10 @@ export class EqDetailComponent implements OnInit {
     this.getEqDetail();
   }
 
-  async getIdEqd(id:any) {
+  async getIdEqd(id: any) {
     this.eqd_id = id;
     this.apiService.getEqd(id).then((res: any) => {
-     console.log(res);
+      //  console.log(res);
       this.eqd_edit = res[0];
     });
   }
@@ -49,11 +49,21 @@ export class EqDetailComponent implements OnInit {
     });
   }
 
-  delete(id: any) {
-    //Delete item in Student data
-    this.apiService.deleteEqDetail(id).then((res: any) => {
-      this.getEqDetail();
-    });
+  delete(id: any, index: number) {
+    Swal.fire({
+      title: 'คุณต้องการลบอุปกรณ์ ' + this.eqd_data[index].id + ' : ' + this.eqd_data[index].eq_detail_name + ' ใช่หรือไม่?',
+      showDenyButton: true,
+      confirmButtonText: `ใช่`,
+      denyButtonText: `ไม่ใช่`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.deleteEqDetail(id).then((res: any) => {
+          this.getEqDetail();
+        });
+        Swal.fire('ลบสำเร็จ!', '', 'success')
+      }
+    })
+
   }
 
   async edit_eqd() {
@@ -62,7 +72,7 @@ export class EqDetailComponent implements OnInit {
       // console.log(this.eqd_id);
       // console.log(this.eqd_edit);
     });
-    this.eqd_edit= new EquipmentDetail();
+    this.eqd_edit = new EquipmentDetail();
   }
 
   async insert_eq_detail() {

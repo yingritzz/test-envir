@@ -45,7 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let eqd of eqd_data">
+                        <tr *ngFor="let eqd of eqd_data; let i = index">
                             <td>{{eqd.id}}</td>
                             <td>{{eqd.eq_detail_name}}</td>
                             <td>{{eqd.eq_detail_amount}}</td>
@@ -58,7 +58,7 @@
                                             aria-hidden="true"></i></button>
 
                                     <button class="btn btn-danger btn-sm" type="button" value="submit"
-                                        (click)="delete(eqd.id)"><i class="icon-copy fa fa-trash btn-size"
+                                        (click)="delete(eqd.id, i)"><i class="icon-copy fa fa-trash btn-size"
                                             aria-hidden="true"></i></button>
                                 </div>
 

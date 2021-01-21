@@ -34,9 +34,19 @@ export class CusProfileComponent implements OnInit {
   }
 
   update() {
+    if (this.cusEdit.moo == undefined || this.cusEdit.moo == null) {
+      this.cusEdit.moo = "null" ;
+    }
+    if (this.cusEdit.soi == undefined || this.cusEdit.soi == null) {
+      this.cusEdit.soi = ""
+    }
+    if (this.cusEdit.road == undefined || this.cusEdit.road == null) {
+      this.cusEdit.road = "" ;
+    }
+
     this.apiService.updateCustomer(this.id, this.cusEdit).then((res: any) => {
     window.location.reload();
-    // console.log(this.cusEdit);
+    console.log(this.cusEdit);
     });
   }
 

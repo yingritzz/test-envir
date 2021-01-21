@@ -11,38 +11,61 @@ import { Equipment } from '../../models/equipment';
 })
 export class EquipmentComponent implements OnInit {
 
-  eq_count: any = 99;
+  eq_count: any;
   eq_new: Equipment;
   eq_data: any;
 
   constructor(
     public router: Router,
     public apiService: ApiService
-    ) { 
-      this.eq_data = [];
-      this.eq_new = new Equipment();
-     }
+  ) {
+    this.eq_data = [];
+    this.eq_new = new Equipment();
+  }
 
   ngOnInit(): void {
     this.getAllEquipments();
   }
 
   getAllEquipments() {
+    this.eq_count = [];
     this.apiService.getListEq().then((res: any) => {
       // console.log(res);
-      this.eq_data = res;
+      this.getData(res);
+      for (let x = 0; x < res.length; x++) {
+        this.apiService.getEqDetail(res[x].id).then((response: any) => {
+          this.eq_count.push(response.length)
+          // console.log(this.eq_count);
+        });
+      }
+
     });
   }
 
-  onClickDetail(id:number, name:string) {
-    this.router.navigateByUrl('equipment/detail/'+id+'/'+name)
+  getData(data:any){
+    this.eq_data=data
   }
 
-  delete(id: number) {
+  onClickDetail(id: number, name: string) {
+    this.router.navigateByUrl('equipment/detail/' + id + '/' + name)
+  }
+
+  delete(id: number, index:number) {
     //Delete item in Student data
-    this.apiService.deleteEq(id).then((res: any) => {
-      this.getAllEquipments();
-    });
+    Swal.fire({
+      title: 'คุณต้องการลบอุปกรณ์ '+ this.eq_data[index].eq_name + ' ทั้งหมดใช่หรือไม่?',
+      showDenyButton: true,
+      confirmButtonText: `ใช่`,
+      denyButtonText: `ไม่ใช่`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.apiService.deleteEq(id).then((res: any) => {
+          this.getAllEquipments();
+        });
+        Swal.fire('ลบสำเร็จ!', '', 'success')
+      }
+    })
   }
 
   async opensweet() {
@@ -73,7 +96,7 @@ export class EquipmentComponent implements OnInit {
       this.apiService.createEq(this.eq_new).then((res: any) => {
         // console.log('created Eq');
         this.getAllEquipments()
-      }); 
+      });
 
       Swal.fire('บันทึกสำเร็จ',
         '',
