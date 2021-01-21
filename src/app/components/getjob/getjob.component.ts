@@ -2,8 +2,6 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from '../../services/api.service'
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Customer } from '../../models/customer';
-import { Equipment } from '../../models/equipment';
 import { EquipmentDetail } from '../../models/equipment-detail';
 import { Employment } from '../../models/employment';
 import { EmploymentDetail } from '../../models/employment-detail';
@@ -124,9 +122,10 @@ export class GetjobComponent implements OnInit {
     this.eqd_new.eq_detail_status = "ว่าง "+this.eqd_new.eq_detail_amount;
     this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
       // console.log(this.eqd_new);
+      this.getAllEqd();
     });
+    
     this.eqd_new = new EquipmentDetail();
-    this.getAllEqd();
   }
 
   async add_getJob() {
