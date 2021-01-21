@@ -270,5 +270,14 @@ export class ApiService {
         });
     });
   }
-
+  async getHome(endpoint: string) {
+    return new Promise((res, rej) => {
+      this.http.get(this.base_path+'API/'+endpoint)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
 }
