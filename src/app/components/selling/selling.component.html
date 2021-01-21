@@ -30,7 +30,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">ลำดับ</th>
+                                <th scope="col">เลขที่ใบเสร็จ</th>
                                 <th scope="col">หัวข้อ</th>
                                 <th scope="col">ลูกค้า</th>
                             
@@ -39,7 +39,7 @@
                         </thead>
                         <tbody >
                             <tr *ngFor="let sell of jobSelling; let i = index">
-                                <th scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{i+1}}</a></th>
+                                <th scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.id}}</a></th>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.string_agg}}</a></td>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.cus_fullname}}</a></td>
                                 
@@ -51,7 +51,7 @@
                                                 aria-hidden="true"></i></span>
                                         <span class="btn btn-secondary btn-sm" type="button" value="submit"><i
                                                 class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
-                                        <span class="btn btn-danger btn-sm" type="button" value="submit" (click)="delete(sell.id)"><i
+                                        <span class="btn btn-danger btn-sm" type="button" value="submit" (click)="delete(sell.emd_id)"><i
                                                 class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></span>
                                     </div>
                                 </td>

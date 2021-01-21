@@ -238,16 +238,7 @@ export class ApiService {
         });
     });
   }
-  async deleteEmployment(id: number) {
-    return new Promise((res, rej) => {
-      this.http.delete<Employment>(this.base_path+'API/del/employment/'+id)
-        .subscribe((data: any) => {
-          res(data)
-        }, (err: any) => {
-          rej(err)
-        });
-    });
-  }
+  
 
   //Employment Detail
   async createEmDetail(data: any) {
@@ -273,6 +264,16 @@ export class ApiService {
   async getHome(endpoint: string) {
     return new Promise((res, rej) => {
       this.http.get(this.base_path+'API/'+endpoint)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async deleteEmployment(id: number) {
+    return new Promise((res, rej) => {
+      this.http.delete<Employment>(this.base_path+'API/del/employment_detail/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

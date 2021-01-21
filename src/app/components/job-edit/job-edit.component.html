@@ -74,11 +74,9 @@
                                     <td>{{edit.eq_detail_name}}</td>
                                     <td>{{edit.category}}</td>
                                     <td>
-                                        
                                         <select _ngcontent-ysi-c51="" name="status" 
-                                            class="custom-select form-control ng-untouched ng-pristine ng-valid"
-                                            ng-reflect-name="status" id="x">
-                                            <option _ngcontent-ysi-c51="" *ngFor='let rental of statusArray' [value]="rental"  ng-reflect-value="" >{{rental}}</option>                                        
+                                            class="custom-select form-control ng-untouched ng-pristine ng-valid">
+                                            <option *ngFor='let rental of statusArray' [value]="rental">{{rental}}</option>                                        
                                         </select>
                                     
                                 </tr>
