@@ -12,7 +12,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiService {
 
   // API path
-  base_path = 'http://localhost/';
+  base_path = 'http://localhost:8888/';
 
   constructor(private http: HttpClient) { }
 
