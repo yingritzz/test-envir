@@ -121,6 +121,7 @@ export class GetjobComponent implements OnInit {
     });
   }
   async getAllEqd() {
+    this.eqd_list=[];
     this.apiService.getListEqd().then((res: any) => {
       // this.eqd_list = res;
       for (let i = 0; i < res.length; i++) {
@@ -150,6 +151,7 @@ export class GetjobComponent implements OnInit {
     for (let i = 0; i < this.eqd_list.length; i++) {
       if (this.eqd_list[i].id == this.equipment_select) {
         this.eqd_list.splice(i, 1);
+        console.log(this.eqd_list)
       }
     }
     this.getEqd(this.equipment_select);
@@ -171,9 +173,12 @@ export class GetjobComponent implements OnInit {
     Swal.fire("เพิ่มงานสำเร็จ!", 'สามารถตรวจสอบรายละเอียดความถูกต้องของงาน' + '<br>' + 'ได้ที่ตารางด้านล่าง', "success");
   }
   deleteRow(i: number) {
+    console.log(this.equipment[i]);
     this.apiService.getEqd(this.equipment[i]).then((res: any) => {
-      this.eqd_list.push(res[i])
+      this.eqd_list.push(res[0])
+      // console.log(this.eqd_list);
     });
+
     this.catagory.splice(i, 1);
     this.equipment.splice(i, 1);
     this.amount.splice(i, 1);

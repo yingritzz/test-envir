@@ -82,6 +82,10 @@ export class JobEditComponent implements OnInit {
         // console.log(this.status);
         });
     }
+    
+    this.apiService.getEmploymentDetail(this.id).then((res: any) => {
+      
+    });
     this.location.back();
   }
 
