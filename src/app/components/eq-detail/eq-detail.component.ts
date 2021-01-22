@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ApiService } from '../../services/api.service';
-import { EquipmentDetail } from '../../models/equipment-detail';
+import { EquipmentDetail } from '../../models/equipment';
 
 @Component({
   selector: 'app-eq-detail',

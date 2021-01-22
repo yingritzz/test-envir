@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Customer } from '../models/customer';
-import { Equipment } from '../models/equipment';
-import { EquipmentDetail } from '../models/equipment-detail';
-import { Employment } from '../models/employment';
-import { EmploymentDetailEdit } from '../models/employment-detail-edit'
+import { Equipment, EquipmentDetail } from '../models/equipment';
+import { Employment, EmploymentDetailEdit } from '../models/employment';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -232,6 +230,16 @@ export class ApiService {
   async deleteEm(id: number) {
     return new Promise((res, rej) => {
       this.http.delete(this.base_path+'API/del/employment/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async updateEqStatus(id: any) {
+    return new Promise((res, rej) => {
+      this.http.put(this.base_path+'API/update/eq_status/'+id, this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

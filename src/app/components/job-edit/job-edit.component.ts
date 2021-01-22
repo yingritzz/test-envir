@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
-import { EqDetailComponent } from '../eq-detail/eq-detail.component';
-import { EmploymentDetail } from '../../models/employment-detail';
-import { EmploymentDetailEdit } from '../../models/employment-detail-edit';
-
+import { EmploymentDetail,EmploymentDetailEdit  } from '../../models/employment';
 
 @Component({
   selector: 'app-job-edit',
