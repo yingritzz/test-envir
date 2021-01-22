@@ -31,6 +31,10 @@ export class CusProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
+    this.getCustomer();
+  }
+
+  getCustomer() {
     this.apiService.getCustomer(this.id).then((res: any) => {
       this.getData(res);
     
@@ -39,12 +43,12 @@ export class CusProfileComponent implements OnInit {
       } else {
         this.moo = " ม."+res[0].moo;
       }
-      if (res[0].soi == null || res[0].soi == " ") {
+      if (res[0].soi == null || res[0].soi == "") {
         this.soi=""
       }else {
         this.soi = "ซอย"+res[0].soi;
       }
-      if (res[0].road == null || res[0].road == " ") {
+      if (res[0].road == null || res[0].road == "") {
         this.road=""
       }else {
         this.road = "ถนน"+res[0].road;
@@ -54,19 +58,18 @@ export class CusProfileComponent implements OnInit {
 
     });
   }
-
   getData(data: any) {
     this.cusData=data;
   }
 
   update() {
-    if (this.cusEdit.moo == undefined || this.cusEdit.moo == null) {
+    if (this.cusEdit.moo == undefined || this.cusEdit.moo == null || this.cusEdit.moo == "") {
       this.cusEdit.moo = "null" ;
     }
-    if (this.cusEdit.soi == undefined || this.cusEdit.soi == null) {
+    if (this.cusEdit.soi == undefined || this.cusEdit.soi == null || this.cusEdit.soi == "") {
       this.cusEdit.soi = ""
     }
-    if (this.cusEdit.road == undefined || this.cusEdit.road == null) {
+    if (this.cusEdit.road == undefined || this.cusEdit.road == null || this.cusEdit.road == "") {
       this.cusEdit.road = "" ;
     }
 
