@@ -102,12 +102,12 @@ export class GetjobComponent implements OnInit {
     } else {
       this.moo = " ม."+this.cus_data.moo;
     }
-    if (this.cus_data.soi == null || this.cus_data.soi == "") {
+    if (this.cus_data.soi == null || this.cus_data.soi == " ") {
       this.soi=""
     }else {
       this.soi = "ซอย"+this.cus_data.soi;
     }
-    if (this.cus_data.road == null || this.cus_data.road == "") {
+    if (this.cus_data.road == null || this.cus_data.road == " ") {
       this.road=""
     }else {
       this.road = "ถนน"+this.cus_data.road;
@@ -160,7 +160,7 @@ export class GetjobComponent implements OnInit {
     this.count_select = '';
     this.d_getjob = '';
     this.d_endjob = '';
-    Swal.fire("เพิ่มงานสำเร็จ!", "สามารถตรวจสอบรายละเอียดความถูกต้องของงานได้ที่ตารางด้านล่าง", "success");
+    Swal.fire("เพิ่มงานสำเร็จ!", 'สามารถตรวจสอบรายละเอียดความถูกต้องของงาน' +'<br>' +'ได้ที่ตารางด้านล่าง', "success");
   }
   deleteRow(i: number) {
     // console.log(i,1);

@@ -229,6 +229,16 @@ export class ApiService {
       });
     });
   }
+  async deleteEm(id: number) {
+    return new Promise((res, rej) => {
+      this.http.delete(this.base_path+'API/del/employment/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
  
   //Employment Detail
   async createEmDetail(data: any) {

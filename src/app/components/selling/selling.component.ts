@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-selling',
@@ -28,16 +29,30 @@ export class SellingComponent implements OnInit {
   getJobSelling() {
     this.apiService.getEmployment("selling").then((res: any) => {
       console.log(res);
-      this.jobSelling = res;
+      this.getData(res);
     });
   }
 
-  delete(category:string,id: number) {
-    //Delete item in Student data
-    this.apiService.deleteEmployment(category,id).then((res: any) => {
-      console.log('deleted '+ this.id);
-      this.getJobSelling();
-    });
+  getData(data: any) {
+    this.jobSelling = data;
   }
 
+  delete(id: number, index:number) {
+    Swal.fire({
+      title: 'ยืนยันการลบ',
+      html: this.jobSelling[index].string_agg + '<br>' + 'จากใบเสร็จเลขที่ ' + this.jobSelling[index].id,
+      showDenyButton: true,
+      confirmButtonText: `ใช่`,
+      denyButtonText: `ไม่ใช่`,
+      icon: "warning",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.deleteEmployment(this.type, id).then((res: any) => {
+          console.log('deleted '+ this.id);
+          this.getJobSelling();
+        });
+        Swal.fire('ลบสำเร็จ!', '', 'success')
+      }
+    })
+  }
 }

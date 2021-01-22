@@ -51,14 +51,14 @@ export class EquipmentComponent implements OnInit {
   }
 
   delete(id: number, index:number) {
-    //Delete item in Student data
     Swal.fire({
-      title: 'คุณต้องการลบอุปกรณ์ '+ this.eq_data[index].eq_name + ' ทั้งหมดใช่หรือไม่?',
+      title: 'ยืนยันการลบอุปกรณ์',
+      text: this.eq_data[index].eq_name,
       showDenyButton: true,
       confirmButtonText: `ใช่`,
       denyButtonText: `ไม่ใช่`,
+      icon: "warning",
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.apiService.deleteEq(id).then((res: any) => {
           this.getAllEquipments();

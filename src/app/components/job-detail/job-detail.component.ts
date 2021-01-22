@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Location} from '@angular/common';
-import { ActivatedRoute,Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-job-detail',
@@ -19,8 +20,8 @@ export class JobDetailComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public apiService: ApiService) {
-      this.jobDetail = [];
-     }
+    this.jobDetail = [];
+  }
 
   ngOnInit(): void {
     this.type = this.activatedRoute.snapshot.params["type"];
@@ -34,11 +35,31 @@ export class JobDetailComponent implements OnInit {
 
   getJobDetail() {
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
-      // console.log(res);
       this.jobDetail = res;
     });
+  }
+
+  onClickDelete() {
+    console.log(this.id)
+    Swal.fire({
+      title: 'ยืนยันการลบ',
+      html: 'งานทั้งหมดจากใบเสร็จเลขที่ ' + this.id ,
+      showDenyButton: true,
+      confirmButtonText: `ใช่`,
+      denyButtonText: `ไม่ใช่`,
+      icon: "warning",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.deleteEm(this.id).then((res: any) => {
+          Swal.fire('ลบสำเร็จ!', '', 'success')
+          this.goBack();
+        });
+        
+      }
+    })
   }
   goBack() {
     window.history.back();
   }
+
 }

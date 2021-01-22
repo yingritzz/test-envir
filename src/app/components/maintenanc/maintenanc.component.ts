@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-maintenanc',
@@ -13,8 +14,6 @@ export class MaintenancComponent implements OnInit {
   sell: any;
   id!: number;
   type: string = "maintenanc";
-  test: string[] = [];
-  
 
 
   constructor(
@@ -29,18 +28,32 @@ export class MaintenancComponent implements OnInit {
   }
 
   getJobMaintenanc() {
-    this.apiService.getEmployment("maintenanc").then((res: any) => {
+    this.apiService.getEmployment(this.type).then((res: any) => {
       // console.log(res);
-      this.jobMaintenanc = res;
+      this.getData(res);
     });
   }
 
-  delete(category:string,id: number) {
-    //Delete item in Student data
-    this.apiService.deleteEmployment(category,id).then((res: any) => {
-      // console.log('deleted '+ this.id);
-      this.getJobMaintenanc();
-    });
+  getData(data: any) {
+    this.jobMaintenanc = data;
+  }
+
+  delete(id: number, index:number) {
+    Swal.fire({
+      title: 'ยืนยันการลบ',
+      html: this.jobMaintenanc[index].string_agg + '<br>' + 'จากใบเสร็จเลขที่ ' + this.jobMaintenanc[index].id,
+      showDenyButton: true,
+      confirmButtonText: `ใช่`,
+      denyButtonText: `ไม่ใช่`,
+      icon: "warning",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.deleteEmployment(this.type,id).then((res: any) => {
+          this.getJobMaintenanc();
+        });
+        Swal.fire('ลบสำเร็จ!', '', 'success')
+      }
+    })
   }
 
  

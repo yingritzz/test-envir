@@ -51,10 +51,12 @@ export class EqDetailComponent implements OnInit {
 
   delete(id: any, index: number) {
     Swal.fire({
-      title: 'คุณต้องการลบอุปกรณ์ ' + this.eqd_data[index].id + ' : ' + this.eqd_data[index].eq_detail_name + ' ใช่หรือไม่?',
+      title: 'ยืนยันการลบอุปกรณ์',
+      text: this.eqd_data[index].id + ' : ' + this.eqd_data[index].eq_detail_name,
       showDenyButton: true,
       confirmButtonText: `ใช่`,
       denyButtonText: `ไม่ใช่`,
+      icon: "warning",
     }).then((result) => {
       if (result.isConfirmed) {
         this.apiService.deleteEqDetail(id).then((res: any) => {
