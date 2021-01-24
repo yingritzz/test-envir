@@ -75,44 +75,52 @@
                                     <div class="tab-pane fade show active" id="timeline" role="tabpanel">
                                         <div class="pd-20">
                                             <div class="profile-timeline">
-                                                <div class="timeline-month">
-                                                    <h5>ธันวาคม 2563</h5>
-                                                </div>
                                                 <div class="profile-timeline-list">
                                                     <ul>
                                                         <li>
-                                                            <div class="date">16 ธันวาคม</div>
+                                                            <div class="date" >เช่า-ยืม</div>
                                                             <div class="task-name">
-                                                                <i> </i> เช่า-ยืม
+                                                                <i> </i> <br>
                                                             </div>
-                                                            <p>CO2/NO2</p>
-                                                            <p>CO23</p>
-                                                            <p>NO</p>
-                                                            <div class="task-name">
-                                                                <i> </i> ส่งซ่อม
-                                                            </div>
-                                                            <p>CO2/NO2</p>
+                                                            <p *ngFor="let cus of rental; let i = index">{{cus}}
+                                                            </p>
                                                         </li>
 
                                                     </ul>
                                                 </div>
-                                                <div class="timeline-month">
-                                                    <h5>พฤศจิกายน 2563</h5>
+                                                <div class="profile-timeline-list">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="date">ทดสอบ</div>
+                                                            <div class="task-name">
+                                                                <i> </i> <br>
+                                                            </div>
+                                                            <p *ngFor="let cus of testing; let i = index">{{cus}}
+                                                            </p>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                                 <div class="profile-timeline-list">
                                                     <ul>
                                                         <li>
-                                                            <div class="date">10 พฤศจิกายน</div>
+                                                            <div class="date">ซ่อมบำรุง</div>
                                                             <div class="task-name">
-                                                                <i> </i> ส่งซ่อม
+                                                                <i> </i> <br>
                                                             </div>
-                                                            <p>CO2/NO2</p>
-                                                            <p>CO23</p>
-                                                            <p>NO</p>
+                                                            <p *ngFor="let cus of maintenanc; let i = index">{{cus}}
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="profile-timeline-list">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="date">จำหน่าย</div>
                                                             <div class="task-name">
-                                                                <i> </i> ซื้อ
+                                                                <i> </i> <br>
                                                             </div>
-                                                            <p>CO2/NO2</p>
+                                                            <p *ngFor="let cus of selling; let i = index">{{cus}}
+                                                            </p>
                                                         </li>
                                                     </ul>
                                                 </div>

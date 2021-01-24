@@ -15,6 +15,15 @@ export class CusProfileComponent implements OnInit {
   cusEdit: Customer;
   cusData: any;
   cus: any;
+  cusProfile: any = [];
+  rental: any = [];
+  testing: any = [];
+  maintenanc: any = [];
+  selling: any = [];
+  date_rental: any = [];
+  date_testing: any = [];
+  date_maintenanc: any = [];
+  date_selling: any = [];
 
   moo: any;
   soi: any;
@@ -32,6 +41,7 @@ export class CusProfileComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
     this.getCustomer();
+    this.profile();
   }
 
   getCustomer() {
@@ -103,6 +113,36 @@ export class CusProfileComponent implements OnInit {
     this.apiService.getListCustomers().then((res: any) => {
       // console.log('customerList : ' + res);
       this.cus = res;
+    });
+  }
+
+  profile(){
+    this.apiService.customerProfile(this.id).then((res: any) => {
+      // console.log('customerList : ' + res);
+      this.cusProfile = res;
+      console.log(this.cusProfile)
+      for (let i = 0; i < this.cusProfile.length; i++) {
+        if (this.cusProfile[i].category == 'เช่า-ยืม'){
+            this.rental.push(this.cusProfile[i].eq_detail_name);
+            console.log(this.rental);
+              this.date_rental.push(this.cusProfile[i].date_get_job)
+              console.log(this.date_rental)
+           
+              
+        }
+        else if (this.cusProfile[i].category == 'ทดสอบ'){
+          this.testing.push(this.cusProfile[i].eq_detail_name);
+          console.log(this.testing);
+      }
+      else if (this.cusProfile[i].category == 'ซ่อมบำรุง'){
+        this.maintenanc.push(this.cusProfile[i].eq_detail_name);
+        console.log(this.maintenanc);
+    }
+    else if (this.cusProfile[i].category == 'จำหน่าย'){
+      this.selling.push(this.cusProfile[i].eq_detail_name);
+      console.log(this.selling);
+  }
+      }
     });
   }
 
