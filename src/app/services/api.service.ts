@@ -14,7 +14,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiService {
 
   // API path
-  base_path = 'http://localhost/';
+  base_path = 'http://localhost:8888/';
 
   constructor(private http: HttpClient) { }
 
@@ -107,6 +107,16 @@ export class ApiService {
   async deleteCustomer(id: number) {
     return new Promise((res, rej) => {
       this.http.delete<Customer>(this.base_path+'API/del/customer/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async customerProfile(id: number) {
+    return new Promise((res, rej) => {
+      this.http.get<Customer>(this.base_path+'API/history/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
