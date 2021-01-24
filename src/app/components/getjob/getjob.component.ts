@@ -52,7 +52,7 @@ export class GetjobComponent implements OnInit {
   annot: string = " ";
   job: Employment;
   job_detail: EmploymentDetail;
-
+  job_data: any;
 
   constructor(
     public router: Router,
@@ -206,13 +206,14 @@ export class GetjobComponent implements OnInit {
         (this.job_detail).eq_detail_id = this.equipment[i]
 
         this.apiService.createEmDetail(this.job_detail).then((response: any) => {
+          this.apiService.updateEqStatus(this.equipment[i]).then((resp: any) => {
+          });
         });
-        this.apiService.updateEqStatus(this.equipment[i]).then((response: any) => {
-        });
-        
       }
       this.router.navigate(['invoice/' + res[0].lastval]);
-
+      this.apiService.getEmDetail(res[0].lastval).then((res: any) => {
+        this.job_data = res;
+      });
     });
   }
 
