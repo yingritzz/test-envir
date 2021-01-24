@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { Login } from '../../models/admin';
+import { ApiService } from '../../services/api.service'
 
 @Component({
   selector: 'app-login',
@@ -8,10 +10,14 @@ import { Route, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  mUsername: String = "";
-  mPassword: String = "";
+  login_data: Login;
 
-  constructor(public route: Router) { }
+  constructor(
+    public router: Router,
+    public apiService: ApiService
+    ) { 
+      this.login_data = new Login();
+    }
 
   ngOnInit(): void {
   }
@@ -22,7 +28,16 @@ export class LoginComponent implements OnInit {
     // } else {
     //   window.alert("Login Failed");
     // }
-    this.route.navigateByUrl('home')
+    // this.router.navigateByUrl('home')
+    
+    this.apiService.login(this.login_data).then((res: any) => {
+      console.log(res);
+      this.router.navigateByUrl('home')
+    },
+    (err: any) => {
+      console.log(err);
+      window.alert("กรุณาตรวจสอบ username หรือ password ให้ถูกต้อง");
+    });
   }
 
 }

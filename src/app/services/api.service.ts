@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
 import { Customer } from '../models/customer';
 import { Equipment, EquipmentDetail } from '../models/equipment';
 import { Employment, EmploymentDetailEdit } from '../models/employment';
+import { Login } from '../models/admin';
+
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -50,6 +52,17 @@ export class ApiService {
   //       });
   //   });
   // }
+
+  async login(user: any) {
+    return new Promise((res, rej) => {
+      this.http.post<Login>(this.base_path+'API/login.php', JSON.stringify(user), this.httpOptions)
+      .subscribe((data: any) => {
+        res(data)
+      }, (err: any) => {
+        rej(err)
+      });
+    });
+  }
 
   async getListCustomers() {
     return new Promise((res, rej) => {

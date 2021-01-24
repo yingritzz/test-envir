@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from '../../services/api.service'
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EquipmentDetail } from '../../models/equipment';
 import { Employment, EmploymentDetail } from '../../models/employment';
