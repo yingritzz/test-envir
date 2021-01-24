@@ -52,7 +52,7 @@ export class GetjobComponent implements OnInit {
   annot: string = " ";
   job: Employment;
   job_detail: EmploymentDetail;
-
+  job_data: any;
 
   constructor(
     public router: Router,
@@ -78,7 +78,7 @@ export class GetjobComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         this.cus.push(res[i].cus_fullname);
       }
-      console.log(this.cus)
+      // console.log(this.cus)
     });
   }
 
@@ -126,7 +126,7 @@ export class GetjobComponent implements OnInit {
       // this.eqd_list = res;
       for (let i = 0; i < res.length; i++) {
         if (res[i].eq_detail_status != 'ไม่ว่าง')
-          this.eqd_list.push(res[i])
+          this.eqd_list.push(res[i]);
       }
     });
   }
@@ -141,7 +141,7 @@ export class GetjobComponent implements OnInit {
     this.eqd_new.eq_detail_status = "ว่าง " + this.eqd_new.eq_detail_amount;
     this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
       // console.log(this.eqd_new);
-      this.getAllEqd();
+      this.eqd_list.push(res[0]);
     });
 
     this.eqd_new = new EquipmentDetail();
@@ -151,7 +151,7 @@ export class GetjobComponent implements OnInit {
     for (let i = 0; i < this.eqd_list.length; i++) {
       if (this.eqd_list[i].id == this.equipment_select) {
         this.eqd_list.splice(i, 1);
-        console.log(this.eqd_list)
+        // console.log(this.eqd_list)
       }
     }
     this.getEqd(this.equipment_select);
@@ -195,17 +195,7 @@ export class GetjobComponent implements OnInit {
     (this.job).cus_id = parseInt(this.cus_id);
     (this.job).annotation = this.annot;
 
-    // (this.job_detail).category = this.catagory;
-    //     (this.job_detail).date_get_job = this.date_get;
-    //     (this.job_detail).date_end_job = this.date_end;
-    //     (this.job_detail).status = this.status;
-    //     (this.job_detail).amount = this.amount;
-  
-    //     (this.job_detail).eq_detail_id = this.equipment
-    //     console.log(this.job_detail);
-
     this.apiService.createEmployment(this.job).then((res: any) => {
-      // console.log(res[0].lastval);
       for (let i = 0; i < this.catagory.length; i++) {
         (this.job_detail).category = this.catagory[i];
         (this.job_detail).date_get_job = this.date_get[i];
@@ -214,16 +204,16 @@ export class GetjobComponent implements OnInit {
         (this.job_detail).amount = this.amount[i];
         (this.job_detail).em_id = res[0].lastval;
         (this.job_detail).eq_detail_id = this.equipment[i]
-        // console.log(this.job_detail);
 
         this.apiService.createEmDetail(this.job_detail).then((response: any) => {
-          // console.log('create job');
-        });
-        this.apiService.updateEqStatus((this.job_detail).eq_detail_id).then((response: any) => {
+          this.apiService.updateEqStatus(this.equipment[i]).then((resp: any) => {
+          });
         });
       }
       this.router.navigate(['invoice/' + res[0].lastval]);
-
+      this.apiService.getEmDetail(res[0].lastval).then((res: any) => {
+        this.job_data = res;
+      });
     });
   }
 

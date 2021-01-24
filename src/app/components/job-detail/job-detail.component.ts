@@ -40,7 +40,7 @@ export class JobDetailComponent implements OnInit {
   }
 
   onClickDelete() {
-    console.log(this.id)
+    // console.log(this.id)
     Swal.fire({
       title: 'ยืนยันการลบ',
       html: 'งานทั้งหมดจากใบเสร็จเลขที่ ' + this.id ,
