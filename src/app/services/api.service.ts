@@ -63,7 +63,6 @@ export class ApiService {
       });
     });
   }
-
   async adminProfile(id: number) {
     return new Promise((res, rej) => {
       this.http.get<Admin>(this.base_path+'API/get/admin/'+id)
@@ -75,6 +74,7 @@ export class ApiService {
     });
   }
 
+  // customer
   async getListCustomers() {
     return new Promise((res, rej) => {
       this.http.get<Customer>(this.base_path + "API/get/customer")
@@ -274,6 +274,16 @@ export class ApiService {
   async updateEqStatus(id: any) {
     return new Promise((res, rej) => {
       this.http.put(this.base_path+'API/update/eq_status/'+id, this.httpOptions)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async updateEqStatusSuccess(id: any) {
+    return new Promise((res, rej) => {
+      this.http.put(this.base_path+'API/update/status_success/'+id, this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
