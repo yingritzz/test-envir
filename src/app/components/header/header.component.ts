@@ -8,13 +8,21 @@ import { Route, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public route: Router) { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
+    let id_admin = localStorage.getItem("id");
+    // console.log(data);
+   
   }
 
   async onClickProfile() {
-    this.route.navigateByUrl('user/profile')
+    this.router.navigateByUrl('user/profile')
+  }
+
+  onClickLogout() {
+    localStorage.removeItem("id");
+    this.router.navigateByUrl('login')
   }
 
 }

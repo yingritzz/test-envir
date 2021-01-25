@@ -15,29 +15,25 @@ export class LoginComponent implements OnInit {
   constructor(
     public router: Router,
     public apiService: ApiService
-    ) { 
-      this.login_data = new Login();
-    }
+  ) {
+    this.login_data = new Login();
+  }
 
   ngOnInit(): void {
   }
 
   async submit_login() {
-    // if (this.mUsername == "kiki@lala.com" && this.mPassword == "1234") {
-    //   this.route.navigateByUrl('home')
-    // } else {
-    //   window.alert("Login Failed");
-    // }
-    // this.router.navigateByUrl('home')
-    
     this.apiService.login(this.login_data).then((res: any) => {
-      console.log(res);
+      //console.log(res);
       this.router.navigateByUrl('home')
+      localStorage.setItem("id", res[0].id);
+      let data = localStorage.getItem("id");
+      console.log(data);
     },
-    (err: any) => {
-      console.log(err);
-      window.alert("กรุณาตรวจสอบ username หรือ password ให้ถูกต้อง");
-    });
+      (err: any) => {
+        console.log(err);
+        window.alert("กรุณาตรวจสอบ username หรือ password ให้ถูกต้อง");
+      });
   }
 
 }
