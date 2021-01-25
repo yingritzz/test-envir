@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
       //console.log(res);
       this.router.navigateByUrl('home')
       localStorage.setItem("id", res[0].id);
-      let data = localStorage.getItem("id");
-      // console.log(data);
     },
       (err: any) => {
         console.log(err);

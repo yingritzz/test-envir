@@ -16,6 +16,8 @@ export class ApiService {
   // API path
   base_path = 'http://localhost/';
 
+  //https://mapedia.co.th/envir-api/config.php
+
   constructor(private http: HttpClient) { }
 
   // Http Options
@@ -24,34 +26,6 @@ export class ApiService {
       'Content-Type': 'application/json'
     })
   }
-
-  // handleError(error: HttpErrorResponse) {
-  //   if (error.error instanceof ErrorEvent) {
-  //     // A client-side or network error occurred. Handle it accordingly.
-  //     console.error('An error occurred:', error.error.message);
-  //   }
-  //   else {
-  //     // The backend returned an unsuccessful response code.
-  //     // The response body may contain clues as to what went wrong,
-  //     console.error(
-  //       `Backend returned code ${error.status}, ` +
-  //       `body was: ${error.error}`);
-  //   }
-  //   // return an observable with a user-facing error message
-  //   return throwError(
-  //     'Something bad happened; please try again later.');
-  // };
-
-  // async get_user() {
-  //   return new Promise((res, rej) => {
-  //     this.http.post('https://episcancovid.mapedia.co.th/episcan_api/get_user.php?type=all_user', '')
-  //       .subscribe((data: any) => {
-  //         res(data)
-  //       }, (err: any) => {
-  //         rej(err)
-  //       });
-  //   });
-  // }
 
   async login(user: any) {
     return new Promise((res, rej) => {
@@ -66,6 +40,16 @@ export class ApiService {
   async adminProfile(id: number) {
     return new Promise((res, rej) => {
       this.http.get<Admin>(this.base_path+'API/get/admin/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async updateAdmin(id: number, item: any) {
+    return new Promise((res, rej) => {
+      this.http.put<Customer>(this.base_path+'API/update/admin/'+ id, JSON.stringify(item), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

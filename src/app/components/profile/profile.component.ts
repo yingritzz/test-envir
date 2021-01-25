@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
+import { Admin } from '../../models/admin'
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,8 @@ import { ApiService } from '../../services/api.service'
 export class ProfileComponent implements OnInit {
 
   adminProfile: any = [];
-  id: any;
+  id_admin: any;
+  admin_edit!: Admin;
 
   constructor(
     private location: Location,
@@ -20,17 +22,26 @@ export class ProfileComponent implements OnInit {
     public apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params["id"];
+    this.id_admin = localStorage.getItem("id");
+    this.getprofile();
+    this.admin_edit = new Admin();
   }
 
   async onClickHome() {
     this.router.navigateByUrl('home')
-    this.getprofile();
   }
 
   getprofile(){
-    this.apiService.adminProfile(this.id).then((res: any) => {
-      this.adminProfile = res;
+    this.apiService.adminProfile(this.id_admin).then((res: any) => {
+      this.adminProfile = res[0];
+      this.admin_edit = res[0];
+    });
+  }
+
+  updateAdmin() {
+    this.apiService.updateAdmin(this.id_admin, this.admin_edit).then((res: any) => {
+      this.getprofile();
+      window.location.reload();
     });
   }
 

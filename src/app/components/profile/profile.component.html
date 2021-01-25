@@ -26,26 +26,24 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
                     <div class="pd-20 card-box height-100-p">
                         <div class="profile-photo">
-                            
-                            <img src="assets/vendors/images/deskapp.png" alt="" class="avatar-photo">
-                            
+                            <img src="assets/vendors/images/deskapp.png" alt="" class="avatar-photo">       
                         </div>
-                        <h5 class="text-center h5 mb-0">ชื่อผู้ใช้งาน</h5>
-                        <p class="text-center text-muted font-14">รหัสผู้ใช้งาน</p>
+                        <h5 class="text-center h5 mb-0">{{adminProfile.username}}</h5>
+                        <p class="text-center text-muted font-14">{{adminProfile.id}}</p>
                         <div class="profile-info">
                             <h5 class="mb-20 h5 text-blue">ข้อมูลการติดต่อ</h5>
                             <ul>
                                 <li>
                                     <span>อีเมล:</span>
-                                    username@gmail.com
+                                    {{adminProfile.admin_email}}
                                 </li>
                                 <li>
                                     <span>เบอร์โทร:</span>
-                                    012 3456789
+                                    0{{adminProfile.admin_phone}}
                                 </li>
                                 <li>
                                     <span>เข้าสู่ระบบล่าสุด:</span>
-                                    25 ธันวาคม 2563
+                                    {{adminProfile.last_login}}
                                 </li>
                             </ul>
                         </div>
@@ -78,23 +76,23 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-12 col-md-2 col-form-label">อีเมล</label>
                                                         <div class="col-sm-12 col-md-10">
-                                                            <input class="form-control" type="email">
+                                                            <input class="form-control" type="email" name="email" [(ngModel)]="admin_edit.admin_email">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-12 col-md-2 col-form-label">เบอร์โทร</label>
                                                         <div class="col-sm-12 col-md-10">
-                                                            <input class="form-control" type="text">
+                                                            <input class="form-control" type="text" name="phone" [(ngModel)]="admin_edit.admin_phone">
                                                         </div>
                                                     </div> 
                                                     <div class="form-group row">
                                                         <label class="col-sm-12 col-md-2 col-form-label">แก้ไขรหัส</label>
                                                         <div class="col-sm-12 col-md-10">
-                                                            <input class="form-control" type="password">
+                                                            <input class="form-control" type="text" name="password" [(ngModel)]="admin_edit.password">
                                                         </div>
                                                     </div> 
                                                     <div class="wrapper">
-                                                        <input type="submit" class="btn btn-primary" value="บันทึกการแก้ไข"> 
+                                                        <button type="submit" class="btn btn-primary" (click)="updateAdmin()">บันทึกการแก้ไข</button>
                                                     </div>
             
                                                 </form>

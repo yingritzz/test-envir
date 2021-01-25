@@ -41,6 +41,7 @@ export class GetjobComponent implements OnInit {
   road: any;
 
   cus_id: any;
+  admin_id: any;
   catagory: any = [];
   equipment: any = [];
   status: any = [];
@@ -66,6 +67,7 @@ export class GetjobComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.admin_id = localStorage.getItem("id");
     this.getAllEq();
     this.getAllEqd();
   }
@@ -190,7 +192,7 @@ export class GetjobComponent implements OnInit {
   }
 
   save() {
-    (this.job).admin_id = 1;
+    (this.job).admin_id = parseInt(this.admin_id);
     (this.job).cus_id = parseInt(this.cus_id);
     (this.job).annotation = this.annot;
 

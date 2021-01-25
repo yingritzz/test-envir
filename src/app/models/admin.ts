@@ -2,6 +2,7 @@ export class Admin {
     id: any;
     username: any;
     password: any;
+    admin_email: any;
     admin_phone: any;
     last_login: any;
 }
