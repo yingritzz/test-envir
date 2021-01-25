@@ -13,7 +13,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     let id_admin = localStorage.getItem("id");
     // console.log(data);
-   
+    if ( id_admin == null) {
+      this.router.navigateByUrl('login')
+    }
   }
 
   async onClickProfile() {
