@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { DatePipe } from '@angular/common'
-
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 
