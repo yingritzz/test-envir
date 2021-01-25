@@ -1,6 +1,5 @@
 <app-header></app-header>
 <app-menu></app-menu>
-<div class="mobile-menu-overlay"></div>
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
@@ -17,10 +16,16 @@
                             </ol>
                         </nav>
                     </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <div class="btn-list">
+                            <button type="button" class="btn btn-success" (click)="generatePDF()">ดาวน์โหลด PDF</button>
+                            <!-- <button type="button" class="btn btn-secondary btn-md">พิมพ์</button> -->
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="invoice-wrap">
-                <div class="invoice-box">
+                <div id="invoicePDF" class="invoice-box">
                     <div class="invoice-header">
                     </div>
                     <img src="assets/vendors/images/deskapp-.png" alt="" class="center">
@@ -60,12 +65,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="warpper">
-                        <div class="btn-list">
-                            <button type="button" class="btn btn-success">ดาวน์โหลด PDF</button>
-                            <button type="button" class="btn btn-secondary btn-md">พิมพ์</button>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
