@@ -1,16 +1,23 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$hostname_db = "localhost";
-$database_db = "xxxxxxxxx";
+$hostname_db = "34.87.23.134";
+$database_db = "envir_service";
 $username_db = "postgres";
-$password_db = "xxxxxxxxx";
+$password_db = "eyJuYW1lIjoibWFwZWRpYSJ9";
+$port = "5432";
 
-$db = pg_connect("host=$hostname_db user=$username_db password=$password_db dbname=$database_db") or die("Can't Connect Server");
+$db = pg_connect("host=$hostname_db user=$username_db password=$password_db dbname=$database_db port=$port") or die("Can't Connect Server");
 
 pg_query("SET client_encoding = 'utf-8'");
+date_default_timezone_set("Asia/Bangkok");
 
-
+//////////////////////////////////////////////////
 
 if ( $_GET["type"] == 'count_point' ) {
   
