@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../../services/api.service'
 
 @Component({
   selector: 'app-profile',
@@ -8,13 +10,28 @@ import { Route, Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public route: Router) { }
+  adminProfile: any = [];
+  id: any;
+
+  constructor(
+    private location: Location,
+    public router: Router,
+    public activatedRoute: ActivatedRoute,
+    public apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.params["id"];
   }
 
   async onClickHome() {
-    this.route.navigateByUrl('home')
+    this.router.navigateByUrl('home')
+    this.getprofile();
+  }
+
+  getprofile(){
+    this.apiService.adminProfile(this.id).then((res: any) => {
+      this.adminProfile = res;
+    });
   }
 
 }

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
 import { Customer } from '../models/customer';
 import { Equipment, EquipmentDetail } from '../models/equipment';
 import { Employment, EmploymentDetailEdit } from '../models/employment';
-import { Login } from '../models/admin';
+import { Admin, Login } from '../models/admin';
 
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -61,6 +61,17 @@ export class ApiService {
       }, (err: any) => {
         rej(err)
       });
+    });
+  }
+
+  async adminProfile(id: number) {
+    return new Promise((res, rej) => {
+      this.http.get<Admin>(this.base_path+'API/get/admin/'+id)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
     });
   }
 
