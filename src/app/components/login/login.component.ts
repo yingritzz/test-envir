@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login } from '../../models/admin';
 import { ApiService } from '../../services/api.service'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
       (err: any) => {
         console.log(err);
         window.alert("กรุณาตรวจสอบ username หรือ password ให้ถูกต้อง");
+        Swal.fire("Login ไม่สำเร็จ", "กรุณาตรวจสอบ username หรือ password ให้ถูกต้อง", "error");
       });
   }
 

@@ -86,8 +86,8 @@ export class JobEditComponent implements OnInit {
         // console.log(this.status);
         });
 
-        if (this.status.status == "สำเร็จ") {
-          this.apiService.updateEqStatusSuccess(this.jobEdit[i].detail_id).then((res: any) => {
+        if (this.status_list[i] == "สำเร็จ") {
+          this.apiService.updateEqStatusSuccess(this.id).then((res: any) => {
             // console.log(this.jobEdit[i].detail_id);
             });
         }

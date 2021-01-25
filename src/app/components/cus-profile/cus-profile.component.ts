@@ -84,8 +84,9 @@ export class CusProfileComponent implements OnInit {
     }
 
     this.apiService.updateCustomer(this.id, this.cusEdit).then((res: any) => {
-    window.location.reload();
-    console.log(this.cusEdit);
+    // window.location.reload();
+    this.getCustomer();
+    Swal.fire("แก้ไขสำเร็จ", "", "success");
     });
   }
 
@@ -126,9 +127,7 @@ export class CusProfileComponent implements OnInit {
             this.rental.push(this.cusProfile[i].eq_detail_name);
             console.log(this.rental);
               this.date_rental.push(this.cusProfile[i].date_get_job)
-              console.log(this.date_rental)
-           
-              
+              console.log(this.date_rental)    
         }
         else if (this.cusProfile[i].category == 'ทดสอบ'){
           this.testing.push(this.cusProfile[i].eq_detail_name);

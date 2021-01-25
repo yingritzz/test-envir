@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
 import { Admin } from '../../models/admin'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -41,7 +42,7 @@ export class ProfileComponent implements OnInit {
   updateAdmin() {
     this.apiService.updateAdmin(this.id_admin, this.admin_edit).then((res: any) => {
       this.getprofile();
-      window.location.reload();
+      Swal.fire("แก้ไขสำเร็จ", "", "success");
     });
   }
 
