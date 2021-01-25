@@ -41,7 +41,6 @@ export class JobEditComponent implements OnInit {
 
   getJobEdit() {
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
-      console.log(res)
       this.getData(res);
       for (let i = 0 ; i<this.jobEdit.length ; i++) {
         this.status_select.push(res[i].status)
@@ -89,13 +88,11 @@ export class JobEditComponent implements OnInit {
 
         if (this.status.status == "สำเร็จ") {
           this.apiService.updateEqStatusSuccess(this.jobEdit[i].detail_id).then((res: any) => {
-            console.log(this.jobEdit[i].detail_id);
+            // console.log(this.jobEdit[i].detail_id);
             });
         }
     }
-    
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
-      
     });
     this.location.back();
   }
