@@ -14,7 +14,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiService {
 
   // API path
-  base_path = 'http://localhost/';
+  base_path = 'https://mapedia.co.th/envir-api/';
 
   //https://mapedia.co.th/envir-api/config.php
 
@@ -29,7 +29,7 @@ export class ApiService {
 
   async login(user: any) {
     return new Promise((res, rej) => {
-      this.http.post<Login>(this.base_path+'API/login.php', JSON.stringify(user), this.httpOptions)
+      this.http.post<Login>(this.base_path+'login.php', JSON.stringify(user), this.httpOptions)
       .subscribe((data: any) => {
         res(data)
       }, (err: any) => {
@@ -39,7 +39,7 @@ export class ApiService {
   }
   async adminProfile(id: number) {
     return new Promise((res, rej) => {
-      this.http.get<Admin>(this.base_path+'API/get/admin/'+id)
+      this.http.get<Admin>(this.base_path+'get/admin/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -49,7 +49,7 @@ export class ApiService {
   }
   async updateAdmin(id: number, item: any) {
     return new Promise((res, rej) => {
-      this.http.put<Customer>(this.base_path+'API/update/admin/'+ id, JSON.stringify(item), this.httpOptions)
+      this.http.put<Customer>(this.base_path+'update/admin/'+ id, JSON.stringify(item), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -61,7 +61,7 @@ export class ApiService {
   // customer
   async getListCustomers() {
     return new Promise((res, rej) => {
-      this.http.get<Customer>(this.base_path + "API/get/customer")
+      this.http.get<Customer>(this.base_path + "get/customer")
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -71,7 +71,7 @@ export class ApiService {
   }
   async getCustomer(id: number) {
     return new Promise((res, rej) => {
-      this.http.get<Customer>(this.base_path+'API/get/customer/'+id)
+      this.http.get<Customer>(this.base_path+'get/customer/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -81,7 +81,7 @@ export class ApiService {
   }
   async createCustomer(data: any) {
     return new Promise((res, rej) => {
-      this.http.post<Customer>(this.base_path+'API/post/customer', JSON.stringify(data), this.httpOptions)
+      this.http.post<Customer>(this.base_path+'post/customer', JSON.stringify(data), this.httpOptions)
       .subscribe((data: any) => {
         res(data)
       }, (err: any) => {
@@ -91,7 +91,7 @@ export class ApiService {
   }
   async updateCustomer(id: number, item: any) {
     return new Promise((res, rej) => {
-      this.http.put<Customer>(this.base_path+'API/update/customer/'+ id, JSON.stringify(item), this.httpOptions)
+      this.http.put<Customer>(this.base_path+'update/customer/'+ id, JSON.stringify(item), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -101,7 +101,7 @@ export class ApiService {
   }
   async deleteCustomer(id: number) {
     return new Promise((res, rej) => {
-      this.http.delete<Customer>(this.base_path+'API/del/customer/'+id)
+      this.http.delete<Customer>(this.base_path+'del/customer/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -111,7 +111,7 @@ export class ApiService {
   }
   async customerProfile(id: number) {
     return new Promise((res, rej) => {
-      this.http.get<Customer>(this.base_path+'API/history/'+id)
+      this.http.get<Customer>(this.base_path+'history/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -123,7 +123,7 @@ export class ApiService {
   //Equipment
   async getListEq() {
     return new Promise((res, rej) => {
-      this.http.get<Equipment>(this.base_path + "API/get/equipment")
+      this.http.get<Equipment>(this.base_path + "get/equipment")
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -133,7 +133,7 @@ export class ApiService {
   }
   async createEq(data: any) {
     return new Promise((res, rej) => {
-      this.http.post<Equipment>(this.base_path+'API/post/equipment', JSON.stringify(data), this.httpOptions)
+      this.http.post<Equipment>(this.base_path+'post/equipment', JSON.stringify(data), this.httpOptions)
       .subscribe((data: any) => {
         res(data)
       }, (err: any) => {
@@ -143,7 +143,7 @@ export class ApiService {
   }
   async deleteEq(id: number) {
     return new Promise((res, rej) => {
-      this.http.delete<Equipment>(this.base_path+'API/del/equipment/'+id)
+      this.http.delete<Equipment>(this.base_path+'del/equipment/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -155,7 +155,7 @@ export class ApiService {
   //EquipmentDetail
   async getListEqd() {
     return new Promise((res, rej) => {
-      this.http.get<EquipmentDetail>(this.base_path + "API/get/equipment_detail")
+      this.http.get<EquipmentDetail>(this.base_path + "get/equipment_detail")
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -165,7 +165,7 @@ export class ApiService {
   }
   async getEqDetail(idEq: number) {
     return new Promise((res, rej) => {
-      this.http.get<EquipmentDetail>(this.base_path+'API/eq_detail/'+idEq)
+      this.http.get<EquipmentDetail>(this.base_path+'eq_detail/'+idEq)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -175,7 +175,7 @@ export class ApiService {
   }
   async getEqd(id: number) {
     return new Promise((res, rej) => {
-      this.http.get<EquipmentDetail>(this.base_path+'API/get/equipment_detail/'+id)
+      this.http.get<EquipmentDetail>(this.base_path+'get/equipment_detail/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -185,7 +185,7 @@ export class ApiService {
   }
   async createEqDetail(data: any) {
     return new Promise((res, rej) => {
-      this.http.post<EquipmentDetail>(this.base_path+'API/post/equipment_detail', JSON.stringify(data), this.httpOptions)
+      this.http.post<EquipmentDetail>(this.base_path+'post/equipment_detail', JSON.stringify(data), this.httpOptions)
       .subscribe((data: any) => {
         res(data)
       }, (err: any) => {
@@ -195,7 +195,7 @@ export class ApiService {
   }
   async updateEqDetail(id: number, item: any) {
     return new Promise((res, rej) => {
-      this.http.put<EquipmentDetail>(this.base_path+'API/update/equipment_detail/'+ id, JSON.stringify(item), this.httpOptions)
+      this.http.put<EquipmentDetail>(this.base_path+'update/equipment_detail/'+ id, JSON.stringify(item), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -205,7 +205,7 @@ export class ApiService {
   }
   async deleteEqDetail(id: number) {
     return new Promise((res, rej) => {
-      this.http.delete<EquipmentDetail>(this.base_path+'API/del/equipment_detail/'+id)
+      this.http.delete<EquipmentDetail>(this.base_path+'del/equipment_detail/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -217,7 +217,7 @@ export class ApiService {
   //Employment
   async getEmployment(type: string) {
     return new Promise((res, rej) => {
-      this.http.get<Employment>(this.base_path+'API/job/'+type)
+      this.http.get<Employment>(this.base_path+'job/'+type)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -227,7 +227,7 @@ export class ApiService {
   }
   async getEmploymentDetail(id: any) {
     return new Promise((res, rej) => {
-      this.http.get<Employment>(this.base_path+'API/jobdetail/'+id)
+      this.http.get<Employment>(this.base_path+'jobdetail/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -237,7 +237,7 @@ export class ApiService {
   }
   async createEmployment(data: any) {
     return new Promise((res, rej) => {
-      this.http.post<Employment>(this.base_path+'API/post/employment', JSON.stringify(data), this.httpOptions)
+      this.http.post<Employment>(this.base_path+'post/employment', JSON.stringify(data), this.httpOptions)
       .subscribe((data: any) => {
         res(data)
       }, (err: any) => {
@@ -247,7 +247,7 @@ export class ApiService {
   }
   async deleteEm(id: number) {
     return new Promise((res, rej) => {
-      this.http.delete(this.base_path+'API/del/employment/'+id)
+      this.http.delete(this.base_path+'del/employment/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -257,7 +257,7 @@ export class ApiService {
   }
   async updateEqStatus(id: any) {
     return new Promise((res, rej) => {
-      this.http.put(this.base_path+'API/update/eq_status/'+id, this.httpOptions)
+      this.http.put(this.base_path+'update/eq_status/'+id, this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -267,7 +267,7 @@ export class ApiService {
   }
   async updateEqStatusSuccess(id: any) {
     return new Promise((res, rej) => {
-      this.http.put(this.base_path+'API/update/status_success/'+id, this.httpOptions)
+      this.http.put(this.base_path+'update/status_success/'+id, this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -279,7 +279,7 @@ export class ApiService {
   //Employment Detail
   async createEmDetail(data: any) {
     return new Promise((res, rej) => {
-      this.http.post<EquipmentDetail>(this.base_path+'API/post/employment_detail', JSON.stringify(data), this.httpOptions)
+      this.http.post<EquipmentDetail>(this.base_path+'post/employment_detail', JSON.stringify(data), this.httpOptions)
       .subscribe((data: any) => {
         res(data)
       }, (err: any) => {
@@ -289,7 +289,7 @@ export class ApiService {
   }
   async getEmDetail(id: number) {
     return new Promise((res, rej) => {
-      this.http.get(this.base_path+'API/jobid/'+id)
+      this.http.get(this.base_path+'jobid/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -299,7 +299,7 @@ export class ApiService {
   }
   async getHome(endpoint: string) {
     return new Promise((res, rej) => {
-      this.http.get(this.base_path+'API/'+endpoint)
+      this.http.get(this.base_path+''+endpoint)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -309,7 +309,7 @@ export class ApiService {
   }
   async deleteEmployment(category: string, id: number) {
     return new Promise((res, rej) => {
-      this.http.delete<Employment>(this.base_path+'API/deljob/'+category+'/'+id)
+      this.http.delete<Employment>(this.base_path+'deljob/'+category+'/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -319,7 +319,7 @@ export class ApiService {
   }
   async updateEmd(id: number, item: any) {
     return new Promise((res, rej) => {
-      this.http.put<EmploymentDetailEdit>(this.base_path+'API/update/employment_detail/'+ id, JSON.stringify(item), this.httpOptions)
+      this.http.put<EmploymentDetailEdit>(this.base_path+'update/employment_detail/'+ id, JSON.stringify(item), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

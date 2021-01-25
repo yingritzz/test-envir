@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     },
       (err: any) => {
         console.log(err);
-        window.alert("กรุณาตรวจสอบ username หรือ password ให้ถูกต้อง");
         Swal.fire("Login ไม่สำเร็จ", "กรุณาตรวจสอบ username หรือ password ให้ถูกต้อง", "error");
       });
   }

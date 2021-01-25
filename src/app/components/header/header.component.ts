@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { ApiService } from '../../services/api.service'
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,28 @@ import { Route, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  admin: any = [];
+  id_admin: any;
+
+  constructor(
+    public router: Router,
+    public apiService: ApiService
+    ) { }
 
   ngOnInit(): void {
-    let id_admin = localStorage.getItem("id");
+    this.id_admin = localStorage.getItem("id");
     
-    if ( id_admin == null) {
+    if ( this.id_admin == null) {
       this.router.navigateByUrl('login')
     }
     window.addEventListener("beforeunload", () => localStorage.clear());
+    this.getprofile();
+  }
+
+  getprofile(){
+    this.apiService.adminProfile(this.id_admin).then((res: any) => {
+      this.admin = res[0];
+    });
   }
 
   async onClickProfile() {
