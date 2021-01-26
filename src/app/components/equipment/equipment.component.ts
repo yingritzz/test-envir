@@ -25,6 +25,7 @@ export class EquipmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllEquipments();
+    
   }
 
   getAllEquipments() {
@@ -42,15 +43,15 @@ export class EquipmentComponent implements OnInit {
     });
   }
 
-  getData(data:any){
-    this.eq_data=data
+  getData(data: any) {
+    this.eq_data = data
   }
 
   onClickDetail(id: number, name: string) {
     this.router.navigateByUrl('equipment/detail/' + id + '/' + name)
   }
 
-  delete(id: number, index:number) {
+  delete(id: number, index: number) {
     Swal.fire({
       title: 'ยืนยันการลบอุปกรณ์',
       text: this.eq_data[index].eq_name,
@@ -68,24 +69,26 @@ export class EquipmentComponent implements OnInit {
     })
   }
 
-  async opensweet() {
+  async add_eq() {
     const { value: formValues } = await Swal.fire({
       title: 'เพิ่มอุปกรณ์',
       html:
-        '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่ออุปกรณ์" required="required">' +
+        '<form>' +
+        '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่ออุปกรณ์" required>' +
         '<br>' +
-        '<select id="inputCat" class="custom-select form-control btn dropdown-toggle ">' +
+        '<select id="inputCat" class="custom-select form-control btn dropdown-toggle " required>' +
         '<option value="">เลือกหมวดหมู่อุปกรณ์</option>' +
         '<option value="ตรวจวัดคุณภาพอากาศ">ตรวจวัดคุณภาพอากาศ</option>' +
         '<option value="ตรวจวัดระดับเสียง">ตรวจวัดระดับเสียง</option>' +
         '<option value="ตรวจวัดความสั่นสะเทือน">ตรวจวัดความสั่นสะเทือน</option>' +
-        '<option value="ตรวจวัดคุณภาพน้ำ">ตรวจวัดคุณภาพน้ำ</option>',
+        '<option value="ตรวจวัดคุณภาพน้ำ">ตรวจวัดคุณภาพน้ำ</option>' +
+        '</form>',
       focusConfirm: false,
       showCancelButton: true,
       preConfirm: () => {
         return [
           (document.getElementById('inputName') as HTMLTextAreaElement).value,
-          (document.getElementById('inputCat') as HTMLTextAreaElement).value
+          (document.getElementById('inputCat') as HTMLTextAreaElement).value,
         ]
       }
     })
@@ -93,14 +96,13 @@ export class EquipmentComponent implements OnInit {
       // console.log("Resule: " + formValues[0] + " : " + formValues[1]);
       this.eq_new.eq_name = formValues[0];
       this.eq_new.category = formValues[1];
+      
       this.apiService.createEq(this.eq_new).then((res: any) => {
         // console.log('created Eq');
         this.getAllEquipments()
       });
 
-      Swal.fire('บันทึกสำเร็จ',
-        '',
-        'success')
+      Swal.fire('บันทึกสำเร็จ','','success')
     }
   }
 
