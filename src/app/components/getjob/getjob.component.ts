@@ -213,8 +213,8 @@ export class GetjobComponent implements OnInit {
         this.eq_amount.amount = parseInt((this.job_detail).amount)
 
         this.apiService.createEmDetail(this.job_detail).then((response: any) => {
-          this.apiService.updateEqStatus(this.equipment[i],this.eq_amount).then((resp: any) => {
-            console.log(this.eq_amount)
+          this.apiService.updateEqStatus(res[0].lastval,this.eq_amount).then((resp: any) => {
+            console.log(res[0].lastval)
           });
         });
       }

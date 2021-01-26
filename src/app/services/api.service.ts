@@ -267,7 +267,7 @@ export class ApiService {
   }
   async updateEqStatusSuccess(id: any, amount: any) {
     return new Promise((res, rej) => {
-      this.http.put(this.base_path+'update/status_success/'+id, JSON.stringify(amount), this.httpOptions)
+      this.http.put<EquipmentAmount>(this.base_path+'update/status_success/'+id, JSON.stringify(amount), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
