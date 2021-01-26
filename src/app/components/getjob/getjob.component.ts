@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from '../../services/api.service'
 import { Router } from '@angular/router';
-import { EquipmentDetail } from '../../models/equipment';
+import { EquipmentDetail, EquipmentAmount } from '../../models/equipment';
 import { Employment, EmploymentDetail } from '../../models/employment';
 import { DatePipe } from '@angular/common'
 import Swal from 'sweetalert2';
@@ -55,6 +55,8 @@ export class GetjobComponent implements OnInit {
   job_detail: EmploymentDetail;
   job_data: any;
 
+  eq_amount!: EquipmentAmount;
+
   constructor(
     public router: Router,
     public apiService: ApiService
@@ -65,6 +67,7 @@ export class GetjobComponent implements OnInit {
     this.job = new Employment;
     this.job_detail = new EmploymentDetail;
     this.eqd_names = [];
+    this.eq_amount = new EquipmentAmount;
   }
 
   ngOnInit(): void {
@@ -207,9 +210,11 @@ export class GetjobComponent implements OnInit {
         (this.job_detail).amount = this.amount[i];
         (this.job_detail).em_id = res[0].lastval;
         (this.job_detail).eq_detail_id = this.equipment[i]
+        this.eq_amount.amount = parseInt((this.job_detail).amount)
 
         this.apiService.createEmDetail(this.job_detail).then((response: any) => {
-          this.apiService.updateEqStatus(this.equipment[i]).then((resp: any) => {
+          this.apiService.updateEqStatus(this.equipment[i],this.eq_amount).then((resp: any) => {
+            console.log(this.eq_amount)
           });
         });
       }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Customer } from '../models/customer';
-import { Equipment, EquipmentDetail } from '../models/equipment';
+import { Equipment, EquipmentAmount, EquipmentDetail } from '../models/equipment';
 import { Employment, EmploymentDetailEdit } from '../models/employment';
 import { Admin, Login } from '../models/admin';
 
@@ -15,7 +15,7 @@ export class ApiService {
 
   // API path
   // base_path = 'https://mapedia.co.th/envir-api/';
-  base_path = 'http://localhost/API/';
+  base_path = 'http://localhost:8888/API/';
 
 
   constructor(private http: HttpClient) { }
@@ -255,9 +255,9 @@ export class ApiService {
         });
     });
   }
-  async updateEqStatus(id: any) {
+  async updateEqStatus(id: any, amount: any) {
     return new Promise((res, rej) => {
-      this.http.put(this.base_path+'update/eq_status/'+id, this.httpOptions)
+      this.http.put<EquipmentAmount>(this.base_path+'update/eq_status/'+id , JSON.stringify(amount), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -265,9 +265,9 @@ export class ApiService {
         });
     });
   }
-  async updateEqStatusSuccess(id: any) {
+  async updateEqStatusSuccess(id: any, amount: any) {
     return new Promise((res, rej) => {
-      this.http.put(this.base_path+'update/status_success/'+id, this.httpOptions)
+      this.http.put(this.base_path+'update/status_success/'+id, JSON.stringify(amount), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

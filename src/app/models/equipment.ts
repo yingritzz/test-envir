@@ -11,3 +11,7 @@ export class EquipmentDetail {
     eq_id!: any;
     eq_detail_amount!: any;
 }
+export class EquipmentAmount {
+    amount!: number;
+}
+
