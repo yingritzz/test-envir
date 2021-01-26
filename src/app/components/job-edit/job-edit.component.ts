@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
 import { EmploymentDetail,EmploymentDetailEdit  } from '../../models/employment';
+import { EquipmentAmount } from '../../models/equipment'
 
 @Component({
   selector: 'app-job-edit',
@@ -17,12 +18,15 @@ export class JobEditComponent implements OnInit {
   rentals: string[] = ["รับงาน", "กำลังเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า","สำเร็จ"];
   testing: string[] = ["รับงาน", "กำลังทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า","สำเร็จ"];
   maintenanc: string[] = ["รับงาน", "กำลังซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า","สำเร็จ"];
-  selling: string[] = ["รับงาน", "กำลังจำหน่าย", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า","สำเร็จ"];
+  selling: string[] = ["รับงาน", "กำลังจำหน่าย", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า","สำเร็จ "];
   jobUpdate: EmploymentDetail;
   status_select: any = []
   status_list: any = []
   id_list: any = []
   status: EmploymentDetailEdit;
+  amount!: EquipmentAmount;
+  eq_amount: any = [];
+
   
   constructor(
     private location: Location,
@@ -32,6 +36,7 @@ export class JobEditComponent implements OnInit {
     this.jobEdit = [];
     this.jobUpdate = new EmploymentDetail();
     this.status = new EmploymentDetailEdit();
+    this.amount = new EquipmentAmount;
   }
 
   ngOnInit(): void {
@@ -87,9 +92,17 @@ export class JobEditComponent implements OnInit {
         });
 
         if (this.status_list[i] == "สำเร็จ") {
-          this.apiService.updateEqStatusSuccess(this.id).then((res: any) => {
-            // console.log(this.jobEdit[i].detail_id);
-            });
+          this.apiService.getEmploymentDetail(this.id).then((res: any) => {
+            this.eq_amount = res;
+            console.log(this.eq_amount[0].amount)
+            for (let i = 0; i < this.eq_amount.length; i++) {
+              this.amount.amount = this.eq_amount[i].amount
+              this.apiService.updateEqStatusSuccess(this.id,this.amount).then((res: any) => {
+                // console.log(this.jobEdit[i].detail_id);
+                });
+            }
+          });
+          
         }
     }
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
