@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api.service'
 
 @Component({
   selector: 'app-line-customer',
@@ -10,14 +11,18 @@ export class LineCustomerComponent implements OnInit {
   isDisplay = false;
   isDisplay2 = true;
 
-  toggleDisplay(){
-    this.isDisplay = !this.isDisplay;
-    this.isDisplay2 = !this.isDisplay2;
+  //customer
+  customerDataList: any;
+  cus_id: any;
+
+  //customer profile
+
+  constructor(public apiService: ApiService) { 
+    this.customerDataList = [];
   }
 
-  constructor() { }
-
   ngOnInit(): void {
+    this.getAllCustomers();
   }
 
   onClickBack() {
@@ -26,5 +31,18 @@ export class LineCustomerComponent implements OnInit {
 
     this.isDisplay = this.isDisplay;
     this.isDisplay2 = this.isDisplay2;
+  }
+
+  //customer
+  getAllCustomers() {
+    this.apiService.getListCustomers().then((res: any) => {
+      // console.log(res);
+      this.customerDataList = res;
+    });
+  }
+  onClickmore(id: any) {
+    this.cus_id = id;
+    this.isDisplay = !this.isDisplay;
+    this.isDisplay2 = !this.isDisplay2;
   }
 }
