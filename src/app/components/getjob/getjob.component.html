@@ -80,7 +80,7 @@
 
                                     <div class="col-md-6 form-group">
                                         <label>หมวดหมู่ :</label>
-                                        <select class="custom-select form-control" name="catagory_select"
+                                        <select class="custom-select form-control" id="catagory" name="catagory_select"
                                             [(ngModel)]="catagory_select">
                                             <option value=" "> </option>
                                             <option *ngFor="let c of cg" value="{{c}}">{{c}}</option>
@@ -124,13 +124,16 @@
                                                             <div>
                                                                 <div class="form-group">
                                                                     <div class="row pad-l">
-                                                                        <label class="text" for="name">เลือกอุปกรณ์</label>
-                                                                        <button class="btn btn-link text r" data-dismiss="modal" [routerLink]="[ '/equipment']">เพิ่มอุปกรณ์</button>
+                                                                        <label class="text"
+                                                                            for="name">เลือกอุปกรณ์</label>
+                                                                        <button class="btn btn-link text r"
+                                                                            data-dismiss="modal"
+                                                                            [routerLink]="[ '/equipment']">เพิ่มอุปกรณ์</button>
                                                                     </div>
                                                                     <select class="custom-select form-control"
-                                                                        name="eq_id"
-                                                                        [(ngModel)]="eqd_new.eq_id">
-                                                                        <option *ngFor="let eq of eq_list" value="{{eq.id}}">{{eq.eq_name}}
+                                                                        name="eq_id" [(ngModel)]="eqd_new.eq_id">
+                                                                        <option *ngFor="let eq of eq_list"
+                                                                            value="{{eq.id}}">{{eq.eq_name}}
                                                                         </option>
                                                                     </select>
                                                                 </div>
@@ -142,11 +145,13 @@
                                                                 <div class="form-group">
                                                                     <input type="text" class="form-control" id="name"
                                                                         name="name" [(ngModel)]="eqd_new.eq_detail_name"
-                                                                        required="required" placeholder="ชื่อรายการอุปกรณ์">
+                                                                        required="required"
+                                                                        placeholder="ชื่อรายการอุปกรณ์">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <input type="number" class="form-control" id="count"
-                                                                        name="count" [(ngModel)]="eqd_new.eq_detail_amount"
+                                                                        name="count"
+                                                                        [(ngModel)]="eqd_new.eq_detail_amount"
                                                                         required="required" placeholder="จำนวนอุปกรณ์">
                                                                 </div>
                                                             </div>
@@ -168,8 +173,9 @@
                                         <div class="form-group">
                                             <label>กำหนดวันที่ส่งคืน :</label>
                                             <input type="date" class="form-control" placeholder="เลือกวันที่"
-                                                name="d_endjob" [(ngModel)]="d_endjob">
+                                                id="dateEnd"  name="d_endjob" [(ngModel)]="d_endjob">
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -180,14 +186,14 @@
                                                 class="form-control" autocomplete="off">
                                         </div>
                                         <div class="warpper">
-                                            <button class="btn btn-success"
-                                                (click)="add_getJob()">เพิ่ม</button>
+                                            <button class="btn btn-success" (click)="add_getJob()">เพิ่ม</button>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>หมายเหตุ :</label>
-                                            <textarea class="form-control" name="annotation" [(ngModel)]="annotation"></textarea>
+                                            <textarea class="form-control" name="annotation"
+                                                [(ngModel)]="annotation"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +233,7 @@
                 <div class="warpper">
                     <div class="btn-list">
                         <button type="button" class="btn btn-success" (click)="save()">บันทึก</button>
-                        <button type="reset" class="btn btn-danger"  [routerLink]="[ '/home']" >ยกเลิก</button>
+                        <button type="reset" class="btn btn-danger" [routerLink]="[ '/home']">ยกเลิก</button>
                     </div>
                 </div>
             </div>

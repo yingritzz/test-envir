@@ -17,6 +17,7 @@ export class GetjobComponent implements OnInit {
   eq = ["ตรวจวัดคุณภาพอากาศ", "ตรวจวัดระดับเสียง", "ตรวจวัดความสั่นสะเทือน", "ตรวจวัดคุณภาพน้ำ"];
   cg = ["เช่า-ยืม", "จำหน่าย", "ทดสอบ", "ซ่อมบำรุง"]
   datepipe = new DatePipe('en-US');
+  minDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
 
   cus_select: any;  //ng-model
   catagory_select: any  //ng-model
@@ -70,6 +71,8 @@ export class GetjobComponent implements OnInit {
     this.admin_id = localStorage.getItem("id");
     this.getAllEq();
     this.getAllEqd();
+    console.log(this.minDate)
+    document.getElementById("dateEnd")!.setAttribute("min", this.minDate!);
   }
 
   async getAllCustomers() {
@@ -152,7 +155,6 @@ export class GetjobComponent implements OnInit {
     for (let i = 0; i < this.eqd_list.length; i++) {
       if (this.eqd_list[i].id == this.equipment_select) {
         this.eqd_list.splice(i, 1);
-        // console.log(this.eqd_list)
       }
     }
     this.getEqd(this.equipment_select);

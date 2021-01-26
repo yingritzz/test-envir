@@ -23,7 +23,8 @@ export class HeaderComponent implements OnInit {
     if ( this.id_admin == null) {
       this.router.navigateByUrl('login')
     }
-    window.addEventListener("beforeunload", () => localStorage.clear());
+
+    //window.addEventListener("beforeunload", () => localStorage.removeItem('id'));
     this.getprofile();
   }
 

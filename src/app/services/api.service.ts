@@ -14,9 +14,9 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiService {
 
   // API path
-  base_path = 'https://mapedia.co.th/envir-api/';
+  // base_path = 'https://mapedia.co.th/envir-api/';
+  base_path = 'http://localhost/API/';
 
-  //https://mapedia.co.th/envir-api/config.php
 
   constructor(private http: HttpClient) { }
 
