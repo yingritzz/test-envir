@@ -29,11 +29,11 @@ export class InvoiceComponent implements OnInit {
 
   ngOnInit(): void {
     this.em_id = this.activatedRoute.snapshot.params["id"];
-    this.getEmployment();
+    this.getEmployment(this.em_id);
   }
 
-  getEmployment() {
-    this.apiService.getEmDetail(this.em_id).then((res: any) => {
+  getEmployment(id: any) {
+    this.apiService.getEmDetail(id).then((res: any) => {
       this.em_data = res;
       this.em_date = this.datepipe.transform(res[0].date_get_job, 'dd-MM-yyyy');
     });
