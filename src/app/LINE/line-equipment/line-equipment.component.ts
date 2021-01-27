@@ -179,7 +179,7 @@ export class LineEquipmentComponent implements OnInit {
           (document.getElementById('inputSn') as HTMLTextAreaElement).value,
           (document.getElementById('inputName') as HTMLTextAreaElement).value,
           (document.getElementById('inputCount') as HTMLTextAreaElement).value,
-          "ว่าง " + (document.getElementById('inputCount') as HTMLTextAreaElement).value
+          "ว่าง"
         ]
       }
     })

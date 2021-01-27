@@ -21,3 +21,12 @@ header-right .brand-logo{
 .wrapper {
     text-align: center;
 }
+.br {
+    line-height: 40px;
+ }
+ .center {
+    padding-top: 1px;
+ }
+ .center2 {
+    padding-top: 4px;
+ }
