@@ -15,6 +15,10 @@ export class RentalComponent implements OnInit {
   id!: number;
   type: string = "rental";
 
+  page = 1;
+  count = 0;
+  tableSize = 30;
+
   constructor(
     public router: Router,
     public apiService: ApiService
@@ -37,10 +41,10 @@ export class RentalComponent implements OnInit {
     this.jobRental = data;
   }
 
-  delete(id: number, index:number) {
+  delete(id: number, name: any) {
     Swal.fire({
       title: 'ยืนยันการลบ',
-      html: this.jobRental[index].string_agg + '<br>' + 'จากใบเสร็จเลขที่ ' + this.jobRental[index].id,
+      html: name + '<br>' + 'จากใบเสร็จเลขที่ ' + id,
       showDenyButton: true,
       confirmButtonText: `ใช่`,
       denyButtonText: `ไม่ใช่`,
@@ -56,4 +60,8 @@ export class RentalComponent implements OnInit {
     })
   }
 
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getJobRental();
+  } 
 }

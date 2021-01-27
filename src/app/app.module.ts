@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { ApiService } from './services/api.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -84,6 +84,7 @@ import { JobEditComponent } from './components/job-edit/job-edit.component';
     HttpClientModule,
     Ng2SearchPipeModule,
     AutocompleteLibModule,
+    NgxPaginationModule,
     NgCircleProgressModule.forRoot({
       "radius": 26,
       "space": -9,

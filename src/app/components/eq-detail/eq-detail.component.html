@@ -34,18 +34,23 @@
                             (click)="insert_eq_detail()">เพิ่มรายการอุปกรณ์</button>
                     </div>
                 </div>
-                <table class="table table-striped">
+                <table class="table table-striped wrapper">
                     <thead>
                         <tr>
                             <th scope="col">SN.</th>
                             <th scope="col">ชื่อรายการอุปกรณ์</th>
-                            <th scope="col">จำนวน</th>
+                            <th scope="col">จำนวนคงเหลือ</th>
                             <th scope="col">สถานะ</th>
                             <th scope="col">จัดการ</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let eqd of eqd_data; let i = index">
+                        <tr *ngFor="let eqd of eqd_data | paginate : {
+                            itemsPerPage: tableSize,
+                            currentPage: page,
+                            totalItems: count
+                          };
+                    let i = index">
                             <td>{{eqd.id}}</td>
                             <td>{{eqd.eq_detail_name}}</td>
                             <td>{{eqd.eq_detail_amount}}</td>
@@ -58,7 +63,7 @@
                                             aria-hidden="true"></i></button>
 
                                     <button class="btn btn-danger btn-sm" type="button" value="submit"
-                                        (click)="delete(eqd.id, i)"><i class="icon-copy fa fa-trash btn-size"
+                                        (click)="delete(eqd.id, eqd.eq_detail_name)"><i class="icon-copy fa fa-trash btn-size"
                                             aria-hidden="true"></i></button>
                                 </div>
 
@@ -109,8 +114,11 @@
 
                     </tbody>
                 </table>
-
-
+                <div class="clearfix justify-content-center wrapper">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next"
+                        (pageChange)="onTableDataChange($event)">
+                    </pagination-controls>
+                </div>
             </div>
         </div>
         <app-footer>

@@ -37,7 +37,12 @@
                             </tr>
                         </thead>
                         <tbody >
-                            <tr *ngFor="let rental of jobRental; let i = index">
+                            <tr *ngFor="let rental of jobRental | paginate : {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count
+                              };
+                        let i = index">
                                 <th scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+rental.id]">{{rental.id}}</a></th>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+rental.id]">{{rental.string_agg}}</a></td>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+rental.id]">{{rental.cus_fullname}}</a></td>
@@ -47,13 +52,18 @@
                                             [routerLink]="[ '/job/edit/'+rental.id]"><i
                                                 class="icon-copy fa fa-pencil-square-o btn-size"
                                                 aria-hidden="true"></i></span>
-                                        <span class="btn btn-danger btn-sm" type="button" value="submit" (click)="delete(rental.id, i)"><i
+                                        <span class="btn btn-danger btn-sm" type="button" value="submit" (click)="delete(rental.id, rental.string_agg)"><i
                                                 class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></span>
                                     </div>
                                 </td>
                            
                             </tr>
                     </table>
+                    <div class="clearfix justify-content-center">
+                        <pagination-controls previousLabel="Prev" nextLabel="Next"
+                            (pageChange)="onTableDataChange($event)">
+                        </pagination-controls>
+                    </div>
                 </div>
             </div>
             <app-footer></app-footer>

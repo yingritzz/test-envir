@@ -15,6 +15,10 @@ export class EquipmentComponent implements OnInit {
   eq_new: Equipment;
   eq_data: any;
 
+  page = 1;
+  count = 0;
+  tableSize = 15;
+
   constructor(
     public router: Router,
     public apiService: ApiService
@@ -51,10 +55,10 @@ export class EquipmentComponent implements OnInit {
     this.router.navigateByUrl('equipment/detail/' + id + '/' + name)
   }
 
-  delete(id: number, index: number) {
+  delete(id: number, name: any) {
     Swal.fire({
       title: 'ยืนยันการลบอุปกรณ์',
-      text: this.eq_data[index].eq_name,
+      text: name,
       showDenyButton: true,
       confirmButtonText: `ใช่`,
       denyButtonText: `ไม่ใช่`,
@@ -105,5 +109,10 @@ export class EquipmentComponent implements OnInit {
       Swal.fire('บันทึกสำเร็จ','','success')
     }
   }
+
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getAllEquipments();
+  } 
 
 }

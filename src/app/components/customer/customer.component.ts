@@ -11,6 +11,9 @@ export class CustomerComponent implements OnInit {
 
   customerDataList: any;
 
+  page = 1;
+  count = 0;
+  tableSize = 15;
 
   constructor(
     public router: Router,
@@ -33,5 +36,10 @@ export class CustomerComponent implements OnInit {
   onClick(id: number) {
     this.router.navigate(['customer/profile/' + id]);
   }
+
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getAllCustomers();
+  } 
 
 }

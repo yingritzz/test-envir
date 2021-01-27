@@ -37,7 +37,12 @@
                             </tr>
                         </thead>
                         <tbody >
-                            <tr *ngFor="let fix of jobMaintenanc; let i = index">
+                            <tr *ngFor="let fix of jobMaintenanc | paginate : {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count
+                              };
+                        let i = index">
                                 <th scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{fix.id}}</a></th>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{fix.string_agg}}</a></td>
                                 <td><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{fix.cus_fullname}}</a></td>
@@ -47,14 +52,20 @@
                                             [routerLink]="[ '/job/edit/'+fix.id]"><i
                                                 class="icon-copy fa fa-pencil-square-o btn-size"
                                                 aria-hidden="true"></i></span>
-                                        <span class="btn btn-danger btn-sm" type="button" value="submit" (click)="delete(fix.id, i)"><i
+                                        <span class="btn btn-danger btn-sm" type="button" value="submit" (click)="delete(fix.id, fix.string_agg)"><i
                                                 class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></span>
                                     </div>
                                 </td>
                            
                             </tr>
+ 
                         </tbody>
                     </table>
+                    <div class="clearfix justify-content-center">
+                        <pagination-controls previousLabel="Prev" nextLabel="Next"
+                            (pageChange)="onTableDataChange($event)">
+                        </pagination-controls>
+                    </div>
                 </div>
 
                 <!-- หน้าข้อมูล -->

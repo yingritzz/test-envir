@@ -1,3 +1,9 @@
 .btn-size{
     width: 10px;
 }
+
+.clearfix {
+    position: relative;
+    font-size: 16px;
+    text-align: center;
+  }

@@ -18,6 +18,10 @@ export class EqDetailComponent implements OnInit {
   eqd_edit: EquipmentDetail;
   eqd_id: any;
 
+  page = 1;
+  count = 0;
+  tableSize = 30;
+
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -49,23 +53,22 @@ export class EqDetailComponent implements OnInit {
     });
   }
 
-  delete(id: any, index: number) {
-    Swal.fire({
-      title: 'ยืนยันการลบอุปกรณ์',
-      text: this.eqd_data[index].id + ' : ' + this.eqd_data[index].eq_detail_name,
-      showDenyButton: true,
-      confirmButtonText: `ใช่`,
-      denyButtonText: `ไม่ใช่`,
-      icon: "warning",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.apiService.deleteEqDetail(id).then((res: any) => {
-          this.getEqDetail();
-        });
-        Swal.fire('ลบสำเร็จ!', '', 'success')
-      }
-    })
-
+  delete(id: any, name: any) {
+      Swal.fire({
+        title: 'ยืนยันการลบอุปกรณ์',
+        text: id + ' : ' + name,
+        showDenyButton: true,
+        confirmButtonText: `ใช่`,
+        denyButtonText: `ไม่ใช่`,
+        icon: "warning",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.apiService.deleteEqDetail(id).then((res: any) => {
+            this.getEqDetail();
+          });
+          Swal.fire('ลบสำเร็จ!', '', 'success')
+        }
+      })
   }
 
   async edit_eqd() {
@@ -95,7 +98,7 @@ export class EqDetailComponent implements OnInit {
           (document.getElementById('inputSn') as HTMLTextAreaElement).value,
           (document.getElementById('inputName') as HTMLTextAreaElement).value,
           (document.getElementById('inputCount') as HTMLTextAreaElement).value,
-          "ว่าง " + (document.getElementById('inputCount') as HTMLTextAreaElement).value
+          "ว่าง"
         ]
       }
     })
@@ -106,13 +109,14 @@ export class EqDetailComponent implements OnInit {
       this.eqd_new.eq_detail_status = formValues[3];
       this.eqd_new.eq_id = this.eq_id;
       this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
-        // console.log('created Eq');
         this.getEqDetail()
       });
-      Swal.fire('บันทึกสำเร็จ',
-        '',
-        'success')
-
+      Swal.fire('บันทึกสำเร็จ', '', 'success')
     }
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getEqDetail();
   }
 }
