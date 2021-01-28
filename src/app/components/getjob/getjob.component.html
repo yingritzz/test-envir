@@ -33,11 +33,11 @@
                                     <div class="form-group">
                                         <label>ชื่อลูกค้า :</label>
                                         <input type="text" class="form-control" name="input_cus"
-                                            [(ngModel)]='cus_select' (ngModelChange)="getAllCustomers()">
+                                            [(ngModel)]='cus_select' (ngModelChange)="getCustomers($event)">
                                         <table class="table">
-                                            <tbody *ngFor="let cus of cus  | filter:cus_select">
+                                            <tbody *ngFor="let cus of cus_list">
                                                 <tr>
-                                                    <td>{{cus}}</td>
+                                                    <td>{{cus.cus_fullname}}</td>
                                                     <td class="ten"><button class="btn btn-link"
                                                             (click)="show_cus(cus)">select</button></td>
                                                 </tr>

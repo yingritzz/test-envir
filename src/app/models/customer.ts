@@ -14,3 +14,7 @@ export class Customer {
     province!: any;
     postal_code!: any;
 }
+
+export class SearchCustomer {
+    text!: any;
+}

@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service'
 import { Router } from '@angular/router';
 import { EquipmentDetail, EquipmentAmount } from '../../models/equipment';
 import { Employment, EmploymentDetail } from '../../models/employment';
+import { SearchCustomer } from '../../models/customer'
 import { DatePipe } from '@angular/common'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -22,6 +23,7 @@ export class GetjobComponent implements OnInit {
   form!: FormGroup;
   formArray: any = [];
   em_id: any;
+  cus_search!: SearchCustomer;
 
   cus_select: any;  //ng-model
   cus_list: any = [];  //data of api get customer list
@@ -32,8 +34,6 @@ export class GetjobComponent implements OnInit {
   eqd_list: any = [];  //data of api get eqd เลือกอุปกรณ์
   eqd_new!: EquipmentDetail;  //create eqd
   date: any = [];  //เก็บวันที่จบงานใส่ []
-  cus: any = [];  //เก็บชื่ออุปกรณ์
-  cus_data: any;  //เก็บข้อมูลอุปกรณ์
   moo: any;
   soi: any;
   road: any;
@@ -55,6 +55,7 @@ export class GetjobComponent implements OnInit {
     this.job = new Employment;
     this.job_detail = new EmploymentDetail;
     this.eq_amount = new EquipmentAmount;
+    this.cus_search = new SearchCustomer;
   }
 
   ngOnInit(): void {
@@ -76,46 +77,38 @@ export class GetjobComponent implements OnInit {
     });
   }
 
-  async getAllCustomers() {
-    this.cus = []
-    this.apiService.getListCustomers().then((res: any) => {
+  async getCustomers(item: any) {
+    this.cus_search.text = item;
+    console.log(this.cus_search)
+    this.apiService.searchCus(this.cus_search).then((res: any) => {
       this.getData(res);
-      for (let i = 0; i < res.length; i++) {
-        this.cus.push(res[i].cus_fullname);
-      }
     });
   }
   getData(data: any) {
     this.cus_list = data;
   }
   show_cus(data: any) {
-    for (let i = 0; i < this.cus_list.length; i++) {
-      if (this.cus_list[i].cus_fullname == data) {
-        this.cus_data = this.cus_list[i]
-      }
-    }
-    this.cus_id = this.cus_data.id;
-    this.email = this.cus_data.cus_email;
-    this.phone = this.cus_data.cus_phone;
-
-    if (this.cus_data.moo == null) {
+    this.cus_id = data.id;
+    this.email = data.cus_email;
+    this.phone = data.cus_phone;
+    if (data.moo == null) {
       this.moo = ""
     } else {
-      this.moo = " ม." + this.cus_data.moo;
+      this.moo = " ม." + data.moo;
     }
-    if (this.cus_data.soi == null || this.cus_data.soi == " ") {
+    if (data.soi == null || data.soi == " ") {
       this.soi = ""
     } else {
-      this.soi = "ซอย" + this.cus_data.soi;
+      this.soi = "ซอย" + data.soi;
     }
-    if (this.cus_data.road == null || this.cus_data.road == " ") {
+    if (data.road == null || data.road == " ") {
       this.road = ""
     } else {
-      this.road = "ถนน" + this.cus_data.road;
+      this.road = "ถนน" + data.road;
     }
-
-    this.address = this.cus_data.number + this.moo + " " + this.soi + " " + this.road + " " + this.cus_data.sub_district + " " + this.cus_data.district + " " + this.cus_data.province + " " + this.cus_data.postal_code;
-    this.cus_select = this.cus_data.cus_fullname;
+    this.address = data.number + this.moo + " " + this.soi + " " + this.road + " " + data.sub_district + " " + data.district + " " + data.province + " " + data.postal_code;
+    this.cus_select = data.cus_fullname;
+    this.cus_list = []
   }
   async getAllEq() {
     this.apiService.getListEq().then((res: any) => {

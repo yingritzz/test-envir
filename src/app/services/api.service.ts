@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
-import { Customer } from '../models/customer';
+import { Customer, SearchCustomer } from '../models/customer';
 import { Equipment, EquipmentAmount, EquipmentDetail } from '../models/equipment';
 import { Employment, EmploymentDetailEdit } from '../models/employment';
 import { Admin, Login } from '../models/admin';
@@ -15,7 +15,7 @@ export class ApiService {
 
   // API path
   // base_path = 'https://mapedia.co.th/envir-api/';
-  base_path = 'http://localhost:8888/API/';
+  base_path = 'http://localhost/API/';
 
 
   constructor(private http: HttpClient) { }
@@ -55,6 +55,16 @@ export class ApiService {
         }, (err: any) => {
           rej(err)
         });
+    });
+  }
+  async searchCus(item: any) {
+    return new Promise((res, rej) => {
+      this.http.post<SearchCustomer>(this.base_path+'search.php', JSON.stringify(item), this.httpOptions)
+      .subscribe((data: any) => {
+        res(data)
+      }, (err: any) => {
+        rej(err)
+      });
     });
   }
 
@@ -317,7 +327,7 @@ export class ApiService {
         });
     });
   }
-  async deleteEmployment(category: string, id: number) {
+  async deleteEmployment(category: string, id: any) {
     return new Promise((res, rej) => {
       this.http.delete<Employment>(this.base_path+'deljob/'+category+'/'+id)
         .subscribe((data: any) => {
