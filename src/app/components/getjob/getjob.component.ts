@@ -57,11 +57,13 @@ export class GetjobComponent implements OnInit {
 
   eq_amount!: EquipmentAmount;
 
+  updateArray: any = [];
+
   constructor(
     public router: Router,
     public apiService: ApiService
   ) {
-    this.eqd_new = new EquipmentDetail();
+    this.eqd_new = new EquipmentDetail;
     this.d_getjob = new Date();
     this.d_endjob = new Date();
     this.job = new Employment;
@@ -209,12 +211,19 @@ export class GetjobComponent implements OnInit {
         (this.job_detail).status = this.status[i];
         (this.job_detail).amount = this.amount[i];
         (this.job_detail).em_id = res[0].lastval;
-        (this.job_detail).eq_detail_id = this.equipment[i]
-        this.eq_amount.amount = parseInt((this.job_detail).amount)
+        (this.job_detail).eq_detail_id = this.equipment[i];
 
         this.apiService.createEmDetail(this.job_detail).then((response: any) => {
-          this.apiService.updateEqStatus(res[0].lastval,this.eq_amount).then((resp: any) => {
-            console.log(res[0].lastval)
+
+        this.job_detail = new EmploymentDetail; 
+        
+        (this.eq_amount).amount = parseInt(this.amount[i]);
+        (this.eq_amount).eqd = this.equipment[i];
+       
+        console.log(this.eq_amount);
+
+        this.apiService.updateEqStatus(res[0].lastval,this.eq_amount).then((resp: any) => {
+          console.log(this.eq_amount);
           });
         });
       }
