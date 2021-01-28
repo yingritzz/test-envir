@@ -13,5 +13,6 @@ export class EquipmentDetail {
 }
 export class EquipmentAmount {
     amount!: number;
+    eqd!: any;
 }
 

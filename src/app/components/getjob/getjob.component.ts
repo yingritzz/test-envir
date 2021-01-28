@@ -183,8 +183,7 @@ export class GetjobComponent implements OnInit {
   deleteRow(i: number) {
     console.log(this.equipment[i]);
     this.apiService.getEqd(this.equipment[i]).then((res: any) => {
-      this.eqd_list.push(res[0])
-      // console.log(this.eqd_list);
+      this.eqd_list.push(res[0]);
     });
 
     this.catagory.splice(i, 1);
