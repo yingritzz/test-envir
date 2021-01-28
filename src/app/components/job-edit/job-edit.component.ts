@@ -22,10 +22,12 @@ export class JobEditComponent implements OnInit {
   jobUpdate: EmploymentDetail;
   status_select: any = []
   status_list: any = []
-  id_list: any = []
+  id_list: any;
   status: EmploymentDetailEdit;
   amount!: EquipmentAmount;
   eq_amount: any = [];
+  emd_edit: any = [];
+  emd_id: any;
 
   
   constructor(
@@ -44,15 +46,30 @@ export class JobEditComponent implements OnInit {
     this.getJobEdit();
   }
 
+  async getIdEmd(id: any) {
+    this.emd_id = id;
+    this.apiService.emDetail(id).then((res: any) => {
+      console.log(res[0].status)
+      //  console.log(res);
+      this.emd_edit = res[0];
+        this.status_select = res[0].status
+        console.log("wow"+this.status_select)
+      if (res[0].status == 'สำเร็จ') {
+        (<HTMLInputElement> document.getElementById("status")).disabled = true;
+      }
+    });
+  }
+
   getJobEdit() {
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
       this.getData(res);
-      for (let i = 0 ; i<this.jobEdit.length ; i++) {
-        this.status_select.push(res[i].status)
-      }
-      for (var item of this.jobEdit) {
-        this.status_select.push(item.em_detail_id)
-      }
+      // for (let i = 0 ; i<this.jobEdit.length ; i++) {
+      //   this.status_select.push(res[i].status)
+      // }
+      // for (var item of this.jobEdit) {
+      //   this.status_select.push(item.em_detail_id)
+      // }
+      // console.log(this.status_select)
     });
   }
   statusChange(status: any) {
@@ -71,8 +88,10 @@ export class JobEditComponent implements OnInit {
   }
 
   updateStatus(id: any, status: string) {
-    this.status_list.push(status);
-    this.id_list.push(id)
+    this.status_list = status;
+    this.id_list = id
+    console.log("id"+this.id_list)
+    console.log("status"+this.status_list)
   }
 
   onClickBack() {
@@ -83,31 +102,46 @@ export class JobEditComponent implements OnInit {
     this.jobEdit=data;
   }
 
-  onClickSave() {
-    for (let i = 0 ; i<this.id_list.length ; i++) {
-      this.status.status = this.status_list[i]
-      this.apiService.updateEmd( parseInt(this.id_list[i]), this.status).then((res: any) => {
-        // console.log(parseInt(this.id_list[i]));
-        // console.log(this.status);
-        });
-
-        if (this.status_list[i] == "สำเร็จ") {
-          this.apiService.getEmploymentDetail(this.id).then((res: any) => {
-            this.eq_amount = res;
-            console.log(this.eq_amount[0].amount)
-            for (let i = 0; i < this.eq_amount.length; i++) {
-              this.amount.amount = this.eq_amount[i].amount
+  onClickSave(id:any, eqd_id:any, amount:any) {
+    // for (let i = 0 ; i<this.status_list.length ; i++) {
+      this.status.status = this.status_list
+      console.log("test"+this.status_list)
+      console.log(this.status)
+      this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
+        this.getJobEdit()
+        if (this.status_list == "สำเร็จ") {
+          console.log("toey"+eqd_id)
+              this.amount.amount = amount
+              this.amount.eqd = eqd_id
+        //       console.log("id"+this.amount.eqd+"จำนวน"+this.amount.amount)
               this.apiService.updateEqStatusSuccess(this.id,this.amount).then((res: any) => {
                 // console.log(this.jobEdit[i].detail_id);
-                });
-            }
-          });
-          
+                });   
         }
-    }
-    this.apiService.getEmploymentDetail(this.id).then((res: any) => {
-    });
-    this.location.back();
+      });
+        // console.log(parseInt(this.id_list[i]));
+        // console.log(this.status);
+        //   this.eq_amount = res;
+        //   console.log(this.eq_amount)
+        //   if (this.status_list[i] == "สำเร็จ") {
+        //       this.amount.amount = this.eq_amount[i].amount
+        //       this.amount.eqd = this.eq_amount[i].detail_id
+        //       console.log("id"+this.amount.eqd+"จำนวน"+this.amount.amount)
+        //       this.apiService.updateEqStatusSuccess(this.id,this.amount).then((res: any) => {
+        //         // console.log(this.jobEdit[i].detail_id);
+        //         });
+          
+          
+        // }
+       
+        
+      
+    // }
+    // this.apiService.getEmploymentDetail(this.id).then((res: any) => {
+      
+    // });
+    // this.location.back();
+    
   }
 
 
