@@ -72,7 +72,7 @@ export class GetjobComponent implements OnInit {
       status: [null],
       em_id: [null],
       eq_detail_name: [null],
-      date_end: [null],
+      date_end: [null]
     });
   }
 
@@ -132,11 +132,16 @@ export class GetjobComponent implements OnInit {
     });
   }
   async create_eqd() {
-    this.eqd_new.eq_detail_status = "ว่าง " + this.eqd_new.eq_detail_amount;
-    this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
-      this.eqd_list.push(res[0]);
-    });
-    this.eqd_new = new EquipmentDetail();
+    this.eqd_new.eq_detail_status = "ว่าง ";
+    if(this.eqd_new.eq_id != undefined && this.eqd_new.id != undefined && this.eqd_new.eq_detail_name !=null && this.eqd_new.eq_detail_amount != undefined) {
+      this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
+        this.eqd_list.push(res[0]);
+      });
+      this.eqd_new = new EquipmentDetail();
+    }else {
+      Swal.fire("ไม่สามารถเพิ่มรายการอุปกรณ์ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
+    }
+    
   }
 
   async add_getJob() {
