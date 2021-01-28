@@ -41,41 +41,37 @@ export class EqDetailComponent implements OnInit {
   async getIdEqd(id: any) {
     this.eqd_id = id;
     this.apiService.getEqd(id).then((res: any) => {
-      //  console.log(res);
       this.eqd_edit = res[0];
     });
   }
 
   getEqDetail() {
     this.apiService.getEqDetail(this.eq_id).then((res: any) => {
-      // console.log(res);
       this.eqd_data = res;
     });
   }
 
   delete(id: any, name: any) {
-      Swal.fire({
-        title: 'ยืนยันการลบอุปกรณ์',
-        text: id + ' : ' + name,
-        showDenyButton: true,
-        confirmButtonText: `ใช่`,
-        denyButtonText: `ไม่ใช่`,
-        icon: "warning",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.apiService.deleteEqDetail(id).then((res: any) => {
-            this.getEqDetail();
-          });
-          Swal.fire('ลบสำเร็จ!', '', 'success')
-        }
-      })
+    Swal.fire({
+      title: 'ยืนยันการลบอุปกรณ์',
+      text: id + ' : ' + name,
+      showDenyButton: true,
+      confirmButtonText: `ใช่`,
+      denyButtonText: `ไม่ใช่`,
+      icon: "warning",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.deleteEqDetail(id).then((res: any) => {
+          this.getEqDetail();
+        });
+        Swal.fire('ลบสำเร็จ!', '', 'success')
+      }
+    })
   }
 
   async edit_eqd() {
     this.apiService.updateEqDetail(this.eqd_id, this.eqd_edit).then((res: any) => {
       this.getEqDetail()
-      // console.log(this.eqd_id);
-      // console.log(this.eqd_edit);
     });
     this.eqd_edit = new EquipmentDetail();
   }
@@ -88,7 +84,7 @@ export class EqDetailComponent implements OnInit {
         '<br>' +
         '<input id="inputName" class="form-control" autocomplete="off" placeholder="ชื่อรายการอุปกรณ์" type="text">' +
         '<br>' +
-        '<input id="inputCount" class="form-control" autocomplete="off" placeholder="จำนวนอุปกรณ์" type="number">' +
+        '<input id="inputCount" class="form-control" autocomplete="off" placeholder="จำนวนอุปกรณ์" min="1" type="number">' +
         '<br>' +
         '<label id="textStatus" class="mb-15 text-blue h4">สถานะ : ว่าง</label>',
       focusConfirm: false,
@@ -103,15 +99,20 @@ export class EqDetailComponent implements OnInit {
       }
     })
     if (formValues) {
-      this.eqd_new.id = formValues[0];
-      this.eqd_new.eq_detail_name = formValues[1];
-      this.eqd_new.eq_detail_amount = parseInt(formValues[2]);
-      this.eqd_new.eq_detail_status = formValues[3];
-      this.eqd_new.eq_id = this.eq_id;
-      this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
-        this.getEqDetail()
-      });
-      Swal.fire('บันทึกสำเร็จ', '', 'success')
+      if (formValues[0] != "" && formValues[1] != "" && formValues[2] != "" && formValues[3] != "") {
+        this.eqd_new.id = formValues[0];
+        this.eqd_new.eq_detail_name = formValues[1];
+        this.eqd_new.eq_detail_amount = parseInt(formValues[2]);
+        this.eqd_new.eq_detail_status = formValues[3];
+        this.eqd_new.eq_id = this.eq_id;
+        this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
+          this.getEqDetail()
+        });
+        Swal.fire('บันทึกสำเร็จ', '', 'success')
+      } else {
+        Swal.fire("ไม่สามารถเพิ่มรายการอุปกรณ์ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+      }
+
     }
   }
 

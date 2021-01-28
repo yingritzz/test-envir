@@ -141,7 +141,6 @@ export class GetjobComponent implements OnInit {
     }else {
       Swal.fire("ไม่สามารถเพิ่มรายการอุปกรณ์ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
     }
-    
   }
 
   async add_getJob() {

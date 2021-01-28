@@ -29,7 +29,7 @@ export class EquipmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllEquipments();
-    
+
   }
 
   getAllEquipments() {
@@ -97,22 +97,23 @@ export class EquipmentComponent implements OnInit {
       }
     })
     if (formValues) {
-      // console.log("Resule: " + formValues[0] + " : " + formValues[1]);
-      this.eq_new.eq_name = formValues[0];
-      this.eq_new.category = formValues[1];
-      
-      this.apiService.createEq(this.eq_new).then((res: any) => {
-        // console.log('created Eq');
-        this.getAllEquipments()
-      });
+      if (formValues[0]!="" && formValues[1]!="") {
+        this.eq_new.eq_name = formValues[0];
+        this.eq_new.category = formValues[1];
 
-      Swal.fire('บันทึกสำเร็จ','','success')
+        this.apiService.createEq(this.eq_new).then((res: any) => {
+          this.getAllEquipments()
+        });
+        Swal.fire('บันทึกสำเร็จ', '', 'success')
+      } else {
+        Swal.fire("ไม่สามารถเพิ่มอุปกรณ์ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+      }
     }
   }
 
-  onTableDataChange(event: any){
+  onTableDataChange(event: any) {
     this.page = event;
     this.getAllEquipments();
-  } 
+  }
 
 }
