@@ -34,9 +34,6 @@
                                         <label>ชื่อลูกค้า :</label>
                                         <input type="text" class="form-control" name="input_cus"
                                             [(ngModel)]='cus_select' (ngModelChange)="getAllCustomers()">
-                                        <!-- <ul *ngFor="let cus of cus_list | filter:cus_select">
-                                            <li class="table">{{cus.cus_fullname}} <button class="btn btn-link" (click)="show_item(cus)">select</button></li>
-                                        </ul> -->
                                         <table class="table">
                                             <tbody *ngFor="let cus of cus  | filter:cus_select">
                                                 <tr>
@@ -75,36 +72,50 @@
                         <!-- Step 2 -->
                         <h5>รายละเอียดงาน</h5>
                         <section>
-                            <form>
+                            <form [formGroup]="form">
                                 <div class="row">
-
                                     <div class="col-md-6 form-group">
-                                        <label>หมวดหมู่ :</label>
-                                        <select class="custom-select form-control" id="catagory" name="catagory_select"
-                                            [(ngModel)]="catagory_select">
-                                            <option value=" "> </option>
-                                            <option *ngFor="let c of cg" value="{{c}}">{{c}}</option>
-                                        </select>
+                                        <div class="form-group" [ngClass]="displayFieldCss('category')">
+                                            <label for="category" class="control-label required">หมวดหมู่ :</label>
+                                            <select id="category" class="custom-select form-control" id="catagory"
+                                                name="catagory_select" formControlName="category">
+                                                <option value=" "> </option>
+                                                <option *ngFor="let c of cg" value="{{c}}">{{c}}</option>
+                                            </select>
+                                            <app-field-error-display [displayError]="isFieldValid('category')"
+                                                errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                            </app-field-error-display>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>วันที่รับงาน :</label>
-                                            <input type="date" class="form-control" placeholder="เลือกวันที่"
-                                                name="d_getjob" [(ngModel)]="d_getjob">
+                                        <div class="form-group" [ngClass]="displayFieldCss('date_get_job')">
+                                            <label for="date_get_job" class="control-label required">วันที่รับงาน
+                                                :</label>
+                                            <input id="date_get_job" type="date" class="form-control"
+                                                placeholder="เลือกวันที่" name="d_getjob"
+                                                formControlName="date_get_job">
+                                            <app-field-error-display [displayError]="isFieldValid('date_get_job')"
+                                                errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                            </app-field-error-display>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <label>อุปกรณ์ :</label>
-                                        <select class="custom-select form-control" name="equipment_select"
-                                            [(ngModel)]="equipment_select">
-                                            <option value=" "> </option>
-                                            <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.id}} :
-                                                {{eqd.eq_detail_name}}</option>
-                                        </select>
-                                        <br> <br>
+                                        <div class="form-group" [ngClass]="displayFieldCss('eq_detail_id')">
+                                            <label for="eq_detail_id" class="control-label required">อุปกรณ์ :</label>
+                                            <select id="eq_detail_id" class="custom-select form-control" id="eq_detail_id"
+                                                name="eq_detail_id" formControlName="eq_detail_id">
+                                                <option value=" "> </option>
+                                                <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.id}} :
+                                                    {{eqd.eq_detail_name}}</option>
+                                            </select>
+
+                                            <app-field-error-display [displayError]="isFieldValid('eq_detail_id')"
+                                                errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                            </app-field-error-display>
+                                        </div>
                                         <button type="reset" class="btn btn-success" data-toggle="modal"
                                             data-target="#Insert-eq-modal">เพิ่มอุปกรณ์ใหม่</button>
 
@@ -170,34 +181,44 @@
 
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>กำหนดวันที่ส่งคืน :</label>
-                                            <input type="date" class="form-control" placeholder="เลือกวันที่"
-                                                id="dateEnd"  name="d_endjob" [(ngModel)]="d_endjob">
+                                        <div class="form-group" [ngClass]="displayFieldCss('date_end_job')">
+                                            <label for="date_end_job" class="control-label required">กำหนดวันที่ส่งคืน
+                                                :</label>
+                                            <input id="date_end_job" type="date" class="form-control"
+                                                placeholder="เลือกวันที่" id="dateEnd" name="d_endjob"
+                                                formControlName="date_end_job">
+                                            <app-field-error-display [displayError]="isFieldValid('date_end_job')"
+                                                errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                            </app-field-error-display>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>จำนวน :</label>
-                                            <input name="count_select" [(ngModel)]="count_select" type="number"
-                                                class="form-control" autocomplete="off" min=1>
+                                        <div class="form-group" [ngClass]="displayFieldCss('amount')">
+                                            <label for="amount" class="control-label required">จำนวน :</label>
+                                            <input id="amount" name="count_select" type="number" class="form-control"
+                                                autocomplete="off" min=1 formControlName="amount">
+                                            <app-field-error-display [displayError]="isFieldValid('amount')"
+                                                errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                            </app-field-error-display>
                                         </div>
                                         <div class="warpper">
                                             <button class="btn btn-success" (click)="add_getJob()">เพิ่ม</button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>หมายเหตุ :</label>
-                                            <textarea class="form-control" name="annotation"
-                                                [(ngModel)]="annotation"></textarea>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>หมายเหตุ :</label>
+                                        <textarea class="form-control" name="annotation"
+                                            [(ngModel)]="annotation"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </section>
 
                         <br><br>
@@ -214,11 +235,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of name ; let i = index">
-                                    <td>{{catagory[i]}}</td>
-                                    <td>{{name[i]}}</td>
-                                    <td>{{amount[i]}}</td>
-                                    <td>{{date[i]}}</td>
+                                <tr *ngFor="let item of formArray ; let i = index">
+                                    <td>{{item.category}}</td>
+                                    <td>{{item.eq_detail_name}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.date_end}}</td>
                                     <td>
                                         <button class="btn btn-danger btn-sm" type="button" value="submit"
                                             (click)="deleteRow(i)"><i class="icon-copy fa fa-trash btn-size"

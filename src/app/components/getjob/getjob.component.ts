@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EquipmentDetail, EquipmentAmount } from '../../models/equipment';
 import { Employment, EmploymentDetail } from '../../models/employment';
 import { DatePipe } from '@angular/common'
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 
@@ -18,13 +19,11 @@ export class GetjobComponent implements OnInit {
   cg = ["เช่า-ยืม", "จำหน่าย", "ทดสอบ", "ซ่อมบำรุง"]
   datepipe = new DatePipe('en-US');
   minDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
+  form!: FormGroup;
+  formArray: any = [];
+  em_id: any;
 
   cus_select: any;  //ng-model
-  catagory_select: any  //ng-model
-  equipment_select: any  //ng-model
-  count_select: any //ng-model
-  d_getjob: any;  //ng-model
-  d_endjob: any;  //ng-model
   cus_list: any = [];  //data of api get customer list
   email: any;  //email of customer select
   phone: any;  //phone of customer select
@@ -32,43 +31,29 @@ export class GetjobComponent implements OnInit {
   eq_list: any = [];  //data of api get eq id เลือกชนิดตอนสร้างอุปกรณ์
   eqd_list: any = [];  //data of api get eqd เลือกอุปกรณ์
   eqd_new!: EquipmentDetail;  //create eqd
-  eqd_names: any;  //get eqd เพื่อดูชื่ออุปกรณ์
-  name: any = [];  //เก็บชื่อุปกรณ์ใส่ []
   date: any = [];  //เก็บวันที่จบงานใส่ []
-  cus: any = [];
-  cus_data: any;
+  cus: any = [];  //เก็บชื่ออุปกรณ์
+  cus_data: any;  //เก็บข้อมูลอุปกรณ์
   moo: any;
   soi: any;
   road: any;
 
   cus_id: any;
   admin_id: any;
-  catagory: any = [];
-  equipment: any = [];
-  status: any = [];
-  amount: any = [];
   annotation: string = " ";
-  date_get: any = [];
-  date_end: any = [];
   annot: string = " ";
   job: Employment;
   job_detail: EmploymentDetail;
-  job_data: any;
-
   eq_amount!: EquipmentAmount;
-
-  updateArray: any = [];
 
   constructor(
     public router: Router,
-    public apiService: ApiService
+    public apiService: ApiService,
+    private formBuilder: FormBuilder
   ) {
     this.eqd_new = new EquipmentDetail;
-    this.d_getjob = new Date();
-    this.d_endjob = new Date();
     this.job = new Employment;
     this.job_detail = new EmploymentDetail;
-    this.eqd_names = [];
     this.eq_amount = new EquipmentAmount;
   }
 
@@ -76,8 +61,18 @@ export class GetjobComponent implements OnInit {
     this.admin_id = localStorage.getItem("id");
     this.getAllEq();
     this.getAllEqd();
-    console.log(this.minDate)
     document.getElementById("dateEnd")!.setAttribute("min", this.minDate!);
+    this.form = this.formBuilder.group({
+      category: [null, Validators.required],
+      eq_detail_id: [null, Validators.required],
+      date_get_job: [null, Validators.required],
+      date_end_job: [null, Validators.required],
+      amount: [null, Validators.required],
+      status: [null],
+      em_id: [null],
+      eq_detail_name: [null],
+      date_end: [null],
+    });
   }
 
   async getAllCustomers() {
@@ -87,10 +82,8 @@ export class GetjobComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         this.cus.push(res[i].cus_fullname);
       }
-      // console.log(this.cus)
     });
   }
-
   getData(data: any) {
     this.cus_list = data;
   }
@@ -98,7 +91,6 @@ export class GetjobComponent implements OnInit {
     for (let i = 0; i < this.cus_list.length; i++) {
       if (this.cus_list[i].cus_fullname == data) {
         this.cus_data = this.cus_list[i]
-        // console.log(this.cus_data);
       }
     }
     this.cus_id = this.cus_data.id;
@@ -130,71 +122,49 @@ export class GetjobComponent implements OnInit {
     });
   }
   async getAllEqd() {
-    this.eqd_list=[];
+    this.eqd_list = [];
     this.apiService.getListEqd().then((res: any) => {
-      // this.eqd_list = res;
       for (let i = 0; i < res.length; i++) {
         if (res[i].eq_detail_status != 'ไม่ว่าง')
           this.eqd_list.push(res[i]);
       }
     });
   }
-  async getEqd(id: any) {
-    this.apiService.getEqd(id).then((res: any) => {
-      this.eqd_names = res;
-      this.name.push(this.eqd_names[0].eq_detail_name);
-      // console.log(this.name);
-    });
-  }
   async create_eqd() {
     this.eqd_new.eq_detail_status = "ว่าง " + this.eqd_new.eq_detail_amount;
     this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
-      // console.log(this.eqd_new);
       this.eqd_list.push(res[0]);
     });
-
     this.eqd_new = new EquipmentDetail();
   }
 
   async add_getJob() {
-    for (let i = 0; i < this.eqd_list.length; i++) {
-      if (this.eqd_list[i].id == this.equipment_select) {
+    this.form.value.status = 'รับงาน'
+    this.annot = this.annotation;
+    if (this.form.valid) {
+      this.apiService.getEqd(this.form.value.eq_detail_id).then((res: any) => {
+        this.form.value.eq_detail_name = res[0].eq_detail_name;
+        this.form.value.date_end = this.datepipe.transform(this.form.value.date_end_job, 'dd MMM yyyy')
+        this.formArray.push(this.form.value);
+        this.form.reset();
+        Swal.fire("เพิ่มงานสำเร็จ!", 'สามารถตรวจสอบรายละเอียดความถูกต้องของงาน' + '<br>' + 'ได้ที่ตารางด้านล่าง', "success");
+      });
+    } else {
+      Swal.fire("ไม่สามารถเพิ่มรายการได้ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
+    }
+
+    for (let i=0 ; i<this.eqd_list.length ; i++) {
+      if (this.form.value.eq_detail_id == this.eqd_list[i].id) {
         this.eqd_list.splice(i, 1);
       }
     }
-    this.getEqd(this.equipment_select);
-
-    this.catagory.push(this.catagory_select);
-    this.equipment.push(this.equipment_select);
-    this.status.push('รับงาน');
-    this.amount.push(this.count_select);
-    this.date_get.push(this.d_getjob);
-    this.date_end.push(this.d_endjob);
-    this.date.push(this.datepipe.transform(this.d_endjob, 'dd MMM yyyy'));
-    this.annot = this.annotation;
-
-    this.catagory_select = '';
-    this.equipment_select = '';
-    this.count_select = '';
-    this.d_getjob = '';
-    this.d_endjob = '';
-    Swal.fire("เพิ่มงานสำเร็จ!", 'สามารถตรวจสอบรายละเอียดความถูกต้องของงาน' + '<br>' + 'ได้ที่ตารางด้านล่าง', "success");
   }
+
   deleteRow(i: number) {
-    console.log(this.equipment[i]);
-    this.apiService.getEqd(this.equipment[i]).then((res: any) => {
+    this.apiService.getEqd(this.formArray[i].eq_detail_id).then((res: any) => {
       this.eqd_list.push(res[0]);
     });
-
-    this.catagory.splice(i, 1);
-    this.equipment.splice(i, 1);
-    this.amount.splice(i, 1);
-    this.status.splice(i, 1);
-    this.date_get.splice(i, 1);
-    this.date_end.splice(i, 1);
-
-    this.name.splice(i, 1);
-    this.date.splice(i, 1);
+    this.formArray.splice(i, 1);
   }
 
   save() {
@@ -203,34 +173,34 @@ export class GetjobComponent implements OnInit {
     (this.job).annotation = this.annot;
 
     this.apiService.createEmployment(this.job).then((res: any) => {
-      for (let i = 0; i < this.catagory.length; i++) {
-        (this.job_detail).category = this.catagory[i];
-        (this.job_detail).date_get_job = this.date_get[i];
-        (this.job_detail).date_end_job = this.date_end[i];
-        (this.job_detail).status = this.status[i];
-        (this.job_detail).amount = this.amount[i];
-        (this.job_detail).em_id = res[0].lastval;
-        (this.job_detail).eq_detail_id = this.equipment[i];
+      this.em_id = res[0].lastval;
+      for (let i = 0; i < this.formArray.length; i++) {
+        this.formArray[i].em_id = res[0].lastval;
+        this.apiService.createEmDetail(this.formArray[i]).then((response: any) => {
+          (this.eq_amount).amount = parseInt(this.formArray[i].amount);
+          (this.eq_amount).eqd = this.formArray[i].eq_detail_id;
 
-        this.apiService.createEmDetail(this.job_detail).then((response: any) => {
-
-        this.job_detail = new EmploymentDetail; 
-        
-        (this.eq_amount).amount = parseInt(this.amount[i]);
-        (this.eq_amount).eqd = this.equipment[i];
-       
-        console.log(this.eq_amount);
-
-        this.apiService.updateEqStatus(res[0].lastval,this.eq_amount).then((resp: any) => {
-          console.log(this.eq_amount);
+          this.apiService.updateEqStatus(this.formArray[i].em_id, this.eq_amount).then((resp: any) => {
+            console.log(this.formArray[i].em_id);
           });
         });
       }
-      this.router.navigate(['invoice/' + res[0].lastval]);
-      this.apiService.getEmDetail(res[0].lastval).then((res: any) => {
-        this.job_data = res;
+
+      this.apiService.getEmDetail(this.em_id).then((res: any) => {
+        this.router.navigate(['invoice/' + this.em_id]);
       });
     });
+
+  }
+
+  isFieldValid(field: string) {
+    return this.form.get(field)!.valid && this.form.get(field)!.touched;
+  }
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldValid(field),
+      'has-feedback': this.isFieldValid(field)
+    };
   }
 
 }
