@@ -62,6 +62,7 @@ export class GetjobComponent implements OnInit {
     this.getAllEq();
     this.getAllEqd();
     document.getElementById("dateEnd")!.setAttribute("min", this.minDate!);
+    (document.getElementById('save') as HTMLInputElement).disabled = true;
     this.form = this.formBuilder.group({
       category: [null, Validators.required],
       eq_detail_id: [null, Validators.required],
@@ -141,6 +142,7 @@ export class GetjobComponent implements OnInit {
   async add_getJob() {
     this.form.value.status = 'รับงาน'
     this.annot = this.annotation;
+    (document.getElementById('save') as HTMLInputElement).disabled = false;
     if (this.form.valid) {
       this.apiService.getEqd(this.form.value.eq_detail_id).then((res: any) => {
         this.form.value.eq_detail_name = res[0].eq_detail_name;
@@ -150,10 +152,10 @@ export class GetjobComponent implements OnInit {
         Swal.fire("เพิ่มงานสำเร็จ!", 'สามารถตรวจสอบรายละเอียดความถูกต้องของงาน' + '<br>' + 'ได้ที่ตารางด้านล่าง', "success");
       });
     } else {
-      Swal.fire("ไม่สามารถเพิ่มรายการได้ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
+      Swal.fire("ไม่สามารถเพิ่มรายการได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
     }
 
-    for (let i=0 ; i<this.eqd_list.length ; i++) {
+    for (let i = 0; i < this.eqd_list.length; i++) {
       if (this.form.value.eq_detail_id == this.eqd_list[i].id) {
         this.eqd_list.splice(i, 1);
       }
@@ -168,29 +170,32 @@ export class GetjobComponent implements OnInit {
   }
 
   save() {
-    (this.job).admin_id = parseInt(this.admin_id);
-    (this.job).cus_id = parseInt(this.cus_id);
-    (this.job).annotation = this.annot;
+    if (this.cus_id == null || this.cus_id == undefined) {
+      Swal.fire("ไม่สามารถบันทึกรายการได้", "กรุณากรอกข้อมูลลูกค้าให้ครบถ้วน", "error");
+    } else {
+      (this.job).admin_id = parseInt(this.admin_id);
+      (this.job).cus_id = parseInt(this.cus_id);
+      (this.job).annotation = this.annot;
 
-    this.apiService.createEmployment(this.job).then((res: any) => {
-      this.em_id = res[0].lastval;
-      for (let i = 0; i < this.formArray.length; i++) {
-        this.formArray[i].em_id = res[0].lastval;
-        this.apiService.createEmDetail(this.formArray[i]).then((response: any) => {
-          (this.eq_amount).amount = parseInt(this.formArray[i].amount);
-          (this.eq_amount).eqd = this.formArray[i].eq_detail_id;
+      this.apiService.createEmployment(this.job).then((res: any) => {
+        this.em_id = res[0].lastval;
+        for (let i = 0; i < this.formArray.length; i++) {
+          this.formArray[i].em_id = res[0].lastval;
+          this.apiService.createEmDetail(this.formArray[i]).then((response: any) => {
+            (this.eq_amount).amount = parseInt(this.formArray[i].amount);
+            (this.eq_amount).eqd = this.formArray[i].eq_detail_id;
 
-          this.apiService.updateEqStatus(this.formArray[i].em_id, this.eq_amount).then((resp: any) => {
-            console.log(this.formArray[i].em_id);
+            this.apiService.updateEqStatus(this.formArray[i].em_id, this.eq_amount).then((resp: any) => {
+              console.log(this.formArray[i].em_id);
+            });
           });
+        }
+
+        this.apiService.getEmDetail(this.em_id).then((res: any) => {
+          this.router.navigate(['invoice/' + this.em_id]);
         });
-      }
-
-      this.apiService.getEmDetail(this.em_id).then((res: any) => {
-        this.router.navigate(['invoice/' + this.em_id]);
       });
-    });
-
+    }
   }
 
   isFieldValid(field: string) {
