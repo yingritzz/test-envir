@@ -16,6 +16,10 @@ export class InvoiceComponent implements OnInit {
   em_id!: number;
   em_data: any;
   em_date: any;
+  moo: any;
+  soi: any;
+  road: any;
+  address: any;
 
   datepipe = new DatePipe('en-US');
 
@@ -36,6 +40,23 @@ export class InvoiceComponent implements OnInit {
     this.apiService.getEmDetail(id).then((res: any) => {
       this.em_data = res;
       this.em_date = this.datepipe.transform(res[0].date_get_job, 'dd-MM-yyyy');
+
+      if (this.em_data[0].moo == null) {
+        this.moo = ""
+      } else {
+        this.moo = " ม." + this.em_data[0].moo;
+      }
+      if (this.em_data[0].soi == null || this.em_data[0].soi == "") {
+        this.soi = ""
+      } else {
+        this.soi = "ซอย" + this.em_data[0].soi;
+      }
+      if (this.em_data[0].road == null || this.em_data[0].road == "") {
+        this.road = ""
+      } else {
+        this.road = "ถนน" + this.em_data[0].road;
+      }
+      this.address = this.em_data[0].number + this.moo + " " + this.soi + " " + this.road + " " + this.em_data[0].sub_district + " " + this.em_data[0].district + " " + this.em_data[0].province;
     });
   }
 
