@@ -12,8 +12,9 @@
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
-                                <li class="breadcrumb-item " aria-current="page"><a [routerLink]="[ '/customer']">ลูกค้า</a></li>
-                                <li class="breadcrumb-item active" >เพิ่มลูกค้า</li>
+                                <li class="breadcrumb-item " aria-current="page"><a
+                                        [routerLink]="[ '/customer']">ลูกค้า</a></li>
+                                <li class="breadcrumb-item active">เพิ่มลูกค้า</li>
                             </ol>
                         </nav>
                     </div>
@@ -25,9 +26,41 @@
                     <p class="mb-30">เพิ่มรายละเอียดลูกค้า</p>
                 </div>
                 <div class="wizard-content">
-                    <form class="tab-wizard wizard-circle wizard">
+                    <form class="tab-wizard wizard-circle wizard" [formGroup]="form">
                         <h5>ข้อมูลลูกค้า</h5>
-                        <section>
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="form-group" [ngClass]="displayFieldCss('cus_fullname')">
+                                    <label for="cus_fullname" class="control-label required">ชื่อลูกค้า :</label>
+                                    <input type="text" id="cus_fullname" class="form-control"
+                                        formControlName="cus_fullname">
+                                    <app-field-error-display [displayError]="isFieldValid('cus_fullname')"
+                                        errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                    </app-field-error-display>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" [ngClass]="displayFieldCss('cus_email')">
+                                    <label for="cus_email" class="control-label required">Email Address :</label>
+                                    <input type="email" id="cus_email" class="form-control" formControlName="cus_email">
+                                    <app-field-error-display [displayError]="isFieldValid('cus_email')"
+                                        errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                    </app-field-error-display>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" [ngClass]="displayFieldCss('cus_phone')">
+                                    <label for="cus_phone" class="control-label required">เบอร์โทรศัพท์ :</label>
+                                    <input type="text" id="cus_phone" class="form-control" formControlName="cus_phone">
+                                    <app-field-error-display [displayError]="isFieldValid('cus_phone')"
+                                        errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                    </app-field-error-display>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <section>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -50,10 +83,82 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section> -->
                         <!-- Step 2 -->
                         <h5>รายละเอียดที่อยู่</h5>
-                        <section>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12 form-group">
+                                <div class="form-group" [ngClass]="displayFieldCss('number')">
+                                    <label for="number" class="control-label required">เลขที่ :</label>
+                                    <input type="text" id="number" class="form-control" formControlName="number">
+                                    <app-field-error-display [displayError]="isFieldValid('number')"
+                                        errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                    </app-field-error-display>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 form-group">
+                                <label for="moo" class="control-label">หมู่ :</label>
+                                <input type="text" id="moo" class="form-control" formControlName="moo">
+                            </div>
+                            <div class="col-md-3 col-sm-12 form-group">
+                                <label for="soi" class="control-label">ซอย :</label>
+                                <input type="text" id="soi" class="form-control" formControlName="soi">
+                            </div>
+                            <div class="col-md-3 col-sm-12 form-group">
+                                <label for="road" class="control-label">ถนน :</label>
+                                <input type="text" id="road" class="form-control" formControlName="road">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" [ngClass]="displayFieldCss('sub_district')">
+                                    <label for="sub_district" class="control-label required">แขวง/ตำบล :</label>
+                                    <input type="text" id="sub_district" class="form-control"
+                                        formControlName="sub_district">
+                                    <app-field-error-display [displayError]="isFieldValid('sub_district')"
+                                        errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                    </app-field-error-display>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" [ngClass]="displayFieldCss('district')">
+                                    <label for="district" class="control-label required">เขต/อำเภอ :</label>
+                                    <input type="text" id="district" class="form-control" formControlName="district">
+                                    <app-field-error-display [displayError]="isFieldValid('district')"
+                                        errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                    </app-field-error-display>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" [ngClass]="displayFieldCss('province')">
+                                    <label for="province" class="control-label required">จังหวัด :</label>
+                                    <input type="text" id="province" class="form-control" formControlName="province">
+                                    <app-field-error-display [displayError]="isFieldValid('province')"
+                                        errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                    </app-field-error-display>
+                                </div>
+                            </div>
+                            <div class="col-md-6" c>
+                                <div lass="form-group" [ngClass]="displayFieldCss('postal_code')">
+                                    <label for="postal_code" class="control-label required">รหัสไปรษณีย์ :</label>
+                                    <input type="text" id="postal_code" class="form-control"
+                                        formControlName="postal_code">
+                                    <app-field-error-display [displayError]="isFieldValid('postal_code')"
+                                        errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                    </app-field-error-display>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="warpper">
+                            <div class="btn-list">
+                                <button type="button" class="btn btn-success" id="save"
+                                    (click)="onClickNewCus()">บันทึก</button>
+                                <button type="button" class="btn btn-danger" (click)="onClickBack()">ยกเลิก</button>
+                            </div>
+                        </div>
+                        <!-- <section>
                             <div class="row">
                                 <div class="col-md-3 col-sm-12 form-group">
                                     <div class="form-group">
@@ -108,15 +213,16 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section> -->
                     </form>
                 </div>
-                <div class="warpper">
+                <!-- <div class="warpper">
                     <div class="btn-list">
-                        <button type="button" class="btn btn-success" id="save" (click)="onClickNewCus()">บันทึก</button>
+                        <button type="button" class="btn btn-success" id="save"
+                            (click)="onClickNewCus()">บันทึก</button>
                         <button type="button" class="btn btn-danger" (click)="onClickBack()">ยกเลิก</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <app-footer></app-footer>

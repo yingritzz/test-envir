@@ -41,6 +41,7 @@ import { LineSellingComponent } from './LINE/line-selling/line-selling.component
 import { LineTestingComponent } from './LINE/line-testing/line-testing.component';
 import { JobDetailComponent } from './components/job-detail/job-detail.component';
 import { JobEditComponent } from './components/job-edit/job-edit.component';
+import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { JobEditComponent } from './components/job-edit/job-edit.component';
     LineSellingComponent,
     LineTestingComponent,
     JobDetailComponent,
-    JobEditComponent
+    JobEditComponent,
+    FieldErrorDisplayComponent
   ],
   imports: [
     BrowserModule,
