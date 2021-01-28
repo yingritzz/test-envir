@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cus-add',
@@ -70,6 +71,8 @@ export class CusAddComponent implements OnInit {
     if (this.form.valid) {
       console.log(this.form.value);
       this.create_cus()
+    } else {
+      Swal.fire("ไม่สามารถเพิ่มข้อมูลลูกค้าได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
     }
   }
 
@@ -82,7 +85,6 @@ export class CusAddComponent implements OnInit {
   isFieldValid(field: string) {
     return this.form.get(field)!.valid && this.form.get(field)!.touched;
   }
-
   displayFieldCss(field: string) {
     return {
       'has-error': this.isFieldValid(field),
@@ -100,29 +102,10 @@ export class CusAddComponent implements OnInit {
   //   if (this.data.cus_phone == undefined) {
   //     (document.getElementById('cus_phone') as HTMLInputElement).className = "form-control form-control-danger";
   //   }
-  //   if (this.data.number == undefined) {
-  //     (document.getElementById('number') as HTMLInputElement).className = "form-control form-control-danger";
-  //   }
-  //   if (this.data.sub_district == undefined) {
-  //     (document.getElementById('sub_district') as HTMLInputElement).className = "form-control form-control-danger";
-  //   }
-  //   if (this.data.district == undefined) {
-  //     (document.getElementById('district') as HTMLInputElement).className = "form-control form-control-danger";
-  //   }
-  //   if (this.data.province == undefined) {
-  //     (document.getElementById('province') as HTMLInputElement).className = "form-control form-control-danger";
-  //   }
-  //   if (this.data.postal_code == undefined) {
-  //     (document.getElementById('postal_code') as HTMLInputElement).className = "form-control form-control-danger";
-  //   }
+  
   //   if( this.data.cus_fullname != undefined &&
   //     this.data.cus_email != undefined &&
-  //     this.data.cus_phone != undefined &&
-  //     this.data.number != undefined &&
-  //     this.data.sub_district != undefined &&
-  //     this.data.district != undefined &&
-  //     this.data.province != undefined && 
-  //     this.data.postal_code != undefined) {
+  //     this.data.cus_phone != undefined) {
   //       this.create_cus();
   //   }
   // }
@@ -146,41 +129,6 @@ export class CusAddComponent implements OnInit {
   //     (document.getElementById('cus_phone') as HTMLInputElement).className = "form-control form-control-danger";
   //   } else {
   //     (document.getElementById('cus_phone') as HTMLInputElement).className = "form-control";
-  //   }
-  // }
-  // model_number(c: any) {
-  //   if (c == "" || c == undefined) {
-  //     (document.getElementById('number') as HTMLInputElement).className = "form-control form-control-danger";
-  //   } else {
-  //     (document.getElementById('number') as HTMLInputElement).className = "form-control";
-  //   }
-  // }
-  // model_sub_district(c: any) {
-  //   if (c == "" || c == undefined) {
-  //     (document.getElementById('sub_district') as HTMLInputElement).className = "form-control form-control-danger";
-  //   } else {
-  //     (document.getElementById('sub_district') as HTMLInputElement).className = "form-control";
-  //   }
-  // }
-  // model_district(c: any) {
-  //   if (c == "" || c == undefined) {
-  //     (document.getElementById('district') as HTMLInputElement).className = "form-control form-control-danger";
-  //   } else {
-  //     (document.getElementById('district') as HTMLInputElement).className = "form-control";
-  //   }
-  // }
-  // model_province(c: any) {
-  //   if (c == "" || c == undefined) {
-  //     (document.getElementById('province') as HTMLInputElement).className = "form-control form-control-danger";
-  //   } else {
-  //     (document.getElementById('province') as HTMLInputElement).className = "form-control";
-  //   }
-  // }
-  // model_postal_code(c: any) {
-  //   if (c == "" || c == undefined) {
-  //     (document.getElementById('postal_code') as HTMLInputElement).className = "form-control form-control-danger";
-  //   } else {
-  //     (document.getElementById('postal_code') as HTMLInputElement).className = "form-control";
   //   }
   // }
 }
