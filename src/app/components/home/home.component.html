@@ -79,7 +79,7 @@
                         </div>
                         <div class="widget-data">
                             <div class="h4 mb-0">{{countSell}}</div>
-                            <div class="weight-600 font-14">ซื้อ</div>
+                            <div class="weight-600 font-14">จำหน่าย</div>
                         </div>
                     </div>
                 </div>
@@ -105,11 +105,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let list of todaylist; let i = index">
+                                <tr *ngFor="let list of todaylist; let i = index" (click)="todayGoToDeatail(list.em_id,list.category)" href="javascript:;">
                                     <th scope="row">{{i+1}}</th>
-                                    <td>{{list.cus_fullname}}</td>
-                                    <td>{{list.eq_detail_name}}</td>
-                                    <td>{{list.category}}</td>
+                                    <td><a href="javascript:;">{{list.cus_fullname}}</a></td>
+                                    <td><a href="javascript:;">{{list.eq_detail_name}}</a></td>
+                                    <td><a href="javascript:;">{{list.category}}</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -121,10 +121,10 @@
                 <div class="card-box pd-30 height-100-p">
                     <h4 class="mb-30 h4">อุปกรณ์เกินกำหนดคืน</h4>
                     <div class="browser-visits">
-                        <ul>
-                            <li class="d-flex flex-wrap align-items-center" *ngFor="let due of overdue; let i = index">
-                                <div class="browser-name">{{due.eq_detail_id}} - {{due.eq_detail_name}}</div>
-                                <div class="visit"><span class="badge badge-pill badge-primary3">เกินกำหนด {{due.date}} วัน</span>
+                        <ul>            
+                            <li class="d-flex flex-wrap align-items-center" *ngFor="let due of overdue; let i = index" (click)="overDueGoToDeatail(due.em_id,due.category)">
+                                <div class="browser-name"><a href="javascript:;">{{due.eq_detail_id}} - {{due.eq_detail_name}}</a></div>
+                                <div class="visit"><span class="badge badge-pill badge-primary3"><a href="javascript:;" class="a">เกินกำหนด {{due.date}} วัน</a></span>
                                 </div>
                             </li>
                         </ul>

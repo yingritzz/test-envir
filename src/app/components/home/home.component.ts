@@ -25,6 +25,8 @@ export class HomeComponent implements OnInit {
   overdue: any
   lastinsert: any
 
+  category: any;
+
 
   constructor(
     private location: Location,
@@ -56,13 +58,59 @@ export class HomeComponent implements OnInit {
     this.apiService.getHome('todaylist').then((res: any) => {
       // console.log(res);
       this.todaylist = res;
+     
     });
+  }
+  todayGoToDeatail(em_id:any,category:any){
+    if(category == 'เช่า-ยืม'){
+      this.category = 'rental'
+      console.log(this.category)
+      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+    }
+    else if (category == 'จำหน่าย') {
+      this.category = 'selling'
+      console.log(this.category)
+      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+    }
+    else if (category == 'ทดสอบ') {
+      this.category = 'testing'
+      console.log(this.category)
+      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+    }
+    else if (category == 'ซ่อมบำรุง') {
+      this.category = 'maintenanc'
+      console.log(this.category)
+      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+    }
+
   }
   getOverdue() {
     this.apiService.getHome('overdue').then((res: any) => {
       // console.log(res);
       this.overdue = res;
     });
+  }
+  overDueGoToDeatail(em_id:any,category:any){
+    if(category == 'เช่า-ยืม'){
+      this.category = 'rental'
+      console.log(this.category)
+      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+    }
+    else if (category == 'จำหน่าย') {
+      this.category = 'selling'
+      console.log(this.category)
+      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+    }
+    else if (category == 'ทดสอบ') {
+      this.category = 'testing'
+      console.log(this.category)
+      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+    }
+    else if (category == 'ซ่อมบำรุง') {
+      this.category = 'maintenanc'
+      console.log(this.category)
+      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+    } 
   }
   getLastInsert() {
     this.apiService.getHome('lastinsert').then((res: any) => {
