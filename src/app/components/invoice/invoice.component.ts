@@ -20,6 +20,7 @@ export class InvoiceComponent implements OnInit {
   soi: any;
   road: any;
   address: any;
+  address2: any;
 
   datepipe = new DatePipe('en-US');
 
@@ -56,7 +57,8 @@ export class InvoiceComponent implements OnInit {
       } else {
         this.road = "ถนน" + this.em_data[0].road;
       }
-      this.address = this.em_data[0].number + this.moo + " " + this.soi + " " + this.road + " " + this.em_data[0].sub_district + " " + this.em_data[0].district + " " + this.em_data[0].province;
+      this.address = this.em_data[0].number + this.moo + " " + this.soi + " " + this.road + " " + this.em_data[0].sub_district;
+      this.address2 = this.em_data[0].district + " " + this.em_data[0].province;
     });
   }
 
@@ -70,9 +72,9 @@ export class InvoiceComponent implements OnInit {
       let pdf = new jspdf('p', 'mm', 'a4');
       var position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-      pdf.save('newPDF'+this.em_id+''+'.pdf');
-      pdf.output('dataurlnewwindow');
+      // pdf.save('newPDF'+this.em_id+''+'.pdf');
+      // pdf.output('dataurlnewwindow');
+      window.open(URL.createObjectURL(pdf.output("blob")))
     });
-
   }
 }
