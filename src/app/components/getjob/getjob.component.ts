@@ -78,11 +78,17 @@ export class GetjobComponent implements OnInit {
   }
 
   async getCustomers(item: any) {
-    this.cus_search.text = item;
-    console.log(this.cus_search)
-    this.apiService.searchCus(this.cus_search).then((res: any) => {
-      this.getData(res);
-    });
+    if (item != "") {
+      this.cus_search.text = item;
+      this.apiService.searchCus(this.cus_search).then((res: any) => {
+        this.getData(res);
+      });
+      (document.getElementById('email') as HTMLInputElement).disabled = true;
+      (document.getElementById('phone') as HTMLInputElement).disabled = true;
+      (document.getElementById('address') as HTMLInputElement).disabled = true;
+    } else {
+      this.cus_list = []
+    }
   }
   getData(data: any) {
     this.cus_list = data;
@@ -126,12 +132,12 @@ export class GetjobComponent implements OnInit {
   }
   async create_eqd() {
     this.eqd_new.eq_detail_status = "ว่าง ";
-    if(this.eqd_new.eq_id != undefined && this.eqd_new.id != undefined && this.eqd_new.eq_detail_name !=null && this.eqd_new.eq_detail_amount != undefined) {
+    if (this.eqd_new.eq_id != undefined && this.eqd_new.id != undefined && this.eqd_new.eq_detail_name != null && this.eqd_new.eq_detail_amount != undefined) {
       this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
         this.eqd_list.push(res[0]);
       });
       this.eqd_new = new EquipmentDetail();
-    }else {
+    } else {
       Swal.fire("ไม่สามารถเพิ่มรายการอุปกรณ์ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
     }
   }
