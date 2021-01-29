@@ -12,9 +12,11 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a [routerLink]="[ '/home']" href="javascript:;">หน้าหลัก</a></li>
-                                <li class="breadcrumb-item" (click)="onClickBack()"><a href="javascript:;">รายละเอียดงาน</a></li>
-                                <li class="breadcrumb-item active" aria-current="page" >แก้ไขรายละเอียดงาน</li>
+                                <li class="breadcrumb-item"><a [routerLink]="[ '/home']"
+                                        href="javascript:;">หน้าหลัก</a></li>
+                                <li class="breadcrumb-item" (click)="onClickBack()"><a
+                                        href="javascript:;">รายละเอียดงาน</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">แก้ไขรายละเอียดงาน</li>
                             </ol>
                         </nav>
                     </div>
@@ -38,7 +40,8 @@
                                 </li>
                                 <li>
                                     <span>ที่อยู่:</span>
-                                    {{jobEdit[0]?.number}} ม. {{jobEdit[0]?.moo}} ตำบล{{jobEdit[0]?.sub_district}} อำเภอ{{jobEdit[0]?.district}}
+                                    {{jobEdit[0]?.number}} ม. {{jobEdit[0]?.moo}} ตำบล{{jobEdit[0]?.sub_district}}
+                                    อำเภอ{{jobEdit[0]?.district}}
                                     จังหวัด{{jobEdit[0]?.province}} {{jobEdit[0]?.postal_code}}
                                 </li>
                             </ul>
@@ -50,11 +53,13 @@
 
                         <div class="row">
                             <h5 class="col-sm-6 h5 mb-0">{{jobEdit[0]?.cus_fullname}}({{jobEdit[0]?.category}})</h5>
-                            <p class="col-sm-6 text-right font-14"><span>วันที่รับงาน: </span>{{jobEdit[0]?.date_get_job}}</p>
+                            <p class="col-sm-6 text-right font-14"><span>วันที่รับงาน:
+                                </span>{{jobEdit[0]?.date_get_job}}</p>
                         </div>
                         <div class="row">
                             <p class="col-sm-6 h5 text-left text-muted font-14"><span>No:</span> {{jobEdit[0]?.id}}</p>
-                            <p class="col-sm-6 text-right font-14"><span>วันที่ครบกำหนด: </span>{{jobEdit[0]?.date_end_job}}</p>
+                            <p class="col-sm-6 text-right font-14"><span>วันที่ครบกำหนด:
+                                </span>{{jobEdit[0]?.date_end_job}}</p>
                         </div>
 
                         <table class="table">
@@ -68,7 +73,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                                 <tr *ngFor="let edit of jobEdit; let i = index">
                                     <ng-container *ngIf="statusChange(emd_edit.category)"></ng-container>
                                     <td>{{i+1}}</td>
@@ -83,59 +88,63 @@
                                         </select> -->
                                         <div class="btn-list">
                                             <button class="btn btn-success btn-sm" type="button" value="submit"
-                                            data-toggle="modal" data-target="#Edit-eq" (click)="getIdEmd(edit.em_detail_id)">
-                                            <i class="icon-copy fa fa-pencil-square-o btn-size"
-                                                aria-hidden="true"></i></button>
-                                            
-                                                <button class="btn btn-danger btn-sm" type="button" value="submit"
-                                                ><i class="icon-copy fa fa-trash btn-size"
+                                                data-toggle="modal" data-target="#Edit-eq"
+                                                (click)="getIdEmd(edit.em_detail_id)">
+                                                <i class="icon-copy fa fa-pencil-square-o btn-size"
+                                                    aria-hidden="true"></i></button>
+
+                                            <button class="btn btn-danger btn-sm" type="button" value="submit"
+                                                (click)="delete(edit.em_detail_id, edit.eq_detail_name, edit.id, edit.amount, edit.detail_id)"><i
+                                                    class="icon-copy fa fa-trash btn-size"
                                                     aria-hidden="true"></i></button>
                                         </div>
-                                        
+
                                         <div class="modal fade" id="Edit-eq" tabindex="-1" role="dialog"
-                                        aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title" id="myLargeModalLabel">แก้ไขสถานะอุปกรณ์
-                                                    </h4>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-hidden="true">×</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-                                                        <div>
-                                                            <div class="form-group">
-                                                                <h5>SN.{{emd_edit.eq_detail_id}}</h5>
-                                                                <h5>SN.{{status_select}}</h5>
+                                            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="myLargeModalLabel">แก้ไขสถานะอุปกรณ์
+                                                        </h4>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">×</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div>
+                                                                <div class="form-group">
+                                                                    <h5>SN.{{emd_edit.eq_detail_id}}</h5>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="status">สถานะ</label>
+                                                                    <select _ngcontent-ysi-c51="" name="status"
+                                                                        id="status"
+                                                                        (change)="updateStatus(emd_edit.id,status_select)"
+                                                                        [(ngModel)]="status_select"
+                                                                        class="custom-select form-control ng-untouched ng-pristine ng-valid">
+                                                                        <option *ngFor='let rental of statusArray'
+                                                                            value="{{rental}}">{{rental}}</option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="status">สถานะ</label>
-                                                                <select _ngcontent-ysi-c51="" name="status" id="status" (change)="updateStatus(emd_edit.id,status_select)"
-                                                                    [(ngModel)]="status_select"
-                                                                  class="custom-select form-control ng-untouched ng-pristine ng-valid" >
-                                                                <option *ngFor='let rental of statusArray' value="{{rental}}" >{{rental}}</option>                                        
-                                                             </select>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger"
-                                                        data-dismiss="modal" >Close</button>
-                                                    <button type="reset" class="btn btn-primary" data-dismiss="modal"
-                                                         value="submit" (click)="onClickSave(emd_edit.eq_detail_id,emd_edit.eq_detail_id,emd_edit.amount)">Save</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="reset" class="btn btn-primary"
+                                                            data-dismiss="modal" value="submit"
+                                                            (click)="onClickSave(emd_edit.eq_detail_id,emd_edit.eq_detail_id,emd_edit.amount)">Save</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    </td>     
-                                </tr>                
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="wrapper btn-list">
-                            <!-- <button type="button" class="btn btn-success" (click)="onClickSave(emd_edit.eq_detail_id)">บันทึก</button> -->
-                            <button type="button" class="btn btn-danger" (click)="onClickBack()">ย้อนกลับ</button>
+                            <button type="button" class="btn btn-link" (click)="onClickBack()">ย้อนกลับ</button>
                         </div>
                     </div>
                 </div>

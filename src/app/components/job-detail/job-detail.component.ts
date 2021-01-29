@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
+import { EquipmentAmount } from '../../models/equipment'
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,6 +15,7 @@ export class JobDetailComponent implements OnInit {
   jobDetail: any;
   type: any;
   id: any;
+  eq_amount: EquipmentAmount;
 
   constructor(
     private location: Location,
@@ -21,6 +23,7 @@ export class JobDetailComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public apiService: ApiService) {
     this.jobDetail = [];
+    this.eq_amount = new EquipmentAmount;
   }
 
   ngOnInit(): void {
@@ -35,12 +38,15 @@ export class JobDetailComponent implements OnInit {
 
   getJobDetail() {
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
-      this.jobDetail = res;
+      this.getDataJob(res);
     });
   }
 
+  getDataJob(data: any) {
+    this.jobDetail = data;
+  }
+
   onClickDelete() {
-    // console.log(this.id)
     Swal.fire({
       title: 'ยืนยันการลบ',
       html: 'งานทั้งหมดจากใบเสร็จเลขที่ ' + this.id ,
@@ -50,14 +56,21 @@ export class JobDetailComponent implements OnInit {
       icon: "warning",
     }).then((result) => {
       if (result.isConfirmed) {
+        for (let i=0 ; i < this.jobDetail.length ; i++) {
+          this.eq_amount.eqd = this.jobDetail[i].detail_id;
+          this.eq_amount.amount = this.jobDetail[i].amount;
+          console.log(this.eq_amount)
+          this.apiService.updateEqStatusSuccess(this.id, this.eq_amount).then((res: any) => {
+          });
+        }
         this.apiService.deleteEm(this.id).then((res: any) => {
           Swal.fire('ลบสำเร็จ!', '', 'success')
           this.goBack();
         });
-        
       }
     })
   }
+
   goBack() {
     window.history.back();
   }

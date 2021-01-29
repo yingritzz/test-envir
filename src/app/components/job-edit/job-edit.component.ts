@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
-import { EmploymentDetail,EmploymentDetailEdit  } from '../../models/employment';
+import { EmploymentDetail, EmploymentDetailEdit } from '../../models/employment';
 import { EquipmentAmount } from '../../models/equipment'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-job-edit',
@@ -15,21 +16,20 @@ export class JobEditComponent implements OnInit {
   statusArray: string[] = [];
   jobEdit: any = []
   id: any;
-  rentals: string[] = ["รับงาน", "กำลังเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า","สำเร็จ"];
-  testing: string[] = ["รับงาน", "กำลังทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า","สำเร็จ"];
-  maintenanc: string[] = ["รับงาน", "กำลังซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า","สำเร็จ"];
-  selling: string[] = ["รับงาน", "กำลังจำหน่าย", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า","สำเร็จ "];
+  rentals: string[] = ["รับงาน", "กำลังเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ"];
+  testing: string[] = ["รับงาน", "กำลังทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ"];
+  maintenanc: string[] = ["รับงาน", "กำลังซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ"];
+  selling: string[] = ["รับงาน", "กำลังจำหน่าย", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ "];
   jobUpdate: EmploymentDetail;
   status_select: any = []
   status_list: any = []
   id_list: any;
   status: EmploymentDetailEdit;
   amount!: EquipmentAmount;
-  eq_amount: any = [];
   emd_edit: any = [];
   emd_id: any;
 
-  
+
   constructor(
     private location: Location,
     public router: Router,
@@ -49,13 +49,10 @@ export class JobEditComponent implements OnInit {
   async getIdEmd(id: any) {
     this.emd_id = id;
     this.apiService.emDetail(id).then((res: any) => {
-      console.log(res[0].status)
-      //  console.log(res);
       this.emd_edit = res[0];
-        this.status_select = res[0].status
-        console.log("wow"+this.status_select)
+      this.status_select = res[0].status
       if (res[0].status == 'สำเร็จ') {
-        (<HTMLInputElement> document.getElementById("status")).disabled = true;
+        (<HTMLInputElement>document.getElementById("status")).disabled = true;
       }
     });
   }
@@ -63,13 +60,6 @@ export class JobEditComponent implements OnInit {
   getJobEdit() {
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
       this.getData(res);
-      // for (let i = 0 ; i<this.jobEdit.length ; i++) {
-      //   this.status_select.push(res[i].status)
-      // }
-      // for (var item of this.jobEdit) {
-      //   this.status_select.push(item.em_detail_id)
-      // }
-      // console.log(this.status_select)
     });
   }
   statusChange(status: any) {
@@ -86,63 +76,70 @@ export class JobEditComponent implements OnInit {
       this.statusArray = this.selling;
     }
   }
-
   updateStatus(id: any, status: string) {
     this.status_list = status;
     this.id_list = id
-    console.log("id"+this.id_list)
-    console.log("status"+this.status_list)
   }
 
   onClickBack() {
     this.location.back();
   }
 
-  getData(data:any){
-    this.jobEdit=data;
+  getData(data: any) {
+    this.jobEdit = data;
   }
 
-  onClickSave(id:any, eqd_id:any, amount:any) {
-    // for (let i = 0 ; i<this.status_list.length ; i++) {
-      this.status.status = this.status_list
-      console.log("test"+this.status_list)
-      console.log(this.status)
-      this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
-        this.getJobEdit()
-        if (this.status_list == "สำเร็จ") {
-          console.log("toey"+eqd_id)
-              this.amount.amount = amount
-              this.amount.eqd = eqd_id
-        //       console.log("id"+this.amount.eqd+"จำนวน"+this.amount.amount)
-              this.apiService.updateEqStatusSuccess(this.id,this.amount).then((res: any) => {
-                // console.log(this.jobEdit[i].detail_id);
-                });   
+  onClickSave(id: any, eqd_id: any, amount: any) {
+    this.status.status = this.status_list
+    this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
+      this.getJobEdit()
+      if (this.status_list == "สำเร็จ") {
+        this.amount.amount = amount
+        this.amount.eqd = eqd_id
+        this.apiService.updateEqStatusSuccess(this.id, this.amount).then((res: any) => {
+        });
+      }
+    });
+  }
+
+  delete(id: any, name: any, em_id: any, amount: number, eqd_id: any) {
+    this.amount = new EquipmentAmount;
+    this.amount.eqd = eqd_id;
+    this.amount.amount = amount;
+    this.apiService.updateEqStatusSuccess(em_id, this.amount).then((res: any) => {
+    });
+    if (this.jobEdit.length == 1) {
+      Swal.fire({
+        title: 'ยืนยันการลบ',
+        html: 'รายการนี้เป็นรายการสุดท้ายของใบเสร็จ'+'<br>'+ 'คุณต้องการลบ '+ name + 'และใบเสร็จเลขที่' + em_id,
+        showDenyButton: true,
+        confirmButtonText: `ใช่`,
+        denyButtonText: `ไม่ใช่`,
+        icon: "warning",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.apiService.deleteEm(em_id).then((res: any) => {
+            Swal.fire('ลบสำเร็จ!', '', 'success')
+          });
+          this.router.navigate(['/home']);
         }
-      });
-        // console.log(parseInt(this.id_list[i]));
-        // console.log(this.status);
-        //   this.eq_amount = res;
-        //   console.log(this.eq_amount)
-        //   if (this.status_list[i] == "สำเร็จ") {
-        //       this.amount.amount = this.eq_amount[i].amount
-        //       this.amount.eqd = this.eq_amount[i].detail_id
-        //       console.log("id"+this.amount.eqd+"จำนวน"+this.amount.amount)
-        //       this.apiService.updateEqStatusSuccess(this.id,this.amount).then((res: any) => {
-        //         // console.log(this.jobEdit[i].detail_id);
-        //         });
-          
-          
-        // }
-       
-        
-      
-    // }
-    // this.apiService.getEmploymentDetail(this.id).then((res: any) => {
-      
-    // });
-    // this.location.back();
-    
+      })
+    } else {
+      Swal.fire({
+        title: 'ยืนยันการลบ',
+        html: name + '<br>' + 'จากใบเสร็จเลขที่ ' + id,
+        showDenyButton: true,
+        confirmButtonText: `ใช่`,
+        denyButtonText: `ไม่ใช่`,
+        icon: "warning",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.apiService.deleteEmployment(parseInt(id)).then((res: any) => {
+            this.getJobEdit();
+          });
+          Swal.fire('ลบสำเร็จ!', '', 'success')
+        }
+      })
+    }
   }
-
-
 }
