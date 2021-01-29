@@ -52,7 +52,7 @@ export class JobEditComponent implements OnInit {
       this.emd_edit = res[0];
       this.status_select = res[0].status
       if (res[0].status == 'สำเร็จ') {
-        (<HTMLInputElement>document.getElementById("status")).disabled = true;
+        // (<HTMLInputElement>document.getElementById("status")).disabled = true;
       }
     });
   }

@@ -13,7 +13,7 @@
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">รายการรับซ่อม</li>
+                                <li class="breadcrumb-item active" aria-current="page">รายการงาน</li>
                             </ol>
                         </nav>
                     </div>
@@ -42,10 +42,10 @@
                                 currentPage: page,
                                 totalItems: count
                               };
-                        let i = index">
-                                <th class="ttt" scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{fix.id}}</a></th>
-                                <td class="tt"><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{fix.string_agg}}</a></td>
-                                <td><a [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">{{fix.cus_fullname}}</a></td>
+                        let i = index" [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">
+                                <th class="ttt" scope="row">{{fix.id}}</th>
+                                <td class="tt"><a href="javascript:;">{{fix.string_agg}}</a></td>
+                                <td><a href="javascript:;">{{fix.cus_fullname}}</a></td>
                                 <td>
                                     <span class="btn btn-success btn-sm" type="button" value="submit"
                                         [routerLink]="[ '/job/edit/'+fix.id]"><i

@@ -13,7 +13,7 @@
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">การเช่า-ยืม</li>
+                                <li class="breadcrumb-item active" aria-current="page">รายการงาน</li>
                             </ol>
                         </nav>
                     </div>
@@ -42,13 +42,12 @@
                                 currentPage: page,
                                 totalItems: count
                               };
-                        let i = index">
-                                <th class="ttt" scope="row"><a
-                                        [routerLink]="[ '/job/detail/'+type+'/'+rental.id]">{{rental.id}}</a></th>
+                        let i = index" [routerLink]="[ '/job/detail/'+type+'/'+rental.id]">
+                                <th class="ttt" scope="row">{{rental.id}}</th>
                                 <td class="tt"><a
-                                        [routerLink]="[ '/job/detail/'+type+'/'+rental.id]">{{rental.string_agg}}</a>
+                                    href="javascript:;">{{rental.string_agg}}</a>
                                 </td>
-                                <td><a [routerLink]="[ '/job/detail/'+type+'/'+rental.id]">{{rental.cus_fullname}}</a>
+                                <td><a href="javascript:;">{{rental.cus_fullname}}</a>
                                 </td>
                                 <td>
                                     <div class="btn-list">

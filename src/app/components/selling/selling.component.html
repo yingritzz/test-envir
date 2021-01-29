@@ -13,7 +13,7 @@
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">รายการจำหน่าย</li>
+                                <li class="breadcrumb-item active" aria-current="page">รายการงาน</li>
                             </ol>
                         </nav>
                     </div>
@@ -36,16 +36,16 @@
                                 <th scope="col">แก้ไข</th>
                             </tr>
                         </thead>
-                        <tbody >
+                        <tbody>
                             <tr *ngFor="let sell of jobSelling | paginate : {
                                 itemsPerPage: tableSize,
                                 currentPage: page,
                                 totalItems: count
                               };
-                        let i = index">
-                                <th class="ttt" scope="row"><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.id}}</a></th>
-                                <td class="tt"><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.string_agg}}</a></td>
-                                <td><a [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">{{sell.cus_fullname}}</a></td>
+                        let i = index" [routerLink]="[ '/job/detail/'+type+'/'+sell.id]">
+                                <th class="ttt" scope="row">{{sell.id}}</th>
+                                <td class="tt"><a href="javascript:;">{{sell.string_agg}}</a></td>
+                                <td><a href="javascript:;">{{sell.cus_fullname}}</a></td>
                                 
                                 <td>
                                     <div class="btn-list">
