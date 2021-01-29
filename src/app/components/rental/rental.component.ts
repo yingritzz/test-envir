@@ -41,25 +41,6 @@ export class RentalComponent implements OnInit {
     this.jobRental = data;
   }
 
-  delete(id: number, name: any) {
-    Swal.fire({
-      title: 'ยืนยันการลบ',
-      html: name + '<br>' + 'จากใบเสร็จเลขที่ ' + id,
-      showDenyButton: true,
-      confirmButtonText: `ใช่`,
-      denyButtonText: `ไม่ใช่`,
-      icon: "warning",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.apiService.deleteEmployment(this.type,id).then((res: any) => {
-          console.log('deleted '+ this.id);
-          this.getJobRental();
-        });
-        Swal.fire('ลบสำเร็จ!', '', 'success')
-      }
-    })
-  }
-
   onTableDataChange(event: any){
     this.page = event;
     this.getJobRental();

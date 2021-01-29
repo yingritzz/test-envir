@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Customer, SearchCustomer } from '../models/customer';
 import { Equipment, EquipmentAmount, EquipmentDetail } from '../models/equipment';
-import { Employment, EmploymentDetailEdit } from '../models/employment';
+import { Employment, EmploymentDetail, EmploymentDetailEdit } from '../models/employment';
 import { Admin, Login } from '../models/admin';
 
 import { Observable, throwError } from 'rxjs';
@@ -327,9 +327,9 @@ export class ApiService {
         });
     });
   }
-  async deleteEmployment(category: string, id: any) {
+  async deleteEmployment(id: any) {
     return new Promise((res, rej) => {
-      this.http.delete<Employment>(this.base_path+'deljob/'+category+'/'+id)
+      this.http.delete<EmploymentDetail>(this.base_path+'del/employment_detail/'+id)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.id_admin = localStorage.getItem("id");
-    
     if ( this.id_admin == null) {
       this.router.navigateByUrl('login')
     }
@@ -39,7 +38,8 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickLogout() {
-    localStorage.removeItem("id");
+    // localStorage.removeItem("id");
+    localStorage.clear();
     this.router.navigateByUrl('login')
   }
 

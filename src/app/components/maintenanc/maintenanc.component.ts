@@ -42,24 +42,6 @@ export class MaintenancComponent implements OnInit {
     this.jobMaintenanc = data;
   }
 
-  delete(id: number, name: any) {
-    Swal.fire({
-      title: 'ยืนยันการลบ',
-      html: name + '<br>' + 'จากใบเสร็จเลขที่ ' + id,
-      showDenyButton: true,
-      confirmButtonText: `ใช่`,
-      denyButtonText: `ไม่ใช่`,
-      icon: "warning",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.apiService.deleteEmployment(this.type,id).then((res: any) => {
-          this.getJobMaintenanc();
-        });
-        Swal.fire('ลบสำเร็จ!', '', 'success')
-      }
-    })
-  }
-
   onTableDataChange(event: any){
     this.page = event;
     this.getJobMaintenanc();
