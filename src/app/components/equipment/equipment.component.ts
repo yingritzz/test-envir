@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ApiService } from '../../services/api.service';
 import { Equipment } from '../../models/equipment';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-equipment',
@@ -35,20 +36,20 @@ export class EquipmentComponent implements OnInit {
   getAllEquipments() {
     this.eq_count = [];
     this.apiService.getListEq().then((res: any) => {
-      // console.log(res);
-      this.getData(res);
       for (let x = 0; x < res.length; x++) {
         this.apiService.getEqDetail(res[x].id).then((response: any) => {
-          this.eq_count.push(response.length)
-          // console.log(this.eq_count);
+          // console.log(res.length)
+          res[x].count = response.length
+          console.log(res[x].count);
         });
       }
-
+      this.getData(res);
     });
   }
 
   getData(data: any) {
     this.eq_data = data
+    console.log(this.eq_data)
   }
 
   onClickDetail(id: number, name: string) {
