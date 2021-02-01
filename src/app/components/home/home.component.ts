@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Location} from '@angular/common';
-import { ActivatedRoute,Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
-import { last } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -11,21 +10,30 @@ import { last } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  countFix:any 
-  countRental:any 
-  countTest:any
-  countSell:any 
+  fix: number = 0;
+  rental: number = 0;
+  test: number = 0;
+  sell: number = 0;
 
-  percenFix: any
-  percenRental: any
-  percenTest: any
-  percenSell: any
+  countFix: number = 0;
+  countRental: number = 0;
+  countTest: number = 0;
+  countSell: number = 0;
+
+  percenFix: any;
+  percenRental: any;
+  percenTest: any;
+  percenSell: any;
 
   todaylist: any
   overdue: any
   lastinsert: any
 
   category: any;
+  today!: boolean;
+  todayShow!: boolean;
+  over!: boolean;
+  overShow!: boolean;
 
 
   constructor(
@@ -33,14 +41,10 @@ export class HomeComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public apiService: ApiService
-  ) { 
+  ) {
     this.todaylist = [];
     this.overdue = [];
     this.lastinsert = [];
-    this.countFix = [];
-    this.countRental = [];
-    this.countTest = [];
-    this.countSell = [];
   }
 
   ngOnInit(): void {
@@ -53,116 +57,139 @@ export class HomeComponent implements OnInit {
     this.getLastInsert();
   }
 
-  
+  todayNull(data: any) {
+    if ( data.length == 0) {
+      this.today = true;
+      this.todayShow = false;
+    } else {
+      this.today = false;
+      this.todayShow = true;
+    }
+  }
   getTodayList() {
     this.apiService.getHome('todaylist').then((res: any) => {
-      // console.log(res);
       this.todaylist = res;
-     
+      this.todayNull(res);
     });
   }
-  todayGoToDeatail(em_id:any,category:any){
-    if(category == 'เช่า-ยืม'){
+  todayGoToDeatail(em_id: any, category: any) {
+    if (category == 'เช่า-ยืม') {
       this.category = 'rental'
       console.log(this.category)
-      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
     }
     else if (category == 'จำหน่าย') {
       this.category = 'selling'
       console.log(this.category)
-      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
     }
     else if (category == 'ทดสอบ') {
       this.category = 'testing'
       console.log(this.category)
-      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
     }
     else if (category == 'ซ่อมบำรุง') {
       this.category = 'maintenanc'
       console.log(this.category)
-      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
     }
 
+  }
+
+  overNull(data: any) {
+    if ( data.length == 0) {
+      this.over = true;
+      this.overShow = false;
+    } else {
+      this.over = false;
+      this.overShow = true;
+    }
   }
   getOverdue() {
     this.apiService.getHome('overdue').then((res: any) => {
-      // console.log(res);
       this.overdue = res;
+      this.overNull(res);
     });
   }
-  overDueGoToDeatail(em_id:any,category:any){
-    if(category == 'เช่า-ยืม'){
+  overDueGoToDeatail(em_id: any, category: any) {
+    if (category == 'เช่า-ยืม') {
       this.category = 'rental'
       console.log(this.category)
-      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
     }
     else if (category == 'จำหน่าย') {
       this.category = 'selling'
       console.log(this.category)
-      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
     }
     else if (category == 'ทดสอบ') {
       this.category = 'testing'
       console.log(this.category)
-      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
+      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
     }
     else if (category == 'ซ่อมบำรุง') {
       this.category = 'maintenanc'
       console.log(this.category)
-      this.router.navigate(['/job/detail/'+this.category+'/'+em_id]);
-    } 
+      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
+    }
   }
+
   getLastInsert() {
     this.apiService.getHome('lastinsert').then((res: any) => {
-      // console.log(res);
       this.lastinsert = res;
     });
   }
-  getCountFix() {
-    this.apiService.getHome('count_maintenanc').then((res: any) => {
-      // console.log(res[0].count);
-      this.countFix = res[0].count; 
 
-      this.apiService.getHome('count_all').then((res: any) => {
-        this.percenFix = (this.countFix/res[0].count)*100
-        // console.log('fix'+this.percenFix.toFixed(0));
-      });
+  getCountFix() {
+    this.apiService.getEmployment('maintenanc').then((res: any) => {
+      if (res.length != 0) {
+        this.fix = res.length;
+        res.forEach((value: any) => {
+          if (value.status == 'สำเร็จ') {
+            this.countFix += 1;
+          }
+        });
+        this.percenFix = (this.countFix / this.fix) * 100;
+      }
     });
-   
   }
   getCountRental() {
-    this.apiService.getHome('count_rental').then((res: any) => {
-      // console.log(res[0].count);
-      this.countRental = res[0].count; 
-
-      this.apiService.getHome('count_all').then((res: any) => {
-        this.percenRental = (this.countRental/res[0].count)*100
-        // console.log('rental'+this.percenRental.toFixed(0));
-      });
+    this.apiService.getEmployment('rental').then((res: any) => {
+      if (res.length != 0) {
+        this.rental = res.length;
+        res.forEach((value: any) => {
+          if (value.status == 'สำเร็จ') {
+            this.countRental += 1;
+          }
+        });
+        this.percenRental = (this.countRental / this.rental) * 100;
+      }
     });
   }
   getCountTest() {
-    this.apiService.getHome('count_testing').then((res: any) => {
-      // console.log(res[0].count);
-      this.countTest = res[0].count; 
-
-      this.apiService.getHome('count_all').then((res: any) => {
-        this.percenTest = (this.countTest/res[0].count)*100
-        // console.log('test'+this.percenTest.toFixed(0));
-      });
+    this.apiService.getEmployment('testing').then((res: any) => {
+      if (res.length != 0) {
+        this.test = res.length;
+        res.forEach((value: any) => {
+          if (value.status == 'สำเร็จ') {
+            this.countTest += 1;
+          }
+        });
+        this.percenTest = (this.countTest / this.test) * 100;
+      }
     });
-    
   }
   getCountSell() {
-    this.apiService.getHome('count_selling').then((res: any) => {
-      // console.log(res[0].count);
-      this.countSell = res[0].count; 
-
-      this.apiService.getHome('count_all').then((res: any) => {
-        this.percenSell = (this.countSell/res[0].count)*100
-        // console.log('sell'+this.percenSell.toFixed(0));
-      });
+    this.apiService.getEmployment('selling').then((res: any) => {
+      if (res.length != 0) {
+        this.sell = res.length;
+        res.forEach((value: any) => {
+          if (value.status == 'สำเร็จ') {
+            this.countSell += 1;
+          }
+        });
+        this.percenSell = (this.countSell / this.sell) * 100;
+      }
     });
-    
   }
 }
