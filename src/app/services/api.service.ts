@@ -15,7 +15,7 @@ export class ApiService {
 
   // API path
   // base_path = 'https://mapedia.co.th/envir-api/';
-  base_path = 'http://localhost/API/';
+  base_path = 'http://localhost:8888/API/';
 
 
   constructor(private http: HttpClient) { }
@@ -185,7 +185,17 @@ export class ApiService {
   }
   async getEqDetail(idEq: number) {
     return new Promise((res, rej) => {
-      this.http.get<EquipmentDetail>(this.base_path+'eq_detail/'+idEq)
+      this.http.get<EquipmentDetail>(this.base_path+'eq/eq_detail/'+idEq)
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async getEqDetailHistory(idEqd: number) {
+    return new Promise((res, rej) => {
+      this.http.get(this.base_path+'eq/history/'+idEqd)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

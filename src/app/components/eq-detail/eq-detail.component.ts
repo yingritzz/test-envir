@@ -17,6 +17,7 @@ export class EqDetailComponent implements OnInit {
   eqd_new: EquipmentDetail;
   eqd_edit: EquipmentDetail;
   eqd_id: any;
+  eqd_history: any = [];
 
   page = 1;
   count = 0;
@@ -42,12 +43,18 @@ export class EqDetailComponent implements OnInit {
     this.eqd_id = id;
     this.apiService.getEqd(id).then((res: any) => {
       this.eqd_edit = res[0];
+      console.log(this.eqd_edit)
     });
   }
 
   getEqDetail() {
     this.apiService.getEqDetail(this.eq_id).then((res: any) => {
       this.eqd_data = res;
+    });
+  }
+  getEqDetailHistory(eqd_id:any) {
+    this.apiService.getEqDetailHistory(eqd_id).then((res: any) => {
+      this.eqd_history = res;
     });
   }
 

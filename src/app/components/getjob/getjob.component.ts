@@ -46,6 +46,8 @@ export class GetjobComponent implements OnInit {
   job_detail: EmploymentDetail;
   eq_amount!: EquipmentAmount;
 
+  max = 7;
+
   constructor(
     public router: Router,
     public apiService: ApiService,
@@ -77,6 +79,9 @@ export class GetjobComponent implements OnInit {
     });
   }
 
+  checkAmount(amount:any){
+    this.max = amount
+  }
   async getCustomers(item: any) {
     if (item != "") {
       this.cus_search.text = item;
@@ -127,6 +132,7 @@ export class GetjobComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         if (res[i].eq_detail_status != 'ไม่ว่าง')
           this.eqd_list.push(res[i]);
+          console.log(this.eqd_list)
       }
     });
   }

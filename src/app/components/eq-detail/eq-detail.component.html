@@ -57,16 +57,20 @@
                             <td>{{eqd.eq_detail_status}}</td>
                             <td>
                                 <div class="btn-list">
-                                    <button class="btn btn-success btn-sm" type="button" value="submit"
+                                    <button title="แก้ไข" class="btn btn-success btn-sm" type="button" value="submit"
                                         data-toggle="modal" data-target="#Edit-eq" (click)="getIdEqd(eqd.id)">
                                         <i class="icon-copy fa fa-pencil-square-o btn-size"
                                             aria-hidden="true"></i></button>
 
-                                    <button class="btn btn-danger btn-sm" type="button" value="submit"
-                                        (click)="delete(eqd.id, eqd.eq_detail_name)"><i class="icon-copy fa fa-trash btn-size"
-                                            aria-hidden="true"></i></button>
-                                </div>
+                                    <button title="ลบ" class="btn btn-danger btn-sm" type="button" value="submit"
+                                        (click)="delete(eqd.id, eqd.eq_detail_name)"><i
+                                            class="icon-copy fa fa-trash btn-size" aria-hidden="true"></i></button>
 
+                                    <button class="btn btn-info btn-sm"type="button" title="ประวัติการใช้งาน" value="submit"
+                                    data-toggle="modal" data-target="#eq-history" (click)="getEqDetailHistory(eqd.id)"><i
+                                            class="icon-copy fi-clock btn-size" aria-hidden="true"></i></button>
+                                </div>
+                                
                                 <div class="modal fade" id="Edit-eq" tabindex="-1" role="dialog"
                                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -89,22 +93,61 @@
                                                             <label for="name">ชื่อรายการอุปกรณ์</label>
                                                             <input type="text" class="form-control" id="name"
                                                                 name="eq_detail_name"
-                                                                [(ngModel)]="eqd_edit.eq_detail_name" required="required">
+                                                                [(ngModel)]="eqd_edit.eq_detail_name"
+                                                                required="required">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="count">จำนวน</label>
                                                             <input type="number" class="form-control" id="count"
                                                                 name="eq_detail_amount"
-                                                                [(ngModel)]="eqd_edit.eq_detail_amount" required="required">
+                                                                [(ngModel)]="eqd_edit.eq_detail_amount"
+                                                                required="required">
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger"
-                                                    data-dismiss="modal" >Close</button>
+                                                    data-dismiss="modal">Close</button>
                                                 <button type="reset" class="btn btn-primary" data-dismiss="modal"
                                                     (click)="edit_eqd()" value="submit">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade bs-example-modal-lg" id="eq-history" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myLargeModalLabel">ประวัติการใช้อุปกรณ์
+                                                </h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">ลำดับ</th>
+                                                            <th scope="col">วันที่ระบงาน</th>
+                                                            <th scope="col">ลูกค้า</th>
+                                                            <th scope="col">หมวดหมู่</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let history of eqd_history; let i = index">
+                                                            <td>{{i+1}}</td>
+                                                            <td>{{history.date_get_job}}</td>
+                                                            <td>{{history.cus_fullname}}</td>
+                                                            <td>{{history.category}}</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">ปิด</button>
                                             </div>
                                         </div>
                                     </div>
@@ -115,8 +158,7 @@
                     </tbody>
                 </table>
                 <div class="clearfix justify-content-center wrapper">
-                    <pagination-controls previousLabel="Prev" nextLabel="Next"
-                        (pageChange)="onTableDataChange($event)">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
                     </pagination-controls>
                 </div>
             </div>
