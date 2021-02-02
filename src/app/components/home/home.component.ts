@@ -201,7 +201,7 @@ export class HomeComponent implements OnInit {
       if (res.length != 0) {
         this.sell = res.length;
         res.forEach((value: any) => {
-          if (value.status == 'สำเร็จ') {
+          if (value.status == 'สำเร็จ ') {
             this.countSell += 1;
           }
         });
