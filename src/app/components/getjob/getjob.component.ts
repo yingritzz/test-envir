@@ -46,8 +46,6 @@ export class GetjobComponent implements OnInit {
   job_detail: EmploymentDetail;
   eq_amount!: EquipmentAmount;
 
-  max = 7;
-
   constructor(
     public router: Router,
     public apiService: ApiService,
@@ -79,9 +77,7 @@ export class GetjobComponent implements OnInit {
     });
   }
 
-  checkAmount(amount:any){
-    this.max = amount
-  }
+
   async getCustomers(item: any) {
     if (item != "") {
       this.cus_search.text = item;
@@ -132,7 +128,6 @@ export class GetjobComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         if (res[i].eq_detail_status != 'ไม่ว่าง')
           this.eqd_list.push(res[i]);
-          console.log(this.eqd_list)
       }
     });
   }
@@ -152,13 +147,20 @@ export class GetjobComponent implements OnInit {
     this.form.value.status = 'รับงาน'
     this.annot = this.annotation;
     (document.getElementById('save') as HTMLInputElement).disabled = false;
+
     if (this.form.valid) {
       this.apiService.getEqd(this.form.value.eq_detail_id).then((res: any) => {
-        this.form.value.eq_detail_name = res[0].eq_detail_name;
-        this.form.value.date_end = this.datepipe.transform(this.form.value.date_end_job, 'dd MMM yyyy')
-        this.formArray.push(this.form.value);
-        this.form.reset();
-        Swal.fire("เพิ่มงานสำเร็จ!", 'สามารถตรวจสอบรายละเอียดความถูกต้องของงาน' + '<br>' + 'ได้ที่ตารางด้านล่าง', "success");
+        if (this.form.value.amount <= res[0].eq_detail_amount) {
+          this.form.value.eq_detail_name = res[0].eq_detail_name;
+          this.form.value.date_end = this.datepipe.transform(this.form.value.date_end_job, 'dd MMM yyyy')
+          this.formArray.push(this.form.value);
+          console.log(res[0].eq_detail_amount)
+          console.log(this.form.value.amount)
+          this.form.reset();
+          Swal.fire("เพิ่มงานสำเร็จ!", 'สามารถตรวจสอบรายละเอียดความถูกต้องของงาน' + '<br>' + 'ได้ที่ตารางด้านล่าง', "success");
+        } else {
+          Swal.fire("จำนวนอุปกรณ์ไม่เพียงพอ", res[0].eq_detail_name+" คงเหลือ "+res[0].eq_detail_amount, "warning");
+        }
       });
     } else {
       Swal.fire("ไม่สามารถเพิ่มรายการได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");

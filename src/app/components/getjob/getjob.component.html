@@ -103,9 +103,10 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <div class="form-group" [ngClass]="displayFieldCss('eq_detail_id')">
-                                            <label for="eq_detail_id" class="control-label required">อุปกรณ์ :</label>
+                                            <label for="eq_detail_id" class="control-label required h">อุปกรณ์ :</label>
+                                            <label class="control-label err h">เฉพาะอุปกรณ์ที่ว่างเท่านั้น*</label>
                                             <select id="eq_detail_id" class="custom-select form-control"
-                                                name="eq_detail_id" formControlName="eq_detail_id" (ngModelChange)="checkAmount(1)">
+                                                name="eq_detail_id" formControlName="eq_detail_id">
                                                 <option value=" "> </option>
                                                 <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.id}} :
                                                     {{eqd.eq_detail_name}}</option>
@@ -199,7 +200,7 @@
                                         <div class="form-group" [ngClass]="displayFieldCss('amount')">
                                             <label for="amount" class="control-label required">จำนวน :</label>
                                             <input id="amount" name="count_select" type="number" class="form-control"
-                                                autocomplete="off" min=1 max={{max}} formControlName="amount">
+                                                autocomplete="off" min=1 formControlName="amount">
                                             <app-field-error-display [displayError]="isFieldValid('amount')"
                                                 errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
                                             </app-field-error-display>
