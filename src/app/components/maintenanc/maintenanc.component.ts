@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-maintenanc',
@@ -14,7 +13,6 @@ export class MaintenancComponent implements OnInit {
   sell: any;
   id!: number;
   type: string = "maintenanc";
-  x = new Array(48);
 
   page = 1;
   count = 0;

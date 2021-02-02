@@ -1,0 +1,29 @@
+.btn-size{
+    width: 10px;
+}
+
+.clearfix {
+    position: relative;
+    font-size: 16px;
+    text-align: center;
+  }
+.ttt {
+    width: 20%;
+}
+.tt {
+    width: 40%;
+    word-wrap: break-word;  
+    text-align: left;
+}
+.sn{
+    width: 20%;
+    
+}
+.cus{
+    width: 40%;
+    
+}
+.manage{
+    width: 40%;
+    text-align: center;
+}

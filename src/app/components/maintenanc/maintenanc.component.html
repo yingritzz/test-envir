@@ -33,7 +33,7 @@
                                 <th scope="col">เลขที่ใบเสร็จ</th>
                                 <th scope="col">หัวข้อ</th>
                                 <th scope="col">ลูกค้า</th>
-                                <th scope="col">แก้ไข</th>
+                                <th scope="col">จัดการ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,19 +42,22 @@
                                 currentPage: page,
                                 totalItems: count
                               };
-                        let i = index" [routerLink]="[ '/job/detail/'+type+'/'+fix.id]">
+                        let i = index" [routerLink]="['/job/edit/'+fix.id]">
                                 <th class="ttt" scope="row">{{fix.id}}</th>
                                 <td class="tt"><a href="javascript:;">{{fix.string_agg}}</a></td>
                                 <td><a href="javascript:;">{{fix.cus_fullname}}</a></td>
                                 <td>
-                                    <span class="btn btn-success btn-sm" type="button" value="submit"
-                                        [routerLink]="[ '/job/edit/'+fix.id]"><i
-                                            class="icon-copy fa fa-pencil-square-o btn-size"
-                                            aria-hidden="true"></i></span>
+                                    <div class="btn-list">
+                                        <span class="btn btn-success btn-sm" type="button" value="submit"
+                                            [routerLink]="[ '/job/edit/'+fix.id]"><i
+                                                class="icon-copy fa fa-pencil-square-o btn-size"
+                                                aria-hidden="true"></i></span>
+                                        <span class="btn btn-secondary btn-sm" type="button" value="submit"
+                                            [routerLink]="['/invoice/'+fix.id]"><i
+                                                class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
+                                    </div>
                                 </td>
-
                             </tr>
-
                         </tbody>
                     </table>
                     <div class="clearfix justify-content-center">
@@ -63,35 +66,6 @@
                         </pagination-controls>
                     </div>
                 </div>
-
-                <!-- หน้าข้อมูล -->
-                <!-- <div class="row">
-                    <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="DataTables_Table_1_info" role="status"
-                            aria-live="polite">1-10 of 12 entries</div>
-                    </div>
-                    <div class="col-sm-12 col-md-7">
-                        <div class="dataTables_paginate paging_simple_numbers"
-                            id="DataTables_Table_1_paginate">
-                            <ul class="pagination">
-                                <li class="paginate_button page-item previous disabled"
-                                    id="DataTables_Table_1_previous"><a href="#"
-                                        aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0"
-                                        class="page-link"><i class="ion-chevron-left"></i></a></li>
-                                <li class="paginate_button page-item active"><a href="#"
-                                        aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0"
-                                        class="page-link">1</a></li>
-                                <li class="paginate_button page-item "><a href="#"
-                                        aria-controls="DataTables_Table_1" data-dt-idx="2" tabindex="0"
-                                        class="page-link">2</a></li>
-                                <li class="paginate_button page-item next" id="DataTables_Table_1_next"><a
-                                        href="#" aria-controls="DataTables_Table_1" data-dt-idx="3"
-                                        tabindex="0" class="page-link"><i class="ion-chevron-right"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <app-footer></app-footer>
         </div>

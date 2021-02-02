@@ -1,1 +1,71 @@
-<p>job-all works!</p>
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>รายการงานทั้งหมด</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a [routerLink]="[ '/home']">หน้าหลัก</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">รายการงาน</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">รายการงานทั้งหมด</h4>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="sn" scope="col">เลขที่ใบเสร็จ</th>
+                                <th class="cus" scope="col">ลูกค้า</th>
+                                <th class="manage" scope="col">จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let all of jobAll | paginate : {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count
+                              };
+                        let i = index" [routerLink]="['/job/edit/'+all.id]">
+                                <th class="ttt sn" scope="row">{{all.id}}</th>
+                                <td class="cus"><a href="javascript:;">{{all.cus_fullname}}</a></td>
+                                <td class="manage">
+                                    <div class="btn-list">
+                                        <span class="btn btn-success btn-sm" type="button" value="submit"
+                                            [routerLink]="[ '/job/edit/'+all.id]"><i
+                                                class="icon-copy fa fa-pencil-square-o btn-size"
+                                                aria-hidden="true"></i></span>
+                                        <span class="btn btn-secondary btn-sm" type="button" value="submit"
+                                            [routerLink]="['/invoice/'+all.id]"><i
+                                                class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix justify-content-center">
+                        <pagination-controls previousLabel="Prev" nextLabel="Next"
+                            (pageChange)="onTableDataChange($event)">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>

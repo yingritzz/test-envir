@@ -42,7 +42,7 @@
                                 currentPage: page,
                                 totalItems: count
                               };
-                        let i = index" [routerLink]="[ '/job/detail/'+type+'/'+test.id]">
+                        let i = index" [routerLink]="['/job/edit/'+test.id]">
                                 <th class="ttt" scope="row">{{test.id}}</th>
                                 <td class="tt"><a href="javascript:;">{{test.string_agg}}</a></td>
                                 <td><a href="javascript:;">{{test.cus_fullname}}</a></td>
@@ -52,6 +52,9 @@
                                             [routerLink]="[ '/job/edit/'+test.id]"><i
                                                 class="icon-copy fa fa-pencil-square-o btn-size"
                                                 aria-hidden="true"></i></span>
+                                        <span class="btn btn-secondary btn-sm" type="button" value="submit"
+                                            [routerLink]="['/invoice/'+test.id]"><i
+                                                class="icon-copy fa fa-print btn-size" aria-hidden="true"></i></span>
                                     </div>
                                 </td>
                            
