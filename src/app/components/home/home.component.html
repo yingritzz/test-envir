@@ -152,15 +152,15 @@
         </div>
 
         <!-- รายการล่าสุด -->
-        <div class="pd-20 card-box mb-30">
+        <!-- <div class="pd-20 card-box mb-30">
             <div class="clearfix mb-20">
                 <div class="row">
                     <h4 class="text-blue h4 text">รายการล่าสุด</h4>
-                    <!-- <input type="search" list="cusSearch"  class="form-control col-md-3">
+                    <input type="search"  class="form-control col-md-3">
                     <i class="icon fa fa-search"></i>
                     <datalist id="cusSearch">
                         <option value="c" aria-label="lalala">lalala</option>
-                    </datalist> -->
+                    </datalist>
 
                 </div>
             </div>
@@ -188,7 +188,71 @@
                     </tbody>
                 </table>
             </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-lg-5 col-md-12 col-sm-12 mb-30">
+                <div class="card-box pd-30 height-100-p">
+                    <h4 class="mb-30 h4">แผนที่</h4>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-12 col-sm-12 mb-30">
+                <div class="card-box pd-30 height-100-p">
+                    <h4 class="mb-30 h4">ลูกค้าล่าสุด</h4>
+                    <div class="faq-wrap">
+                        <div id="accordion" *ngFor="let cus of lastinsert; let i = index">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse"
+                                        [attr.data-target]="'#faq1-' + i" (click)="splitEmD(cus.ems_id)">
+                                        <p>{{cus.cus_fullname}}</p>
+                                    </button>
+                                </div>
+                                <div id="faq1-{{i}}" class="collapse">
+                                    <div class="card-body">
+                                        <div class="faq-wrap">
+                                            <div id="accordion" *ngFor="let em of emList; let j = index">
+                                                <div class="card" >
+                                                    <div class="card-header">
+                                                        <button class="btn btn-block collapsed" data-toggle="collapse"
+                                                            [attr.data-target]="'#faq'+em" (click)="getEmData(em)">
+                                                            ใบเสร็จเลขที่: {{em}}
+                                                        </button>
+                                                    </div>
+                                                    <div id="faq{{em}}" class="collapse" data-parent="#accordion">
+                                                        <div class="card-body">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">รายการ</th>
+                                                                        <th scope="col">หมวดหมู่</th>
+                                                                        <th scope="col">สถานะ</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let emd of emData; let x = index">
+                                                                        <td>{{emd.eq_detail_name}}</td>
+                                                                        <td>{{emd.category}}</td>
+                                                                        <td>{{emd.status}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
         <app-footer></app-footer>
     </div>
 </div>

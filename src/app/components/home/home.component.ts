@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
   todayShow!: boolean;
   over!: boolean;
   overShow!: boolean;
+  emList: any = [];
+  emData: any;
 
 
   constructor(
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit {
     this.todaylist = [];
     this.overdue = [];
     this.lastinsert = [];
+    this.emData = [];
   }
 
   ngOnInit(): void {
@@ -58,7 +61,7 @@ export class HomeComponent implements OnInit {
   }
 
   todayNull(data: any) {
-    if ( data.length == 0) {
+    if (data.length == 0) {
       this.today = true;
       this.todayShow = false;
     } else {
@@ -97,7 +100,7 @@ export class HomeComponent implements OnInit {
   }
 
   overNull(data: any) {
-    if ( data.length == 0) {
+    if (data.length == 0) {
       this.over = true;
       this.overShow = false;
     } else {
@@ -137,6 +140,20 @@ export class HomeComponent implements OnInit {
   getLastInsert() {
     this.apiService.getHome('lastinsert').then((res: any) => {
       this.lastinsert = res;
+    });
+  }
+  splitEmD(data: any) {
+    this.emData = [];
+    this.emList = data.split('/')
+    console.log(this.emList)
+  }
+  getEmData(emId: any) {
+    this.emData = [];
+    this.apiService.getEmploymentDetail(emId).then((res: any) => {
+      res.forEach((response: any) => {
+        this.emData.push(response);
+        console.log(this.emData)
+      });
     });
   }
 

@@ -4,10 +4,80 @@
     margin-right: auto;
     width: 50%;
   }
-  .warpper {
+.warpper {
     text-align: center;
 }
-
 .right{
   text-align: right;
+}
+.x {
+  width: 210mm;
+  height: 297mm;
+}
+.line{
+  line-height: 0cm;
+}
+.l{
+  line-height: 1cm;
+}
+.sig {
+  position: absolute;
+  bottom: 50px;
+  width: 210mm;
+}
+table {
+  border-collapse: collapse;
+  width: 200mm;
+  line-height: 2cm;
+} 
+.table.ten {
+  width: 50%;
+}
+
+.invoice-wrap{
+	overflow: auto;
+}
+.invoice-box{
+	background: #ffffff;
+	width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+.invoice-header	{
+	padding-bottom: 30px;
+}
+.invoice-desc .invoice-sub{
+	width: 30%;
+	float: left;
+	padding: 8px 15px;
+}
+.invoice-desc .invoice-rate{
+	width: 11%;
+	float: left;
+	padding: 8px 15px;
+}
+.invoice-desc .invoice-hours{
+	width: 13%;
+	float: left;
+	padding: 8px 15px;
+}
+.invoice-desc .invoice-subtotal{
+	width: 13%;
+	float: right;
+	padding: 8px 15px;
+}
+.invoice-desc .invoice-desc-head{
+	background: #eaeaea;
+	font-weight: 500;
+}
+.invoice-desc .invoice-desc-body{
+	padding-top: 15px;
+	min-height: 400px;
+}
+.invoice-desc .invoice-desc-footer .invoice-desc-body{
+	min-height: 50px;
+}
+.invoice-desc .invoice-desc-body ul li{
+	border-bottom: 1px solid #eaeaea;
+	padding-bottom: 5px;
 }
