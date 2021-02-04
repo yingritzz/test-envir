@@ -99,6 +99,10 @@ export class HomeComponent implements OnInit {
 
   }
 
+  lastInsertGoToDetail(num:any){
+    this.router.navigate(['/job/edit/'+ num]);
+  }
+
   overNull(data: any) {
     if (data.length == 0) {
       this.over = true;
@@ -139,21 +143,7 @@ export class HomeComponent implements OnInit {
 
   getLastInsert() {
     this.apiService.getHome('lastinsert').then((res: any) => {
-      this.lastinsert = res;
-    });
-  }
-  splitEmD(data: any) {
-    this.emData = [];
-    this.emList = data.split('/')
-    console.log(this.emList)
-  }
-  getEmData(emId: any) {
-    this.emData = [];
-    this.apiService.getEmploymentDetail(emId).then((res: any) => {
-      res.forEach((response: any) => {
-        this.emData.push(response);
-        console.log(this.emData)
-      });
+      this.lastinsert = res
     });
   }
 

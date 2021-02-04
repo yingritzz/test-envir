@@ -150,79 +150,98 @@
                 </div>
             </div>
         </div>
+        <!-- แผนที่ -->
+        <div class="faq-wrap">
+            <div id="accordion2">
+                <div class="card">
+                    <div class="card-header">
+                        <button class="btn btn-block" data-toggle="collapse" data-target="#faq2">
+                            <h4 class="text-blue h4 text">แผนที่</h4>
+                        </button>
+                    </div>
+                    <div id="faq2" class="collapse show" data-parent="#accordion2">
+                        <div class="card-body">
+                    <div class="pd-20 card-box mb-30">
+                        <div class="clearfix mb-20">
+                            <div class="row">
+                                <!-- <h4 class="text-blue h4 text">แผนที่</h4> -->
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- รายการล่าสุด -->
-        <!-- <div class="pd-20 card-box mb-30">
-            <div class="clearfix mb-20">
-                <div class="row">
-                    <h4 class="text-blue h4 text">รายการล่าสุด</h4>
-                    <input type="search"  class="form-control col-md-3">
-                    <i class="icon fa fa-search"></i>
-                    <datalist id="cusSearch">
-                        <option value="c" aria-label="lalala">lalala</option>
-                    </datalist>
-
+        <div class="faq-wrap">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header">
+                        <button class="btn btn-block" data-toggle="collapse" data-target="#faq1">
+                            <h4 class="text-blue h4 text">รายการล่าสุด</h4>
+                        </button>
+                    </div>
+                    <div id="faq1" class="collapse show" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="pd-20 card-box mb-30">
+                                <div class="clearfix mb-20">
+                                    <div class="row">
+                                        <!-- <h4 class="text-blue h4 text">รายการล่าสุด</h4> -->
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">เลขที่ใบเสร็จ</th>
+                                                <th scope="col">ลูกค้า</th>
+                                                <th scope="col">หมวดหมู่</th>
+                                                <th scope="col">วันที่รับงาน</th>
+                                                <th scope="col">สถานะ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr *ngFor="let last of lastinsert; let i = index" (click)="lastInsertGoToDetail(last.id)">
+                                                <th scope="row">{{last.id}}</th>
+                                                <td><a href="javascript:;">{{last.cus_fullname}}</a></td>
+                                                <td><a href="javascript:;">{{last.category}}</a></td>
+                                                <td><a href="javascript:;">{{last.date_get_job}}</a></td>
+                                                <td><a href="javascript:;">{{last.status}}</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">ลำดับ</th>
-                            <th scope="col">ลูกค้า</th>
-                            <th scope="col">หัวข้อ</th>
-                            <th scope="col">หมวดหมู่</th>
-                            <th scope="col">วันที่รับงาน</th>
-                            <th scope="col">สถานะ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let last of lastinsert; let i = index">
-                            <th scope="row">{{i+1}}</th>
-                            <td>{{last.cus_fullname}}</td>
-                            <td>{{last.eq_detail_name}}</td>
-                            <td>{{last.category}}</td>
-                            <td>{{last.date_get_job}}</td>
-                            <td>{{last.status}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> -->
+        </div>
 
-        <div class="row">
-            <div class="col-lg-5 col-md-12 col-sm-12 mb-30">
-                <div class="card-box pd-30 height-100-p">
-                    <h4 class="mb-30 h4">แผนที่</h4>
-                </div>
-            </div>
+        <!-- <div class="row">
             <div class="col-lg-7 col-md-12 col-sm-12 mb-30">
                 <div class="card-box pd-30 height-100-p">
                     <h4 class="mb-30 h4">ลูกค้าล่าสุด</h4>
                     <div class="faq-wrap">
-
-                        <div class="card" *ngFor="let cus of lastinsert; let i = index">
-                            <div id="accordion2">
+                        <div id="accordion2">
+                            <div class="card" *ngFor="let cus of lastinsert; let i = index">
                                 <div class="card-header">
-                                    <button class="btn btn-block collapsed" data-toggle="collapse"
-                                        [attr.data-target]="'#faq-'+i" (click)="splitEmD(cus.ems_id)">
-                                        <p>{{cus.cus_fullname}}</p>
+                                    <button class="btn btn-block" data-toggle="collapse" [attr.data-target]="'#cus-'+i">
+                                        {{cus.cus_fullname}}
                                     </button>
                                 </div>
-
-                                <div id="faq-{{i}}" class="collapse" data-parent="#accordion2">
-                                    <div id="accordion1">
-                                        <div class="card-body">
-                                            <div class="card" *ngFor="let em of emList; let j = index"
-                                                (click)="getEmData(em)">
+                                <div id="cus-{{i}}" class="collapse show" data-parent="#accordion2">
+                                    <div class="card-body" *ngFor="let em of lastinsert[i].em; let j = index">
+                                        <div id="accordion1">
+                                            <div class="card">
                                                 <div class="card-header">
-                                                    <button class="btn btn-block collapsed" data-toggle="collapse"
-                                                        [attr.data-target]="'#fai-'+i+'-'+j+'-'+em">
-                                                        ใบเสร็จเลขที่: {{em}}
+                                                    <button class="btn btn-block" data-toggle="collapse" [attr.data-target]="'#em-'+i+'-'+j">
+                                                        เลขที่ใบเสร็จ: {{em}}
                                                     </button>
                                                 </div>
-                                                <div id="fai-{{i}}-{{j}}-{{em}}" class="collapse"
-                                                    data-parent="#accordion1">
+                                                <div id="em-{{i}}-{{j}}" class="collapse show" data-parent="#accordion1">
                                                     <div class="card-body">
                                                         <table class="table">
                                                             <thead>
@@ -232,63 +251,26 @@
                                                                     <th scope="col">สถานะ</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody>
-                                                                <tr *ngFor="let emd of emData; let x = index">
-                                                                    <td>{{emd.eq_detail_name}} {{i}}{{j}}{{em}}</td>
-                                                                    <td>{{emd.category}}</td>
-                                                                    <td>{{emd.status}}</td>
+                                                            <tbody *ngFor="let tb of lastinsert[i].test[j]; let k = index">
+                                                                <tr >
+                                                                    <td>{{tb.eq_detail_name}}</td>
+                                                                    <td>{{tb.category}}</td>
+                                                                    <td>{{tb.status}}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div id="faq-{{i}}" class="collapse">
-                                    <div class="card-body">
-                                        <div class="faq-wrap">
-                                            <div id="accordion" *ngFor="let em of emList; let j = index">
-                                                <div class="card" >
-                                                    <div class="card-header">
-                                                        <button class="btn btn-block collapsed" data-toggle="collapse"
-                                                            [attr.data-target]="'#faq'+em" (click)="getEmData(em)">
-                                                            ใบเสร็จเลขที่: {{em}}
-                                                        </button>
-                                                    </div>
-                                                    <div id="faq{{em}}" class="collapse" data-parent="#accordion">
-                                                        <div class="card-body">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th scope="col">รายการ</th>
-                                                                        <th scope="col">หมวดหมู่</th>
-                                                                        <th scope="col">สถานะ</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr *ngFor="let emd of emData; let x = index">
-                                                                        <td>{{emd.eq_detail_name}}</td>
-                                                                        <td>{{emd.category}}</td>
-                                                                        <td>{{emd.status}}</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <app-footer></app-footer>
     </div>
 </div>
