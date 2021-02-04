@@ -13,17 +13,32 @@
     font-weight: bold;
 }
 
+.al {
+    text-align: center;
+    width: 100%;
+}
+
  .text{
     padding-left: 20px;
     width: 69%;
 }
 
-.icon {
-    padding-top: 12px;
-    color: black;
-    min-width: 40px;
-    text-align: center;
-    background-color: rgb(133, 133, 133);
+#map {
+    height: 400px;
   }
+
+.map-container {
+    position:sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0px;
+}
+  
+.map-frame {
+    border: 2px solid black;
+    height: 100%;
+}
 
 

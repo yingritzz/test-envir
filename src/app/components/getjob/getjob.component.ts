@@ -7,7 +7,35 @@ import { SearchCustomer } from '../../models/customer'
 import { DatePipe } from '@angular/common'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { latLng, MapOptions, tileLayer, Map, Marker, icon } from 'leaflet';
+import * as L from 'leaflet';
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
+declare var province_geojson: any;
+const myIcon = L.icon({
+  iconUrl: 'assets/src/images/marker-icon.png',
+  iconSize: [40, 45],
+});
+const provider = new OpenStreetMapProvider();
+const searchControl = new GeoSearchControl({
+  provider: provider,
+  searchLabel: 'search for address...',
+  autoComplete: true,
+  autoCompleteDelay: 250,
+  showMarker: true,
+  marker: {
+    icon: myIcon,
+    draggable: true,
+    autoPan: true
+  },
+  maxMarkers: 1,
+  animateZoom: true,
+  keepResult: true,
+  autoClose: true,
+  zoomLevel: 12,
+  showPopup: true,
+  popupFormat: ({ query, result }) => result.label,
+})
 
 @Component({
   selector: 'app-getjob',
@@ -15,6 +43,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./getjob.component.css']
 })
 export class GetjobComponent implements OnInit {
+
+  mapOptions!: MapOptions;
+  private map!: Map;
+  coor_lat: any;
+  coor_lng: any;
+  searchss: any;
+  drag: any;
 
   eq = ["ตรวจวัดคุณภาพอากาศ", "ตรวจวัดระดับเสียง", "ตรวจวัดความสั่นสะเทือน", "ตรวจวัดคุณภาพน้ำ"];
   cg = ["เช่า-ยืม", "จำหน่าย", "ทดสอบ", "ซ่อมบำรุง"]
@@ -62,6 +97,7 @@ export class GetjobComponent implements OnInit {
     this.admin_id = localStorage.getItem("id");
     this.getAllEq();
     this.getAllEqd();
+    this.initMap();
     document.getElementById("dateEnd")!.setAttribute("min", this.minDate!);
     (document.getElementById('save') as HTMLInputElement).disabled = true;
     this.form = this.formBuilder.group({
@@ -76,7 +112,6 @@ export class GetjobComponent implements OnInit {
       date_end: [null]
     });
   }
-
 
   async getCustomers(item: any) {
     if (item != "") {
@@ -159,7 +194,7 @@ export class GetjobComponent implements OnInit {
           this.form.reset();
           Swal.fire("เพิ่มงานสำเร็จ!", 'สามารถตรวจสอบรายละเอียดความถูกต้องของงาน' + '<br>' + 'ได้ที่ตารางด้านล่าง', "success");
         } else {
-          Swal.fire("จำนวนอุปกรณ์ไม่เพียงพอ", res[0].eq_detail_name+" คงเหลือ "+res[0].eq_detail_amount, "warning");
+          Swal.fire("จำนวนอุปกรณ์ไม่เพียงพอ", res[0].eq_detail_name + " คงเหลือ " + res[0].eq_detail_amount, "warning");
         }
       });
     } else {
@@ -209,6 +244,31 @@ export class GetjobComponent implements OnInit {
     }
   }
 
+  private initMap() {
+    this.map = L.map('map').setView([13.100, 100.100], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.map);
+    L.geoJSON(province_geojson).addTo(this.map);
+    this.map.addControl(searchControl);
+
+    this.map.on('geosearch/showlocation', x => {
+      this.searchss = x
+      this.getCoor(this.searchss.location.raw.lat, this.searchss.location.raw.lon);
+    });
+
+    this.map.on('geosearch/marker/dragend', y => {
+      this.drag = y;
+      this.getCoor(this.drag.location.lat, this.drag.location.lng);
+    });
+  }
+
+  getCoor(lat:any, lng:any) {
+    this.coor_lat = lat;
+    this.coor_lng = lng;
+    console.log('lat : '+this.coor_lat)
+    console.log('lng : '+this.coor_lng)
+  }
   isFieldValid(field: string) {
     return this.form.get(field)!.valid && this.form.get(field)!.touched;
   }

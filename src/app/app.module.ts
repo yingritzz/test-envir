@@ -9,6 +9,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -89,6 +90,7 @@ import { JobAllComponent } from './components/job-all/job-all.component';
     Ng2SearchPipeModule,
     AutocompleteLibModule,
     NgxPaginationModule,
+    LeafletModule,
     NgCircleProgressModule.forRoot({
       "radius": 26,
       "space": -9,

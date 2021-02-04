@@ -2,6 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service'
+import { latLng, MapOptions, tileLayer, Map, Marker, icon } from 'leaflet';
+import * as L from 'leaflet';
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+
+declare var province_geojson: any;
+const provider = new OpenStreetMapProvider();
+const myIcon = L.icon({
+  iconUrl: 'assets/src/images/marker-icon.png',
+  iconSize: [40, 45],
+});
+const searchControl = new GeoSearchControl({
+  provider: provider,
+  searchLabel: 'search for address...',
+  autoComplete: true,
+  autoCompleteDelay: 250,
+  showMarker: true,
+  marker: {
+    icon: myIcon,
+    draggable: false,
+  },
+  maxMarkers: 1,
+  animateZoom: true,
+  keepResult: true,
+  autoClose : true,
+  zoomLevel: 12,
+  showPopup: true,
+  popupFormat: ({ query, result }) => result.label,
+})
 
 @Component({
   selector: 'app-home',
@@ -37,6 +65,8 @@ export class HomeComponent implements OnInit {
   emList: any = [];
   emData: any;
 
+  mapOptions!: MapOptions;
+  private mapp!: Map;
 
   constructor(
     private location: Location,
@@ -58,6 +88,24 @@ export class HomeComponent implements OnInit {
     this.getTodayList();
     this.getOverdue();
     this.getLastInsert();
+    this.initMap();
+    searchControl.addTo(this.mapp);
+  }
+
+  private initMap() {
+    this.mapp = L.map('map').setView([13.100, 100.100], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.mapp);
+    L.geoJSON(province_geojson).addTo(this.mapp)
+    // const marker = new Marker([16.100, 100.100])
+    //   .setIcon(
+    //     icon({
+    //       iconSize: [25, 25],
+    //       iconAnchor: [13, 41],
+    //       iconUrl: 'assets/marker-icon.png'
+    //     }));
+    // marker.addTo(this.mapp);
   }
 
   todayNull(data: any) {
@@ -97,10 +145,6 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
     }
 
-  }
-
-  lastInsertGoToDetail(num:any){
-    this.router.navigate(['/job/edit/'+ num]);
   }
 
   overNull(data: any) {
@@ -145,6 +189,9 @@ export class HomeComponent implements OnInit {
     this.apiService.getHome('lastinsert').then((res: any) => {
       this.lastinsert = res
     });
+  }
+  lastInsertGoToDetail(num: any) {
+    this.router.navigate(['/job/edit/' + num]);
   }
 
   getCountFix() {

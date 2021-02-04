@@ -161,14 +161,10 @@
                     </div>
                     <div id="faq2" class="collapse show" data-parent="#accordion2">
                         <div class="card-body">
-                    <div class="pd-20 card-box mb-30">
-                        <div class="clearfix mb-20">
-                            <div class="row">
-                                <!-- <h4 class="text-blue h4 text">แผนที่</h4> -->
+                            <div class="map-container">
+                                <div id="map"></div>
                             </div>
                         </div>
-                    </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -202,8 +198,9 @@
                                                 <th scope="col">สถานะ</th>
                                             </tr>
                                         </thead>
-                                        <tbody >
-                                            <tr *ngFor="let last of lastinsert; let i = index" (click)="lastInsertGoToDetail(last.id)">
+                                        <tbody>
+                                            <tr *ngFor="let last of lastinsert; let i = index"
+                                                (click)="lastInsertGoToDetail(last.id)">
                                                 <th scope="row">{{last.id}}</th>
                                                 <td><a href="javascript:;">{{last.cus_fullname}}</a></td>
                                                 <td><a href="javascript:;">{{last.category}}</a></td>
@@ -214,6 +211,7 @@
                                     </table>
                                 </div>
                             </div>
+                            <button class="btn btn-link al"><a [routerLink]="['/alljob']">ทั้งหมด</a></button>
                         </div>
                     </div>
                 </div>
