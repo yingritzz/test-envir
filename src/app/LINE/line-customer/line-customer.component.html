@@ -194,7 +194,11 @@
             <div class="product-wrap">
                 <div class="product-list">
                     <ul class="row">
-                        <li class="col-6 col-sm-3" *ngFor="let cus of customerDataList">
+                        <li class="col-6 col-sm-3" *ngFor="let cus of customerDataList | paginate : {
+                            itemsPerPage: tableSize,
+                            currentPage: page,
+                            totalItems: count
+                          };">
                             <div class="product-box ">
                                 <div class="product-caption wrapper a br">
                                     <h6>{{cus.cus_fullname}}</h6> 
@@ -206,6 +210,11 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="clearfix justify-content-center wrapper">
+                <pagination-controls previousLabel="Prev" nextLabel="Next"
+                    (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
             </div>
         </div>
     </div>

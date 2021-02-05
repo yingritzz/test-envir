@@ -12,6 +12,9 @@ export class LineCustomerComponent implements OnInit {
   isDisplay = false;
   isDisplay2 = true;
   isDisplay3 = false;
+  page = 1;
+  count = 0;
+  tableSize = 10;
 
   //Add customer
   data: Customer;
@@ -40,19 +43,21 @@ export class LineCustomerComponent implements OnInit {
   road: any;
   address: any;
 
-
   constructor(public apiService: ApiService) { 
-
     this.customerDataList = [];
     this.cusEdit = new Customer();
     this.data = new Customer();
-
   }
 
   ngOnInit(): void {
     this.getAllCustomers();
     
   }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getAllCustomers();
+  }
+
   //customer
   getAllCustomers() {
     this.apiService.getListCustomers().then((res: any) => {
@@ -99,11 +104,9 @@ export class LineCustomerComponent implements OnInit {
 
     });
   }
-
   getData(data: any) {
     this.cusData=data;
   }
-
   profile(){
     this.apiService.customerProfile(this.cus_id).then((res: any) => {
       // console.log('customerList : ' + res);
@@ -125,7 +128,6 @@ export class LineCustomerComponent implements OnInit {
       }
     });
   }
-
   onClickBack() {
     this.isDisplay = false;
     this.isDisplay2 = true;
@@ -138,7 +140,6 @@ export class LineCustomerComponent implements OnInit {
   }
 
   //Add customer
-
   onClickNewCus() {
 
     if (this.data.moo == undefined) {

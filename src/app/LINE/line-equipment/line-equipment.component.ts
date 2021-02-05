@@ -18,7 +18,6 @@ export class LineEquipmentComponent implements OnInit {
   eq_id: any;
   eq_names: any;
 
-
   //Equipment Detail
   eqd_data: any;
   eqd_new: EquipmentDetail;
