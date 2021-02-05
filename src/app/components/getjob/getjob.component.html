@@ -31,8 +31,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>ชื่อลูกค้า :</label>
-                                        <input type="text" class="form-control" name="input_cus"
+                                        <!-- <label>ชื่อลูกค้า :</label> -->
+                                        <label for="input_cus" class="control-label h">ชื่อลูกค้า :</label>
+                                        <!-- <label class="control-label err h">เพิ่มลูกค้าใหม่</label> -->
+                                        <button class="btn btn-link r h hr" data-dismiss="modal"
+                                            [routerLink]="[ '/cusadd']">เพิ่มลูกค้าใหม่</button>
+                                        <input type="text" class="form-control" id="input_cus" name="input_cus"
                                             [(ngModel)]='cus_select' (ngModelChange)="getCustomers($event)">
                                         <table class="table">
                                             <tbody *ngFor="let cus of cus_list">
@@ -183,7 +187,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group" [ngClass]="displayFieldCss('date_end_job')">
@@ -212,11 +215,10 @@
                                             <button class="btn btn-success" (click)="add_getJob()">เพิ่ม</button>
                                         </div>
                                     </div>
-
                                 </div>
                             </form>
                             <br>
-                            
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="map-container">
@@ -234,13 +236,6 @@
                                             [(ngModel)]="annotation"></textarea>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-6">
-                                    <div class="map-container">
-                                        <div class="map-frame">
-                                            <div id="map"></div>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
                         </section>
 

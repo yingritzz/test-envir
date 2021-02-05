@@ -18,6 +18,55 @@ header-right .brand-logo{
 .header-right{
   width:100%
 }
-  .wrapper{
+
+.wrapper{
       text-align: center;
   }
+
+.ten {
+    width: 10%
+}
+
+.pad-l{
+    padding-left: 4%;
+}
+
+.text{
+    width: 50%
+}
+
+.r {
+    text-align: right;
+    padding-right: 4%;
+    padding-top: 0%;
+}
+
+.error-msg {
+    color: #a94442;
+    font-size: 10pt;
+  }
+
+.err{
+    color: red;
+    font-size: 10pt;
+    text-align: right;
+}
+.h{
+    width: 50%;
+}
+
+#map {
+    height: 200px;
+  }
+.map-container {
+    position:sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0px;
+}
+.map-frame {
+    border: 2px solid black;
+    height: 100%;
+}

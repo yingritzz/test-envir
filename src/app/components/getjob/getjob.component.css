@@ -33,6 +33,10 @@
 .h{
     width: 50%;
 }
+.hr{
+    font-size: 10pt;
+    text-align: right;
+}
 
 #map {
     height: 400px;

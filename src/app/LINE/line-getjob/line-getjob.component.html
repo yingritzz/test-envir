@@ -2,19 +2,18 @@
     <div class="min-height-200px">
         <div class="page-header">
             <div class="row">
-                <div class="col-6 col-sm-3">
+                <div class="col-9 col-sm-9">
                     <div>
                         <h4 class="p">Envirservice</h4>
                     </div>
                 </div>
-                <div class="col-6 col-sm-3">
+                <div class="col-3 col-sm-3">
                     <div class="header-right">
                         <div class="user-info-dropdown">
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                     <span class="user-icon">
                                         <img src="assets/vendors/images/deskapp.png" alt="">
-
                                     </span>
                                     <span class="user-name">user01</span>
                                 </a>
@@ -29,6 +28,7 @@
                 </div>
             </div>
         </div>
+
         <div class="pd-20 card-box mb-30">
             <div class="clearfix">
                 <h4 class="text-blue h5">ข้อมูลการรับงาน</h4>
@@ -43,22 +43,30 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>ชื่อลูกค้า :</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="input_cus" [(ngModel)]='cus_select'
+                                        (ngModelChange)="getCustomers($event)">
+                                    <table class="table">
+                                        <tbody *ngFor="let cus of cus_list">
+                                            <tr>
+                                                <td>{{cus.cus_fullname}}</td>
+                                                <td class="ten"><button class="btn btn-link"
+                                                        (click)="show_cus(cus)">select</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <br>
 
-                    <!-- Step 2 -->
                     <h5>รายละเอียดงาน</h5>
                     <section>
-                        <form>
+                        <!-- <form>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>กำหนดวันที่ส่งคืน :</label>
-                                        <input type="text" class="form-control date-picker" placeholder="เลือกวันที่">
+                                        <input type="date" class="form-control date-picker" placeholder="เลือกวันที่">
                                     </div>
                                 </div>
 
@@ -105,46 +113,133 @@
 
                                     <div class="wrapper">
                                         <button type="reset" class="btn btn-success"
-                                            (click)="add_getJob()">เพิ่ม</button>
+                                            >เพิ่ม</button>
                                     </div>
                                 </div>
 
                             </div>
+                        </form> -->
+
+                        <form [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <div class="form-group" [ngClass]="displayFieldCss('category')">
+                                        <label for="category" class="control-label required">หมวดหมู่ :</label>
+                                        <select id="category" class="custom-select form-control" id="catagory"
+                                            name="catagory_select" formControlName="category">
+                                            <option value=" "> </option>
+                                            <option *ngFor="let c of cg" value="{{c}}">{{c}}</option>
+                                        </select>
+                                        <app-field-error-display [displayError]="isFieldValid('category')"
+                                            errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                        </app-field-error-display>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <div class="form-group" [ngClass]="displayFieldCss('eq_detail_id')">
+                                        <label for="eq_detail_id" class="control-label required h">อุปกรณ์ :</label>
+                                        <label class="control-label err h">เฉพาะอุปกรณ์ที่ว่างเท่านั้น*</label>
+                                        <select id="eq_detail_id" class="custom-select form-control" name="eq_detail_id"
+                                            formControlName="eq_detail_id">
+                                            <option value=" "> </option>
+                                            <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.id}} :
+                                                {{eqd.eq_detail_name}}</option>
+                                        </select>
+                                        <app-field-error-display [displayError]="isFieldValid('eq_detail_id')"
+                                            errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                        </app-field-error-display>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" [ngClass]="displayFieldCss('amount')">
+                                        <label for="amount" class="control-label required">จำนวน :</label>
+                                        <input id="amount" name="count_select" type="number" class="form-control"
+                                            autocomplete="off" min=1 formControlName="amount">
+                                        <app-field-error-display [displayError]="isFieldValid('amount')"
+                                            errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                        </app-field-error-display>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group" [ngClass]="displayFieldCss('date_end_job')">
+                                        <label for="date_end_job" class="control-label required">กำหนดวันที่ส่งคืน
+                                            :</label>
+                                        <input id="date_end_job" type="date" class="form-control"
+                                            placeholder="เลือกวันที่" id="dateEnd" name="d_endjob"
+                                            formControlName="date_end_job">
+                                        <app-field-error-display [displayError]="isFieldValid('date_end_job')"
+                                            errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
+                                        </app-field-error-display>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="wrapper">
+                                        <button class="btn btn-success" (click)="add_getJob()">เพิ่ม</button>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="map-container">
+                                    <div class="map-frame">
+                                        <div id="map"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>หมายเหตุ :</label>
+                                    <textarea class="form-control" name="annotation"
+                                        [(ngModel)]="annotation"></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <br><br>
-                    <!-- Step 3 -->
+
                     <h5>รายการอุปกรณ์</h5>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">หมวดหมู่</th>
-                                <th scope="col">อุปกรณ์</th>
-                                <th scope="col">จำนวน</th>
-                                <th scope="col">จัดการ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let data of getJob_data">
-                                <td>{{data[0]}}</td>
-                                <td>{{data[1]}}</td>
-                                <td>{{data[2]}}</td>
-                                <td>
-                                    <button class="btn btn-danger btn-sm" type="button" value="submit"
-                                        (click)="deleteRow(data)"><i class="icon-copy fa fa-trash btn-size"
-                                            aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">หมวดหมู่</th>
+                                    <th scope="col">อุปกรณ์</th>
+                                    <th scope="col">จำนวน</th>
+                                    <th scope="col">จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of formArray ; let i = index">
+                                    <td>{{item.category}}</td>
+                                    <td>{{item.eq_detail_name}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" type="button" value="submit"
+                                            (click)="deleteRow(i)"><i class="icon-copy fa fa-trash btn-size"
+                                                aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                 </form>
             </div>
 
             <div class="wrapper">
                 <div class="btn-list">
-                    <button type="button" class="btn btn-success">บันทึก</button>
-                    <button type="button" class="btn btn-danger">ยกเลิก</button>
+                    <button id="save" type="button" class="btn btn-success" (click)="save()">บันทึก</button>
+                    <button type="reset" class="btn btn-danger" [routerLink]="[ '/home']">ยกเลิก</button>
                 </div>
             </div>
 
