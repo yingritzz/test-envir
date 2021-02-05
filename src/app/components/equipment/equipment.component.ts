@@ -52,8 +52,8 @@ export class EquipmentComponent implements OnInit {
     console.log(this.eq_data)
   }
 
-  onClickDetail(id: number, name: string) {
-    this.router.navigateByUrl('equipment/detail/' + id + '/' + name)
+  onClickDetail(id: number) {
+    this.router.navigateByUrl('equipment/detail/' + id)
   }
 
   delete(id: number, name: any) {

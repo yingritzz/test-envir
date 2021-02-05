@@ -22,7 +22,6 @@ import { JobAllComponent } from './components/job-all/job-all.component'
 import { LineHomeComponent } from './LINE/line-home/line-home.component'
 import { LineGetjobComponent } from './LINE/line-getjob/line-getjob.component'
 import { LineEquipmentComponent } from './LINE/line-equipment/line-equipment.component'
-import { LineEqDetailComponent } from './LINE/line-eq-detail/line-eq-detail.component'
 import { LineCustomerComponent } from './LINE/line-customer/line-customer.component'
 import { LineMaintenancComponent } from './LINE/line-maintenanc/line-maintenanc.component'
 import { LineRentalComponent } from './LINE/line-rental/line-rental.component'
@@ -47,11 +46,10 @@ const routes: Routes = [
   {path: 'customer/profile/:id', component:CusProfileComponent},
   {path: 'setting', component:SettingpageComponent},
   {path: 'equipment', component:EquipmentComponent},
-  {path: 'equipment/detail/:id/:name', component:EqDetailComponent},
+  {path: 'equipment/detail/:id', component:EqDetailComponent},
   {path: 'line/home', component:LineHomeComponent},
   {path: 'line/getjob', component:LineGetjobComponent},
   {path: 'line/equipment', component:LineEquipmentComponent},
-  {path: 'line/equipment/detail', component:LineEqDetailComponent},
   {path: 'line/customer', component:LineCustomerComponent},
   {path: 'line/maintenanc', component:LineMaintenancComponent},
   {path: 'line/rental', component:LineRentalComponent},

@@ -35,7 +35,13 @@ export class EqDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.eq_id = this.activatedRoute.snapshot.params["id"];
-    this.eq_name = this.activatedRoute.snapshot.params["name"];
+    this.apiService.getListEq().then((res: any) => {
+      res.forEach((value: any) => {
+        if(value.id == this.eq_id) {
+          this.eq_name = value.eq_name;
+        }
+      });
+    });
     this.getEqDetail();
   }
 
@@ -43,7 +49,6 @@ export class EqDetailComponent implements OnInit {
     this.eqd_id = id;
     this.apiService.getEqd(id).then((res: any) => {
       this.eqd_edit = res[0];
-      console.log(this.eqd_edit)
     });
   }
 
