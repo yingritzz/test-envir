@@ -5,6 +5,10 @@ import { ApiService } from '../../services/api.service'
 import { EmploymentDetail, EmploymentDetailEdit } from '../../models/employment';
 import { EquipmentAmount } from '../../models/equipment'
 import Swal from 'sweetalert2';
+import { latLng, MapOptions, tileLayer, Map, Marker, icon } from 'leaflet';
+import * as L from 'leaflet';
+
+declare var province_geojson: any;
 
 @Component({
   selector: 'app-job-edit',
@@ -29,6 +33,10 @@ export class JobEditComponent implements OnInit {
   emd_edit: any = [];
   emd_id: any;
 
+  mapOptions!: MapOptions;
+  private mapp!: Map;
+  coor_lat: any;
+  coor_lng: any;
 
   constructor(
     private location: Location,
@@ -44,8 +52,16 @@ export class JobEditComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
     this.getJobEdit();
+    this.initMap();
   }
 
+  private initMap() {
+    this.mapp = L.map('map').setView([13.100, 100.100], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.mapp);
+    L.geoJSON(province_geojson).addTo(this.mapp)
+  }
   async getIdEmd(id: any) {
     this.emd_id = id;
     this.apiService.emDetail(id).then((res: any) => {
@@ -56,10 +72,22 @@ export class JobEditComponent implements OnInit {
       }
     });
   }
-
   getJobEdit() {
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
       this.getData(res);
+      console.log(res[0].lat);
+      console.log(res[0].long)
+      if(res!=null) {
+        const marker = new Marker([13.00, 100.000])
+          .setIcon(
+            icon({
+              iconSize: [25, 25],
+              iconAnchor: [13, 41],
+              iconUrl: 'assets/src/images/marker-icon.png',
+              popupAnchor:  [0, -20]
+            }));
+        marker.addTo(this.mapp).bindPopup(res[0].place);
+      }
     });
   }
   statusChange(status: any) {

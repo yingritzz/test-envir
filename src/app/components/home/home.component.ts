@@ -97,10 +97,6 @@ export class HomeComponent implements OnInit {
     this.apiService.getEmAll().then((res: any) => {
       console.log(res)
       res.forEach((value: any) => {
-        // console.log('**********************')
-        // console.log(value.lat)
-        // console.log(value.long)
-
         const marker = new Marker([value.lat, value.long])
           .setIcon(
             icon({
@@ -120,8 +116,6 @@ export class HomeComponent implements OnInit {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.mapp);
     L.geoJSON(province_geojson).addTo(this.mapp)
-
-
     this.mapp.addControl(searchControl);
   }
 
