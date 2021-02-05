@@ -25,7 +25,7 @@ const searchControl = new GeoSearchControl({
   maxMarkers: 1,
   animateZoom: true,
   keepResult: true,
-  autoClose : true,
+  autoClose: true,
   zoomLevel: 12,
   showPopup: true,
   popupFormat: ({ query, result }) => result.label,
@@ -67,6 +67,8 @@ export class HomeComponent implements OnInit {
 
   mapOptions!: MapOptions;
   private mapp!: Map;
+  coor_lat: any;
+  coor_lng: any;
 
   constructor(
     private location: Location,
@@ -88,24 +90,39 @@ export class HomeComponent implements OnInit {
     this.getTodayList();
     this.getOverdue();
     this.getLastInsert();
-    this.initMap();
-    searchControl.addTo(this.mapp);
+    this.setMarker()
   }
 
+  setMarker() {
+    this.apiService.getEmAll().then((res: any) => {
+      console.log(res)
+      res.forEach((value: any) => {
+        // console.log('**********************')
+        // console.log(value.lat)
+        // console.log(value.long)
+
+        const marker = new Marker([value.lat, value.long])
+          .setIcon(
+            icon({
+              iconSize: [25, 25],
+              iconAnchor: [13, 41],
+              iconUrl: 'assets/src/images/marker-icon.png',
+              popupAnchor:  [0, -20]
+            }));
+        marker.addTo(this.mapp).bindPopup(value.id+' : '+value.cus_fullname +' @'+value.place);
+      });
+    });
+    this.initMap();
+  }
   private initMap() {
     this.mapp = L.map('map').setView([13.100, 100.100], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.mapp);
     L.geoJSON(province_geojson).addTo(this.mapp)
-    // const marker = new Marker([16.100, 100.100])
-    //   .setIcon(
-    //     icon({
-    //       iconSize: [25, 25],
-    //       iconAnchor: [13, 41],
-    //       iconUrl: 'assets/marker-icon.png'
-    //     }));
-    // marker.addTo(this.mapp);
+
+
+    this.mapp.addControl(searchControl);
   }
 
   todayNull(data: any) {

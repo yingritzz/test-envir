@@ -48,6 +48,7 @@ export class GetjobComponent implements OnInit {
   private map!: Map;
   coor_lat: any;
   coor_lng: any;
+  coor_place: any;
   searchss: any;
   drag: any;
 
@@ -178,6 +179,33 @@ export class GetjobComponent implements OnInit {
     }
   }
 
+  private initMap() {
+    this.map = L.map('map').setView([13.100, 100.100], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.map);
+    L.geoJSON(province_geojson).addTo(this.map);
+    this.map.addControl(searchControl);
+
+    this.map.on('geosearch/showlocation', x => {
+      this.searchss = x
+      this.getCoor(this.searchss.location.raw.lat, this.searchss.location.raw.lon, this.searchss.location.raw.display_name);
+    });
+
+    this.map.on('geosearch/marker/dragend', y => {
+      this.drag = y;
+      this.getCoor(this.drag.location.lat, this.drag.location.lng, this.searchss.location.raw.display_name);
+    });
+  }
+  getCoor(lat:any, lng:any, place:any) {
+    this.coor_lat = lat;
+    this.coor_lng = lng;
+    this.coor_place = place;
+    // console.log('lat : '+ this.coor_lat)
+    // console.log('lng : '+this.coor_lng)
+    // console.log('place : '+this.coor_place)
+  }
+
   async add_getJob() {
     this.form.value.status = 'รับงาน'
     this.annot = this.annotation;
@@ -189,8 +217,8 @@ export class GetjobComponent implements OnInit {
           this.form.value.eq_detail_name = res[0].eq_detail_name;
           this.form.value.date_end = this.datepipe.transform(this.form.value.date_end_job, 'dd MMM yyyy')
           this.formArray.push(this.form.value);
-          console.log(res[0].eq_detail_amount)
-          console.log(this.form.value.amount)
+          // console.log(res[0].eq_detail_amount)
+          // console.log(this.form.value.amount)
           this.form.reset();
           Swal.fire("เพิ่มงานสำเร็จ!", 'สามารถตรวจสอบรายละเอียดความถูกต้องของงาน' + '<br>' + 'ได้ที่ตารางด้านล่าง', "success");
         } else {
@@ -222,7 +250,11 @@ export class GetjobComponent implements OnInit {
       (this.job).admin_id = parseInt(this.admin_id);
       (this.job).cus_id = parseInt(this.cus_id);
       (this.job).annotation = this.annot;
+      (this.job).lat = this.coor_lat;
+      (this.job).long = this.coor_lng;
+      (this.job).place = this.coor_place;
 
+      
       this.apiService.createEmployment(this.job).then((res: any) => {
         this.em_id = res[0].lastval;
         for (let i = 0; i < this.formArray.length; i++) {
@@ -243,32 +275,7 @@ export class GetjobComponent implements OnInit {
       });
     }
   }
-
-  private initMap() {
-    this.map = L.map('map').setView([13.100, 100.100], 5);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
-    L.geoJSON(province_geojson).addTo(this.map);
-    this.map.addControl(searchControl);
-
-    this.map.on('geosearch/showlocation', x => {
-      this.searchss = x
-      this.getCoor(this.searchss.location.raw.lat, this.searchss.location.raw.lon);
-    });
-
-    this.map.on('geosearch/marker/dragend', y => {
-      this.drag = y;
-      this.getCoor(this.drag.location.lat, this.drag.location.lng);
-    });
-  }
-
-  getCoor(lat:any, lng:any) {
-    this.coor_lat = lat;
-    this.coor_lng = lng;
-    console.log('lat : '+this.coor_lat)
-    console.log('lng : '+this.coor_lng)
-  }
+  
   isFieldValid(field: string) {
     return this.form.get(field)!.valid && this.form.get(field)!.touched;
   }

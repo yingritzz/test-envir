@@ -3,6 +3,9 @@ export class Employment {
     cus_id!: any;
     admin_id!: any;
     annotation!: any;
+    lat!: any;
+    long!: any;
+    place!: any;
 }
 
 export class EmploymentDetail {
