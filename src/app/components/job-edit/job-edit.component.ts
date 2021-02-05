@@ -50,9 +50,9 @@ export class JobEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initMap();
     this.id = this.activatedRoute.snapshot.params["id"];
     this.getJobEdit();
-    this.initMap();
   }
 
   private initMap() {
