@@ -30,7 +30,6 @@ export class EquipmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllEquipments();
-
   }
 
   getAllEquipments() {
@@ -40,7 +39,7 @@ export class EquipmentComponent implements OnInit {
         this.apiService.getEqDetail(res[x].id).then((response: any) => {
           // console.log(res.length)
           res[x].count = response.length
-          console.log(res[x].count);
+          // console.log(res[x].count);
         });
       }
       this.getData(res);
@@ -49,7 +48,6 @@ export class EquipmentComponent implements OnInit {
 
   getData(data: any) {
     this.eq_data = data
-    console.log(this.eq_data)
   }
 
   onClickDetail(id: number) {

@@ -5,9 +5,6 @@ import { Equipment, EquipmentAmount, EquipmentDetail } from '../models/equipment
 import { Employment, EmploymentDetail, EmploymentDetailEdit } from '../models/employment';
 import { Admin, Login } from '../models/admin';
 
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
-
 @Injectable({
   providedIn: 'root'
 })

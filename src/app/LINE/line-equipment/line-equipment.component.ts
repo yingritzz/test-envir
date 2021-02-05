@@ -25,13 +25,12 @@ export class LineEquipmentComponent implements OnInit {
   eqd_edit: EquipmentDetail;
   eqd_id: any;
   
-  eq_dname: any = "Thermo PM 2.5"
-  eq_dstatus: any
-  eq_dnew: any
-  eq_ddata: any = [["200DA200310704", "Thermo PM 2.5", "1", "ว่าง 1"], ["xxxxxxxxxxxxxx", "สาย Thermo PM 2.5", "5", "ว่าง 3"]]
-
   isDisplay1 = true;
   isDisplay2 = false;
+  pageEq = 1;
+  pageEqd = 1;
+  count = 0;
+  tableSize = 10;
 
   constructor(
     public router: Router,
@@ -58,16 +57,26 @@ export class LineEquipmentComponent implements OnInit {
     this.isDisplay2 = this.isDisplay2;
   }
 
+  onTableDataChangeEq(event: any) {
+    this.pageEq = event;
+    this.getAllEquipments();
+  }
+  onTableDataChangeEqd(event: any) {
+    this.pageEqd = event;
+    this.getAllEquipments();
+  }
   //Equipment
   getAllEquipments() {
     this.eq_count = [];
     this.apiService.getListEq().then((res: any) => {
-      this.getData(res);
       for (let x = 0; x < res.length; x++) {
         this.apiService.getEqDetail(res[x].id).then((response: any) => {
-          this.eq_count.push(response.length)
+          // console.log(res.length)
+          res[x].count = response.length
+          // console.log(res[x].count);
         });
       }
+      this.getData(res);
     });
   }
   getData(data: any) {
@@ -80,10 +89,10 @@ export class LineEquipmentComponent implements OnInit {
     this.isDisplay1 = !this.isDisplay1;
     this.isDisplay2 = !this.isDisplay2;
   }
-  delete(id: number, index: number) {
+  delete(id: number, name: any) {
     Swal.fire({
       title: 'ยืนยันการลบอุปกรณ์',
-      text: this.eq_data[index].eq_name,
+      text: name,
       showDenyButton: true,
       confirmButtonText: `ใช่`,
       denyButtonText: `ไม่ใช่`,
@@ -132,21 +141,15 @@ export class LineEquipmentComponent implements OnInit {
   }
 
   //Equipment Detail
-  async getIdEqd(id: any) {
-    this.eqd_id = id;
-    this.apiService.getEqd(id).then((res: any) => {
-      this.eqd_edit = res[0];
-    });
-  }
   getEqDetail() {
     this.apiService.getEqDetail(this.eq_id).then((res: any) => {
       this.eqd_data = res;
     });
   }
-  deleteEqd(id: any, index: number) {
+  deleteEqd(id: any, name: any) {
     Swal.fire({
       title: 'ยืนยันการลบอุปกรณ์',
-      text: this.eqd_data[index].id + ' : ' + this.eqd_data[index].eq_detail_name,
+      text: id + ' : ' + name,
       showDenyButton: true,
       confirmButtonText: `ใช่`,
       denyButtonText: `ไม่ใช่`,

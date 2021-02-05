@@ -225,7 +225,6 @@ export class LineGetjobComponent implements OnInit {
       (this.job).long = this.coor_lng;
       (this.job).place = this.coor_place;
 
-      
       this.apiService.createEmployment(this.job).then((res: any) => {
         this.em_id = res[0].lastval;
         for (let i = 0; i < this.formArray.length; i++) {
@@ -238,10 +237,7 @@ export class LineGetjobComponent implements OnInit {
             });
           });
         }
-
-        this.apiService.getEmDetail(this.em_id).then((res: any) => {
-          this.router.navigate(['invoice/' + this.em_id]);
-        });
+        this.router.navigate(['/line/home']);
       });
     }
   }
