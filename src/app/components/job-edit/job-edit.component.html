@@ -150,16 +150,26 @@
                             <div class="tab height-100-p">
                                 <ul class="nav nav-tabs customtab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#edit_em" role="tab">
-                                            แก้ไขรายละเอียดงาน</a>
+                                        <a class="nav-link active" data-toggle="tab" href="#mapp" role="tab">แผนที่</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#mapp" role="tab">แผนที่</a>
+                                        <a class="nav-link" data-toggle="tab" href="#edit_em" role="tab">
+                                            แก้ไขรายละเอียดงาน</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
+                                    <!-- mapp Tab start -->
+                                    <div class="tab-pane fade show active" id="mapp" role="tabpanel">
+                                        <div class="card-body">
+                                            <div class="map-container">
+                                                <div id="map"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- mapp Tab End -->
+
                                     <!-- edit_em Tab start -->
-                                    <div class="tab-pane fade show active" id="edit_em" role="tabpanel">
+                                    <div class="tab-pane fade height-100-p" id="edit_em" role="tabpanel">
                                         <div class="pd-20 card-box">
                                             <div class="row">
                                                 <h5 class="col-sm-6 h5 mb-0">{{jobEdit[0]?.cus_fullname}}({{jobEdit[0]?.category}})</h5>
@@ -254,16 +264,6 @@
                                         </div>
                                     </div>
                                     <!-- edit_em Tab End -->
-
-                                    <!-- mapp Tab start -->
-                                    <div class="tab-pane fade height-100-p" id="mapp" role="tabpanel">
-                                        <div class="pd-20 card-box">
-                                            <div class="map-container">
-                                                <div id="map"></div>
-                                            </div>
-                                        </div>
-                                    <!-- mapp Tab End -->
-
                                 </div>
                             </div>
                         </div>

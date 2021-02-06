@@ -50,13 +50,12 @@ export class JobEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initMap();
     this.id = this.activatedRoute.snapshot.params["id"];
     this.getJobEdit();
   }
 
-  private initMap() {
-    this.mapp = L.map('map').setView([13.100, 100.100], 6);
+  private initMap(lat:any, lng:any) {
+    this.mapp = L.map('map').setView([lat, lng], 8);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.mapp);
@@ -75,19 +74,16 @@ export class JobEditComponent implements OnInit {
   getJobEdit() {
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
       this.getData(res);
-      console.log(res[0].lat);
-      console.log(res[0].long)
-      if(res!=null) {
-        const marker = new Marker([13.00, 100.000])
+      this.initMap(res[0].lat, res[0].long);
+      const marker = new Marker([res[0].lat, res[0].long])
           .setIcon(
             icon({
-              iconSize: [25, 25],
+              iconSize: [40, 45],
               iconAnchor: [13, 41],
               iconUrl: 'assets/src/images/marker-icon.png',
               popupAnchor:  [0, -20]
             }));
         marker.addTo(this.mapp).bindPopup(res[0].place);
-      }
     });
   }
   statusChange(status: any) {
