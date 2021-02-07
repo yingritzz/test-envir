@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit {
         const marker = new Marker([value.lat, value.long])
           .setIcon(
             icon({
-              iconSize: [25, 25],
+              iconSize: [55, 55],
               iconAnchor: [13, 41],
               iconUrl: 'assets/src/images/marker-icon.png',
               popupAnchor:  [0, -20]

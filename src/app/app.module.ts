@@ -43,6 +43,7 @@ import { JobDetailComponent } from './components/job-detail/job-detail.component
 import { JobEditComponent } from './components/job-edit/job-edit.component';
 import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
 import { JobAllComponent } from './components/job-all/job-all.component';
+import { LineJoballComponent } from './LINE/line-joball/line-joball.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { JobAllComponent } from './components/job-all/job-all.component';
     JobDetailComponent,
     JobEditComponent,
     FieldErrorDisplayComponent,
-    JobAllComponent
+    JobAllComponent,
+    LineJoballComponent
   ],
   imports: [
     BrowserModule,
