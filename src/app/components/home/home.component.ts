@@ -118,7 +118,7 @@ export class HomeComponent implements OnInit {
     L.geoJSON(province_geojson).addTo(this.mapp)
     this.mapp.addControl(searchControl);
   }
-
+ 
   todayNull(data: any) {
     if (data.length == 0) {
       this.today = true;

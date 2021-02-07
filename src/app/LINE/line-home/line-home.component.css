@@ -18,3 +18,34 @@ header-right .brand-logo{
 .header-right{
     width:100%
 }
+
+.wrapper {
+    text-align: center;
+    color: rgb(133, 133, 133);
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.right {
+    text-align: right;
+}
+.al {
+    text-align: center;
+    width: 100%;
+}
+
+#map {
+    height: 400px;
+  }
+.map-container {
+    position:sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0px;
+} 
+.map-frame {
+    border: 2px solid black;
+    height: 100%;
+}

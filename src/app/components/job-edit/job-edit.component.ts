@@ -66,8 +66,11 @@ export class JobEditComponent implements OnInit {
     this.apiService.emDetail(id).then((res: any) => {
       this.emd_edit = res[0];
       this.status_select = res[0].status
-      if (res[0].status == 'สำเร็จ') {
-        // (<HTMLInputElement>document.getElementById("status")).disabled = true;
+      if (res[0].status == "สำเร็จ" || res[0].status == "สำเร็จ ") {
+        (<HTMLInputElement>document.getElementById("status")).disabled = true;
+      }
+      else {
+        (<HTMLInputElement>document.getElementById("status")).disabled = false;
       }
     });
   }
@@ -126,12 +129,14 @@ export class JobEditComponent implements OnInit {
     });
   }
 
-  delete(id: any, name: any, em_id: any, amount: number, eqd_id: any) {
+  delete(id: any, name: any, em_id: any, amount: number, eqd_id: any, status:any) {
     this.amount = new EquipmentAmount;
     this.amount.eqd = eqd_id;
     this.amount.amount = amount;
+    if (status != "สำเร็จ" && status != "สำเร็จ "){
     this.apiService.updateEqStatusSuccess(em_id, this.amount).then((res: any) => {
     });
+  }
     if (this.jobEdit.length == 1) {
       Swal.fire({
         title: 'ยืนยันการลบ',

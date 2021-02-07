@@ -172,12 +172,12 @@
                                     <div class="tab-pane fade height-100-p" id="edit_em" role="tabpanel">
                                         <div class="pd-20 card-box">
                                             <div class="row">
-                                                <h5 class="col-sm-6 h5 mb-0">{{jobEdit[0]?.cus_fullname}}({{jobEdit[0]?.category}})</h5>
+                                                <h5 class="col-sm-6 h5 mb-0"><span>No:</span> {{jobEdit[0]?.id}}</h5>
                                                 <p class="col-sm-6 text-right font-14"><span>วันที่รับงาน:
                                                     </span>{{jobEdit[0]?.date_get_job}}</p>
                                             </div>
                                             <div class="row">
-                                                <p class="col-sm-6 h5 text-left text-muted font-14"><span>No:</span> {{jobEdit[0]?.id}}</p>
+                                                <p class="col-sm-6 h5 text-left text-muted font-14"></p>
                                                 <p class="col-sm-6 text-right font-14"><span>วันที่ครบกำหนด:
                                                     </span>{{jobEdit[0]?.date_end_job}}</p>
                                             </div>
@@ -209,7 +209,7 @@
                                                                         aria-hidden="true"></i></button>
                     
                                                                 <button class="btn btn-danger btn-sm" type="button" value="submit"
-                                                                    (click)="delete(edit.em_detail_id, edit.eq_detail_name, edit.id, edit.amount, edit.detail_id)"><i
+                                                                    (click)="delete(edit.em_detail_id, edit.eq_detail_name, edit.id, edit.amount, edit.detail_id,edit.status)"><i
                                                                         class="icon-copy fa fa-trash btn-size"
                                                                         aria-hidden="true"></i></button>
                                                             </div>
