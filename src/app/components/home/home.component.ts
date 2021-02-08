@@ -103,9 +103,9 @@ export class HomeComponent implements OnInit {
               iconSize: [55, 55],
               iconAnchor: [13, 41],
               iconUrl: 'assets/src/images/marker-icon.png',
-              popupAnchor:  [0, -20]
+              popupAnchor: [0, -20]
             }));
-        marker.addTo(this.mapp).bindPopup(value.id+' : '+value.cus_fullname +' @'+value.place);
+        marker.addTo(this.mapp).bindPopup(value.id + ' : ' + value.cus_fullname + ' @' + value.place);
       });
     });
     this.initMap();
@@ -118,7 +118,7 @@ export class HomeComponent implements OnInit {
     L.geoJSON(province_geojson).addTo(this.mapp)
     this.mapp.addControl(searchControl);
   }
- 
+
   todayNull(data: any) {
     if (data.length == 0) {
       this.today = true;
@@ -206,55 +206,55 @@ export class HomeComponent implements OnInit {
   }
 
   getCountFix() {
-    this.apiService.getEmployment('maintenanc').then((res: any) => {
-      if (res.length != 0) {
-        this.fix = res.length;
-        res.forEach((value: any) => {
-          if (value.status == 'สำเร็จ') {
+    this.apiService.emdAll().then((res: any) => {
+      res.forEach((emd: any) => {
+        if (emd.category == 'ซ่อมบำรุง') {
+          this.fix += 1
+          if (emd.status == 'สำเร็จ') {
             this.countFix += 1;
           }
-        });
-        this.percenFix = (this.countFix / this.fix) * 100;
-      }
+        }
+      });
+      this.percenFix = (this.countFix / this.fix) * 100;
     });
   }
   getCountRental() {
-    this.apiService.getEmployment('rental').then((res: any) => {
-      if (res.length != 0) {
-        this.rental = res.length;
-        res.forEach((value: any) => {
-          if (value.status == 'สำเร็จ') {
+    this.apiService.emdAll().then((res: any) => {
+      res.forEach((emd: any) => {
+        if (emd.category == 'เช่า-ยืม') {
+          this.rental += 1
+          if (emd.status == 'สำเร็จ') {
             this.countRental += 1;
           }
-        });
-        this.percenRental = (this.countRental / this.rental) * 100;
-      }
+        }
+      });
+      this.percenRental = (this.countRental / this.rental) * 100;
     });
   }
   getCountTest() {
-    this.apiService.getEmployment('testing').then((res: any) => {
-      if (res.length != 0) {
-        this.test = res.length;
-        res.forEach((value: any) => {
-          if (value.status == 'สำเร็จ') {
+    this.apiService.emdAll().then((res: any) => {
+      res.forEach((emd: any) => {
+        if (emd.category == 'ทดสอบ') {
+          this.test += 1
+          if (emd.status == 'สำเร็จ') {
             this.countTest += 1;
           }
-        });
-        this.percenTest = (this.countTest / this.test) * 100;
-      }
+        }
+      });
+      this.percenTest = (this.countTest / this.test) * 100;
     });
   }
   getCountSell() {
-    this.apiService.getEmployment('selling').then((res: any) => {
-      if (res.length != 0) {
-        this.sell = res.length;
-        res.forEach((value: any) => {
-          if (value.status == 'สำเร็จ ') {
+    this.apiService.emdAll().then((res: any) => {
+      res.forEach((emd: any) => {
+        if (emd.category == 'จำหน่าย') {
+          this.sell += 1
+          if (emd.status == 'สำเร็จ ') {
             this.countSell += 1;
           }
-        });
-        this.percenSell = (this.countSell / this.sell) * 100;
-      }
+        }
+      });
+      this.percenSell = (this.countSell / this.sell) * 100;
     });
   }
 }

@@ -15,10 +15,13 @@
   height: 297mm;
 }
 .line{
-  line-height: 0cm;
+  line-height: 1cm;
+  font-size: 10pt;
+  padding-bottom: 0px;
 }
 .l{
-  line-height: 1cm;
+  line-height: 0.5cm;
+  font-size: 10pt;
 }
 .sig {
   position: absolute;
@@ -44,7 +47,7 @@ table {
 	padding: 20px;
 }
 .invoice-header	{
-	padding-bottom: 30px;
+	padding-bottom: 0px;
 }
 .invoice-desc .invoice-sub{
 	width: 30%;
@@ -69,14 +72,17 @@ table {
 .invoice-desc .invoice-desc-head{
 	background: #eaeaea;
 	font-weight: 500;
+	line-height: 0.7cm;
 }
 .invoice-desc .invoice-desc-body{
-	padding-top: 15px;
-	min-height: 400px;
+	/* padding-top: 15px;
+	min-height: 200px; */
+	line-height: 0.5cm;
+	font-size: 11pt;
 }
-.invoice-desc .invoice-desc-footer .invoice-desc-body{
+/* .invoice-desc .invoice-desc-footer .invoice-desc-body{
 	min-height: 50px;
-}
+} */
 .invoice-desc .invoice-desc-body ul li{
 	border-bottom: 1px solid #eaeaea;
 	padding-bottom: 5px;

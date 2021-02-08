@@ -20,7 +20,6 @@ export class InvoiceComponent implements OnInit {
   soi: any;
   road: any;
   address: any;
-  address2: any;
 
   datepipe = new DatePipe('en-US');
 
@@ -57,8 +56,7 @@ export class InvoiceComponent implements OnInit {
       } else {
         this.road = "ถนน" + this.em_data[0].road;
       }
-      this.address = this.em_data[0].number + this.moo + " " + this.soi + " " + this.road + " " + this.em_data[0].sub_district;
-      this.address2 = this.em_data[0].district + " " + this.em_data[0].province;
+      this.address = this.em_data[0].number + this.moo + " " + this.soi + " " + this.road + " " + this.em_data[0].sub_district + " " + this.em_data[0].district;
     });
   }
 
@@ -67,7 +65,7 @@ export class InvoiceComponent implements OnInit {
     html2canvas(data!).then(canvas => {
       var imgWidth = 208;
       var imgHeight = canvas.height * imgWidth / canvas.width;
-      const contentDataURL = canvas.toDataURL('image/png')
+      const contentDataURL = canvas.toDataURL('image/jpeg', 3.0)
       let pdf = new jspdf('p', 'mm', 'a4');
       pdf.addImage(contentDataURL, 'PNG', 0, 0, imgWidth, imgHeight)
       window.open(URL.createObjectURL(pdf.output("blob")))

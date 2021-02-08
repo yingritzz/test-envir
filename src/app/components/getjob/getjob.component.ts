@@ -114,6 +114,9 @@ export class GetjobComponent implements OnInit {
     });
   }
 
+  add_newcus() {
+    this.router.navigate(['/cusadd']);
+  }
   async getCustomers(item: any) {
     if (item != "") {
       this.cus_search.text = item;

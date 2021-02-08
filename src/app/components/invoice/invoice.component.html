@@ -24,31 +24,32 @@
                     </div>
                 </div>
             </div>
+
             <div class="invoice-wrap col-md-12">
                 <div id="invoicePDF" class="invoice-box x">
                     <div class="invoice-header">
+                        <img src="assets/vendors/images/deskapp-.png" alt="" class="center">
+                        <div class="line">
+                            <p class="warpper l">42 ซอยรามอินทรา 14 แยก 9 แขวง ท่าแร้ง เขต บางเขน กรุงเทพมหานคร 10220 <br> โทร. 02-943-5814-5 แฟ็กซ์ 02-943-8201 E-mail:
+                                benjawan@envirservice.co.th
+                            </p>
+                        </div>
                     </div>
-                    <img src="assets/vendors/images/deskapp-.png" alt="" class="center">
-                    <p class="warpper l">42 ซอยรามอินทรา 14 แยก 9 แขวง ท่าแร้ง เขต บางเขน กรุงเทพมหานคร 10220</p>
-                    <p class="warpper line">โทร. 02-943-5814-5 แฟ็กซ์ 02-943-8201 E-mail: benjawan@envirservice.co.th</p>
-                    <br>
-                   
-                    <div class="row pb-30">
+                    <div class="row pb-10">
                         <div class="col-md-6">
-                            <h5 class="font-16 mb-15">บริษัท เอ็นไวร์ เซอร์วิส จำกัด</h5>
+                            <h5 class="font-16 mb-12">บริษัท เอ็นไวร์ เซอร์วิส จำกัด</h5>
                             <p class="font-14 mb-5">วันที่ : <strong class="weight-600">{{em_date}}</strong></p>
                             <p class="font-14 mb-5">เลขที่ใบเสร็จ : <strong class="weight-600">{{em_id}}</strong></p>
                         </div>
-                        <div class="col-md-6 right" >
+                        <div class="col-md-6 right">
                             <div class="text-right">
                                 <p class="font-14 mb-5">{{em_data[0]?.cus_fullname}}</p>
                                 <p class="font-14 mb-5 ">{{address}}</p>
-                                <p class="font-14 mb-5">{{address2}}</p>
-                                <p class="font-14 mb-5">{{em_data[0]?.postal_code}}</p>
+                                <p class="font-14 mb-5">{{em_data[0]?.province}} {{em_data[0]?.postal_code}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="invoice-desc pb-30">
+                    <div class="invoice-desc pb-10">
                         <div class="invoice-desc-head clearfix">
                             <div class="invoice-rate"><span class="weight-600">ลำดับที่</span></div>
                             <div class="invoice-sub"><span class="weight-600">SN.</span></div>
@@ -57,31 +58,31 @@
                             <div class="invoice-subtotal right"><span class="weight-600">จำนวน</span></div>
                         </div>
                         <div class="invoice-desc-body">
-                            <ul *ngFor="let emd of em_data ; let i = index">
-                                <li class="clearfix">
+                            <div *ngFor="let emd of em_data ; let i = index">
+                                <div class="clearfix">
                                     <div class="invoice-rate">{{i+1}}</div>
                                     <div class="invoice-sub">{{emd.eq_detail_id}}</div>
                                     <div class="invoice-sub">{{emd.eq_detail_name}}</div>
                                     <div class="invoice-hours">{{emd.category}}</div>
                                     <div class="invoice-subtotal right">{{emd.amount}}</div>
-                                </li>
-                                
-                            </ul>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                    
+
                     <div class="sig">
                         <table class="ten">
-                                <tbody class="warpper">
-                                    <tr>
-                                        <td>สำหรับลูกค้า (For Customer)</td>
-                                        <td>สำหรับผู้ปฏิบัติงาน (For Operator)</td>
-                                    </tr>
-                                    <tr class="warpper l">
-                                        <td>.....................................................</td>
-                                        <td>.....................................................</td>
-                                    </tr>
-                                </tbody>
+                            <tbody class="warpper">
+                                <tr>
+                                    <td>สำหรับลูกค้า (For Customer)</td>
+                                    <td>สำหรับผู้ปฏิบัติงาน (For Operator)</td>
+                                </tr>
+                                <tr class="warpper l">
+                                    <td>.....................................................</td>
+                                    <td>.....................................................</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>

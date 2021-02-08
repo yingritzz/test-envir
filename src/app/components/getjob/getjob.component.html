@@ -34,8 +34,8 @@
                                         <!-- <label>ชื่อลูกค้า :</label> -->
                                         <label for="input_cus" class="control-label h">ชื่อลูกค้า :</label>
                                         <!-- <label class="control-label err h">เพิ่มลูกค้าใหม่</label> -->
-                                        <button class="btn btn-link r h hr" data-dismiss="modal"
-                                            [routerLink]="[ '/cusadd']">เพิ่มลูกค้าใหม่</button>
+                                        <button class="btn btn-link r h hr"
+                                            (click)="add_newcus()">เพิ่มลูกค้าใหม่</button>
                                         <input type="text" class="form-control" id="input_cus" name="input_cus"
                                             [(ngModel)]='cus_select' (ngModelChange)="getCustomers($event)">
                                         <table class="table">
