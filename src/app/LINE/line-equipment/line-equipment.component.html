@@ -2,31 +2,11 @@
 <div *ngIf="isDisplay1">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
-
             <div class="page-header">
                 <div class="row">
                     <div class="col-9 col-sm-9">
                         <div>
                             <h4 class="p">Envirservice</h4>
-                        </div>
-                    </div>
-                    <div class="col-3 col-sm-3">
-                        <div class="header-right">
-                            <div class="user-info-dropdown">
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                        <span class="user-icon">
-                                            <img src="assets/vendors/images/deskapp.png" alt="">
-                                        </span>
-                                        <span class="user-name">user01</span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                        <a class="dropdown-item"><i class="dw dw-user1"></i> โปรไฟล์</a>
-                                        <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i>
-                                            ลงชื่อออก</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -40,8 +20,6 @@
                         <button type="button" class="btn btn-warning" (click)="add_eq()">เพิ่ม</button>
                     </div>
                 </div>
-                
-
                 <!-- equipmant list -->
                 <div class="product-wrap">
                     <div class="product-list">
@@ -74,16 +52,13 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     </div>
-
 <!-- Equipment Detail -->
 <div *ngIf="isDisplay2">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-
                 <div class="page-header">
                     <div class="row">
                     <div class="col-9 col-sm-9">
@@ -92,28 +67,8 @@
                             <h4 class="p">{{eq_names}}</h4>
                         </div>
                     </div>
-                    <div class="col-3 col-sm-3">
-                        <div class="header-right">
-                            <div class="user-info-dropdown">
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                        <span class="user-icon">
-                                            <img src="assets/vendors/images/deskapp.png" alt="">
-        
-                                        </span>
-                                        <span class="user-name">user01</span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                        <a class="dropdown-item"><i class="dw dw-user1"></i> โปรไฟล์</a>
-                                        <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> ลงชื่อออก</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 </div>
-
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix mb-20">
                         <div class="pull-left">
@@ -124,12 +79,12 @@
                         </div>
                     </div>
                     <div class="faq-wrap">
-                        <div id="accordion" *ngFor="let eqd of eqd_data | paginate : {
-                            itemsPerPage: tableSize,
-                            currentPage: pageEqd,
-                            totalItems: count
-                          }; let i = index">
-                            <div class="card">
+                        <div id="accordion">
+                            <div class="card" *ngFor="let eqd of eqd_data | paginate : {
+                                itemsPerPage: tableSize,
+                                currentPage: pageEqd,
+                                totalItems: count
+                              }; let i = index">
                                 <div class="card-header">
                                     <button class="btn btn-block collapsed" data-toggle="collapse"
                                         [attr.data-target]="'#faq' + i">
@@ -155,8 +110,6 @@
                         </pagination-controls>
                     </div>
                 </div>
-
-
             </div>
         </div>
-        </div>
+</div>

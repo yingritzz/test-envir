@@ -54,7 +54,7 @@ export class LineHomeComponent implements OnInit {
 
   todaylist: any
   overdue: any
-  lastinsert: any
+  lastinsert: any = [];
 
   category: any;
   today!: boolean;
