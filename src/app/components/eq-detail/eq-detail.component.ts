@@ -22,7 +22,7 @@ export class EqDetailComponent implements OnInit {
   page = 1;
   count = 0;
   tableSize = 30;
-
+  x = 'lala';
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -37,18 +37,20 @@ export class EqDetailComponent implements OnInit {
     this.eq_id = this.activatedRoute.snapshot.params["id"];
     this.apiService.getListEq().then((res: any) => {
       res.forEach((value: any) => {
-        if(value.id == this.eq_id) {
+        if (value.id == this.eq_id) {
           this.eq_name = value.eq_name;
         }
       });
     });
     this.getEqDetail();
+    console.log(this.x.length)
   }
 
   async getIdEqd(id: any) {
     this.eqd_id = id;
     this.apiService.getEqd(id).then((res: any) => {
       this.eqd_edit = res[0];
+      console.log(this.eqd_edit);
     });
   }
 
@@ -57,7 +59,7 @@ export class EqDetailComponent implements OnInit {
       this.eqd_data = res;
     });
   }
-  getEqDetailHistory(eqd_id:any) {
+  getEqDetailHistory(eqd_id: any) {
     this.apiService.getEqDetailHistory(eqd_id).then((res: any) => {
       this.eqd_history = res;
     });
@@ -111,8 +113,29 @@ export class EqDetailComponent implements OnInit {
       }
     })
     if (formValues) {
+      var sn = (formValues[0])[0]
+      for (let i = 1; i < formValues[0].length; i++) {
+        if ((formValues[0])[i] == '.' || 
+        (formValues[0])[i] == '/' || (formValues[0])[i] == '^' || 
+        (formValues[0])[i] == '*' || (formValues[0])[i] == '{' ||
+        (formValues[0])[i] == '&' || (formValues[0])[i] == '}' ||
+        (formValues[0])[i] == '$' || (formValues[0])[i] == '[' ||
+        (formValues[0])[i] == '฿' || (formValues[0])[i] == ']' ||
+        (formValues[0])[i] == '>' || (formValues[0])[i] == '(' ||
+        (formValues[0])[i] == '<' || (formValues[0])[i] == ')' ||
+        (formValues[0])[i] == ',' || (formValues[0])[i] == ':' || 
+        (formValues[0])[i] == ';' || (formValues[0])[i] == "'" ||
+        (formValues[0])[i] == '@' || (formValues[0])[i] == "%" ||
+        (formValues[0])[i] == "!" || (formValues[0])[i] == "+" ||
+        (formValues[0])[i] == "=" ) {
+          sn = sn + '-'
+        } else {
+          sn = sn + (formValues[0])[i]
+        }
+      }
+
       if (formValues[0] != "" && formValues[1] != "" && formValues[2] != "" && formValues[3] != "") {
-        this.eqd_new.id = formValues[0];
+        this.eqd_new.id = sn;
         this.eqd_new.eq_detail_name = formValues[1];
         this.eqd_new.eq_detail_amount = parseInt(formValues[2]);
         this.eqd_new.eq_detail_status = formValues[3];
@@ -124,7 +147,6 @@ export class EqDetailComponent implements OnInit {
       } else {
         Swal.fire("ไม่สามารถเพิ่มรายการอุปกรณ์ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
       }
-
     }
   }
 
