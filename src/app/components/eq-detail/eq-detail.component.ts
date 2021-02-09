@@ -19,6 +19,9 @@ export class EqDetailComponent implements OnInit {
   eqd_id: any;
   eqd_history: any = [];
 
+  today!: boolean;
+  todayShow!: boolean;
+
   page = 1;
   count = 0;
   tableSize = 30;
@@ -59,9 +62,20 @@ export class EqDetailComponent implements OnInit {
       this.eqd_data = res;
     });
   }
+
+  todayNull(data: any) {
+    if (data.length == 0) {
+      this.today = true;
+      this.todayShow = false;
+    } else {
+      this.today = false;
+      this.todayShow = true;
+    }
+  }
   getEqDetailHistory(eqd_id: any) {
     this.apiService.getEqDetailHistory(eqd_id).then((res: any) => {
       this.eqd_history = res;
+      this.todayNull(res);
     });
   }
 
@@ -127,7 +141,7 @@ export class EqDetailComponent implements OnInit {
         (formValues[0])[i] == ';' || (formValues[0])[i] == "'" ||
         (formValues[0])[i] == '@' || (formValues[0])[i] == "%" ||
         (formValues[0])[i] == "!" || (formValues[0])[i] == "+" ||
-        (formValues[0])[i] == "=" ) {
+        (formValues[0])[i] == "=" || (formValues[0])[i] == " ") {
           sn = sn + '-'
         } else {
           sn = sn + (formValues[0])[i]

@@ -5,3 +5,9 @@
 .btn-size{
     width: 10px;
 }
+.wrapperhistory {
+    text-align: center;
+    color: rgb(133, 133, 133);
+    font-size: 14pt;
+    font-weight: bold;
+}

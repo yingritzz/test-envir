@@ -126,7 +126,7 @@ export class InvoiceComponent implements OnInit {
         fontSize: 15,
       },
 
-      didDrawPage: function (data) {
+      didDrawPage: function (data:any) {
         // Header (left, top)
         var img = new Image()
         img.src = 'assets/vendors/images/deskappp.png'
