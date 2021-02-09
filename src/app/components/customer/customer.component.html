@@ -17,7 +17,23 @@
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
-                        <button type="button" class="btn btn-warning" [routerLink]="[ '/cusadd']">เพิ่มลูกค้า</button>
+                        <div class="row">
+                            <div class="col-md-9 col-sm-6 text-right">
+                                <div class="header-search">
+                                    <form>
+                                        <div class="form-group mb-0 header header-left">
+                                            <i class="dw dw-search2 search-icon"></i>
+                                            <input type="text" class="form-control search-input" placeholder="ค้นหาที่นี่....">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 text-right">
+                                <button type="button" class="btn btn-warning"
+                                [routerLink]="[ '/cusadd']">เพิ่มลูกค้า</button>
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -37,14 +53,15 @@
                                     <h6><span>Email :</span> {{cus.cus_email}}</h6>
                                     <h6><span>เบอร์โทร :</span> {{cus.cus_phone}}</h6>
                                     <div class="wrapper btn-list">
-                                        <button type="button" class="btn btn-outline-primary button1" (click)="onClick(cus.id)">เพิ่มเติม</button>
+                                        <button type="button" class="btn btn-outline-primary button1"
+                                            (click)="onClick(cus.id)">เพิ่มเติม</button>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </div>
-             
+
                 <!-- <div class="dataTables_paginate paging_simple_numbers mb-30 justify-content-center" id="DataTables_Table_2_paginate">
                     <div class="btn-toolbar justify-content-center mb-15">
                     <ul class="pagination">
@@ -62,15 +79,25 @@
                 </div>
                 </div> -->
                 <div class="clearfix justify-content-center">
-                    <pagination-controls previousLabel="Prev" nextLabel="Next"
-                        (pageChange)="onTableDataChange($event)">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
                     </pagination-controls>
                 </div>
             </div>
-            
+
             <app-footer> </app-footer>
         </div>
 
     </div>
+    <form>
+        <div class="form-group mb-0 col-md-6 col-sm-12 text-right">
+            <!-- <i class="dw dw-search2 search-icon"></i> -->
+            <input type="text" class="form-control search-input" placeholder="ค้นหาที่นี่...."> <button type="button"
+                class="btn btn-warning" [routerLink]="[ '/cusadd']">เพิ่มลูกค้า</button>
+            <div class="dropdown">
+                <!-- <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+                </a> -->
+            </div>
 
+        </div>
+    </form>
 </div>

@@ -138,22 +138,22 @@ export class HomeComponent implements OnInit {
     if (category == 'เช่า-ยืม') {
       this.category = 'rental'
       console.log(this.category)
-      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
+      this.router.navigate(['/job/edit/'+ em_id]);
     }
     else if (category == 'จำหน่าย') {
       this.category = 'selling'
       console.log(this.category)
-      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
+      this.router.navigate(['/job/edit/'+ em_id]);
     }
     else if (category == 'ทดสอบ') {
       this.category = 'testing'
       console.log(this.category)
-      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
+      this.router.navigate(['/job/edit/'+ em_id]);
     }
     else if (category == 'ซ่อมบำรุง') {
       this.category = 'maintenanc'
       console.log(this.category)
-      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
+      this.router.navigate(['/job/edit/'+ em_id]);
     }
 
   }
@@ -177,22 +177,22 @@ export class HomeComponent implements OnInit {
     if (category == 'เช่า-ยืม') {
       this.category = 'rental'
       console.log(this.category)
-      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
+      this.router.navigate(['/job/edit/'+ em_id]);
     }
     else if (category == 'จำหน่าย') {
       this.category = 'selling'
       console.log(this.category)
-      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
+      this.router.navigate(['/job/eidt/'+ em_id]);
     }
     else if (category == 'ทดสอบ') {
       this.category = 'testing'
       console.log(this.category)
-      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
+      this.router.navigate(['/job/eidt/'+ em_id]);
     }
     else if (category == 'ซ่อมบำรุง') {
       this.category = 'maintenanc'
       console.log(this.category)
-      this.router.navigate(['/job/detail/' + this.category + '/' + em_id]);
+      this.router.navigate(['/job/edit/'+ em_id]);
     }
   }
 
