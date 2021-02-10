@@ -20,6 +20,13 @@ export class EquipmentComponent implements OnInit {
   count = 0;
   tableSize = 15;
 
+  options: any = [];
+  serach: any;
+
+  selectedUser: any;
+  filterdOptions: any = [];
+
+
   constructor(
     public router: Router,
     public apiService: ApiService
@@ -41,13 +48,34 @@ export class EquipmentComponent implements OnInit {
           res[x].count = response.length
           // console.log(res[x].count);
         });
+        this.options[x] = {
+          value: res[x].eq_name,
+          id: res[x].id,
+          selected: false
+        }
       }
+      this.getSerach(this.options)
       this.getData(res);
     });
+  }
+  getSerach(data: any){
+    this.serach = data
   }
 
   getData(data: any) {
     this.eq_data = data
+  }
+
+  filterUsers() {
+    this.filterdOptions = this.serach.filter(
+      ( item: { value: string; }) => item.value.toLowerCase().includes(this.selectedUser.toLowerCase())
+    );
+    this.eq_data.forEach((value: any) => {
+      if (this.selectedUser == value.eq_name){
+         this.router.navigate(['equipment/detail/' + value.id]);
+      }
+    });
+    console.log(this.selectedUser)
   }
 
   onClickDetail(id: number) {

@@ -32,6 +32,8 @@ export class LineJoballComponent implements OnInit {
   emd_id: any;
   thisStatus: any;
 
+  jobAll: any = [];
+
   constructor(
     private location: Location,
     public router: Router,
@@ -44,8 +46,19 @@ export class LineJoballComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getOverdue();
+    this.getJobAll();
   }
+
+  getJobAll() {
+    this.apiService.getEmAll().then((res: any) => {
+      this.getData(res)
+    });
+  }
+  getData(data: any) {
+    this.jobAll = data;
+  }
+
+  //detail
 
   getOverdue() {
     this.apiService.getHome('lastinsert').then((res: any) => {
@@ -77,21 +90,34 @@ export class LineJoballComponent implements OnInit {
     this.thisStatus = data
   }
   
-  clickEdit(id:any){
-      this.apiService.getEmploymentDetail(id).then((res: any) => {
-        this.jobEdit = res
-        console.log(res)
-        for (let i = 0; i < this.jobEdit.length; i++){
-          this.status_select = this.jobEdit[i].status
-        }
-      });
+  clickEdit(id: any) {
+    this.apiService.getEmploymentDetail(id).then((res: any) => {
+      this.jobEdit = res
+      this.getStatus(res)
+      console.log(this.jobEdit)
+    });
   }
-
+  
+  clickChangeStatus() {
+    for (let j = 0; j < this.jobAll.length; j++) {
+      for (let i = 0; i < this.thisStatus.length; i++) {
+        if (this.thisStatus[i] == "สิ้นสุดการเช่ายืม" || this.thisStatus[i] == "สิ้นสุดการทดสอบ" ||
+          this.thisStatus[i] == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i] == "สิ้นสุดการจำหน่าย") {
+          (<HTMLInputElement>document.getElementById("status" + i + j)).disabled = true;
+        }
+        else {
+          (<HTMLInputElement>document.getElementById("status" + i + j)).disabled = false;
+        }
+      }
+    }
+  }
   onClickSave(id: any, eqd_id: any, amount: any) {
     this.status.status = this.status_list
+    console.log(this.status_list)
     this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
       this.getOverdue()
-      if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" || 
+      console.log(this.status_select)
+      if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" ||
       this.status_list == "สิ้นสุดการซ่อมบำรุง") {
         this.amount.amount = amount
         this.amount.eqd = eqd_id
@@ -100,5 +126,6 @@ export class LineJoballComponent implements OnInit {
       }
     });
   }
+
 
 }

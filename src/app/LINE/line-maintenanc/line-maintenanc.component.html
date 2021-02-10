@@ -19,7 +19,7 @@
                 </div>
                 <div class="faq-wrap" >
                     <div id="accordion">
-                        <div class="card" *ngFor="let item of jobMaintenanc; index as i; first as isFirs">
+                        <div class="card" *ngFor="let item of jobMaintenanc; index as i">
                             <div class="card-header">
                                 <button class="btn btn-block collapsed" data-toggle="collapse" [attr.data-target]="'#test' + i" 
                                 (click)="clickEdit(item.id)">

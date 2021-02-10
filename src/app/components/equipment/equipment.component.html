@@ -19,7 +19,28 @@
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
-                        <button type="button" class="btn btn-warning" (click)="add_eq()">เพิ่มอุปกรณ์</button>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="header-search">
+                                    <div class="wizard-content">
+                                    <form class="tab-wizard wizard-circle wizard" autocomplete="off">
+                                        <div class="form-group mb-0">
+                                            <input list="search" type="text" class="form-control search-input" placeholder="ค้นหาที่นี่..."
+                                            [(ngModel)]="selectedUser" (input) = "filterUsers()" name="serachCus">
+                                            <datalist id="search">
+                                                <option *ngFor="let option of serach; let i = index" 
+                                                [value]="option.value">{{option.value}}
+                                                </option>
+                                              </datalist>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <button type="button" class="btn btn-warning" (click)="add_eq()">เพิ่มอุปกรณ์</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

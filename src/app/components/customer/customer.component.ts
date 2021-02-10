@@ -75,10 +75,6 @@ export class CustomerComponent implements OnInit {
     this.router.navigate(['customer/profile/' + id]);
   }
 
-  onSearch(idSearch: any) {
-    // this.router.navigate(['customer/profile/' + idSearch]);
-    // console.log(idSearch)
-  }
 
   onTableDataChange(event: any){
     this.page = event;
