@@ -17,28 +17,36 @@
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
-                        <!-- <div class="row">
-                            <div class="col-md-9 col-sm-6 text-right">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-6">
                                 <div class="header-search">
                                     <form>
-                                        <div class="form-group mb-0 header-left">
-                                            <i class="dw dw-search2 search-icon"></i>
-                                            <input type="text" class="form-control search-input" placeholder="ค้นหาที่นี่....">
+                                        <div class="form-group mb-0">
+                                            <input list="search" type="text" class="form-control search-input" placeholder="ค้นหาที่นี่...."
+                                            [(ngModel)]="selectedUser" (input) = "filterUsers()" name="serch">
+                                            <datalist id="search">
+                                                <option *ngFor="let option of serach; let i = index" 
+                                                [value]="option.value">
+                                                </option>
+                                              </datalist>
+                                              <!-- [routerLink]="['/profile/{{option.id}}']" -->
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6 text-right">
+                            <div class="col-md-3 col-sm-6">
                                 <button type="button" class="btn btn-warning"
-                                [routerLink]="[ '/cusadd']">เพิ่มลูกค้า</button>
+                                [routerLink]="['/cusadd']">เพิ่มลูกค้า</button>
                             </div>
-                        </div> -->
-                        <button type="button" class="btn btn-warning"
-                        [routerLink]="[ '/cusadd']">เพิ่มลูกค้า</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            <!-- <input type = "text" [(ngModel)]="selectedUser" (input) = "filterUsers()">
+            <input list="search" [(ngModel)]="selectedUser" (input) = "filterUsers()">
+            <datalist id="search">
+                <option *ngFor="let option of options" value="{{option.value}}">
+              </datalist> -->
             <div class="product-wrap">
                 <div class="product-list">
                     <ul class="row">

@@ -182,7 +182,7 @@ export class ApiService {
   }
   async getEqDetail(idEq: number) {
     return new Promise((res, rej) => {
-      this.http.get<EquipmentDetail>(this.base_path+'eq/eq_detail/'+idEq)
+      this.http.get<EquipmentDetail>(this.base_path+'eq_detailsingle.php?table=eq_detail&id='+idEq)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
@@ -192,7 +192,7 @@ export class ApiService {
   }
   async getEqDetailHistory(idEqd: number) {
     return new Promise((res, rej) => {
-      this.http.get(this.base_path+'eq/history/'+idEqd)
+      this.http.get(this.base_path+'eq_detailsingle.php?table=history&id='+idEqd)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {

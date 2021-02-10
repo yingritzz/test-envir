@@ -117,7 +117,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let list of todaylist; let i = index"
-                                    (click)="todayGoToDeatail(list.em_id,list.category)" href="javascript:;">
+                                (click)="goToEdit(list.em_id)" href="javascript:;">
                                     <th scope="row">{{i+1}}</th>
                                     <td><a href="javascript:;">{{list.cus_fullname}}</a></td>
                                     <td><a href="javascript:;">{{list.eq_detail_name}}</a></td>
@@ -138,7 +138,7 @@
                         </div>
                         <ul>
                             <li class="d-flex flex-wrap align-items-center" *ngFor="let due of overdue; let i = index"
-                                (click)="overDueGoToDeatail(due.em_id,due.category)">
+                                (click)="goToEdit(due.em_id)">
                                 <div class="browser-name"><a href="javascript:;">{{due.eq_detail_id}} -
                                         {{due.eq_detail_name}}</a></div>
                                 <div class="visit"><span class="badge badge-pill badge-primary3"><a href="javascript:;"
@@ -200,7 +200,7 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let last of lastinsert; let i = index"
-                                                (click)="lastInsertGoToDetail(last.id)">
+                                            (click)="goToEdit(last.id)">
                                                 <th scope="row">{{last.id}}</th>
                                                 <td><a href="javascript:;">{{last.cus_fullname}}</a></td>
                                                 <td><a href="javascript:;">{{last.category}}</a></td>

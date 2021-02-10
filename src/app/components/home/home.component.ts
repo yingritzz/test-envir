@@ -173,27 +173,8 @@ export class HomeComponent implements OnInit {
       this.overNull(res);
     });
   }
-  overDueGoToDeatail(em_id: any, category: any) {
-    if (category == 'เช่า-ยืม') {
-      this.category = 'rental'
-      console.log(this.category)
-      this.router.navigate(['/job/edit/'+ em_id]);
-    }
-    else if (category == 'จำหน่าย') {
-      this.category = 'selling'
-      console.log(this.category)
-      this.router.navigate(['/job/eidt/'+ em_id]);
-    }
-    else if (category == 'ทดสอบ') {
-      this.category = 'testing'
-      console.log(this.category)
-      this.router.navigate(['/job/eidt/'+ em_id]);
-    }
-    else if (category == 'ซ่อมบำรุง') {
-      this.category = 'maintenanc'
-      console.log(this.category)
-      this.router.navigate(['/job/edit/'+ em_id]);
-    }
+  goToEdit(em_id: any) {
+      this.router.navigate(['/job/edit/'+em_id]);    
   }
 
   getLastInsert() {
