@@ -73,6 +73,7 @@ export class GetjobComponent implements OnInit {
   moo: any;
   soi: any;
   road: any;
+  options: any = [];
 
   cus_id: any;
   admin_id: any;
@@ -165,8 +166,12 @@ export class GetjobComponent implements OnInit {
     this.eqd_list = [];
     this.apiService.getListEqd().then((res: any) => {
       for (let i = 0; i < res.length; i++) {
-        if (res[i].eq_detail_status != 'ไม่ว่าง')
+        if (res[i].eq_detail_status != 'ไม่ว่าง') {
           this.eqd_list.push(res[i]);
+        }
+        for (let i = 0; i < this.eqd_list.length; i++) {
+          this.options[i] = { value: this.eqd_list[i].id, selected: false }
+        }
       }
     });
   }
@@ -200,7 +205,7 @@ export class GetjobComponent implements OnInit {
       this.getCoor(this.drag.location.lat, this.drag.location.lng, this.searchss.location.raw.display_name);
     });
   }
-  getCoor(lat:any, lng:any, place:any) {
+  getCoor(lat: any, lng: any, place: any) {
     this.coor_lat = lat;
     this.coor_lng = lng;
     this.coor_place = place;
@@ -239,6 +244,13 @@ export class GetjobComponent implements OnInit {
     }
   }
 
+  filterUsers() {
+    let filterUsers = this.options.filter((item: { value: any; }) => item.value === this.form.value.eq_detail_id);
+    if (filterUsers.length > 0) {
+      this.options = filterUsers;
+    }
+  }
+
   deleteRow(i: number) {
     this.apiService.getEqd(this.formArray[i].eq_detail_id).then((res: any) => {
       this.eqd_list.push(res[0]);
@@ -257,7 +269,7 @@ export class GetjobComponent implements OnInit {
       (this.job).long = this.coor_lng;
       (this.job).place = this.coor_place;
 
-      
+
       this.apiService.createEmployment(this.job).then((res: any) => {
         this.em_id = res[0].lastval;
         for (let i = 0; i < this.formArray.length; i++) {
@@ -278,7 +290,7 @@ export class GetjobComponent implements OnInit {
       });
     }
   }
-  
+
   isFieldValid(field: string) {
     return this.form.get(field)!.valid && this.form.get(field)!.touched;
   }

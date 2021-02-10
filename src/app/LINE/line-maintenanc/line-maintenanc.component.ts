@@ -21,11 +21,11 @@ export class LineMaintenancComponent implements OnInit {
   jobs: any = []
   jobEdit: any = []
 
-  
-  rentals: string[] = ["รับงาน", "กำลังเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ"];
-  testing: string[] = ["รับงาน", "กำลังทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ"];
-  maintenanc: string[] = ["รับงาน", "กำลังซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ"];
-  selling: string[] = ["รับงาน", "กำลังจำหน่าย", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ "];
+
+  rentals: string[] = ["รับงาน", "อยู่ระหว่างการเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งของคืน", "บริษัทรับของคืน", "สิ้นสุดการเช่ายืม"];
+  testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการทดสอบ"];
+  maintenanc: string[] = ["รับงาน", "อยู่ระหว่างการซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการซ่อมบำรุง"];
+  selling: string[] = ["รับงาน", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สิ้นสุดการจำหน่าย"];
   statusArray: string[] = [];
   jobUpdate: EmploymentDetail;
   status_select: any = [];
@@ -42,7 +42,7 @@ export class LineMaintenancComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public apiService: ApiService
-  ) { 
+  ) {
     this.jobUpdate = new EmploymentDetail();
     this.status = new EmploymentDetailEdit();
     this.amount = new EquipmentAmount;
@@ -92,38 +92,39 @@ export class LineMaintenancComponent implements OnInit {
     console.log(this.status_list)
   }
 
-  getStatus(data:any){
+  getStatus(data: any) {
     this.thisStatus = data
   }
 
-  clickEdit(id:any){
-      this.apiService.getEmploymentDetail(id).then((res: any) => {
-        this.jobEdit = res
-        this.getStatus(res)
-        console.log(this.jobEdit)
-      });
-      
+  clickEdit(id: any) {
+    this.apiService.getEmploymentDetail(id).then((res: any) => {
+      this.jobEdit = res
+      this.getStatus(res)
+      console.log(this.jobEdit)
+    });
   }
-  clickChangeStatus(){
-
-    for (let j = 0; j <this.jobMaintenanc.length; j++){
-    for (let i = 0; i < this.thisStatus.length; i++){
-      if (this.thisStatus[i].status == "สำเร็จ" || this.thisStatus[i].status == "สำเร็จ ") {
-        (<HTMLInputElement>document.getElementById("status"+i+j)).disabled = true;   
-      }
-      else {
-        (<HTMLInputElement>document.getElementById("status"+i+j)).disabled = false;
+  
+  clickChangeStatus() {
+    for (let j = 0; j < this.jobMaintenanc.length; j++) {
+      for (let i = 0; i < this.thisStatus.length; i++) {
+        if (this.thisStatus[i] == "สิ้นสุดการเช่ายืม" || this.thisStatus[i] == "สิ้นสุดการทดสอบ" ||
+          this.thisStatus[i] == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i] == "สิ้นสุดการจำหน่าย") {
+          (<HTMLInputElement>document.getElementById("status" + i + j)).disabled = true;
+        }
+        else {
+          (<HTMLInputElement>document.getElementById("status" + i + j)).disabled = false;
+        }
       }
     }
   }
-}
   onClickSave(id: any, eqd_id: any, amount: any) {
     this.status.status = this.status_list
     console.log(this.status_list)
     this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
       this.getOverdue()
       console.log(this.status_select)
-      if (this.status_list == "สำเร็จ") {
+      if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" ||
+      this.status_list == "สิ้นสุดการซ่อมบำรุง") {
         this.amount.amount = amount
         this.amount.eqd = eqd_id
         this.apiService.updateEqStatusSuccess(id, this.amount).then((res: any) => {

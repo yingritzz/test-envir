@@ -20,10 +20,10 @@ export class JobEditComponent implements OnInit {
   statusArray: string[] = [];
   jobEdit: any = []
   id: any;
-  rentals: string[] = ["รับงาน", "กำลังเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ"];
-  testing: string[] = ["รับงาน", "กำลังทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ"];
-  maintenanc: string[] = ["รับงาน", "กำลังซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ"];
-  selling: string[] = ["รับงาน", "กำลังจำหน่าย", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สำเร็จ "];
+  rentals: string[] = ["รับงาน", "อยู่ระหว่างการเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งของคืน", "บริษัทรับของคืน", "สิ้นสุดการเช่ายืม"];
+  testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า" , "สิ้นสุดการทดสอบ"];
+  maintenanc: string[] = ["รับงาน", "อยู่ระหว่างการซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการซ่อมบำรุง"];
+  selling: string[] = ["รับงาน", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สิ้นสุดการจำหน่าย"];
   jobUpdate: EmploymentDetail;
   status_select: any = []
   status_list: any = []
@@ -66,7 +66,8 @@ export class JobEditComponent implements OnInit {
     this.apiService.emDetail(id).then((res: any) => {
       this.emd_edit = res[0];
       this.status_select = res[0].status
-      if (res[0].status == "สำเร็จ" || res[0].status == "สำเร็จ ") {
+      if (res[0].status == "สิ้นสุดการเช่ายืม" || res[0].status == "สิ้นสุดการทดสอบ" || 
+      res[0].status == "สิ้นสุดการซ่อมบำรุง" || res[0].status == "สิ้นสุดการจำหน่าย") {
         (<HTMLInputElement>document.getElementById("status")).disabled = true;
       }
       else {
@@ -120,7 +121,8 @@ export class JobEditComponent implements OnInit {
     this.status.status = this.status_list
     this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
       this.getJobEdit()
-      if (this.status_list == "สำเร็จ") {
+      if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" || 
+      this.status_list == "สิ้นสุดการซ่อมบำรุง") {
         this.amount.amount = amount
         this.amount.eqd = eqd_id
         this.apiService.updateEqStatusSuccess(this.id, this.amount).then((res: any) => {
@@ -133,7 +135,7 @@ export class JobEditComponent implements OnInit {
     this.amount = new EquipmentAmount;
     this.amount.eqd = eqd_id;
     this.amount.amount = amount;
-    if (status != "สำเร็จ" && status != "สำเร็จ "){
+    if (status != "สิ้นสุดการเช่ายืม" && status != "สิ้นสุดการทดสอบ" && status != "สิ้นสุดการซ่อมบำรุง" && status != "สิ้นสุดการจำหน่าย"){
     this.apiService.updateEqStatusSuccess(em_id, this.amount).then((res: any) => {
     });
   }

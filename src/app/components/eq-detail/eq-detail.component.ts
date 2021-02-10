@@ -46,14 +46,12 @@ export class EqDetailComponent implements OnInit {
       });
     });
     this.getEqDetail();
-    console.log(this.x.length)
   }
 
   async getIdEqd(id: any) {
     this.eqd_id = id;
     this.apiService.getEqd(id).then((res: any) => {
       this.eqd_edit = res[0];
-      console.log(this.eqd_edit);
     });
   }
 

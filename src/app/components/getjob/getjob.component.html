@@ -34,8 +34,8 @@
                                         <!-- <label>ชื่อลูกค้า :</label> -->
                                         <label for="input_cus" class="control-label h">ชื่อลูกค้า :</label>
                                         <!-- <label class="control-label err h">เพิ่มลูกค้าใหม่</label> -->
-                                        <button type="button" class="btn btn-link r h hr" 
-                                        (click)="add_newcus()">เพิ่มลูกค้าใหม่</button>
+                                        <button type="button" class="btn btn-link r h hr"
+                                            (click)="add_newcus()">เพิ่มลูกค้าใหม่</button>
                                         <input type="text" class="form-control" id="input_cus" name="input_cus"
                                             [(ngModel)]='cus_select' (ngModelChange)="getCustomers($event)">
                                         <table class="table">
@@ -109,20 +109,23 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <div class="form-group" [ngClass]="displayFieldCss('eq_detail_id')">
+                                        <div class="form-group mb-0" [ngClass]="displayFieldCss('eq_detail_id')">
                                             <label for="eq_detail_id" class="control-label required h">อุปกรณ์ :</label>
                                             <label class="control-label err h">เฉพาะอุปกรณ์ที่ว่างเท่านั้น*</label>
-                                            <select id="eq_detail_id" class="custom-select form-control"
-                                                name="eq_detail_id" formControlName="eq_detail_id">
-                                                <option value=" "> </option>
+                                            <input  class="form-control search-input" type = "text" formControlName="eq_detail_id" (input) = "filterUsers()" list="eq">
+                                            <datalist class="col-md-12" id="eq">
+                                                <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.eq_detail_name}}</option>
+                                              </datalist>
+
+                                            <!-- <select id="eq_detail_id" class="custom-select form-control"
+                                                name="eq_detail_id" formControlName="eq_detail_id" style="width: 100%; height: 38px;">
                                                 <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.id}} :
                                                     {{eqd.eq_detail_name}}</option>
-                                            </select>
-
+                                            </select> -->
                                             <app-field-error-display [displayError]="isFieldValid('eq_detail_id')"
                                                 errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
                                             </app-field-error-display>
-                                        </div>
+                                        </div><br>
                                         <button type="reset" class="btn btn-success" data-toggle="modal"
                                             data-target="#Insert-eq-modal">เพิ่มอุปกรณ์ใหม่</button>
 

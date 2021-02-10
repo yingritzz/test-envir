@@ -191,7 +191,7 @@ export class HomeComponent implements OnInit {
       res.forEach((emd: any) => {
         if (emd.category == 'ซ่อมบำรุง') {
           this.fix += 1
-          if (emd.status == 'สำเร็จ') {
+          if (emd.status == 'สิ้นสุดการซ่อมบำรุง') {
             this.countFix += 1;
           }
         }
@@ -204,7 +204,7 @@ export class HomeComponent implements OnInit {
       res.forEach((emd: any) => {
         if (emd.category == 'เช่า-ยืม') {
           this.rental += 1
-          if (emd.status == 'สำเร็จ') {
+          if (emd.status == 'สิ้นสุดการเช่ายืม') {
             this.countRental += 1;
           }
         }
@@ -217,7 +217,7 @@ export class HomeComponent implements OnInit {
       res.forEach((emd: any) => {
         if (emd.category == 'ทดสอบ') {
           this.test += 1
-          if (emd.status == 'สำเร็จ') {
+          if (emd.status == 'สิ้นสุดการทดสอบ') {
             this.countTest += 1;
           }
         }
@@ -230,7 +230,7 @@ export class HomeComponent implements OnInit {
       res.forEach((emd: any) => {
         if (emd.category == 'จำหน่าย') {
           this.sell += 1
-          if (emd.status == 'สำเร็จ ') {
+          if (emd.status == 'สิ้นสุดการจำหน่าย') {
             this.countSell += 1;
           }
         }

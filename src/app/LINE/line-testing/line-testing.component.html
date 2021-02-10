@@ -22,7 +22,7 @@
                         <div class="card-header">
                             <button class="btn btn-block collapsed" data-toggle="collapse" [attr.data-target]="'#test' + i" 
                             (click)="clickEdit(item.id)">
-                                <h5 class="card-title weight-500">เลขที่ใบเสร็จ: {{item.id}}</h5>
+                                <h5 class="card-title weight-500">เลขที่ใบเสร็จ{{item.id}} : {{item.cus_fullname}}</h5>
                                 <p class="card-text">{{item.string_agg}}</p>
                             </button>
                         </div>

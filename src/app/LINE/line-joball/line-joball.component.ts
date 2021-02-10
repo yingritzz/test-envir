@@ -30,6 +30,7 @@ export class LineJoballComponent implements OnInit {
   amount!: EquipmentAmount;
   emd_edit: any = [];
   emd_id: any;
+  thisStatus: any;
 
   constructor(
     private location: Location,
@@ -49,7 +50,6 @@ export class LineJoballComponent implements OnInit {
   getOverdue() {
     this.apiService.getHome('lastinsert').then((res: any) => {
       this.jobs = res
-      // console.log(this.jobs)
     });
   }
 
@@ -71,18 +71,19 @@ export class LineJoballComponent implements OnInit {
   updateStatus(id: any, status: string) {
     this.status_list = status;
     this.id_list = id
-    console.log(id)
   }
 
+  getStatus(data: any) {
+    this.thisStatus = data
+  }
+  
   clickEdit(id:any){
       this.apiService.getEmploymentDetail(id).then((res: any) => {
         this.jobEdit = res
         console.log(res)
         for (let i = 0; i < this.jobEdit.length; i++){
           this.status_select = this.jobEdit[i].status
-          // console.log(res[i].status)
         }
-        
       });
   }
 
