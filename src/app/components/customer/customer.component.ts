@@ -21,6 +21,8 @@ export class CustomerComponent implements OnInit {
   selectedUser: any;
   filterdOptions: any = [];
 
+  data:any = [];
+
   constructor(
     public router: Router,
     public apiService: ApiService
@@ -43,8 +45,9 @@ export class CustomerComponent implements OnInit {
           selected: false
         }
       }
-      console.log(this.options)
+      // console.log(this.options)
       this.getSerach(this.options)
+      this.getData(res);
     });
   }
 
@@ -52,12 +55,20 @@ export class CustomerComponent implements OnInit {
     this.serach = data
   }
 
+  getData(data:any){
+    this.data = data
+  }
+
   filterUsers() {
     this.filterdOptions = this.serach.filter(
       ( item: { value: string; }) => item.value.toLowerCase().includes(this.selectedUser.toLowerCase())
     );
-    console.log(this.filterdOptions);
-    // console.log(this.selectedUser)
+    this.data.forEach((value: any) => {
+      if (this.selectedUser == value.cus_fullname){
+         this.router.navigate(['customer/profile/' + value.id]);
+      }
+    });
+    console.log(this.selectedUser)
   }
 
   onClick(id: number) {
@@ -66,7 +77,7 @@ export class CustomerComponent implements OnInit {
 
   onSearch(idSearch: any) {
     // this.router.navigate(['customer/profile/' + idSearch]);
-    console.log(idSearch)
+    // console.log(idSearch)
   }
 
   onTableDataChange(event: any){

@@ -18,23 +18,24 @@
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
                         <div class="row">
-                            <div class="col-md-9 col-sm-6">
+                            <div class="col-md-8">
                                 <div class="header-search">
-                                    <form>
+                                    <div class="wizard-content">
+                                    <form class="tab-wizard wizard-circle wizard" autocomplete="off">
                                         <div class="form-group mb-0">
-                                            <input list="search" type="text" class="form-control search-input" placeholder="ค้นหาที่นี่...."
-                                            [(ngModel)]="selectedUser" (input) = "filterUsers()" name="serch">
+                                            <input list="search" type="text" class="form-control search-input" placeholder="ค้นหาที่นี่..."
+                                            [(ngModel)]="selectedUser" (input) = "filterUsers()" name="serachCus">
                                             <datalist id="search">
                                                 <option *ngFor="let option of serach; let i = index" 
-                                                [value]="option.value">
+                                                [value]="option.value">{{option.value}}
                                                 </option>
                                               </datalist>
-                                              <!-- [routerLink]="['/profile/{{option.id}}']" -->
                                         </div>
                                     </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-4 col-sm-12">
                                 <button type="button" class="btn btn-warning"
                                 [routerLink]="['/cusadd']">เพิ่มลูกค้า</button>
                             </div>
