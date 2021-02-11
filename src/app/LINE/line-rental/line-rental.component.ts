@@ -18,7 +18,9 @@ export class LineRentalComponent implements OnInit {
 
   jobs: any = []
   jobEdit: any = []
-
+  page = 1;
+  count = 0;
+  tableSize = 10;
   
   rentals: string[] = ["รับงาน", "อยู่ระหว่างการเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งของคืน", "บริษัทรับของคืน", "สิ้นสุดการเช่ายืม"];
   testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า" , "สิ้นสุดการทดสอบ"];
@@ -50,6 +52,11 @@ export class LineRentalComponent implements OnInit {
     this.getJobRental();
   }
 
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getJobRental();
+  }
+  
   getJobRental() {
     this.apiService.getEmployment(this.type).then((res: any) => {
       console.log(res);
@@ -100,8 +107,8 @@ export class LineRentalComponent implements OnInit {
 
     for (let j = 0; j <this.jobRental.length; j++){
     for (let i = 0; i < this.thisStatus.length; i++){
-      if (this.thisStatus[i] == "สิ้นสุดการเช่ายืม" || this.thisStatus[i] == "สิ้นสุดการทดสอบ" ||
-      this.thisStatus[i] == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i] == "สิ้นสุดการจำหน่าย") {
+      if (this.thisStatus[i].status == "สิ้นสุดการเช่ายืม" || this.thisStatus[i].status == "สิ้นสุดการทดสอบ" ||
+      this.thisStatus[i].status == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i].status == "สิ้นสุดการจำหน่าย") {
         (<HTMLInputElement>document.getElementById("status"+i+j)).disabled = true;   
       }
       else {

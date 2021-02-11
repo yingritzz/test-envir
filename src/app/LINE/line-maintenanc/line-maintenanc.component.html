@@ -1,112 +1,120 @@
-
-    <div class="pd-ltr-20 xs-pd-20-10">
-        <div class="min-height-200px">
-            <div class="page-header">
-                <div class="row">
+<div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+        <div class="page-header">
+            <div class="row">
                 <div class="col-6 col-sm-3">
                     <div class="header-left">
                         <h4 class="p">Envirservice</h4>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
 
-            <div class="pd-20 card-box mb-30">
-                <div class="clearfix mb-20">
-                    <div class="pull-left">
-                        <h4 class="text-blue h4">รายการรับซ่อม</h4>
-                    </div>
+        <div class="pd-20 card-box mb-30">
+            <div class="clearfix mb-20">
+                <div class="pull-left">
+                    <h4 class="text-blue h4">รายการรับซ่อม</h4>
                 </div>
-                <div class="faq-wrap" >
-                    <div id="accordion">
-                        <div class="card" *ngFor="let item of jobMaintenanc; index as i">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" [attr.data-target]="'#test' + i" 
-                                (click)="clickEdit(item.id)">
-                                    <h5 class="card-title weight-500">เลขที่ใบเสร็จ{{item.id}} : {{item.cus_fullname}}</h5>
-                                    <p class="card-text">{{item.string_agg}}</p>
-                                </button>
-                            </div>
-                            <div id="test{{i}}" class="collapse" data-parent="#accordion">
-                                <div class="card-body" >
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">รายการ</th>
-                                                    <th scope="col" class="right">แก้ไข</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let job of jobEdit; index as j">
-                                                    <ng-container *ngIf="statusChange(job.category)"></ng-container>
-                                                    <td><strong>{{job.eq_detail_name}}</strong>
-                                                        <p class="card-text">สถานะ: {{job.status}}</p>
-                                                    </td>
-                                                    <td>
-                                                        <div class="btn-list right">
-                                                            <span class="btn btn-success btn-sm" type="button"
-                                                                value="submit" data-toggle="modal"
-                                                                [attr.data-target]="'#edit'+j+i" (click)="clickChangeStatus()"><i
-                                                                    class="icon-copy fa fa-pencil-square-o btn-size"
-                                                                    aria-hidden="true"></i></span>
-                                                        </div>
-    
-                                                        <div class="modal fade" id="edit{{j}}{{i}}" tabindex="-1"
-                                                            role="dialog" aria-labelledby="myLargeModalLabel"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title" id="myLargeModalLabel">
-                                                                            แก้ไขสถานะอุปกรณ์
-                                                                        </h4>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal"
-                                                                            aria-hidden="true">×</button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <form>
-                                                                            <div>
-                                                                                <div class="form-group">
-                                                                                    <h5>{{job.detail_id}}</h5>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="status">สถานะ</label>
-                                                                                    <select _ngcontent-ysi-c51="" name="status" 
-                                                                                    id="status{{j}}{{i}}" 
-                                                                                        (change)="updateStatus(job.em_detail_id,jobEdit[j].status)"
-                                                                                        [(ngModel)]="jobEdit[j].status"
-                                                                                        class="custom-select form-control ng-untouched ng-pristine ng-valid">
-                                                                                        <option
-                                                                                            *ngFor="let status of statusArray"
-                                                                                            value="{{status}}">{{status}}
-                                                                                        </option>
-                                                                                    </select>
-                                                                                </div>
+            </div>
+            <div class="faq-wrap">
+                <div id="accordion">
+                    <div class="card" *ngFor="let item of jobMaintenanc | paginate : {
+                            itemsPerPage: tableSize,
+                            currentPage: page,
+                            totalItems: count
+                          }; index as i">
+                        <div class="card-header">
+                            <button class="btn btn-block collapsed" data-toggle="collapse"
+                                [attr.data-target]="'#test' + i" (click)="clickEdit(item.id)">
+                                <h5 class="card-title weight-500">เลขที่ใบเสร็จ{{item.id}} : {{item.cus_fullname}}</h5>
+                                <p class="card-text">{{item.string_agg}}</p>
+                            </button>
+                        </div>
+                        <div id="test{{i}}" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">รายการ</th>
+                                                <th scope="col" class="right">แก้ไข</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let job of jobEdit; index as j">
+                                                <ng-container *ngIf="statusChange(job.category)"></ng-container>
+                                                <td><strong>{{job.eq_detail_name}}</strong>
+                                                    <p class="card-text">สถานะ: {{job.status}}</p>
+                                                </td>
+                                                <td>
+                                                    <div class="btn-list right">
+                                                        <span class="btn btn-success btn-sm" type="button"
+                                                            value="submit" data-toggle="modal"
+                                                            [attr.data-target]="'#edit'+j+i"
+                                                            (click)="clickChangeStatus()"><i
+                                                                class="icon-copy fa fa-pencil-square-o btn-size"
+                                                                aria-hidden="true"></i></span>
+                                                    </div>
+
+                                                    <div class="modal fade" id="edit{{j}}{{i}}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="myLargeModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title" id="myLargeModalLabel">
+                                                                        แก้ไขสถานะอุปกรณ์
+                                                                    </h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal"
+                                                                        aria-hidden="true">×</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form>
+                                                                        <div>
+                                                                            <div class="form-group">
+                                                                                <h5>{{job.detail_id}}</h5>
                                                                             </div>
-                                                                        </form>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger"
-                                                                            data-dismiss="modal">Close</button>
-                                                                        <button type="reset" class="btn btn-primary"
-                                                                            data-dismiss="modal" value="submit"
-                                                                            (click)="onClickSave(item.id,job.detail_id,job.amount)">Save</button>
-                                                                    </div>
+                                                                            <div class="form-group">
+                                                                                <label for="status">สถานะ</label>
+                                                                                <select _ngcontent-ysi-c51=""
+                                                                                    name="status" id="status{{j}}{{i}}"
+                                                                                    (change)="updateStatus(job.em_detail_id,jobEdit[j].status)"
+                                                                                    [(ngModel)]="jobEdit[j].status"
+                                                                                    class="custom-select form-control ng-untouched ng-pristine ng-valid">
+                                                                                    <option
+                                                                                        *ngFor="let status of statusArray"
+                                                                                        value="{{status}}">{{status}}
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <button type="reset" class="btn btn-primary"
+                                                                        data-dismiss="modal" value="submit"
+                                                                        (click)="onClickSave(item.id,job.detail_id,job.amount)">Save</button>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="clearfix justify-content-center wrapper">
+                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
+            </div>
         </div>
     </div>
+</div>

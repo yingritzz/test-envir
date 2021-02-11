@@ -83,11 +83,8 @@ export class LineHomeComponent implements OnInit {
     this.getCountSell();
 
     this.getTodayList();
-
     this.getOverdue();
-
     this.getLastInsert();
-
     this.setMarker();
   }
 
@@ -118,61 +115,59 @@ export class LineHomeComponent implements OnInit {
   }
 
   getCountFix() {
-    this.apiService.getEmployment('maintenanc').then((res: any) => {
-      if (res.length != 0) {
-        this.fix = res.length;
-        res.forEach((value: any) => {
-          if (value.status == 'สำเร็จ') {
+    this.apiService.emdAll().then((res: any) => {
+      res.forEach((emd: any) => {
+        if (emd.category == 'ซ่อมบำรุง') {
+          this.fix += 1
+          if (emd.status == 'สิ้นสุดการซ่อมบำรุง') {
             this.countFix += 1;
           }
-        });
-        this.percenFix = (this.countFix / this.fix) * 100;
-      }
+        }
+      });
+      this.percenFix = (this.countFix / this.fix) * 100;
     });
   }
-
   getCountRental() {
-    this.apiService.getEmployment('rental').then((res: any) => {
-      if (res.length != 0) {
-        this.rental = res.length;
-        res.forEach((value: any) => {
-          if (value.status == 'สำเร็จ') {
+    this.apiService.emdAll().then((res: any) => {
+      res.forEach((emd: any) => {
+        if (emd.category == 'เช่า-ยืม') {
+          this.rental += 1
+          if (emd.status == 'สิ้นสุดการเช่ายืม') {
             this.countRental += 1;
           }
-        });
-        this.percenRental = (this.countRental / this.rental) * 100;
-      }
+        }
+      });
+      this.percenRental = (this.countRental / this.rental) * 100;
     });
   }
   getCountTest() {
-    this.apiService.getEmployment('testing').then((res: any) => {
-      if (res.length != 0) {
-        this.test = res.length;
-        res.forEach((value: any) => {
-          if (value.status == 'สำเร็จ') {
+    this.apiService.emdAll().then((res: any) => {
+      res.forEach((emd: any) => {
+        if (emd.category == 'ทดสอบ') {
+          this.test += 1
+          if (emd.status == 'สิ้นสุดการทดสอบ') {
             this.countTest += 1;
           }
-        });
-        this.percenTest = (this.countTest / this.test) * 100;
-      }
+        }
+      });
+      this.percenTest = (this.countTest / this.test) * 100;
     });
   }
   getCountSell() {
-    this.apiService.getEmployment('selling').then((res: any) => {
-      if (res.length != 0) {
-        this.sell = res.length;
-        res.forEach((value: any) => {
-          if (value.status == 'สำเร็จ ') {
+    this.apiService.emdAll().then((res: any) => {
+      res.forEach((emd: any) => {
+        if (emd.category == 'จำหน่าย') {
+          this.sell += 1
+          if (emd.status == 'สิ้นสุดการจำหน่าย') {
             this.countSell += 1;
           }
-        });
-        this.percenSell = (this.countSell / this.sell) * 100;
-      }
+        }
+      });
+      this.percenSell = (this.countSell / this.sell) * 100;
     });
   }
 
   ///To day list
-
   todayNull(data: any) {
     if (data.length == 0) {
       this.today = true;
@@ -182,7 +177,6 @@ export class LineHomeComponent implements OnInit {
       this.todayShow = true;
     }
   }
-
   getTodayList() {
     this.apiService.getHome('todaylist').then((res: any) => {
       this.todaylist = res;
@@ -191,7 +185,6 @@ export class LineHomeComponent implements OnInit {
   }
 
   // Over due
-
   overNull(data: any) {
     if (data.length == 0) {
       this.over = true;
@@ -209,7 +202,6 @@ export class LineHomeComponent implements OnInit {
   }
 
   //last insert
-
   getLastInsert() {
     this.apiService.getHome('lastinsert').then((res: any) => {
       this.lastinsert = res

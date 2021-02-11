@@ -12,10 +12,6 @@ import { EquipmentAmount } from '../../models/equipment';
 })
 export class LineJoballComponent implements OnInit {
 
-
-  jobEdit: any = []
-
-
   statusArray: string[] = [];
   id: any;
   rentals: string[] = ["รับงาน", "อยู่ระหว่างการเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งของคืน", "บริษัทรับของคืน", "สิ้นสุดการเช่ายืม"];
@@ -33,6 +29,10 @@ export class LineJoballComponent implements OnInit {
   thisStatus: any;
 
   jobAll: any = [];
+  jobEdit: any = [];
+  page = 1;
+  count = 0;
+  tableSize = 10
 
   constructor(
     private location: Location,
@@ -46,6 +46,11 @@ export class LineJoballComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.getJobAll();
+  }
+
+  onTableDataChange(event: any){
+    this.page = event;
     this.getJobAll();
   }
 
@@ -95,8 +100,8 @@ export class LineJoballComponent implements OnInit {
   clickChangeStatus() {
     for (let j = 0; j < this.jobAll.length; j++) {
       for (let i = 0; i < this.thisStatus.length; i++) {
-        if (this.thisStatus[i] == "สิ้นสุดการเช่ายืม" || this.thisStatus[i] == "สิ้นสุดการทดสอบ" ||
-          this.thisStatus[i] == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i] == "สิ้นสุดการจำหน่าย") {
+        if (this.thisStatus[i].status == "สิ้นสุดการเช่ายืม" || this.thisStatus[i].status == "สิ้นสุดการทดสอบ" ||
+          this.thisStatus[i].status == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i].status == "สิ้นสุดการจำหน่าย") {
           (<HTMLInputElement>document.getElementById("status" + i + j)).disabled = true;
         }
         else {

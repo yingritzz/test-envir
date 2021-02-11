@@ -19,24 +19,26 @@
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-5">
+                            </div>
+                            <div class="col-md-7 col-sm-12">
                                 <div class="header-search">
                                     <div class="wizard-content">
-                                    <form class="tab-wizard wizard-circle wizard" autocomplete="off">
-                                        <div class="form-group mb-0">
-                                            <input list="search" type="text" class="form-control search-input" placeholder="ค้นหาที่นี่..."
-                                            [(ngModel)]="selectedUser" (input) = "filterUsers()" name="serachCus">
-                                            <datalist id="search">
-                                                <option *ngFor="let option of serach; let i = index" 
-                                                [value]="option.value+' ('+option.id+')'">
-                                               </option>
-                                              </datalist>
-                                        </div>
-                                    </form>
+                                        <form class="tab-wizard wizard-circle wizard" autocomplete="off">
+                                            <div class="form-group mb-0">
+                                                <input list="search" type="text" class="form-control search-input"
+                                                    placeholder="ค้นหาที่นี่..." [(ngModel)]="selectedUser"
+                                                    (input)="filterUsers()" name="serachCus">
+                                                <datalist id="search">
+                                                    <option *ngFor="let option of serach; let i = index"
+                                                        [value]="option.value+' ('+option.id+')'">
+                                                    </option>
+                                                </datalist>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>

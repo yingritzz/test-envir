@@ -16,11 +16,11 @@ export class LineMaintenancComponent implements OnInit {
   id!: number;
   type: string = "maintenanc";
 
-  lastinsert: any = [];
-
-  jobs: any = []
-  jobEdit: any = []
-
+  jobs: any = [];
+  jobEdit: any = [];
+  page = 1;
+  count = 0;
+  tableSize = 10;
 
   rentals: string[] = ["รับงาน", "อยู่ระหว่างการเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งของคืน", "บริษัทรับของคืน", "สิ้นสุดการเช่ายืม"];
   testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการทดสอบ"];
@@ -52,9 +52,13 @@ export class LineMaintenancComponent implements OnInit {
     this.getJobMaintenanc();
   }
 
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getJobMaintenanc();
+  }
+  
   getJobMaintenanc() {
     this.apiService.getEmployment(this.type).then((res: any) => {
-      // console.log(res);
       this.getData(res);
     });
   }
@@ -64,7 +68,6 @@ export class LineMaintenancComponent implements OnInit {
   }
 
   ///detail
-
   statusChange(status: any) {
     if (status == "เช่า-ยืม") {
       this.statusArray = this.rentals;
@@ -101,8 +104,8 @@ export class LineMaintenancComponent implements OnInit {
   clickChangeStatus() {
     for (let j = 0; j < this.jobMaintenanc.length; j++) {
       for (let i = 0; i < this.thisStatus.length; i++) {
-        if (this.thisStatus[i] == "สิ้นสุดการเช่ายืม" || this.thisStatus[i] == "สิ้นสุดการทดสอบ" ||
-          this.thisStatus[i] == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i] == "สิ้นสุดการจำหน่าย") {
+        if (this.thisStatus[i].status == "สิ้นสุดการเช่ายืม" || this.thisStatus[i].status == "สิ้นสุดการทดสอบ" ||
+          this.thisStatus[i].status == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i].status == "สิ้นสุดการจำหน่าย") {
           (<HTMLInputElement>document.getElementById("status" + i + j)).disabled = true;
         }
         else {

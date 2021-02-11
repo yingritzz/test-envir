@@ -19,7 +19,11 @@
             </div>
             <div class="faq-wrap">
                 <div id="accordion">
-                    <div class="card" *ngFor="let item of jobAll; index as i">
+                    <div class="card" *ngFor="let item of jobAll | paginate : {
+                        itemsPerPage: tableSize,
+                        currentPage: page,
+                        totalItems: count
+                      }; let i = index">
                         <div class="card-header">
                             <button class="btn btn-block collapsed" data-toggle="collapse" [attr.data-target]="'#test' + i" 
                             (click)="clickEdit(item.id)">
@@ -106,6 +110,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="clearfix justify-content-center wrapper">
+                <pagination-controls previousLabel="Prev" nextLabel="Next"
+                    (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
             </div>
         </div>
     </div>
