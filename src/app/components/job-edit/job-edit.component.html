@@ -176,8 +176,8 @@
                                             </div>
                                             <div class="row">
                                                 <p class="col-sm-6 h5 text-left text-muted font-14"></p>
-                                                <p class="col-sm-6 text-right font-14"><span>วันที่ครบกำหนด:
-                                                    </span>{{jobEdit[0]?.date_end_job}}</p>
+                                                <p class="col-sm-6 text-right font-14"><span>
+                                                    </span></p>
                                             </div>
                     
                                             <table class="table">
@@ -255,7 +255,9 @@
                                                         </td>
                                                     </tr>
                                                 </tbody>
+                                                
                                             </table>
+                                            <div><strong>หมายเหตุ: </strong>{{jobEdit[0]?.annotation}}</div>
                                             <div class="wrapper btn-list">
                                                 <button type="button" class="btn btn-link" (click)="onClickBack()">ย้อนกลับ</button>
                                             </div>
