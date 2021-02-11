@@ -12,7 +12,7 @@ import { EquipmentAmount } from '../../models/equipment';
 })
 export class LineJoballComponent implements OnInit {
 
-  jobs: any = []
+
   jobEdit: any = []
 
 
@@ -59,12 +59,6 @@ export class LineJoballComponent implements OnInit {
   }
 
   //detail
-
-  getOverdue() {
-    this.apiService.getHome('lastinsert').then((res: any) => {
-      this.jobs = res
-    });
-  }
 
   statusChange(status: any) {
     if (status == "เช่า-ยืม") {
@@ -115,7 +109,6 @@ export class LineJoballComponent implements OnInit {
     this.status.status = this.status_list
     console.log(this.status_list)
     this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
-      this.getOverdue()
       console.log(this.status_select)
       if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" ||
       this.status_list == "สิ้นสุดการซ่อมบำรุง") {

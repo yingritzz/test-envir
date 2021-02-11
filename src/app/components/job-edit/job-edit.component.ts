@@ -38,6 +38,11 @@ export class JobEditComponent implements OnInit {
   coor_lat: any;
   coor_lng: any;
 
+  moo: any;
+  soi: any;
+  road: any;
+  address: any;
+
   constructor(
     private location: Location,
     public router: Router,
@@ -88,6 +93,23 @@ export class JobEditComponent implements OnInit {
               popupAnchor:  [0, -20]
             }));
         marker.addTo(this.mapp).bindPopup(res[0].place);
+
+        if (res[0].moo == null) {
+          this.moo=""
+        } else {
+          this.moo = " ม."+res[0].moo;
+        }
+        if (res[0].soi == null || res[0].soi == "") {
+          this.soi=""
+        }else {
+          this.soi = "ซอย"+res[0].soi;
+        }
+        if (res[0].road == null || res[0].road == "") {
+          this.road=""
+        }else {
+          this.road = "ถนน"+res[0].road;
+        }
+        this.address = res[0].number + this.moo + " " +this.soi + " " +this.road + " " + res[0].sub_district + " " + res[0].district + " " + res[0].province + " " + res[0].postal_code;
     });
   }
   statusChange(status: any) {

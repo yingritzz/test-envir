@@ -63,13 +63,6 @@ export class LineSellingComponent implements OnInit {
 
   //detail
 
-  getOverdue() {
-    this.apiService.getHome('lastinsert').then((res: any) => {
-      this.jobs = res
-      // console.log(this.jobs)
-    });
-  }
-
   statusChange(status: any) {
     if (status == "เช่า-ยืม") {
       this.statusArray = this.rentals;
@@ -121,7 +114,6 @@ export class LineSellingComponent implements OnInit {
 onClickSave(id: any, eqd_id: any, amount: any) {
     this.status.status = this.status_list
     this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
-      this.getOverdue()
       if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" ||
       this.status_list == "สิ้นสุดการซ่อมบำรุง") {
         this.amount.amount = amount
