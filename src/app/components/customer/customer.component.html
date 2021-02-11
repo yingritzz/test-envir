@@ -16,9 +16,10 @@
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-md-6 col-sm-12 text-right">
+                    <div class="col-md-6 col-sm-12">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
                                 <div class="header-search">
                                     <div class="wizard-content">
                                     <form class="tab-wizard wizard-circle wizard" autocomplete="off">
@@ -35,19 +36,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-12">
+                            <button type="button" class="btn btn-warning"
+                                [routerLink]="['/cusadd']">เพิ่มลูกค้า</button>
+                            <!-- <div class="col-md-3 col-sm-12">
                                 <button type="button" class="btn btn-warning"
                                 [routerLink]="['/cusadd']">เพิ่มลูกค้า</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <input type = "text" [(ngModel)]="selectedUser" (input) = "filterUsers()">
-            <input list="search" [(ngModel)]="selectedUser" (input) = "filterUsers()">
-            <datalist id="search">
-                <option *ngFor="let option of options" value="{{option.value}}">
-              </datalist> -->
             <div class="product-wrap">
                 <div class="product-list">
                     <ul class="row">
