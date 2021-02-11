@@ -11,3 +11,26 @@
     font-size: 14pt;
     font-weight: bold;
 }
+
+.tab-10{
+    width: 10%;
+}
+.tab-15{
+    width: 15%;
+}
+.tab-20{
+    width: 20%;
+}
+.tab-22{
+    width: 22%;
+}
+.tab-30{
+    width: 30%;
+}
+.tab-40{
+    width: 40%;
+}
+.l {
+    text-align: left;
+}
+

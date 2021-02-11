@@ -22,10 +22,11 @@ export class EqDetailComponent implements OnInit {
   today!: boolean;
   todayShow!: boolean;
 
+  hisId: any;
+  page_history = 1;
   page = 1;
   count = 0;
-  tableSize = 30;
-  x = 'lala';
+  tableSize = 20;
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -71,6 +72,7 @@ export class EqDetailComponent implements OnInit {
     }
   }
   getEqDetailHistory(eqd_id: any) {
+    this.hisId = eqd_id;
     this.apiService.getEqDetailHistory(eqd_id).then((res: any) => {
       this.eqd_history = res;
       this.todayNull(res);
@@ -165,5 +167,9 @@ export class EqDetailComponent implements OnInit {
   onTableDataChange(event: any) {
     this.page = event;
     this.getEqDetail();
+  }
+  onHistoryDataChange(event: any) {
+    this.page_history = event;
+    this.getEqDetailHistory(this.hisId);
   }
 }

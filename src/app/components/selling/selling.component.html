@@ -49,17 +49,17 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix mb-20">
                     <div class="pull-left">
-                        <h4 class="text-blue h4">รายการการจำหน่าย</h4>
+                        <h4 class="text-blue h4">รายการจำหน่าย</h4>
                     </div>
                 </div>
                 <div class="table-responsive" >
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">เลขที่ใบเสร็จ</th>
-                                <th scope="col">หัวข้อ</th>
-                                <th scope="col">ลูกค้า</th>
-                                <th scope="col">แก้ไข</th>
+                                <th class="tab-15" scope="col">เลขที่ใบเสร็จ</th>
+                                <th class="tab-35" scope="col">หัวข้อ</th>
+                                <th class="tab-35" scope="col">ลูกค้า</th>
+                                <th class="tab-15" scope="col">จัดการ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,11 +69,10 @@
                                 totalItems: count
                               };
                         let i = index" [routerLink]="['/job/edit/'+sell.id]">
-                                <th class="ttt" scope="row">{{sell.id}}</th>
-                                <td class="tt"><a href="javascript:;">{{sell.string_agg}}</a></td>
-                                <td><a href="javascript:;">{{sell.cus_fullname}}</a></td>
-                                
-                                <td>
+                                <th class="tab-15" scope="row">{{sell.id}}</th>
+                                <td class="tt tab-35"><a href="javascript:;">{{sell.string_agg}}</a></td>
+                                <td class="tab-35"><a href="javascript:;">{{sell.cus_fullname}}</a></td>
+                                <td class="tab-15">
                                     <div class="btn-list">
                                         <span class="btn btn-success btn-sm" type="button" value="submit"
                                             [routerLink]="[ '/job/edit/'+sell.id]"><i

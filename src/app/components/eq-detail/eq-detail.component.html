@@ -37,11 +37,11 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">SN.</th>
-                            <th scope="col">ชื่อรายการอุปกรณ์</th>
-                            <th class="wrapper" scope="col">จำนวนคงเหลือ</th>
-                            <th scope="col">สถานะ</th>
-                            <th scope="col">จัดการ</th>
+                            <th class="tab-23" scope="col">SN.</th>
+                            <th class="tab-30" scope="col">ชื่อรายการอุปกรณ์</th>
+                            <th class="tab-15 wrapper" scope="col">จำนวนคงเหลือ</th>
+                            <th class="tab-10 wrapper" scope="col">สถานะ</th>
+                            <th class="tab-20 wrapper" scope="col">จัดการ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,11 +51,11 @@
                             totalItems: count
                           };
                     let i = index">
-                            <td>{{eqd.id}}</td>
-                            <td>{{eqd.eq_detail_name}}</td>
-                            <td class="wrapper">{{eqd.eq_detail_amount}}</td>
-                            <td>{{eqd.eq_detail_status}}</td>
-                            <td>
+                            <td class="tab-22">{{eqd.id}}</td>
+                            <td class="tab-30">{{eqd.eq_detail_name}}</td>
+                            <td class="wrapper tab-15">{{eqd.eq_detail_amount}}</td>
+                            <td class="tab-10 wrapper">{{eqd.eq_detail_status}}</td>
+                            <td class="tab-25 wrapper">
                                 <div class="btn-list">
                                     <button title="แก้ไข" class="btn btn-success btn-sm" type="button" value="submit"
                                         data-toggle="modal" data-target="#Edit-eq" (click)="getIdEqd(eqd.id)">
@@ -133,22 +133,30 @@
                                                 <table class="table table-striped" *ngIf="todayShow">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">ลำดับ</th>
-                                                            <th scope="col">วันที่รับงาน</th>
-                                                            <th scope="col">ลูกค้า</th>
-                                                            <th scope="col">หมวดหมู่</th>
+                                                            <th class="tab-20" scope="col">เลขที่ใบเสร็จ</th>
+                                                            <th class="tab-20" scope="col">วันที่รับงาน</th>
+                                                            <th class="tab-30 l" scope="col">ลูกค้า</th>
+                                                            <th class="tab-30" scope="col">หมวดหมู่</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let history of eqd_history; let i = index">
-                                                            <td>{{i+1}}</td>
-                                                            <td>{{history.date_get_job}}</td>
-                                                            <td>{{history.cus_fullname}}</td>
-                                                            <td>{{history.category}}</td>
+                                                        <tr *ngFor="let history of eqd_history | paginate : {
+                                                            itemsPerPage: tableSize,
+                                                            currentPage: page_history,
+                                                            totalItems: count
+                                                          }; let i = index">
+                                                            <td class="tab-20">{{history.em_id}}</td>
+                                                            <td class="tab-20">{{history.date_get_job}}</td>
+                                                            <td class="tab-30 l">{{history.cus_fullname}}</td>
+                                                            <td class="tab-30">{{history.category}}</td>
                                                         </tr>
-
                                                     </tbody>
                                                 </table>
+                                                <div class="clearfix justify-content-center wrapper">
+                                                    <pagination-controls previousLabel="Prev" nextLabel="Next"
+                                                        (pageChange)="onHistoryDataChange($event)">
+                                                    </pagination-controls>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger"

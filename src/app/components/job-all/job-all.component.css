@@ -16,14 +16,14 @@
     text-align: left;
 }
 .sn{
-    width: 20%;
-    
+    width: 15%;
+    text-align: center;
 }
 .cus{
-    width: 40%;
+    width: 70%;
     
 }
 .manage{
-    width: 40%;
+    width: 15%;
     text-align: center;
 }

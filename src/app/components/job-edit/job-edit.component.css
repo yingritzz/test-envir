@@ -21,3 +21,14 @@
     border: 2px solid black;
     height: 100%;
 }
+
+.tab-10{
+    width: 10%;
+    text-align: center;
+}
+.tab-15{
+    width: 15%;
+}
+.tab-25{
+    width: 25%;
+}

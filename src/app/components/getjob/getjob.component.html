@@ -42,7 +42,7 @@
                                             <tbody *ngFor="let cus of cus_list">
                                                 <tr>
                                                     <td>{{cus.cus_fullname}}</td>
-                                                    <td class="ten"><button class="btn btn-link"
+                                                    <td class="tab-10"><button class="btn btn-link"
                                                             (click)="show_cus(cus)">select</button></td>
                                                 </tr>
                                             </tbody>
@@ -248,20 +248,20 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">หมวดหมู่</th>
-                                    <th scope="col">อุปกรณ์</th>
-                                    <th scope="col">จำนวน</th>
-                                    <th scope="col">วันที่ส่งคืน</th>
-                                    <th scope="col">จัดการ</th>
+                                    <th class="tab-20" scope="col">หมวดหมู่</th>
+                                    <th class="tab-30" scope="col">อุปกรณ์</th>
+                                    <th class="tab-20" scope="col">จำนวน</th>
+                                    <th class="tab-20" scope="col">วันที่ส่งคืน</th>
+                                    <th class="tab-10" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of formArray ; let i = index">
-                                    <td>{{item.category}}</td>
-                                    <td>{{item.eq_detail_name}}</td>
-                                    <td>{{item.amount}}</td>
-                                    <td>{{item.date_end}}</td>
-                                    <td>
+                                    <td class="tab-15">{{item.category}}</td>
+                                    <td class="tab-30">{{item.eq_detail_name}}</td>
+                                    <td class="tab-20">{{item.amount}}</td>
+                                    <td class="tab-20">{{item.date_end}}</td>
+                                    <td class="tab-15">
                                         <button class="btn btn-danger btn-sm" type="button" value="submit"
                                             (click)="deleteRow(i)"><i class="icon-copy fa fa-trash btn-size"
                                                 aria-hidden="true"></i></button>

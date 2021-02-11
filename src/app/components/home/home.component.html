@@ -109,19 +109,19 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">ลำดับ</th>
-                                    <th scope="col">ลูกค้า</th>
-                                    <th scope="col">หัวข้อ</th>
-                                    <th scope="col">หมวดหมู่</th>
+                                    <th class="tab-10" scope="col">ลำดับ</th>
+                                    <th class="tab-35" scope="col">ลูกค้า</th>
+                                    <th class="tab-35" scope="col">หัวข้อ</th>
+                                    <th class="tab-20" scope="col">หมวดหมู่</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let list of todaylist; let i = index"
                                 (click)="goToEdit(list.em_id)" href="javascript:;">
-                                    <th scope="row">{{i+1}}</th>
-                                    <td><a href="javascript:;">{{list.cus_fullname}}</a></td>
-                                    <td><a href="javascript:;">{{list.eq_detail_name}}</a></td>
-                                    <td><a href="javascript:;">{{list.category}}</a></td>
+                                    <th class="tab-10" scope="row">{{i+1}}</th>
+                                    <td class="tab-35"><a href="javascript:;">{{list.cus_fullname}}</a></td>
+                                    <td class="tab-35"><a href="javascript:;">{{list.eq_detail_name}}</a></td>
+                                    <td class="tab-20"><a href="javascript:;">{{list.category}}</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -191,20 +191,20 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th scope="col">เลขที่ใบเสร็จ</th>
-                                                <th scope="col">ลูกค้า</th>
-                                                <th scope="col">หมวดหมู่</th>
-                                                <th scope="col">วันที่รับงาน</th>
+                                                <th class="tab-15" scope="col">เลขที่ใบเสร็จ</th>
+                                                <th class="tab-30" scope="col">ลูกค้า</th>
+                                                <th class="tab-35" scope="col">หมวดหมู่</th>
+                                                <th class="tab-20" scope="col">วันที่รับงาน</th>
                                                 <!-- <th scope="col">สถานะ</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let last of lastinsert; let i = index"
                                             (click)="goToEdit(last.id)">
-                                                <th scope="row">{{last.id}}</th>
-                                                <td><a href="javascript:;">{{last.cus_fullname}}</a></td>
-                                                <td><a href="javascript:;">{{last.category}}</a></td>
-                                                <td><a href="javascript:;">{{last.date_get_job}}</a></td>
+                                                <th class="tab-15" scope="row">{{last.id}}</th>
+                                                <td class="tab-30"><a href="javascript:;">{{last.cus_fullname}}</a></td>
+                                                <td class="tab-35"><a href="javascript:;">{{last.category}}</a></td>
+                                                <td class="tab-20"><a href="javascript:;">{{last.date_get_job}}</a></td>
                                                 <!-- <td><a href="javascript:;">{{last.status}}</a></td> -->
                                             </tr>
                                         </tbody>

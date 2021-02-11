@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>รายการการเช่า-ยืม</h4>
+                            <h4>รายการเช่า-ยืม</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -56,10 +56,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">เลขที่ใบเสร็จ</th>
-                                <th scope="col">หัวข้อ</th>
-                                <th scope="col">ลูกค้า</th>
-                                <th scope="col">แก้ไข</th>
+                                <th class="tab-15" scope="col">เลขที่ใบเสร็จ</th>
+                                <th class="tab-35" scope="col">หัวข้อ</th>
+                                <th class="tab-35" scope="col">ลูกค้า</th>
+                                <th class="tab-15" scope="col">จัดการ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,13 +69,13 @@
                                 totalItems: count
                               };
                         let i = index" [routerLink]="['/job/edit/'+rental.id]">
-                                <th class="ttt" scope="row">{{rental.id}}</th>
-                                <td class="tt"><a
+                                <th class="tab-15" scope="row">{{rental.id}}</th>
+                                <td class="tt tab-35"><a
                                     href="javascript:;">{{rental.string_agg}}</a>
                                 </td>
-                                <td><a href="javascript:;">{{rental.cus_fullname}}</a>
+                                <td class="tab-35"><a href="javascript:;">{{rental.cus_fullname}}</a>
                                 </td>
-                                <td>
+                                <td class="tab-15">
                                     <div class="btn-list">
                                         <span class="btn btn-success btn-sm" type="button" value="submit"
                                             [routerLink]="[ '/job/edit/'+rental.id]"><i
