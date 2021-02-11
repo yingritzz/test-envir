@@ -61,12 +61,13 @@ export class LineGetjobComponent implements OnInit {
   formArray: any = [];
   em_id: any;
   cus_search!: SearchCustomer;
-  
+
   cus_select: any;  //ng-model
   cus_list: any = [];  //data of api get customer list
   eq_list: any = [];  //data of api get eq id เลือกชนิดตอนสร้างอุปกรณ์
   eqd_list: any = [];  //data of api get eqd เลือกอุปกรณ์
   eqd_new!: EquipmentDetail;  //create eqd
+  options: any = [];
 
   cus_id: any;
   admin_id: any;
@@ -80,13 +81,13 @@ export class LineGetjobComponent implements OnInit {
     public router: Router,
     public apiService: ApiService,
     private formBuilder: FormBuilder
-  ) { 
+  ) {
     this.eqd_new = new EquipmentDetail;
     this.job = new Employment;
     this.job_detail = new EmploymentDetail;
     this.eq_amount = new EquipmentAmount;
     this.cus_search = new SearchCustomer;
-   }
+  }
 
   ngOnInit(): void {
     this.admin_id = 1;
@@ -134,8 +135,12 @@ export class LineGetjobComponent implements OnInit {
     this.eqd_list = [];
     this.apiService.getListEqd().then((res: any) => {
       for (let i = 0; i < res.length; i++) {
-        if (res[i].eq_detail_status != 'ไม่ว่าง')
+        if (res[i].eq_detail_status != 'ไม่ว่าง') {
           this.eqd_list.push(res[i]);
+        }
+        for (let i = 0; i < this.eqd_list.length; i++) {
+          this.options[i] = { value: this.eqd_list[i].id, selected: false }
+        }
       }
     });
   }
@@ -169,7 +174,7 @@ export class LineGetjobComponent implements OnInit {
       this.getCoor(this.drag.location.lat, this.drag.location.lng, this.searchss.location.raw.display_name);
     });
   }
-  getCoor(lat:any, lng:any, place:any) {
+  getCoor(lat: any, lng: any, place: any) {
     this.coor_lat = lat;
     this.coor_lng = lng;
     this.coor_place = place;
@@ -207,6 +212,12 @@ export class LineGetjobComponent implements OnInit {
     }
   }
 
+  filterUsers() {
+    let filterUsers = this.options.filter((item: { value: any; }) => item.value === this.form.value.eq_detail_id);
+    if (filterUsers.length > 0) {
+      this.options = filterUsers;
+    }
+  }
   deleteRow(i: number) {
     this.apiService.getEqd(this.formArray[i].eq_detail_id).then((res: any) => {
       this.eqd_list.push(res[0]);
@@ -241,7 +252,7 @@ export class LineGetjobComponent implements OnInit {
       });
     }
   }
-  
+
   isFieldValid(field: string) {
     return this.form.get(field)!.valid && this.form.get(field)!.touched;
   }

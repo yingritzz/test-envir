@@ -140,12 +140,10 @@
                                     <div class="form-group" [ngClass]="displayFieldCss('eq_detail_id')">
                                         <label for="eq_detail_id" class="control-label required h">อุปกรณ์ :</label>
                                         <label class="control-label err h">เฉพาะอุปกรณ์ที่ว่างเท่านั้น*</label>
-                                        <select id="eq_detail_id" class="custom-select form-control" name="eq_detail_id"
-                                            formControlName="eq_detail_id">
-                                            <option value=" "> </option>
-                                            <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.id}} :
-                                                {{eqd.eq_detail_name}}</option>
-                                        </select>
+                                        <input  class="form-control search-input" type = "text" formControlName="eq_detail_id" (input) = "filterUsers()" list="eq">
+                                            <datalist class="col-md-12" id="eq">
+                                                <option *ngFor="let eqd of eqd_list" value="{{eqd.id}}">{{eqd.eq_detail_name}}</option>
+                                              </datalist>
                                         <app-field-error-display [displayError]="isFieldValid('eq_detail_id')"
                                             errorMsg="*กรุณาใส่ข้อมูลให้ครบถ้วน">
                                         </app-field-error-display>
