@@ -259,6 +259,11 @@ export class GetjobComponent implements OnInit {
   }
 
   save() {
+    if(this.coor_lat == undefined){
+      this.coor_lat = "null"
+      this.coor_lng = "null"
+      this.coor_place = "null"
+    }
     if (this.cus_id == null || this.cus_id == undefined) {
       Swal.fire("ไม่สามารถบันทึกรายการได้", "กรุณากรอกข้อมูลลูกค้าให้ครบถ้วน", "error");
     } else {
@@ -268,6 +273,7 @@ export class GetjobComponent implements OnInit {
       (this.job).lat = this.coor_lat;
       (this.job).long = this.coor_lng;
       (this.job).place = this.coor_place;
+      console.log(this.job)
 
 
       this.apiService.createEmployment(this.job).then((res: any) => {

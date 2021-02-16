@@ -97,7 +97,8 @@ export class HomeComponent implements OnInit {
     this.apiService.getEmAll().then((res: any) => {
       console.log(res)
       res.forEach((value: any) => {
-        const marker = new Marker([value.lat, value.long])
+        if(value.place != "null") {
+          const marker = new Marker([value.lat, value.long])
           .setIcon(
             icon({
               iconSize: [55, 55],
@@ -106,6 +107,9 @@ export class HomeComponent implements OnInit {
               popupAnchor: [0, -20]
             }));
         marker.addTo(this.mapp).bindPopup(value.id + ' : ' + value.cus_fullname + ' @' + value.place);
+        } else {
+          console.log(value.place)
+        }
       });
     });
     this.initMap();

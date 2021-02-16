@@ -21,7 +21,7 @@ export class JobEditComponent implements OnInit {
   jobEdit: any = []
   id: any;
   rentals: string[] = ["รับงาน", "อยู่ระหว่างการเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งของคืน", "บริษัทรับของคืน", "สิ้นสุดการเช่ายืม"];
-  testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า" , "สิ้นสุดการทดสอบ"];
+  testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการทดสอบ"];
   maintenanc: string[] = ["รับงาน", "อยู่ระหว่างการซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการซ่อมบำรุง"];
   selling: string[] = ["รับงาน", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สิ้นสุดการจำหน่าย"];
   jobUpdate: EmploymentDetail;
@@ -58,21 +58,14 @@ export class JobEditComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params["id"];
     this.getJobEdit();
   }
-
-  private initMap(lat:any, lng:any) {
-    this.mapp = L.map('map').setView([lat, lng], 8);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.mapp);
-    L.geoJSON(province_geojson).addTo(this.mapp)
-  }
+  
   async getIdEmd(id: any) {
     this.emd_id = id;
     this.apiService.emDetail(id).then((res: any) => {
       this.emd_edit = res[0];
       this.status_select = res[0].status
-      if (res[0].status == "สิ้นสุดการเช่ายืม" || res[0].status == "สิ้นสุดการทดสอบ" || 
-      res[0].status == "สิ้นสุดการซ่อมบำรุง" || res[0].status == "สิ้นสุดการจำหน่าย") {
+      if (res[0].status == "สิ้นสุดการเช่ายืม" || res[0].status == "สิ้นสุดการทดสอบ" ||
+        res[0].status == "สิ้นสุดการซ่อมบำรุง" || res[0].status == "สิ้นสุดการจำหน่าย") {
         (<HTMLInputElement>document.getElementById("status")).disabled = true;
       }
       else {
@@ -83,33 +76,45 @@ export class JobEditComponent implements OnInit {
   getJobEdit() {
     this.apiService.getEmploymentDetail(this.id).then((res: any) => {
       this.getData(res);
-      this.initMap(res[0].lat, res[0].long);
-      const marker = new Marker([res[0].lat, res[0].long])
+      if (res[0].place != "null") {
+        this.mapp = L.map('map').setView([res[0].lat, res[0].long], 8);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(this.mapp);
+        L.geoJSON(province_geojson).addTo(this.mapp)
+
+        const marker = new Marker([res[0].lat, res[0].long])
           .setIcon(
             icon({
               iconSize: [40, 45],
               iconAnchor: [13, 41],
               iconUrl: 'assets/src/images/marker-icon.png',
-              popupAnchor:  [0, -20]
+              popupAnchor: [0, -20]
             }));
         marker.addTo(this.mapp).bindPopup(res[0].place);
-
-        if (res[0].moo == null) {
-          this.moo=""
-        } else {
-          this.moo = " ม."+res[0].moo;
-        }
-        if (res[0].soi == null || res[0].soi == "") {
-          this.soi=""
-        }else {
-          this.soi = "ซอย"+res[0].soi;
-        }
-        if (res[0].road == null || res[0].road == "") {
-          this.road=""
-        }else {
-          this.road = "ถนน"+res[0].road;
-        }
-        this.address = res[0].number + this.moo + " " +this.soi + " " +this.road + " " + res[0].sub_district + " " + res[0].district + " " + res[0].province + " " + res[0].postal_code;
+      } else {
+        this.mapp = L.map('map').setView([14, 100], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(this.mapp);
+        L.geoJSON(province_geojson).addTo(this.mapp)
+      }
+      if (res[0].moo == null) {
+        this.moo = ""
+      } else {
+        this.moo = " ม." + res[0].moo;
+      }
+      if (res[0].soi == null || res[0].soi == "") {
+        this.soi = ""
+      } else {
+        this.soi = "ซอย" + res[0].soi;
+      }
+      if (res[0].road == null || res[0].road == "") {
+        this.road = ""
+      } else {
+        this.road = "ถนน" + res[0].road;
+      }
+      this.address = res[0].number + this.moo + " " + this.soi + " " + this.road + " " + res[0].sub_district + " " + res[0].district + " " + res[0].province + " " + res[0].postal_code;
     });
   }
   statusChange(status: any) {
@@ -143,8 +148,8 @@ export class JobEditComponent implements OnInit {
     this.status.status = this.status_list
     this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
       this.getJobEdit()
-      if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" || 
-      this.status_list == "สิ้นสุดการซ่อมบำรุง") {
+      if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" ||
+        this.status_list == "สิ้นสุดการซ่อมบำรุง") {
         this.amount.amount = amount
         this.amount.eqd = eqd_id
         this.apiService.updateEqStatusSuccess(this.id, this.amount).then((res: any) => {
@@ -153,18 +158,18 @@ export class JobEditComponent implements OnInit {
     });
   }
 
-  delete(id: any, name: any, em_id: any, amount: number, eqd_id: any, status:any) {
+  delete(id: any, name: any, em_id: any, amount: number, eqd_id: any, status: any) {
     this.amount = new EquipmentAmount;
     this.amount.eqd = eqd_id;
     this.amount.amount = amount;
-    if (status != "สิ้นสุดการเช่ายืม" && status != "สิ้นสุดการทดสอบ" && status != "สิ้นสุดการซ่อมบำรุง" && status != "สิ้นสุดการจำหน่าย"){
-    this.apiService.updateEqStatusSuccess(em_id, this.amount).then((res: any) => {
-    });
-  }
+    if (status != "สิ้นสุดการเช่ายืม" && status != "สิ้นสุดการทดสอบ" && status != "สิ้นสุดการซ่อมบำรุง" && status != "สิ้นสุดการจำหน่าย") {
+      this.apiService.updateEqStatusSuccess(em_id, this.amount).then((res: any) => {
+      });
+    }
     if (this.jobEdit.length == 1) {
       Swal.fire({
         title: 'ยืนยันการลบ',
-        html: 'รายการนี้เป็นรายการสุดท้ายของใบเสร็จ'+'<br>'+ 'คุณต้องการลบ '+ name + 'และใบเสร็จเลขที่' + em_id,
+        html: 'รายการนี้เป็นรายการสุดท้ายของใบเสร็จ' + '<br>' + 'คุณต้องการลบ ' + name + 'และใบเสร็จเลขที่' + em_id,
         showDenyButton: true,
         confirmButtonText: `ใช่`,
         denyButtonText: `ไม่ใช่`,

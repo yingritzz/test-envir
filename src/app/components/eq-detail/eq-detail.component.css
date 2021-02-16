@@ -34,3 +34,13 @@
     text-align: left;
 }
 
+.leftSearch {
+    /* padding-left: 145px; */
+    margin: 0px;
+}
+
+.rowSearch {
+    padding-left: 145px;
+    margin: 0px;
+}
+

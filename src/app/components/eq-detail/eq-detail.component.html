@@ -30,11 +30,74 @@
                         <h4 class="text-blue h4">รายการอุปกรณ์</h4>
                     </div>
                     <div class="pull-right">
-                        <button type="button" class="btn btn-warning"
-                            (click)="insert_eq_detail()">เพิ่มรายการอุปกรณ์</button>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <form class="tab-wizard wizard-circle wizard" autocomplete="off">
+                                        <div class="form-group mb-0">
+                                            <input list="search" type="text" class="form-control search-input"
+                                                placeholder="ค้นหาที่นี่..." [(ngModel)]="selectedUser"
+                                                (input)="filterUsers()" name="serachCus" id="serachCus">
+                                            <!-- <datalist id="search">
+                                            <option *ngFor="let option of serach; let i = index" [value]="option.value">
+                                                {{option.value}}
+                                            </option>
+                                        </datalist> -->
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class=" leftSearch">
+                                    <button type="button" class="btn btn-warning"
+                                    data-toggle="modal" data-target="#eq-add" >เพิ่มรายการอุปกรณ์</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="eq-add" tabindex="-1" role="dialog"
+                            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myLargeModalLabel">เพิ่มอุปกรณ์
+                                        </h4>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">×</button>
+                                    </div>
+                                    <div class="modal-body l">
+                                        <form>
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="sn">SN.</label>
+                                                    <input type="text" class="form-control" id="sn" name="id"
+                                                        [(ngModel)]="eqd_new.id" required="required">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name">ชื่อรายการอุปกรณ์</label>
+                                                    <input type="text" class="form-control" id="name"
+                                                        name="eq_detail_name" [(ngModel)]="eqd_new.eq_detail_name"
+                                                        required="required">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="count">จำนวน</label>
+                                                    <input type="number" class="form-control" id="count"
+                                                        name="eq_detail_amount" [(ngModel)]="eqd_new.eq_detail_amount"
+                                                        required="required">
+                                                </div>
+                                                <p>สถานะ: "ว่าง"</p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button type="reset" class="btn btn-primary" data-dismiss="modal"
+                                            (click)="addEquip()" value="submit">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <table class="table table-striped">
+                <table class="table table-striped" id="myTable">
                     <thead>
                         <tr>
                             <th class="tab-23" scope="col">SN.</th>
@@ -82,7 +145,7 @@
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-hidden="true">×</button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body l">
                                                 <form>
                                                     <div>
                                                         <div class="form-group">
