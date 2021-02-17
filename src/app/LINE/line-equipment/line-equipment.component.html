@@ -145,12 +145,13 @@
                         </div>
                         <p>สถานะ: "ว่าง"</p>
                         <button type="button" class="btn btn-warning" data-dismiss="modal"
-                            (click)="clickScanner()">สแกนบาร์โค้ต</button>
+                            (click)="clickScanner()" data-toggle="modal"
+                            data-target="#scanner">สแกนบาร์โค้ต</button>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="reset" class="btn btn-danger" data-dismiss="modal" (click)="clickClose()">Close</button>
                 <button type="reset" class="btn btn-primary" data-dismiss="modal" (click)="addEquip()"
                     value="submit">Save</button>
             </div>
@@ -158,11 +159,34 @@
 
     </div>
 </div>
-<div class="barcode-scanner-container">
-    <barcode-scanner-livestream [type]="['code_128', 'code_39', 'ean','upc']"
-        [errorFilter]="{ median: 0.08, threshold: 0.1 }" (valueChanges)="onValueChanges($event)"
-        (started)="onStarted($event)"></barcode-scanner-livestream>
-</div>
-<div class="barcode-value" [hidden]="!barcodeValue">
-    {{ barcodeValue }}
+<div class="modal fade" id="scanner" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">เพิ่มอุปกรณ์
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body l">
+                <div class="barcode-value wrapper" [hidden]="!barcodeValue">
+                SN-{{ barcodeValue }}
+                </div>
+                <div>
+                    <br>
+                </div>
+                <div class="barcode-scanner-container">
+                    <barcode-scanner-livestream [type]="['code_128', 'code_39', 'ean','upc']"
+                        [errorFilter]="{ median: 0.08, threshold: 0.1 }" (valueChanges)="onValueChanges($event)"
+                        (started)="onStarted($event)" id="video"></barcode-scanner-livestream>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="endScanner()">ยกเลิก</button>
+                <button type="reset" class="btn btn-warning" data-dismiss="modal"
+                    value="submit" data-toggle="modal"
+                    data-target="#eq-add" (click)="clickSumScanner()">ยืนยัน</button>
+            </div>
+        </div>
+
+    </div>
 </div>

@@ -66,6 +66,10 @@ clickScanner(){
   this.barcodeScanner.start();
 }
 
+endScanner(){
+  this.barcodeScanner.stop();
+}
+
 onValueChanges(result: QuaggaJSResultObject): void {
     console.log(result.codeResult.code)
     this.barcodeValue = result.codeResult.code;
@@ -73,6 +77,16 @@ onValueChanges(result: QuaggaJSResultObject): void {
 
 onStarted(event:any): void {
     console.log('started', event);
+}
+
+clickSumScanner(){
+  (<HTMLInputElement>document.getElementById('sn')).value = this.barcodeValue;
+  this.barcodeScanner.stop();
+}
+
+clickClose(){
+  this.eqd_new = new EquipmentDetail();
+  (<HTMLInputElement>document.getElementById('sn')).value = "";
 }
 
   onClickBack() {
@@ -107,7 +121,9 @@ onStarted(event:any): void {
   }
 
   addEquip(){
-
+    if (this.eqd_new.id == undefined){
+      this.eqd_new.id = this.barcodeValue
+    }
     if (this.eqd_new.id) {
       var sn2 = this.eqd_new.id[0]
       console.log(sn2)
@@ -145,6 +161,7 @@ onStarted(event:any): void {
     else {
       Swal.fire("ไม่สามารถเพิ่มรายการอุปกรณ์ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
     }
+    (<HTMLInputElement>document.getElementById('sn')).value = "";
   }
   getData(data: any) {
     this.eq_data = data
