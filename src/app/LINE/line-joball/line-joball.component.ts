@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { EmploymentDetail, EmploymentDetailEdit } from '../../models/employment';
 import { EquipmentAmount } from '../../models/equipment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-line-joball',
@@ -30,6 +31,10 @@ export class LineJoballComponent implements OnInit {
 
   jobAll: any = [];
   jobEdit: any = [];
+  id_i: any;
+  id_j: any;
+  id_job: any = [];
+  id_status: any;
   page = 1;
   count = 0;
   tableSize = 10
@@ -89,34 +94,37 @@ export class LineJoballComponent implements OnInit {
     this.thisStatus = data
   }
   
-  clickEdit(id: any) {
-    this.apiService.getEmploymentDetail(id).then((res: any) => {
-      this.jobEdit = res
+  async clickEdit(id: any) {
+    this.apiService.getEmploymentDetail(id).then(async (res: any) => {
+      // this.jobEdit = await res;
       this.getStatus(res)
-      console.log(this.jobEdit)
     });
   }
   
-  clickChangeStatus() {
+  async clickChangeStatus(j:any ,i:any ,job:any) {
+    this.id_i = await i;
+    this.id_j = await j;
+    this.id_job = await job;
+    this.id_status = await this.thisStatus[j].status;
     for (let j = 0; j < this.jobAll.length; j++) {
       for (let i = 0; i < this.thisStatus.length; i++) {
         if (this.thisStatus[i].status == "สิ้นสุดการเช่ายืม" || this.thisStatus[i].status == "สิ้นสุดการทดสอบ" ||
           this.thisStatus[i].status == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i].status == "สิ้นสุดการจำหน่าย") {
-          (<HTMLInputElement>document.getElementById("status" + i + j)).disabled = true;
+          (<HTMLInputElement>document.getElementById("status")).disabled = true;
         }
         else {
-          (<HTMLInputElement>document.getElementById("status" + i + j)).disabled = false;
+          (<HTMLInputElement>document.getElementById("status")).disabled = false;
         }
       }
     }
   }
   onClickSave(id: any, eqd_id: any, amount: any) {
-    this.status.status = this.status_list
-    console.log(this.status_list)
+    this.status.status = this.id_status
     this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
-      console.log(this.status_select)
-      if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" ||
-      this.status_list == "สิ้นสุดการซ่อมบำรุง") {
+      this.clickEdit(id);
+      Swal.fire('แก้ไขสถานะงานสำเร็จ!', '', 'success')
+      if (this.id_status == "สิ้นสุดการเช่ายืม" || this.id_status == "สิ้นสุดการทดสอบ" ||
+      this.id_status == "สิ้นสุดการซ่อมบำรุง") {
         this.amount.amount = amount
         this.amount.eqd = eqd_id
         this.apiService.updateEqStatusSuccess(id, this.amount).then((res: any) => {
@@ -124,6 +132,5 @@ export class LineJoballComponent implements OnInit {
       }
     });
   }
-
 
 }
