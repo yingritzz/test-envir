@@ -45,7 +45,7 @@
                                             <tr *ngFor="let job of jobEdit; index as j">
                                                 <ng-container *ngIf="statusChange(job.category)"></ng-container>
                                                 <td><strong>{{job.eq_detail_name}}</strong>
-                                                    <p class="card-text">สถานะ: {{job.status}}</p>
+                                                    <p class="card-text">สถานะจ้ะ: {{job.status}}</p>
                                                 </td>
                                                 <td>
                                                     <div class="btn-list right">
@@ -56,7 +56,7 @@
                                                                 aria-hidden="true"></i></span>
                                                     </div>
 
-                                                    <div class="modal fade" id="edit{{j}}{{i}}" tabindex="-1"
+                                                    <div class="modal fade" id="edit{{j}}{{i}}" tabindex="0"
                                                         role="dialog" aria-labelledby="myLargeModalLabel"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
