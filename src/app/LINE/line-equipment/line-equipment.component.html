@@ -37,7 +37,8 @@
                                         <div class="wrapper btn-list">
                                             <button type="button" class="btn btn-outline-primary"
                                                 (click)="onClickDetail(eq.id, eq.eq_name)">เพิ่มเติม</button>
-                                            <button type="button" class="btn btn-outline-danger" (click)="delete(eq.id, eq.eq_name)">ลบ</button>
+                                            <button type="button" class="btn btn-outline-danger"
+                                                (click)="delete(eq.id, eq.eq_name)">ลบ</button>
                                         </div>
                                     </div>
                                 </div>
@@ -54,62 +55,114 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 <!-- Equipment Detail -->
 <div *ngIf="isDisplay2">
-        <div class="pd-ltr-20 xs-pd-20-10">
-            <div class="min-height-200px">
-                <div class="page-header">
-                    <div class="row">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
                     <div class="col-9 col-sm-9">
                         <div class="header-left">
-                            <h4 ><i class="icon-copy fa fa-angle-left" aria-hidden="true" (click)="onClickBack()"></i></h4>&nbsp;&nbsp;
+                            <h4><i class="icon-copy fa fa-angle-left" aria-hidden="true" (click)="onClickBack()"></i>
+                            </h4>&nbsp;&nbsp;
                             <h4 class="p">{{eq_names}}</h4>
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="pd-20 card-box mb-30">
-                    <div class="clearfix mb-20">
-                        <div class="pull-left">
-                            <h4 class="text-blue h4">รายการอุปกรณ์</h4>
-                        </div>
-                        <div class="pull-right">
-                            <button type="button" class="btn btn-warning" (click)="insert_eq_detail()">เพิ่ม</button>
-                        </div>
+            </div>
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">รายการอุปกรณ์</h4>
                     </div>
-                    <div class="faq-wrap">
-                        <div id="accordion">
-                            <div class="card" *ngFor="let eqd of eqd_data | paginate : {
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                            data-target="#eq-add">เพิ่ม</button>
+
+                    </div>
+                </div>
+                <div class="faq-wrap">
+                    <div id="accordion">
+                        <div class="card" *ngFor="let eqd of eqd_data | paginate : {
                                 itemsPerPage: tableSize,
                                 currentPage: pageEqd,
                                 totalItems: count
                               }; let i = index">
-                                <div class="card-header">
-                                    <button class="btn btn-block collapsed" data-toggle="collapse"
-                                        [attr.data-target]="'#faq' + i">
-                                        <h5 class="card-title weight-500">{{eqd.eq_detail_name}}</h5>
-                                        <p class="card-text"> SN. {{eqd.id}}</p>
-                                    </button>
-                                </div>
-                                <div id="faq{{i}}" class="collapse" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>จำนวน : {{eqd.eq_detail_amount}}</p>
-                                        <p>สถานะ : {{eqd.eq_detail_status}}</p>
-                                        <button class="btn btn-outline-danger btn-lg btn-block" type="button" value="submit" (click)="deleteEqd(eqd.id, eqd.eq_detail_name)">
-                                            <i class="icon-copy fa fa-trash btn-size"
-                                                aria-hidden="true">delete</i></button>
-                                    </div>
+                            <div class="card-header">
+                                <button class="btn btn-block collapsed" data-toggle="collapse"
+                                    [attr.data-target]="'#faq' + i">
+                                    <h5 class="card-title weight-500">{{eqd.eq_detail_name}}</h5>
+                                    <p class="card-text"> SN. {{eqd.id}}</p>
+                                </button>
+                            </div>
+                            <div id="faq{{i}}" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <p>จำนวน : {{eqd.eq_detail_amount}}</p>
+                                    <p>สถานะ : {{eqd.eq_detail_status}}</p>
+                                    <button class="btn btn-outline-danger btn-lg btn-block" type="button" value="submit"
+                                        (click)="deleteEqd(eqd.id, eqd.eq_detail_name)">
+                                        <i class="icon-copy fa fa-trash btn-size" aria-hidden="true">delete</i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix justify-content-center wrapper">
-                        <pagination-controls previousLabel="Prev" nextLabel="Next"
-                            (pageChange)="onTableDataChangeEqd($event)">
-                        </pagination-controls>
-                    </div>
+                </div>
+                <div class="clearfix justify-content-center wrapper">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next"
+                        (pageChange)="onTableDataChangeEqd($event)">
+                    </pagination-controls>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="modal fade" id="eq-add" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">เพิ่มอุปกรณ์
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body l">
+                <form>
+                    <div>
+                        <div class="form-group">
+                            <label for="sn">SN.</label>
+                            <input type="text" class="form-control" id="sn" name="id" [(ngModel)]="eqd_new.id"
+                                required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">ชื่อรายการอุปกรณ์</label>
+                            <input type="text" class="form-control" id="name" name="eq_detail_name"
+                                [(ngModel)]="eqd_new.eq_detail_name" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="count">จำนวน</label>
+                            <input type="number" class="form-control" id="count" name="eq_detail_amount"
+                                [(ngModel)]="eqd_new.eq_detail_amount" required="required">
+                        </div>
+                        <p>สถานะ: "ว่าง"</p>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal"
+                            (click)="clickScanner()">สแกนบาร์โค้ต</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="reset" class="btn btn-primary" data-dismiss="modal" (click)="addEquip()"
+                    value="submit">Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="barcode-scanner-container">
+    <barcode-scanner-livestream [type]="['code_128', 'code_39', 'ean','upc']"
+        [errorFilter]="{ median: 0.08, threshold: 0.1 }" (valueChanges)="onValueChanges($event)"
+        (started)="onStarted($event)"></barcode-scanner-livestream>
+</div>
+<div class="barcode-value" [hidden]="!barcodeValue">
+    {{ barcodeValue }}
 </div>

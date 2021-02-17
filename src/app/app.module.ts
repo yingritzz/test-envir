@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +44,12 @@ import { JobEditComponent } from './components/job-edit/job-edit.component';
 import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
 import { JobAllComponent } from './components/job-all/job-all.component';
 import { LineJoballComponent } from './LINE/line-joball/line-joball.component';
+
+import {
+  BarcodeScannerLivestreamModule,
+  BarcodeScannerLivestreamOverlayModule
+} from 'ngx-barcode-scanner';
+
 
 @NgModule({
   declarations: [
@@ -90,6 +96,8 @@ import { LineJoballComponent } from './LINE/line-joball/line-joball.component';
     Ng2SearchPipeModule,
     AutocompleteLibModule,
     NgxPaginationModule,
+    BarcodeScannerLivestreamModule,
+    BarcodeScannerLivestreamOverlayModule,
     LeafletModule,
     NgCircleProgressModule.forRoot({
       "radius": 26,
@@ -104,6 +112,7 @@ import { LineJoballComponent } from './LINE/line-joball/line-joball.component';
     })
 
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })

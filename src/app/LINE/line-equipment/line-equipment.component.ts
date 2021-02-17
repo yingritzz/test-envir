@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit,ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ApiService } from '../../services/api.service';
 import { Equipment, EquipmentDetail } from '../../models/equipment';
+import { QuaggaJSResultObject } from '@ericblade/quagga2';
+import { BarcodeScannerLivestreamComponent } from 'ngx-barcode-scanner';
 
 @Component({
   selector: 'app-line-equipment',
   templateUrl: './line-equipment.component.html',
   styleUrls: ['./line-equipment.component.css']
 })
-export class LineEquipmentComponent implements OnInit {
+export class LineEquipmentComponent implements AfterViewInit  {
+
+  @ViewChild(BarcodeScannerLivestreamComponent)
+  barcodeScanner: BarcodeScannerLivestreamComponent;
+
+  barcodeValue: any 
 
   //Equipment
   eq_count: any;
@@ -35,6 +42,7 @@ export class LineEquipmentComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public apiService: ApiService
+    
   ) {
     this.eq_data = [];
     this.eq_new = new Equipment();
@@ -42,11 +50,30 @@ export class LineEquipmentComponent implements OnInit {
     this.eqd_data = [];
     this.eqd_new = new EquipmentDetail();
     this.eqd_edit = new EquipmentDetail();
+
+    this.barcodeScanner = new BarcodeScannerLivestreamComponent;
+
+  }
+  ngAfterViewInit(): void {
+    
   }
 
   ngOnInit(): void {
     this.getAllEquipments();
   }
+
+clickScanner(){
+  this.barcodeScanner.start();
+}
+
+onValueChanges(result: QuaggaJSResultObject): void {
+    console.log(result.codeResult.code)
+    this.barcodeValue = result.codeResult.code;
+}
+
+onStarted(event:any): void {
+    console.log('started', event);
+}
 
   onClickBack() {
     this.isDisplay1 = true;
@@ -77,6 +104,47 @@ export class LineEquipmentComponent implements OnInit {
       }
       this.getData(res);
     });
+  }
+
+  addEquip(){
+
+    if (this.eqd_new.id) {
+      var sn2 = this.eqd_new.id[0]
+      console.log(sn2)
+      for (let i = 1; i < this.eqd_new.id.length; i++) {
+        if (this.eqd_new.id[i] == '.' || 
+        (this.eqd_new.id[i]) == '/' || (this.eqd_new.id[i]) == '^' || 
+        (this.eqd_new.id[i])== '*' || (this.eqd_new.id[i]) == '{' ||
+        (this.eqd_new.id[i]) == '&' || (this.eqd_new.id[i]) == '}' ||
+        (this.eqd_new.id[i])== '$' || (this.eqd_new.id[i]) == '[' ||
+        (this.eqd_new.id[i]) == '฿' || (this.eqd_new.id[i]) == ']' ||
+        (this.eqd_new.id[i]) == '>' || (this.eqd_new.id[i]) == '(' ||
+        (this.eqd_new.id[i]) == '<' || (this.eqd_new.id[i]) == ')' ||
+        (this.eqd_new.id[i]) == ',' || (this.eqd_new.id[i]) == ':' || 
+        (this.eqd_new.id[i]) == ';' || (this.eqd_new.id[i]) == "'" ||
+        (this.eqd_new.id[i]) == '@' || (this.eqd_new.id[i]) == "%" ||
+        (this.eqd_new.id[i]) == "!" || (this.eqd_new.id[i]) == "+" ||
+        (this.eqd_new.id[i]) == "=" || (this.eqd_new.id[i]) == " ") {
+          sn2 = sn2 + '-'
+        } else {
+          sn2 = sn2 + this.eqd_new.id[i]
+        }
+      }
+    } 
+    console.log(this.eqd_new)
+    if (this.eqd_new.id!= null || this.eqd_new.eq_detail_name  != null || this.eqd_new.eq_detail_status  != null ) {
+        this.eqd_new.eq_detail_status = "ว่าง";
+        this.eqd_new.id = sn2
+        this.eqd_new.eq_id = this.eq_id;
+        
+      this.apiService.createEqDetail(this.eqd_new).then((res: any) => {
+        this.getEqDetail()
+      });
+      this.eqd_new = new EquipmentDetail();
+    }
+    else {
+      Swal.fire("ไม่สามารถเพิ่มรายการอุปกรณ์ได้", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+    }
   }
   getData(data: any) {
     this.eq_data = data
