@@ -11,8 +11,8 @@ import { Admin, Login } from '../models/admin';
 export class ApiService {
 
   // API path
-  // base_path = 'https://mapedia.co.th/envir-api/';
-  base_path = 'http://localhost/API/';
+  base_path = 'https://mapedia.co.th/envir-api/';
+  // base_path = 'http://localhost/API/';
 
 
   constructor(private http: HttpClient) { }
