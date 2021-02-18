@@ -50,6 +50,7 @@ export class LineJoballComponent implements OnInit {
     this.status = new EmploymentDetailEdit();
     this.amount = new EquipmentAmount;
   }
+  os: ReturnType<typeof liff.getOS>;
 
   ngOnInit(): void {
     this.getJobAll();
@@ -69,11 +70,13 @@ export class LineJoballComponent implements OnInit {
   getData(data: any) {
     this.jobAll = data;
   }
-  async getFromLine(){
+  async getFromLine() {
     await liff.init({ liffId: "1655665001-GKm9YPZ9" })
-    this.lineEmail = liff.getDecodedIDToken()!.email
+    const profile = await liff.getProfile();
+    this.lineEmail = await profile.userId
     console.log(this.lineEmail);
   }
+
 
   //detail
 
