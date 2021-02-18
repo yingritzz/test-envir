@@ -72,6 +72,11 @@ export class LineJoballComponent implements OnInit {
   }
   async getFromLine() {
     this.lineEmail = "lala"
+    if (liff.isLoggedIn()) {
+      this.lineEmail = liff.getOS()
+    } else {
+      liff.login()
+    }
   }
   //detail
 
