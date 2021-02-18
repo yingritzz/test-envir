@@ -58,8 +58,9 @@ export class LineJoballComponent implements OnInit {
 
   async getLine(){
     liff.init({ liffId: "1655665001-GKm9YPZ9" })
-    .then((profile) => {
-      this.lineEmail = profile;
+    .then(async (data) => {
+      const profile = await liff.getProfile();
+      this.lineEmail = profile.userId;
     });
     
   }
