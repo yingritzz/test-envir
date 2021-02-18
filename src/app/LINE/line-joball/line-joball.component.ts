@@ -49,10 +49,11 @@ export class LineJoballComponent implements OnInit {
     this.jobUpdate = new EmploymentDetail();
     this.status = new EmploymentDetailEdit();
     this.amount = new EquipmentAmount;
-    liff.init({ liffId: '1655665001-GKm9YPZ9' });
   }
 
   ngOnInit(): void {
+    liff.init({ liffId: '1655665001-GKm9YPZ9' });
+    liff.login()
     this.getFromLine();
     this.getJobAll();
   }
@@ -76,11 +77,9 @@ export class LineJoballComponent implements OnInit {
       this.lineEmail = await profile.userId
       console.log(this.lineEmail);
     } else {
-      liff.login()
+      
     }
   }
-
-
   //detail
 
   statusChange(status: any) {
