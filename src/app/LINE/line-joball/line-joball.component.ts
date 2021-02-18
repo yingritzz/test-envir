@@ -71,9 +71,7 @@ export class LineJoballComponent implements OnInit {
     this.jobAll = data;
   }
   async getFromLine() {
-    const profile = await liff.getProfile();
-    this.lineEmail = await profile.userId
-    console.log(this.lineEmail);
+    
   }
   //detail
 
