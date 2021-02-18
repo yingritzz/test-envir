@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { EmploymentDetail, EmploymentDetailEdit } from '../../models/employment';
 import { EquipmentAmount } from '../../models/equipment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-line-selling',
@@ -17,13 +18,17 @@ export class LineSellingComponent implements OnInit {
   type: string = "selling";
 
   jobs: any = []
-  jobEdit: any = []
+  // jobEdit: any = []
+  id_i: any;
+  id_j: any;
+  id_job: any = [];
+  id_status: any;
   page = 1;
   count = 0;
   tableSize = 10;
-  
+
   rentals: string[] = ["รับงาน", "อยู่ระหว่างการเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งของคืน", "บริษัทรับของคืน", "สิ้นสุดการเช่ายืม"];
-  testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า" , "สิ้นสุดการทดสอบ"];
+  testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการทดสอบ"];
   maintenanc: string[] = ["รับงาน", "อยู่ระหว่างการซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการซ่อมบำรุง"];
   selling: string[] = ["รับงาน", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สิ้นสุดการจำหน่าย"];
   statusArray: string[] = [];
@@ -42,7 +47,7 @@ export class LineSellingComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public apiService: ApiService
-  ) { 
+  ) {
     this.jobUpdate = new EmploymentDetail();
     this.status = new EmploymentDetailEdit();
     this.amount = new EquipmentAmount;
@@ -52,7 +57,7 @@ export class LineSellingComponent implements OnInit {
     this.getJobSelling();
   }
 
-  onTableDataChange(event: any){
+  onTableDataChange(event: any) {
     this.page = event;
     this.getJobSelling();
   }
@@ -91,38 +96,42 @@ export class LineSellingComponent implements OnInit {
     console.log(id)
   }
 
-  getStatus(data:any){
+  getStatus(data: any) {
     this.thisStatus = data
   }
 
-  clickEdit(id:any){
-      this.apiService.getEmploymentDetail(id).then((res: any) => {
-        this.jobEdit = res
-        this.getStatus(res)
-        console.log(this.jobEdit)
-      });
-      
-  }
-  clickChangeStatus(){
+  clickEdit(id: any) {
+    this.apiService.getEmploymentDetail(id).then((res: any) => {
+      // this.jobEdit = res
+      this.getStatus(res)
+    });
 
-    for (let j = 0; j <this.jobSelling.length; j++){
-    for (let i = 0; i < this.thisStatus.length; i++){
-      if (this.thisStatus[i].status == "สิ้นสุดการเช่ายืม" || this.thisStatus[i].status == "สิ้นสุดการทดสอบ" ||
-      this.thisStatus[i].status == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i].status == "สิ้นสุดการจำหน่าย") {
-        (<HTMLInputElement>document.getElementById("status"+i+j)).disabled = true;   
-      }
-      else {
-        (<HTMLInputElement>document.getElementById("status"+i+j)).disabled = false;
+  }
+  async clickChangeStatus(j: any, i: any, job: any) {
+    this.id_i = await i;
+    this.id_j = await j;
+    this.id_job = await job;
+    this.id_status = await this.thisStatus[j].status;
+    for (let j = 0; j < this.jobSelling.length; j++) {
+      for (let i = 0; i < this.thisStatus.length; i++) {
+        if (this.thisStatus[i].status == "สิ้นสุดการเช่ายืม" || this.thisStatus[i].status == "สิ้นสุดการทดสอบ" ||
+          this.thisStatus[i].status == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i].status == "สิ้นสุดการจำหน่าย") {
+          (<HTMLInputElement>document.getElementById("status")).disabled = true;
+        }
+        else {
+          (<HTMLInputElement>document.getElementById("status")).disabled = false;
+        }
       }
     }
   }
-}
 
-onClickSave(id: any, eqd_id: any, amount: any) {
-    this.status.status = this.status_list
+  onClickSave(id: any, eqd_id: any, amount: any) {
+    this.status.status = this.id_status
     this.apiService.updateEmd(parseInt(this.id_list), this.status).then((res: any) => {
-      if (this.status_list == "สิ้นสุดการเช่ายืม" || this.status_list == "สิ้นสุดการทดสอบ" ||
-      this.status_list == "สิ้นสุดการซ่อมบำรุง") {
+      this.clickEdit(id);
+      Swal.fire('แก้ไขสถานะงานสำเร็จ!', '', 'success')
+      if (this.id_status == "สิ้นสุดการเช่ายืม" || this.id_status == "สิ้นสุดการทดสอบ" ||
+        this.id_status == "สิ้นสุดการซ่อมบำรุง") {
         this.amount.amount = amount
         this.amount.eqd = eqd_id
         this.apiService.updateEqStatusSuccess(id, this.amount).then((res: any) => {
@@ -130,6 +139,5 @@ onClickSave(id: any, eqd_id: any, amount: any) {
       }
     });
   }
-
 
 }

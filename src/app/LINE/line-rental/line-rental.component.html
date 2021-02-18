@@ -27,7 +27,7 @@
                             <button class="btn btn-block collapsed" data-toggle="collapse"
                                 [attr.data-target]="'#test' + i" (click)="clickEdit(item.id)">
                                 <h5 class="card-title weight-500">เลขที่ใบเสร็จ{{item.id}} : {{item.cus_fullname}}</h5>
-                                <p class="card-text">{{item.string_agg}}</p>
+                                <!-- <p class="card-text">{{item.string_agg}}</p> -->
                             </button>
                         </div>
                         <div id="test{{i}}" class="collapse" data-parent="#accordion">
@@ -41,7 +41,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let job of jobEdit; index as j">
+                                            <tr *ngFor="let job of thisStatus; index as j">
                                                 <ng-container *ngIf="statusChange(job.category)"></ng-container>
                                                 <td><strong>{{job.eq_detail_name}}</strong>
                                                     <p class="card-text">สถานะ: {{job.status}}</p>
@@ -49,14 +49,14 @@
                                                 <td>
                                                     <div class="btn-list right">
                                                         <span class="btn btn-success btn-sm" type="button"
-                                                            value="submit" data-toggle="modal"
-                                                            [attr.data-target]="'#edit'+j+i"
-                                                            (click)="clickChangeStatus()"><i
+                                                            value="submit" data-toggle="modal" 
+                                                            [attr.data-target]="'#edit'+i+j"
+                                                            (click)="clickChangeStatus(j,i,job)"><i
                                                                 class="icon-copy fa fa-pencil-square-o btn-size"
                                                                 aria-hidden="true"></i></span>
                                                     </div>
 
-                                                    <div class="modal fade" id="edit{{j}}{{i}}" tabindex="-1"
+                                                    <!-- <div class="modal fade" id="edit{{j}}{{i}}" tabindex="-1"
                                                         role="dialog" aria-labelledby="myLargeModalLabel"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
@@ -100,7 +100,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -114,6 +114,45 @@
             <div class="clearfix justify-content-center wrapper">
                 <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
                 </pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="edit{{id_i}}{{id_j}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <ng-container *ngIf="statusChange(id_job.category)"></ng-container>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">
+                    แก้ไขสถานะอุปกรณ์
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div>
+                        <div class="form-group">
+                            <h5>{{id_job.detail_id}}</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">สถานะ</label>
+                            <select _ngcontent-ysi-c51="" name="status" id="status"
+                                (change)="updateStatus(id_job.em_detail_id,thisStatus[id_j].status)"
+                                [(ngModel)]="id_status"
+                                class="custom-select form-control ng-untouched ng-pristine ng-valid">
+                                <option *ngFor="let status of statusArray" value="{{status}}">{{status}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="reset" class="btn btn-primary" data-dismiss="modal" value="submit"
+                    (click)="onClickSave(id_job.id,id_job.detail_id,id_job.amount)">Save</button>
             </div>
         </div>
     </div>

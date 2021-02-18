@@ -16,7 +16,7 @@ export class LineJoballComponent implements OnInit {
   statusArray: string[] = [];
   id: any;
   rentals: string[] = ["รับงาน", "อยู่ระหว่างการเช่า-ยืม", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งของคืน", "บริษัทรับของคืน", "สิ้นสุดการเช่ายืม"];
-  testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า" , "สิ้นสุดการทดสอบ"];
+  testing: string[] = ["รับงาน", "อยู่ระหว่างการทดสอบ", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการทดสอบ"];
   maintenanc: string[] = ["รับงาน", "อยู่ระหว่างการซ่อมบำรุง", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "ลูกค้าส่งสินค้า", "บริษัทรับสินค้า", "สิ้นสุดการซ่อมบำรุง"];
   selling: string[] = ["รับงาน", "ส่งของให้ลูกค้า", "ลูกค้ารับสินค้า", "สิ้นสุดการจำหน่าย"];
   jobUpdate: EmploymentDetail;
@@ -48,13 +48,13 @@ export class LineJoballComponent implements OnInit {
     this.jobUpdate = new EmploymentDetail();
     this.status = new EmploymentDetailEdit();
     this.amount = new EquipmentAmount;
-   }
+  }
 
   ngOnInit(): void {
     this.getJobAll();
   }
 
-  onTableDataChange(event: any){
+  onTableDataChange(event: any) {
     this.page = event;
     this.getJobAll();
   }
@@ -93,15 +93,15 @@ export class LineJoballComponent implements OnInit {
   getStatus(data: any) {
     this.thisStatus = data
   }
-  
+
   async clickEdit(id: any) {
     this.apiService.getEmploymentDetail(id).then(async (res: any) => {
       // this.jobEdit = await res;
       this.getStatus(res)
     });
   }
-  
-  async clickChangeStatus(j:any ,i:any ,job:any) {
+
+  async clickChangeStatus(j: any, i: any, job: any) {
     this.id_i = await i;
     this.id_j = await j;
     this.id_job = await job;
@@ -124,7 +124,7 @@ export class LineJoballComponent implements OnInit {
       this.clickEdit(id);
       Swal.fire('แก้ไขสถานะงานสำเร็จ!', '', 'success')
       if (this.id_status == "สิ้นสุดการเช่ายืม" || this.id_status == "สิ้นสุดการทดสอบ" ||
-      this.id_status == "สิ้นสุดการซ่อมบำรุง") {
+        this.id_status == "สิ้นสุดการซ่อมบำรุง") {
         this.amount.amount = amount
         this.amount.eqd = eqd_id
         this.apiService.updateEqStatusSuccess(id, this.amount).then((res: any) => {
