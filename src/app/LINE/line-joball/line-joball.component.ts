@@ -73,12 +73,8 @@ export class LineJoballComponent implements OnInit {
   }
   async getFromLine() {
     const profile = await liff.getProfile();
-    if (liff.isLoggedIn() == true) {
-      this.lineEmail = await profile.userId
-      console.log(this.lineEmail);
-    } else {
-      
-    }
+    this.lineEmail = await profile.userId
+    console.log(this.lineEmail);
   }
   //detail
 
