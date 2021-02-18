@@ -30,7 +30,7 @@ export class LineJoballComponent implements OnInit {
   thisStatus: any;
 
   jobAll: any = [];
-  jobEdit: any = [];
+  // jobEdit: any = [];
   id_i: any;
   id_j: any;
   id_job: any = [];
