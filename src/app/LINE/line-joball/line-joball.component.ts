@@ -52,9 +52,16 @@ export class LineJoballComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    liff.init({ liffId: '1655665001-GKm9YPZ9' });
-    this.getFromLine();
     this.getJobAll();
+    this.getLine();
+  }
+
+  async getLine(){
+    liff.init({ liffId: "1655665001-GKm9YPZ9" })
+    .then((profile) => {
+      this.lineEmail = profile;
+    });
+    
   }
 
   onTableDataChange(event: any) {
@@ -69,14 +76,6 @@ export class LineJoballComponent implements OnInit {
   }
   getData(data: any) {
     this.jobAll = data;
-  }
-  async getFromLine() {
-    this.lineEmail = "lala"
-    if (liff.isLoggedIn()) {
-      this.lineEmail = liff.getOS()
-    } else {
-      liff.login()
-    }
   }
   //detail
 
