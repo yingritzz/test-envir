@@ -112,16 +112,12 @@ export class LineRentalComponent implements OnInit {
     this.id_j = await j;
     this.id_job = await job;
     this.id_status = await this.thisStatus[j].status;
-    for (let j = 0; j < this.jobRental.length; j++) {
-      for (let i = 0; i < this.thisStatus.length; i++) {
-        if (this.thisStatus[i].status == "สิ้นสุดการเช่ายืม" || this.thisStatus[i].status == "สิ้นสุดการทดสอบ" ||
-          this.thisStatus[i].status == "สิ้นสุดการซ่อมบำรุง" || this.thisStatus[i].status == "สิ้นสุดการจำหน่าย") {
-          (<HTMLInputElement>document.getElementById("status")).disabled = true;
-        }
-        else {
-          (<HTMLInputElement>document.getElementById("status")).disabled = false;
-        }
-      }
+    if (this.id_status == "สิ้นสุดการเช่ายืม" || this.id_status == "สิ้นสุดการทดสอบ" ||
+      this.id_status == "สิ้นสุดการซ่อมบำรุง" || this.id_status == "สิ้นสุดการจำหน่าย") {
+      (document.getElementById('status') as HTMLInputElement).disabled = true;
+    }
+    else {
+      (document.getElementById('status') as HTMLInputElement).disabled = false;
     }
   }
 

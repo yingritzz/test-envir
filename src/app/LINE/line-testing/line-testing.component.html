@@ -42,7 +42,6 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let job of thisStatus; index as j">
-                                                <ng-container *ngIf="statusChange(job.category)"></ng-container>
                                                 <td><strong>{{job.eq_detail_name}}</strong>
                                                     <p class="card-text">สถานะ: {{job.status}}</p>
                                                 </td>
