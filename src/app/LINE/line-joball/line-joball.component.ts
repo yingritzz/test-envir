@@ -53,7 +53,6 @@ export class LineJoballComponent implements OnInit {
 
   ngOnInit(): void {
     liff.init({ liffId: '1655665001-GKm9YPZ9' });
-    liff.login()
     this.getFromLine();
     this.getJobAll();
   }
