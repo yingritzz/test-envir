@@ -5,6 +5,7 @@ import { ApiService } from '../../services/api.service';
 import { EmploymentDetail, EmploymentDetailEdit } from '../../models/employment';
 import { EquipmentAmount } from '../../models/equipment';
 import Swal from 'sweetalert2';
+import liff from '@line/liff';
 
 @Component({
   selector: 'app-line-joball',
@@ -30,11 +31,11 @@ export class LineJoballComponent implements OnInit {
   thisStatus: any;
 
   jobAll: any = [];
-  // jobEdit: any = [];
   id_i: any;
   id_j: any;
   id_job: any = [];
   id_status: any;
+  lineEmail: any;
   page = 1;
   count = 0;
   tableSize = 10
@@ -52,6 +53,7 @@ export class LineJoballComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJobAll();
+    this.getFromLine();
   }
 
   onTableDataChange(event: any) {
@@ -66,6 +68,11 @@ export class LineJoballComponent implements OnInit {
   }
   getData(data: any) {
     this.jobAll = data;
+  }
+  async getFromLine(){
+    await liff.init({ liffId: "1655665001-GKm9YPZ9" })
+    this.lineEmail = liff.getDecodedIDToken()!.email
+    console.log(this.lineEmail);
   }
 
   //detail
