@@ -70,14 +70,14 @@ export class LineJoballComponent implements OnInit {
     this.jobAll = data;
   }
   async getFromLine() {
-    liff.init({ liffId: '1655665001-GKm9YPZ9' });
-    const profile = await liff.getProfile();
-    if (liff.isLoggedIn()) {
-      this.lineEmail = await profile.userId
-      console.log(this.lineEmail);
-    } else {
-      liff.login()
-    }
+    // liff.init({ liffId: '1655665001-GKm9YPZ9' });
+    // const profile = await liff.getProfile();
+    // if (liff.isLoggedIn()) {
+    //   this.lineEmail = await profile.userId
+    //   console.log(this.lineEmail);
+    // } else {
+    //   liff.login()
+    // }
   }
 
 
