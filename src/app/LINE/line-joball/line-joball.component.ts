@@ -71,7 +71,7 @@ export class LineJoballComponent implements OnInit {
     this.jobAll = data;
   }
   async getFromLine() {
-    
+    this.lineEmail = "lala"
   }
   //detail
 
