@@ -5,8 +5,6 @@ import { ApiService } from '../../services/api.service';
 import { EmploymentDetail, EmploymentDetailEdit } from '../../models/employment';
 import { EquipmentAmount } from '../../models/equipment';
 import Swal from 'sweetalert2';
-import liff from '@line/liff';
-import { BORDER_STYLE } from 'html2canvas/dist/types/css/property-descriptors/border-style';
 
 @Component({
   selector: 'app-line-joball',
@@ -36,7 +34,6 @@ export class LineJoballComponent implements OnInit {
   id_j: any;
   id_job: any = [];
   id_status: any;
-  lineEmail: any;
   page = 1;
   count = 0;
   tableSize = 10
@@ -54,18 +51,6 @@ export class LineJoballComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJobAll();
-    this.getLine();
-  }
-
-  async getLine() {
-    await liff.init({ liffId: "1655682941-n3bkLoQv" })
-      .then(() => {
-        if (!liff.isLoggedIn()) {
-          document.getElementById('test')?.append('5555555')
-        } else {
-          liff.login()
-        }
-      });
   }
 
   onTableDataChange(event: any) {

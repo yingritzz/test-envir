@@ -50,6 +50,7 @@ import {
 } from 'ngx-barcode-scanner';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
