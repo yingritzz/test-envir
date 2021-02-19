@@ -17,11 +17,7 @@ export class TestsComponent implements OnInit {
   async getLine() {
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
       .then(async () => {
-        if (liff.isLoggedIn()) {
-          document.getElementById('test')?.append('lala');
-        } else {
-          liff.login({ redirectUri: 'https://bit.ly/3aA47hC' });
-        }
+        document.getElementById('test')?.append('lala');
       });
   }
 
