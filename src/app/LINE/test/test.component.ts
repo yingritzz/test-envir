@@ -20,10 +20,13 @@ export class TestsComponent implements OnInit {
     document.getElementById('test')?.append('lala');
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
       .then(async () => {
-        document.getElementById('test')?.append(liff.getOS()!);
-        document.getElementById('test')?.append(liff.getVersion());
-        document.getElementById('test')?.append(liff.getLanguage()!);
-        document.getElementById('test')?.append((await liff.getProfile()).displayName);
+        if (liff.isInClient()) {
+          document.getElementById('test')?.append(liff.getOS()!);
+          document.getElementById('test')?.append(liff.getVersion());
+          document.getElementById('test')?.append(liff.getLanguage()!);
+          document.getElementById('test')?.append((await liff.getProfile()).displayName);
+        }
+
       });
   }
 
