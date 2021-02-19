@@ -26,7 +26,7 @@ export class TestsComponent implements OnInit {
         if (liff.isInClient()) {
           document.getElementById('test')?.append((await liff.getProfile()).displayName);
         }else {
-          liff.login({redirectUri: 'https://music.youtube.com/watch?v=qGYB1fKpZdA&list=RDAMVMaAwbtwnUD6w'})
+          liff.login({redirectUri: 'https://bit.ly/3uc9dZp'})
         }
 
       });
