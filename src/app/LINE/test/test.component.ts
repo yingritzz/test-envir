@@ -17,7 +17,7 @@ export class TestsComponent implements OnInit {
   async getLine() {
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
       .then(async () => {
-        document.getElementById('test')?.append('lala');
+        document.getElementById('test')?.append(liff.getOS()!);
       });
   }
 
