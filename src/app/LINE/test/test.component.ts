@@ -18,7 +18,7 @@ export class TestsComponent implements OnInit {
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
       .then(async () => {
         if (liff.isLoggedIn()) {
-          document.getElementById('test')?.append(liff.getOS()!);
+          document.getElementById('test')?.append("liff.getOS()!");
         } else {
           liff.login();
         }
