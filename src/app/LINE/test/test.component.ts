@@ -21,7 +21,9 @@ export class TestsComponent implements OnInit {
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
       .then(async () => {
         document.getElementById('test')?.append(liff.getOS()!);
-        document.getElementById('test')?.append((await liff.getProfile()!).displayName);
+        document.getElementById('test')?.append(liff.getVersion());
+        document.getElementById('test')?.append(liff.getLanguage()!);
+        document.getElementById('test')?.append((await liff.getProfile()).displayName);
       });
   }
 
