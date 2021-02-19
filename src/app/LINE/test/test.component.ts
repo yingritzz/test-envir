@@ -20,7 +20,7 @@ export class TestsComponent implements OnInit {
         if (liff.isLoggedIn()) {
           document.getElementById('test')?.append("liff.getOS()!");
         } else {
-          liff.login();
+          liff.login({redirectUri: 'https://bit.ly/3aA47hC'});
         }
       });
   }
