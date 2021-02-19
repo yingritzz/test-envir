@@ -21,7 +21,7 @@ export class TestsComponent implements OnInit {
           const profile = await liff.getProfile();
           document.getElementById('test')?.append(profile.displayName);
         } else {
-          liff.login()
+          liff.login();
         }
       });
   }
