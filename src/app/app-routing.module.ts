@@ -28,7 +28,7 @@ import { LineRentalComponent } from './LINE/line-rental/line-rental.component';
 import { LineSellingComponent } from './LINE/line-selling/line-selling.component';
 import { LineTestingComponent } from './LINE/line-testing/line-testing.component';
 import { LineJoballComponent } from './LINE/line-joball/line-joball.component';
-import { TestComponent } from './LINE/test/test.component';
+import { TestsComponent } from './LINE/test/test.component';
 
 const routes: Routes = [
   {path: '', component:LoginComponent},
@@ -58,7 +58,7 @@ const routes: Routes = [
   {path: 'line/selling', component:LineSellingComponent},
   {path: 'line/testing', component:LineTestingComponent},
   {path: 'line/joball', component:LineJoballComponent},
-  {path: 'line/test', component:TestComponent},
+  {path: 'test', component:TestsComponent},
   {path: '**', component:LoginComponent}
   
 ];

@@ -6,7 +6,7 @@ import liff from '@line/liff';
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
-export class TestComponent implements OnInit {
+export class TestsComponent implements OnInit {
 
   constructor() { }
 
