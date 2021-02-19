@@ -62,7 +62,7 @@ export class LineJoballComponent implements OnInit {
     if(liff.isLoggedIn()) {
       document.getElementById('test')?.append(profile.displayName);
     } else {
-      liff.login({redirectUri: 'https://yingritzz.github.io/test-envir/test-envir#/line/joball'});
+      liff.login({redirectUri: 'https://yingritzz.github.io/test-envir/test-envir#/line/home'});
     }
   }
 
