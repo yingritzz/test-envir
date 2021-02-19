@@ -58,16 +58,22 @@ export class LineJoballComponent implements OnInit {
   }
 
   async getLine() {
-    liff.ready.then(async () => {
-      if( liff.getOS() === 'ios') {
-        document.getElementById('test')?.append('5555555');
-      }
-      // if (liff.isInClient()) {
-      //   const profile = await liff.getProfile();
-      //   document.getElementById('test')?.append(profile.displayName);
-      // }
-    })
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
+    if(!liff.isLoggedIn()) {
+      liff.login();
+      } else {
+        liff.ready.then(async () => {
+          if( liff.getOS() === 'ios') {
+            document.getElementById('test')?.append('5555555');
+          }
+          // if (liff.isInClient()) {
+          //   const profile = await liff.getProfile();
+          //   document.getElementById('test')?.append(profile.displayName);
+          // }
+        })
+      }
+    
+    
     // const profile = await liff.getProfile();
     // if(liff.isLoggedIn()) {
     //   document.getElementById('test')?.append(profile.displayName);
