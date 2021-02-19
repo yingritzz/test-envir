@@ -62,10 +62,10 @@ export class LineJoballComponent implements OnInit {
       if( liff.getOS() === 'ios') {
         document.getElementById('test')?.append('5555555');
       }
-      if (liff.isInClient()) {
-        const profile = await liff.getProfile();
-        document.getElementById('test')?.append(profile.displayName);
-      }
+      // if (liff.isInClient()) {
+      //   const profile = await liff.getProfile();
+      //   document.getElementById('test')?.append(profile.displayName);
+      // }
     })
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
     // const profile = await liff.getProfile();
