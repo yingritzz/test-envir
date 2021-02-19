@@ -56,13 +56,14 @@ export class LineJoballComponent implements OnInit {
     this.getLine();
   }
 
-  async getLine(){
-    liff.init({ liffId: "1655665001-GKm9YPZ9" })
-    .then(async (data) => {
-      const profile = await liff.getProfile();
-      this.lineEmail = profile.userId;
-    });
-    
+  async getLine() {
+    await liff.init({ liffId: "1655665001-GKm9YPZ9" })
+    const profile = await liff.getProfile();
+    if(liff.isLoggedIn()) {
+      document.getElementById('test')?.append(profile.displayName);
+    } else {
+      liff.login
+    }
   }
 
   onTableDataChange(event: any) {
