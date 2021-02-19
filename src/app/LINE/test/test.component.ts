@@ -16,9 +16,10 @@ export class TestsComponent implements OnInit {
 
   async getLine() {
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
-      .then(() => {
-        if (!liff.isLoggedIn()) {
-          document.getElementById('test')?.append('5555555')
+      .then(async () => {
+        if (liff.isLoggedIn()) {
+          const profile = await liff.getProfile();
+          document.getElementById('test')?.append(profile.displayName);
         } else {
           liff.login()
         }
