@@ -17,10 +17,9 @@ export class TestsComponent implements OnInit {
   }
 
   async getLine() {
+    document.getElementById('test')?.append('lala');
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
       .then(async () => {
-        const profile = await liff.getProfile();
-        this.id_line = profile.userId;
         document.getElementById('test')?.append(liff.getOS()!);
         document.getElementById('test')?.append((await liff.getProfile()!).displayName);
       });
