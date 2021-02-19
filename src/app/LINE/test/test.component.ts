@@ -16,27 +16,13 @@ export class TestsComponent implements OnInit {
 
   async getLine() {
     await liff.init({ liffId: "1655682941-n3bkLoQv" })
-    if (liff.isInClient()) {
-      this.getUserProfile()
-    } else {
-      if (liff.isLoggedIn()) {
-        this.getUserProfile()
-      } else {
-      }
-    }
-    // await liff.init({ liffId: "1655682941-n3bkLoQv" })
-    //   .then(async () => {
-    //     if (liff.isLoggedIn()) {
-    //       document.getElementById('test')?.append("liff.getOS()!");
-    //     } else {
-    //       liff.login({ redirectUri: 'https://bit.ly/3aA47hC' });
-    //     }
-    //   });
-  }
-  async getUserProfile() {
-    const profile = await liff.getProfile()
-    document.getElementById("test")!.style.display = "block"
-    document.getElementById("test")!.append = liff.getOS
+      .then(async () => {
+        if (liff.isLoggedIn()) {
+          document.getElementById('test')?.append('lala');
+        } else {
+          liff.login({ redirectUri: 'https://bit.ly/3aA47hC' });
+        }
+      });
   }
 
 }
