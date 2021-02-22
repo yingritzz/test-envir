@@ -22,8 +22,7 @@ export class LineLoginComponent implements OnInit {
   constructor(
     public router: Router,
     public apiService: ApiService,
-    private _location: Location,
-    private _Activatedroute: ActivatedRoute
+    private _location: Location
   ) {
     this.login_data = new Login();
     this.line = new LineLogin();
@@ -46,7 +45,8 @@ export class LineLoginComponent implements OnInit {
     this.apiService.login(this.login_data).then((res: any) => {
       this.line.admin_id = parseInt(res[0].id);
       this.apiService.addAdminLine(this.line).then((res: any) => {
-        this._location.back();
+        // this._location.back();
+        window.location.assign("https://liff.line.me/1655682941-n3bkLoQv");
       });
     },
       (err: any) => {
