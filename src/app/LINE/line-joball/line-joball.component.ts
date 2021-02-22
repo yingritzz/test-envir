@@ -52,26 +52,27 @@ export class LineJoballComponent implements OnInit {
     this.amount = new EquipmentAmount;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await liff.init({ liffId: "1655682941-n3bkLoQv" })
     this.getJobAll();
     this.getLine();
-    if(this.id_line == undefined) {
-      console.log('lala');
-    }else {
-      console.log(this.id_line);
-    }
+    
 
   }
 
   async getLine() {
-    await liff.init({ liffId: "1655682941-n3bkLoQv" })
-      .then(async () => {
-        if (liff.isLoggedIn()) {
-          this.id_line = (await liff.getProfile()).userId;
-        }else {
-          liff.login();
-        }
-      });
+    liff.ready.then(async () => {
+      if (liff.isLoggedIn()) {
+        this.id_line = (await liff.getProfile()).userId;
+      } else {
+        liff.login();
+      }
+    })
+    if (this.id_line == undefined) {
+      console.log('lala');
+    } else {
+      console.log(this.id_line);
+    }
   }
 
   onTableDataChange(event: any) {
