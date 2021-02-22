@@ -49,6 +49,7 @@ import {
   BarcodeScannerLivestreamOverlayModule
 } from 'ngx-barcode-scanner';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { LineLoginComponent } from './LINE/line-login/line-login.component';
 
 
 
@@ -85,7 +86,8 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
     JobEditComponent,
     FieldErrorDisplayComponent,
     JobAllComponent,
-    LineJoballComponent
+    LineJoballComponent,
+    LineLoginComponent
   ],
   imports: [
     BrowserModule,

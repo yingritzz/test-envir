@@ -28,6 +28,7 @@ import { LineRentalComponent } from './LINE/line-rental/line-rental.component';
 import { LineSellingComponent } from './LINE/line-selling/line-selling.component';
 import { LineTestingComponent } from './LINE/line-testing/line-testing.component';
 import { LineJoballComponent } from './LINE/line-joball/line-joball.component';
+import { LineLoginComponent } from './LINE/line-login/line-login.component';
 import { TestsComponent } from './LINE/test/test.component';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
@@ -59,6 +60,7 @@ const routes: Routes = [
   {path: 'lineselling', component:LineSellingComponent},
   {path: 'linetesting', component:LineTestingComponent},
   {path: 'linejoball', component:LineJoballComponent},
+  {path: 'linelogin', component:LineLoginComponent},
   {path: 'test', component:TestsComponent},
   {path: '**', component:LoginComponent}
 ];

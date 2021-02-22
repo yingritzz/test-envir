@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
 import { Customer, SearchCustomer } from '../models/customer';
 import { Equipment, EquipmentAmount, EquipmentDetail } from '../models/equipment';
 import { Employment, EmploymentDetail, EmploymentDetailEdit } from '../models/employment';
-import { Admin, Login } from '../models/admin';
+import { Admin, Login, LineLogin } from '../models/admin';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +34,19 @@ export class ApiService {
       });
     });
   }
-  async getAdmin() {
+  async getAdminLine() {
     return new Promise((res, rej) => {
-      this.http.get<Admin>(this.base_path+'get/admin')
+      this.http.get(this.base_path+'get/line_login')
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
+  async addAdminLine(id_line: any) {
+    return new Promise((res, rej) => {
+      this.http.post<LineLogin>(this.base_path+'post/line_login', JSON.stringify(id_line), this.httpOptions)
         .subscribe((data: any) => {
           res(data)
         }, (err: any) => {
