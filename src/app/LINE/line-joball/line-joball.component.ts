@@ -52,22 +52,21 @@ export class LineJoballComponent implements OnInit {
     this.amount = new EquipmentAmount;
   }
 
-  async ngOnInit(): Promise<void> {
-    await liff.init({ liffId: "1655682941-n3bkLoQv" })
+  ngOnInit() {
     this.getJobAll();
     this.getLine();
-    
-
   }
 
   async getLine() {
     liff.ready.then(async () => {
-      if (liff.isLoggedIn()) {
-        this.id_line = (await liff.getProfile()).userId;
+      if (liff.isLoggedIn()) { 
+      this.id_line = (await liff.getProfile()).userId;
       } else {
-        liff.login();
+        liff.login()
       }
     })
+    liff.init({liffId:'1655682941-n3bkLoQv'});
+   
     if (this.id_line == undefined) {
       console.log('lala');
     } else {
