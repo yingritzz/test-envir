@@ -54,20 +54,37 @@ export class LineJoballComponent implements OnInit {
 
   ngOnInit() {
     this.getJobAll();
-    this.getLine();
-  }
-
-  async getLine() {
-    liff.init({liffId:'1655682941-n3bkLoQv'});
-    const profile = await liff.getProfile();
     liff.ready.then(async () => {
       if (liff.isLoggedIn()) { 
+      const profile = await liff.getProfile();
       this.id_line = profile.userId;
+      document.getElementById("test")!.append('lala');
+      if (liff.isInClient()) {
+        document.getElementById("test")!.append(profile.userId);
+      }
       } else {
         liff.login()
       }
     })
-    document.getElementById("test")!.append(profile.userId);
+    liff.init({liffId:'1655682941-n3bkLoQv'});
+  }
+
+  async getLine() {
+   
+    liff.ready.then(async () => {
+      if (liff.isLoggedIn()) { 
+      const profile = await liff.getProfile();
+      this.id_line = profile.userId;
+      document.getElementById("test")!.append('lala');
+      if (liff.isInClient()) {
+        document.getElementById("test")!.append(profile.userId);
+      }
+      } else {
+        liff.login()
+      }
+    })
+    liff.init({liffId:'1655682941-n3bkLoQv'});
+    
     // if (this.id_line == undefined) {
     //   console.log('lala');
     // } else {
