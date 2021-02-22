@@ -46,9 +46,8 @@ export class LineLoginComponent implements OnInit {
     this.apiService.login(this.login_data).then((res: any) => {
       this.line.admin_id = parseInt(res[0].id);
       this.apiService.addAdminLine(this.line).then((res: any) => {
-        this._location.back();
+        this.router.navigate(['https://liff.line.me/1655682941-n3bkLoQv']);
       });
-      // this._location.back();
     },
       (err: any) => {
         console.log(err);
