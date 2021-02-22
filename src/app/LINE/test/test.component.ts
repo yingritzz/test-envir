@@ -24,9 +24,9 @@ export class TestsComponent implements OnInit {
         document.getElementById('test')?.append(liff.getVersion());
         document.getElementById('test')?.append(liff.getLanguage()!);
         if (liff.isInClient()) {
-          document.getElementById('test')?.append((await liff.getProfile()).displayName);
+          document.getElementById('test')?.append((await liff.getProfile()).userId);
         }else {
-          liff.login({redirectUri: 'https://bit.ly/3boaNyC'})
+          liff.login()
         }
 
       });
