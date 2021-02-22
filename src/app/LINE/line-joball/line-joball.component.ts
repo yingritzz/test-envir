@@ -58,20 +58,21 @@ export class LineJoballComponent implements OnInit {
   }
 
   async getLine() {
+    const profile = await liff.getProfile();
     liff.ready.then(async () => {
       if (liff.isLoggedIn()) { 
-      this.id_line = (await liff.getProfile()).userId;
+      this.id_line = profile.userId;
       } else {
         liff.login()
       }
     })
     liff.init({liffId:'1655682941-n3bkLoQv'});
-   
-    if (this.id_line == undefined) {
-      console.log('lala');
-    } else {
-      console.log(this.id_line);
-    }
+    document.getElementById("test")!.append(profile.userId);
+    // if (this.id_line == undefined) {
+    //   console.log('lala');
+    // } else {
+    //   console.log(this.id_line);
+    // }
   }
 
   onTableDataChange(event: any) {

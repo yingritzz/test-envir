@@ -13,23 +13,23 @@ export class TestsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.getLine();
+    // this.getLine();
   }
 
-  async getLine() {
-    document.getElementById('test')?.append('lala');
-    await liff.init({ liffId: "1655682941-n3bkLoQv" })
-      .then(async () => {
-        document.getElementById('test')?.append(liff.getOS()!);
-        document.getElementById('test')?.append(liff.getVersion());
-        document.getElementById('test')?.append(liff.getLanguage()!);
-        if (liff.isInClient()) {
-          document.getElementById('test')?.append((await liff.getProfile()).userId);
-        }else {
-          liff.login();
-        }
+  // async getLine() {
+  //   document.getElementById('test')?.append('lala');
+  //   await liff.init({ liffId: "1655682941-n3bkLoQv" })
+  //     .then(async () => {
+  //       document.getElementById('test')?.append(liff.getOS()!);
+  //       document.getElementById('test')?.append(liff.getVersion());
+  //       document.getElementById('test')?.append(liff.getLanguage()!);
+  //       if (liff.isInClient()) {
+  //         document.getElementById('test')?.append((await liff.getProfile()).userId);
+  //       }else {
+  //         liff.login();
+  //       }
 
-      });
-  }
+  //     });
+  // }
 
 }
