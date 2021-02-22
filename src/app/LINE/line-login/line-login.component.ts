@@ -30,34 +30,30 @@ export class LineLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._Activatedroute.paramMap.subscribe(params => {
-      this.id = params.get('id');
-    });
-    console.log(this.id)
-
-    // liff.ready.then(async () => {
-    //   if (liff.isLoggedIn()) {
-    //     const profile = await liff.getProfile();
-    //     this.line.line_id = profile.userId;
-    //   }
-    //   else {
-    //     liff.login()
-    //   }
-    // })
-    // liff.init({ liffId: '1655682941-n3bkLoQv' });
+    liff.ready.then(async () => {
+      if (liff.isLoggedIn()) {
+        const profile = await liff.getProfile();
+        this.line.line_id = profile.userId;
+      }
+      else {
+        liff.login()
+      }
+    })
+    liff.init({ liffId: '1655682941-G4VXDPkB' });
   }
 
   async submit_login() {
-    // this.apiService.login(this.login_data).then((res: any) => {
-    //   this.apiService.addAdminLine(this.login_data).then((res: any) => {
-    //     this._location.back();
-    //   });
-    //   // this._location.back();
-    // },
-    //   (err: any) => {
-    //     console.log(err);
-    //     Swal.fire("Login ไม่สำเร็จ", "กรุณาตรวจสอบ username หรือ password ให้ถูกต้อง", "error");
-    //   });
+    this.apiService.login(this.login_data).then((res: any) => {
+      this.line.admin_id = res[0].id;
+      this.apiService.addAdminLine(this.line).then((res: any) => {
+        this._location.back();
+      });
+      // this._location.back();
+    },
+      (err: any) => {
+        console.log(err);
+        Swal.fire("Login ไม่สำเร็จ", "กรุณาตรวจสอบ username หรือ password ให้ถูกต้อง", "error");
+      });
   }
 
 }

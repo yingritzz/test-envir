@@ -68,7 +68,7 @@ export class LineJoballComponent implements OnInit {
           });
         });
         if (id == 0) {
-          this.router.navigate(['/linelogin', '1655682941-n3bkLoQv']);
+          this.router.navigate(['/linelogin']);
         }
       }
       else {
