@@ -61,9 +61,15 @@ export class LineJoballComponent implements OnInit {
         document.getElementById("test")!.append(this.id_line);
         this.apiService.getAdminLine().then((res: any) => {
           res.forEach((item: any) => {
+            var id = 0;
             if (this.id_line == item.line_id) {
-              
+              id = id+1
             }else {
+              id = id
+            }
+
+            document.getElementById("test")!.append(id.toString());
+            if(id==0) {
               this.router.navigate(['/linelogin']);
             }
           });
