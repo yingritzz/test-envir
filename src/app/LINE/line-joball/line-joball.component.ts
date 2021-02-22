@@ -59,17 +59,15 @@ export class LineJoballComponent implements OnInit {
         const profile = await liff.getProfile();
         this.id_line = profile.userId;
         document.getElementById("test")!.append(this.id_line);
-        var id = 0;
         this.apiService.getAdminLine().then((res: any) => {
           res.forEach((item: any) => {
             if (this.id_line == item.line_id) {
-              id += 1
+              
+            }else {
+              this.router.navigate(['/linelogin']);
             }
           });
         });
-        if (id == 0) {
-          this.router.navigate(['/linelogin']);
-        }
       }
       else {
         liff.login()

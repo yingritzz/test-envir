@@ -44,7 +44,7 @@ export class LineLoginComponent implements OnInit {
 
   async submit_login() {
     this.apiService.login(this.login_data).then((res: any) => {
-      this.line.admin_id = res[0].id;
+      this.line.admin_id = parseInt(res[0].id);
       this.apiService.addAdminLine(this.line).then((res: any) => {
         this._location.back();
       });
