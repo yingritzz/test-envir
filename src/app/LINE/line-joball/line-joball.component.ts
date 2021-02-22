@@ -74,7 +74,7 @@ export class LineJoballComponent implements OnInit {
             document.getElementById("test")!.append(id.toString());
               if (id == 0) {
                 // this.router.navigate(['/linelogin']);
-                window.location.assign("https://www.google.com");
+                window.location.assign("https://liff.line.me/1655682941-G4VXDPkB");
               }
           }
         });
