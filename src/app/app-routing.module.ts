@@ -60,12 +60,14 @@ const routes: Routes = [
   {path: 'line/joball', component:LineJoballComponent},
   {path: 'test', component:TestsComponent},
   {path: '**', component:LoginComponent}
-  
 ];
 
+
 @NgModule({
-  // imports: [RouterModule.forRoot(routes)],
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'top', useHash: false
+  })],
+  // imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
