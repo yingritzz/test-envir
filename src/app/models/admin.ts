@@ -5,6 +5,7 @@ export class Admin {
     admin_email: any;
     admin_phone: any;
     last_login: any;
+    line_id: any;
 }
 
 export class Login {

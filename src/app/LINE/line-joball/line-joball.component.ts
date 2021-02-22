@@ -55,50 +55,27 @@ export class LineJoballComponent implements OnInit {
   ngOnInit() {
     this.getJobAll();
     liff.ready.then(async () => {
-      if (liff.isLoggedIn()) { 
-      const profile = await liff.getProfile();
-      this.id_line = profile.userId;
-      if(this.id_line == undefined){
-        this.router.navigate(['/login']);
-      } else {
+      if (liff.isLoggedIn()) {
+        const profile = await liff.getProfile();
+        this.id_line = profile.userId;
         document.getElementById("test")!.append(this.id_line);
+        var id = 0;
+        this.apiService.getAdmin().then((res: any) => {
+          res.forEach((item: any) => {
+            if (this.id_line == item.line_id) {
+              id += 1
+            }
+          });
+        });
+        if (id == 0) {
+          this.router.navigate(['/login']);
+        }
       }
-      // if (liff.isInClient()) {
-      //   this.id_line = profile.userId;
-      //   document.getElementById("test")!.append(this.id_line);
-      // } 
-      // else {
-      //   this.router.navigate(['/login']);
-      // }
-      } 
       else {
         liff.login()
       }
     })
-    liff.init({liffId:'1655682941-n3bkLoQv'});
-  }
-
-  async getLine() {
-   
-    liff.ready.then(async () => {
-      if (liff.isLoggedIn()) { 
-      const profile = await liff.getProfile();
-      this.id_line = profile.userId;
-      document.getElementById("test")!.append('lala');
-      if (liff.isInClient()) {
-        document.getElementById("test")!.append(profile.userId);
-      }
-      } else {
-        liff.login()
-      }
-    })
-    liff.init({liffId:'1655682941-n3bkLoQv'});
-    
-    // if (this.id_line == undefined) {
-    //   console.log('lala');
-    // } else {
-    //   console.log(this.id_line);
-    // }
+    liff.init({ liffId: '1655682941-n3bkLoQv' });
   }
 
   onTableDataChange(event: any) {

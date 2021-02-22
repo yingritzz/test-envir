@@ -34,6 +34,16 @@ export class ApiService {
       });
     });
   }
+  async getAdmin() {
+    return new Promise((res, rej) => {
+      this.http.get<Admin>(this.base_path+'get/admin')
+        .subscribe((data: any) => {
+          res(data)
+        }, (err: any) => {
+          rej(err)
+        });
+    });
+  }
   async adminProfile(id: number) {
     return new Promise((res, rej) => {
       this.http.get<Admin>(this.base_path+'get/admin/'+id)
