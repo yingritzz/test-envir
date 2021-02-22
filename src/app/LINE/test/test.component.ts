@@ -26,7 +26,7 @@ export class TestsComponent implements OnInit {
         if (liff.isInClient()) {
           document.getElementById('test')?.append((await liff.getProfile()).userId);
         }else {
-          liff.login()
+          liff.login();
         }
 
       });

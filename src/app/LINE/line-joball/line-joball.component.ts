@@ -5,6 +5,7 @@ import { ApiService } from '../../services/api.service';
 import { EmploymentDetail, EmploymentDetailEdit } from '../../models/employment';
 import { EquipmentAmount } from '../../models/equipment';
 import Swal from 'sweetalert2';
+import liff from '@line/liff';
 
 @Component({
   selector: 'app-line-joball',
@@ -38,6 +39,8 @@ export class LineJoballComponent implements OnInit {
   count = 0;
   tableSize = 10
 
+  id_line: any;
+
   constructor(
     private location: Location,
     public router: Router,
@@ -51,6 +54,24 @@ export class LineJoballComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJobAll();
+    this.getLine();
+    if(this.id_line == undefined) {
+      console.log('lala');
+    }else {
+      console.log(this.id_line);
+    }
+
+  }
+
+  async getLine() {
+    await liff.init({ liffId: "1655682941-n3bkLoQv" })
+      .then(async () => {
+        if (liff.isLoggedIn()) {
+          this.id_line = (await liff.getProfile()).userId;
+        }else {
+          liff.login();
+        }
+      });
   }
 
   onTableDataChange(event: any) {
