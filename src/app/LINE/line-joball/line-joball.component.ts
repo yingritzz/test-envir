@@ -58,6 +58,7 @@ export class LineJoballComponent implements OnInit {
   }
 
   async getLine() {
+    liff.init({liffId:'1655682941-n3bkLoQv'});
     const profile = await liff.getProfile();
     liff.ready.then(async () => {
       if (liff.isLoggedIn()) { 
@@ -66,7 +67,6 @@ export class LineJoballComponent implements OnInit {
         liff.login()
       }
     })
-    liff.init({liffId:'1655682941-n3bkLoQv'});
     document.getElementById("test")!.append(profile.userId);
     // if (this.id_line == undefined) {
     //   console.log('lala');
