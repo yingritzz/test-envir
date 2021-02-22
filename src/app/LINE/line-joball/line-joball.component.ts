@@ -58,11 +58,20 @@ export class LineJoballComponent implements OnInit {
       if (liff.isLoggedIn()) { 
       const profile = await liff.getProfile();
       this.id_line = profile.userId;
-      document.getElementById("test")!.append('lala');
-      if (liff.isInClient()) {
-        document.getElementById("test")!.append(profile.userId);
-      }
+      if(this.id_line == undefined){
+        this.router.navigate(['/login']);
       } else {
+        document.getElementById("test")!.append(this.id_line);
+      }
+      // if (liff.isInClient()) {
+      //   this.id_line = profile.userId;
+      //   document.getElementById("test")!.append(this.id_line);
+      // } 
+      // else {
+      //   this.router.navigate(['/login']);
+      // }
+      } 
+      else {
         liff.login()
       }
     })
