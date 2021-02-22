@@ -48,7 +48,7 @@ import {
   BarcodeScannerLivestreamModule,
   BarcodeScannerLivestreamOverlayModule
 } from 'ngx-barcode-scanner';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 
 
@@ -113,8 +113,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [],
-  // providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  // providers: [],
+  providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

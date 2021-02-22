@@ -29,6 +29,7 @@ import { LineSellingComponent } from './LINE/line-selling/line-selling.component
 import { LineTestingComponent } from './LINE/line-testing/line-testing.component';
 import { LineJoballComponent } from './LINE/line-joball/line-joball.component';
 import { TestsComponent } from './LINE/test/test.component';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 const routes: Routes = [
   {path: '', component:LoginComponent},
@@ -64,8 +65,9 @@ const routes: Routes = [
 
 
 @NgModule({
-  // imports: [RouterModule.forRoot(routes)],
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top', useHash: false })],
+  imports: [RouterModule.forRoot(routes)],
+  // imports: [RouterModule.forRoot(routes, { useHash: true })],
+  providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
