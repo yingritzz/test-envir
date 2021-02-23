@@ -56,13 +56,13 @@ export class LineJoballComponent implements OnInit {
     this.getJobAll();
     liff.ready.then(async () => {
       if (liff.isLoggedIn()) {
+        var id = 0;
         const profile = await liff.getProfile();
         this.id_line = profile.userId;
-        document.getElementById("test")!.append(this.id_line);
+        // document.getElementById("test")!.append(this.id_line);
         this.apiService.getAdminLine().then((res: any) => {
-          var id = 0;
           if (res == []) {
-            this.router.navigate(['/linelogin']);
+            window.location.assign("https://liff.line.me/1655682941-G4VXDPkB");
           } else {
             res.forEach((item: any) => {
               if (this.id_line == item.line_id) {
@@ -71,7 +71,7 @@ export class LineJoballComponent implements OnInit {
                 id = id
               }
             });
-            document.getElementById("test")!.append(id.toString());
+            // document.getElementById("test")!.append(id.toString());
               if (id == 0) {
                 // this.router.navigate(['/linelogin']);
                 window.location.assign("https://liff.line.me/1655682941-G4VXDPkB");
