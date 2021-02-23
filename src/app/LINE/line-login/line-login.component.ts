@@ -15,9 +15,7 @@ export class LineLoginComponent implements OnInit {
 
   login_data: Login;
   line: LineLogin;
-
   id: any;
-
 
   constructor(
     public router: Router,
@@ -30,10 +28,8 @@ export class LineLoginComponent implements OnInit {
 
   ngOnInit(): void {
     liff.ready.then(async () => {
-     
         const profile = await liff.getProfile();
         this.line.line_id = profile.userId;
-      
     })
     liff.init({ liffId: '1655682941-G4VXDPkB' });
   }
