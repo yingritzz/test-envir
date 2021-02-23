@@ -30,13 +30,10 @@ export class LineLoginComponent implements OnInit {
 
   ngOnInit(): void {
     liff.ready.then(async () => {
-      if (liff.isLoggedIn()) {
+     
         const profile = await liff.getProfile();
         this.line.line_id = profile.userId;
-      }
-      else {
-        liff.login()
-      }
+      
     })
     liff.init({ liffId: '1655682941-G4VXDPkB' });
   }
